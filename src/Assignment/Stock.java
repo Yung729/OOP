@@ -4,9 +4,7 @@
  */
 package Assignment;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+
 import java.util.Scanner;
 
 
@@ -36,7 +34,7 @@ public class Stock {
        
       do {
         
-       clearScreen();
+       Assignment.clearScreen();
 
        
         Assignment.logo();
@@ -70,7 +68,7 @@ public class Stock {
 
            default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
-                    systemPause();
+                    Assignment.systemPause();
            }
        }
    
@@ -78,13 +76,13 @@ public class Stock {
     
     }
     
-    public static void displaybook(){
+    public void displaybook(){
        
       
     int choice;
     
     do {
-        clearScreen();
+        Assignment.clearScreen();
         System.out.println("Display Stock System");
         System.out.println("====================");
         System.out.println("1. Display All Book");
@@ -107,7 +105,7 @@ public class Stock {
             
             default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
-                    systemPause();
+                    Assignment.systemPause();
            }
         }
                 
@@ -116,13 +114,13 @@ public class Stock {
         
     }
     
-    public static void adjustStock() {
+    public void adjustStock() {
     
         int choice;
         
         do {
             
-            clearScreen();
+            Assignment.clearScreen();
             System.out.println("1. Edit Book");
             System.out.println("2. Edit Stationary");
             System.out.println("0. Exit");
@@ -142,7 +140,7 @@ public class Stock {
                 
                 default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
-                    systemPause();
+                    Assignment.systemPause();
                 }
             }
             
@@ -150,13 +148,13 @@ public class Stock {
          
     }
     
-    public static void addStock() {
+    public void addStock() {
     
     int choice;   
     
     do {
         
-       clearScreen();
+       Assignment.clearScreen();
        System.out.println("Add Stock ");
        System.out.println("==========");
        System.out.println("1. Add book");
@@ -179,7 +177,7 @@ public class Stock {
             
             default -> {
                 System.out.println(RED + "Invalid Input ! " + RESET);
-                systemPause();
+                Assignment.systemPause();
             }
         }
         
@@ -188,13 +186,13 @@ public class Stock {
      
     }
     
-    public static void removebook() {
+    public void removebook() {
        
     int choice;
       
     do {
         
-       clearScreen();
+       Assignment.clearScreen();
        System.out.println("Remove Stock ");
        System.out.println("1. Remove book");
        System.out.println("2. Remove Stationary");      
@@ -215,31 +213,13 @@ public class Stock {
             
             default -> {
                 System.out.println(RED + "Invalid Input ! " + RESET);
-                systemPause();
+                Assignment.systemPause();
             }
         }
        
      } while (choice != 0);
     }
     
-    public static void systemPause(){
-        Scanner buffer = new Scanner(System.in);
-        System.out.print("Enter any key to continue....");
-        buffer.nextLine(); 
-    }
-    
-    public static void clearScreen() {  
-         try {
-            Robot robot = new Robot();
-            robot.setAutoDelay(10);
-            robot.keyPress(KeyEvent.VK_CONTROL);
-            robot.keyPress(KeyEvent.VK_L);
-            robot.keyRelease(KeyEvent.VK_CONTROL);
-            robot.keyRelease(KeyEvent.VK_L);
-        } catch (AWTException ex) {
-            
-        }
-        
-    }  
+
 
 }

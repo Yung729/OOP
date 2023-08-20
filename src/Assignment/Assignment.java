@@ -4,6 +4,9 @@
  */
 package Assignment;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.Scanner;
 
 /**
@@ -101,8 +104,27 @@ public class Assignment {
                 break;
                 
             case 7:
-                return;
         }
     }
+    
+        public static void systemPause(){
+        Scanner buffer = new Scanner(System.in);
+        System.out.print("Enter any key to continue....");
+        buffer.nextLine(); 
+    }
+    
+    public static void clearScreen() {  
+         try {
+            Robot robot = new Robot();
+            robot.setAutoDelay(10);
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            robot.keyPress(KeyEvent.VK_L);
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            robot.keyRelease(KeyEvent.VK_L);
+        } catch (AWTException ex) {
+            
+        }
+        
+    }  
     
 }
