@@ -22,8 +22,7 @@ public class Stock {
     public static final String RESET = "\u001B[0m";
 
     private final String[] STOCK_TYPE = {"Book","Stationary"};
-//2
-    //3
+
     public Stock() {
     }
     
@@ -83,8 +82,9 @@ public class Stock {
     
     do {
         Assignment.clearScreen();
-        System.out.println("Display Stock System");
-        System.out.println("====================");
+        System.out.println("===========================================");
+        System.out.println("=           Display Stock System          =");
+        System.out.println("===========================================");
         System.out.println("1. Display All Book");
         System.out.println("2. Display All Stationary");
         System.out.println("0. Exit");
@@ -121,6 +121,10 @@ public class Stock {
         do {
             
             Assignment.clearScreen();
+                    
+            System.out.println("===========================================");
+            System.out.println("=           Adjust Stock System           =");
+            System.out.println("===========================================");
             System.out.println("1. Edit Book");
             System.out.println("2. Edit Stationary");
             System.out.println("0. Exit");
@@ -155,8 +159,10 @@ public class Stock {
     do {
         
        Assignment.clearScreen();
-       System.out.println("Add Stock ");
-       System.out.println("==========");
+        
+       System.out.println("===========================================");
+       System.out.println("=           Add Stock System              =");
+       System.out.println("===========================================");
        System.out.println("1. Add book");
        System.out.println("2. Add Stationary");
        System.out.println("0. Exit");
@@ -193,7 +199,10 @@ public class Stock {
     do {
         
        Assignment.clearScreen();
-       System.out.println("Remove Stock ");
+        
+       System.out.println("===========================================");
+       System.out.println("=           Remove Stock System           =");
+       System.out.println("===========================================");
        System.out.println("1. Remove book");
        System.out.println("2. Remove Stationary");      
        System.out.println("0. Exit");
