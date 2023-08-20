@@ -24,7 +24,8 @@ public class Stock {
     public static final String RESET = "\u001B[0m";
 
     private final String[] STOCK_TYPE = {"Book","Stationary"};
-
+//2
+    //3
     public Stock() {
     }
     
