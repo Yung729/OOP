@@ -18,12 +18,11 @@ public class Assignment {
     }
     
     public static void logo(){
-        System.out.println("This is LOGO");
-        System.out.printf("\t\t\t\t\t%s\n", "                      _");
-	System.out.printf("\t\t\t\t\t%s\n", "      _   _ _ __ ___ | |_");
-	System.out.printf("\t\t\t\t\t%s\n", "     | | | | '_ ` _ \\| __|");
-	System.out.printf("\t\t\t\t\t%s\n", "     | |_| | | | | | | |_");
-	System.out.printf("\t\t\t\t\t%s\n\n", "      \\__,_|_| |_| |_|\\__|");
+        System.out.printf("%s\n", "                      _");
+	System.out.printf("%s\n", "      _   _ _ __ ___ | |_");
+	System.out.printf("%s\n", "     | | | | '_ ` _ \\| __|");
+	System.out.printf("%s\n", "     | |_| | | | | | | |_");
+	System.out.printf("%s\n\n", "      \\__,_|_| |_| |_|\\__|");
 	
 	
     }
@@ -36,6 +35,7 @@ public class Assignment {
         String testAdminID = "Ali";
         String testAdminPW = "Abc123";
         
+        logo();
         System.out.println("===========================================");
         System.out.println("=                 LOGIN                   =");
         System.out.println("===========================================");
@@ -63,6 +63,7 @@ public class Assignment {
         boolean error = false;
         int choice;
 
+        logo();
         System.out.println("===========================================");
         System.out.println("=                  MENU                   =");
         System.out.println("===========================================");

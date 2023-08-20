@@ -37,14 +37,20 @@ public class Stock {
       do {
         
        clearScreen();
-       System.out.println("book Management");
-       System.out.println("1. Add Stock");
-       System.out.println("2. Adjust Stock");
-       System.out.println("3. Remove Stock");
-       System.out.println("4. Display Stock");
-       System.out.println("5. Stock Report");
-       System.out.println("0. Exit");
+
        
+        Assignment.logo();
+        System.out.println("===========================================");
+        System.out.println("=           Book Management               =");
+        System.out.println("===========================================");
+        System.out.println("=        1. Add Stock                     =");
+        System.out.println("=        2. Adjust Stock                  =");
+        System.out.println("=        3. Remove Stock                  =");
+        System.out.println("=        4. Display Stock                 =");
+        System.out.println("=        5. Stock Report                  =");
+        System.out.println("=        0. Exit                          =");
+        System.out.println("===========================================");
+        
        System.out.print("Enter Your Choice >");
        choice = Validation.getIntegerInput();
        
