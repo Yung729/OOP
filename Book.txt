@@ -1,0 +1,2 @@
+Yung|12|true|B0001|Book2|R|2|12.0|20.0|true
+Yung|20|true|B0002|Book2|H|2|20.0|25.0|true
