@@ -38,6 +38,7 @@ public class Assignment {
         String testAdminID = "Ali";
         String testAdminPW = "Abc123";
         
+        systemPause();
         logo();
         System.out.println("===========================================");
         System.out.println("=                 LOGIN                   =");
