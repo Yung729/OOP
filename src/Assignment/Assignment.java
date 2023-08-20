@@ -3,18 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Assignment;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+
 import java.util.Scanner;
 
 /**
  *
  * @author Yung
  */
-public class Staff {
+public class Assignment {
 
     public static void main(String[] args) {
         //logo();
