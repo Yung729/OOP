@@ -19,6 +19,13 @@ public class Assignment {
     
     public static void logo(){
         System.out.println("This is LOGO");
+        System.out.printf("\t\t\t\t\t%s\n", "                      _");
+	System.out.printf("\t\t\t\t\t%s\n", "      _   _ _ __ ___ | |_");
+	System.out.printf("\t\t\t\t\t%s\n", "     | | | | '_ ` _ \\| __|");
+	System.out.printf("\t\t\t\t\t%s\n", "     | |_| | | | | | | |_");
+	System.out.printf("\t\t\t\t\t%s\n\n", "      \\__,_|_| |_| |_|\\__|");
+	
+	
     }
     
     public static void login(){
@@ -79,6 +86,7 @@ public class Assignment {
             else{
                 error = false;
             }
+            
         }while (error == true);
         
         switch(choice){
