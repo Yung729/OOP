@@ -6,10 +6,8 @@ package Assignment;
 
 import static Assignment.Stock.RED;
 import static Assignment.Stock.RESET;
-import static Assignment.Stock.clearScreen;
 import static Assignment.Stock.input;
 import static Assignment.Stock.inputString;
-import static Assignment.Stock.systemPause;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -300,7 +298,7 @@ public class Book extends Stock{
                          latestBook.subBookBalance(newBookQuantity);
                      }else{
                          System.out.println(Stock.RED+"Book Quantity Is Zero"+Stock.RESET);
-                         Stock.systemPause();
+                         Assignment.systemPause();
                      }
                      
                  }else {
@@ -342,7 +340,7 @@ public class Book extends Stock{
     
     public static void display(){
                     
-        Stock.clearScreen();
+        Assignment.clearScreen();
         ArrayList<Book> bookArray = new ArrayList<>();
 
         System.out.println("Display All Book");
@@ -356,7 +354,7 @@ public class Book extends Stock{
         for (Book bookDisplay: bookArray) {
             System.out.println(bookDisplay);         
         }
-        Stock.systemPause();
+        Assignment.systemPause();
     }
     
     public static void adjust(){
@@ -377,7 +375,7 @@ public class Book extends Stock{
                     
                     do{
                         notFound = true;
-                        clearScreen();
+                        Assignment.clearScreen();
                                 
                         checkAvailable(bookArray);
                         System.out.println("Edit Book Name");
@@ -404,7 +402,7 @@ public class Book extends Stock{
                         if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
                             
                             System.out.println("The BookId Entered Does Not Exist.");
-                            systemPause();
+                            Assignment.systemPause();
                             
                         }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
                             
@@ -577,7 +575,7 @@ public class Book extends Stock{
         
         
                 do {
-                    clearScreen();
+                    Assignment.clearScreen();
                     bookId = generateBookId(bookArray);
                     
                     //prompt input
@@ -632,7 +630,7 @@ public class Book extends Stock{
                     System.out.print("Enter Book Sold price : ");
                     soldPrice = input.nextDouble();
                     
-                    clearScreen();
+                    Assignment.clearScreen();
                     
                     System.out.println("Book Author");
                     System.out.println("===========");
@@ -702,7 +700,7 @@ public class Book extends Stock{
                 }
                 do {
                     
-                    clearScreen();
+                    Assignment.clearScreen();
                     System.out.println("Remove book  System");
                     System.out.println("====================");
                     
@@ -723,7 +721,7 @@ public class Book extends Stock{
                     if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
                         
                         System.out.println("The BookId Entered Does Not Exist.");
-                        systemPause();
+                        Assignment.systemPause();
                         
                     }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
 
@@ -740,7 +738,7 @@ public class Book extends Stock{
                             
                             
                             System.out.println("Succcesful Removed");
-                            systemPause();
+                            Assignment.systemPause();
                         }
                     }
                     

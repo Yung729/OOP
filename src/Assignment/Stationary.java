@@ -4,9 +4,7 @@
  */
 package Assignment;
 
-import static Assignment.Stock.clearScreen;
 import static Assignment.Stock.input;
-import static Assignment.Stock.systemPause;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -242,7 +240,7 @@ public class Stationary extends Stock{
                          latestSta.subStockBalance(newQuantity);
                      }else{
                          System.out.println(Stock.RED+"Book Quantity Is Zero"+Stock.RESET);
-                         Stock.systemPause();
+                         Assignment.systemPause();
                      }
                      
                  }else {
@@ -263,7 +261,7 @@ public class Stationary extends Stock{
     }
     
     public static void display(){
-                    Stock.clearScreen();
+                    Assignment.clearScreen();
             
                     ArrayList<Stationary> staArray = new ArrayList<>();
                     
@@ -278,7 +276,7 @@ public class Stationary extends Stock{
                     for (Stationary staDisplay : staArray) {
                         System.out.println(staDisplay);
                     }
-                    Stock.systemPause();
+                    Assignment.systemPause();
     }
     
     public static void adjust(){
@@ -298,7 +296,7 @@ public class Stationary extends Stock{
                     
                     do{
                         
-                        clearScreen();
+                        Assignment.clearScreen();
                         checkAvailable(staArray);
                         System.out.println("Edit Stationary ");
                         System.out.println("========================");
@@ -319,7 +317,7 @@ public class Stationary extends Stock{
                         if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
                             
                             System.out.println("The Stationary Id Entered Does Not Exist.");
-                            systemPause();
+                            Assignment.systemPause();
                             
                         }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
                             
@@ -447,7 +445,7 @@ public class Stationary extends Stock{
                     System.out.println("Failed Read File");
                 }
                 do {
-                    clearScreen();
+                    Assignment.clearScreen();
                     
                     staId = generateStaId(staArray);
                     //prompt input
@@ -465,7 +463,7 @@ public class Stationary extends Stock{
                     System.out.print("Enter Stationary Sold price : ");
                     soldPrice = input.nextDouble();
                     
-                    clearScreen();
+                    Assignment.clearScreen();
                     
                     displayStaDetails();
                     
@@ -518,7 +516,7 @@ public class Stationary extends Stock{
                     
                     notFound = true;
 
-                    clearScreen();
+                    Assignment.clearScreen();
                     System.out.println("Remove Stationary System");
                     System.out.println("========================");
                     
@@ -539,7 +537,7 @@ public class Stationary extends Stock{
                     if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
                         
                         System.out.println("The Stationary Id Entered Does Not Exist.");
-                        systemPause();
+                        Assignment.systemPause();
                         
                     }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
 
@@ -554,7 +552,7 @@ public class Stationary extends Stock{
                                 Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
                             }
                             System.out.println("Succcesful Removed");
-                            systemPause();
+                            Assignment.systemPause();
                         }
                     }
                     

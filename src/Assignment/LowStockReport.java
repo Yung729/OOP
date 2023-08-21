@@ -48,7 +48,7 @@ public class LowStockReport extends Report{
             Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        Stock.clearScreen();
+        Assignment.clearScreen();
         
         System.out.println("Low Stock Report");
         System.out.println("================");
@@ -62,7 +62,7 @@ public class LowStockReport extends Report{
             
         }
         
-        Stock.systemPause();
+        Assignment.systemPause();
     
     }
     
