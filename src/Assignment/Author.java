@@ -74,7 +74,7 @@ public class Author {
     
     @Override
     public String toString(){
-        return String.format("%s    %d  %s",name,age,String.valueOf(arrive));
+        return String.format("%-15s    %d  %s",name,age,String.valueOf(arrive));
     }
   
     

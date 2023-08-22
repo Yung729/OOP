@@ -344,7 +344,8 @@ public class Book extends Stock{
         ArrayList<Book> bookArray = new ArrayList<>();
 
         System.out.println("Display All Book");
-
+        System.out.println("Author Name Age Status  BookId  BookName    Type    Quantity    Unit Price  Sold Price  Book Status");
+        System.out.println("===================================================================================================");
         try {
             readBookFromFile(bookArray);
         } catch (FileNotFoundException ex) {
@@ -354,6 +355,7 @@ public class Book extends Stock{
         for (Book bookDisplay: bookArray) {
             System.out.println(bookDisplay);         
         }
+        
         Assignment.systemPause();
     }
     
@@ -685,70 +687,70 @@ public class Book extends Stock{
     }
     
     public void remove(){
-    String IdSearch,confirm;
-    boolean notFound = false;
-    int currentIndex = 0;
+        String IdSearch,confirm;
+        boolean notFound = false;
+        int currentIndex = 0;
     
-                ArrayList<Book> bookArray = new ArrayList<>();
-                try {      
-                    readBookFromFile(bookArray);
-                }
-                
-                catch (FileNotFoundException ex) {
-                    System.out.println("Failed to read book record");
-      
-                }
-                do {
-                    
-                    Assignment.clearScreen();
-                    System.out.println("Remove book  System");
-                    System.out.println("====================");
-                    
-                    
-                    System.out.print("Enter BookID [Q to exit]> ");
-                    IdSearch = inputString.nextLine();
+        ArrayList<Book> bookArray = new ArrayList<>();
+        try {      
+            readBookFromFile(bookArray);
+        }
 
-                    for (int i = 0; i < bookArray.size(); i++) {
+        catch (FileNotFoundException ex) {
+            System.out.println("Failed to read book record");
 
-                        if (IdSearch.equals(bookArray.get(i).getBookId())) {
-                            notFound = false;
-                            displayBookDetails(bookArray.get(i));
-                            currentIndex = i; 
-                            break;
-                        }
+        }
+        do {
+
+            Assignment.clearScreen();
+            System.out.println("Remove book  System");
+            System.out.println("====================");
+
+
+            System.out.print("Enter BookID [Q to exit]> ");
+            IdSearch = inputString.nextLine();
+
+            for (int i = 0; i < bookArray.size(); i++) {
+
+                if (IdSearch.equals(bookArray.get(i).getBookId())) {
+                    notFound = false;
+                    displayBookDetails(bookArray.get(i));
+                    currentIndex = i; 
+                    break;
+                }
+            }
+
+            if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
+
+                System.out.println("The BookId Entered Does Not Exist.");
+                Assignment.systemPause();
+
+            }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
+
+                System.out.print("Confirm To Remove Book  ? [Y/N] >");
+                confirm = inputString.next();
+
+                if (toUpperCase(confirm.charAt(0)) == 'Y') {
+                    removeBook(bookArray,bookArray.get(currentIndex));
+                    try {
+                        writeBookToFile(bookArray);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
-                        
-                        System.out.println("The BookId Entered Does Not Exist.");
-                        Assignment.systemPause();
-                        
-                    }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
 
-                        System.out.print("Confirm To Remove Book  ? [Y/N] >");
-                        confirm = inputString.next();
+                    System.out.println("Succcesful Removed");
+                    Assignment.systemPause();
+                }
+            }
 
-                        if (toUpperCase(confirm.charAt(0)) == 'Y') {
-                            removeBook(bookArray,bookArray.get(currentIndex));
-                            try {
-                                writeBookToFile(bookArray);
-                            } catch (IOException ex) {
-                                Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
-                            
-                            System.out.println("Succcesful Removed");
-                            Assignment.systemPause();
-                        }
-                    }
-                    
-                } while (toUpperCase(IdSearch.charAt(0)) != 'Q');
+        } while (toUpperCase(IdSearch.charAt(0)) != 'Q');
     }
     
     @Override
     public String toString(){
         
-        return String.format("%s  %s   %s  %s  %d  RM%.2f  RM%.2f",super.toString() ,bookId,bookName,convertBookType(bookType),
+        return String.format("%s    %s  %s  %s  %d  RM%.2f  RM%.2f",author.toString() ,bookId,bookName,convertBookType(bookType),
                      bookBalance,unitPrice,soldPrice); 
     }
     
