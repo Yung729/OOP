@@ -4,8 +4,8 @@
  */
 package Assignment;
 
-import static Assignment.Stock.RED;
-import static Assignment.Stock.RESET;
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
 import static Assignment.Stock.input;
 import static Assignment.Stock.inputString;
 import java.io.File;
@@ -297,7 +297,7 @@ public class Book extends Stock{
                      if (latestBook.getBookStatus() && check >= 0) {
                          latestBook.subBookBalance(newBookQuantity);
                      }else{
-                         System.out.println(Stock.RED+"Book Quantity Is Zero"+Stock.RESET);
+                         System.out.println(RED+"Book Quantity Is Zero"+RESET);
                          Assignment.systemPause();
                      }
                      

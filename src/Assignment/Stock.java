@@ -5,6 +5,8 @@
 package Assignment;
 
 
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
 import java.util.Scanner;
 
 
@@ -18,22 +20,17 @@ public class Stock {
     
     static Scanner input = new Scanner(System.in);
     static Scanner inputString = new Scanner(System.in);
-    public static final String RED = "\u001B[31m";
-    public static final String RESET = "\u001B[0m";
+    
 
-    public Stock() {
-    }
-    
-    
+        
     public void StockMenu() {
          
       int choice;
-       
+      
       do {
         
        Assignment.clearScreen();
 
-       
         Assignment.logo();
         System.out.println("===========================================");
         System.out.println("=           Book Management               =");
@@ -60,6 +57,7 @@ public class Stock {
            case 4 -> displaybook();
         
            case 5 -> new Report().reportMenu();
+           
      
            case 0 -> {}
 
@@ -73,9 +71,8 @@ public class Stock {
     
     }
     
-    public void displaybook(){
-       
-      
+public void displaybook(){
+    
     int choice;
     
     do {

@@ -4,6 +4,8 @@
  */
 package Assignment;
 
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
 import static Assignment.Stock.input;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -239,7 +241,7 @@ public class Stationary extends Stock{
                      if (latestSta.getStaStatus() && check >= 0) {
                          latestSta.subStockBalance(newQuantity);
                      }else{
-                         System.out.println(Stock.RED+"Book Quantity Is Zero"+Stock.RESET);
+                         System.out.println(RED+"Book Quantity Is Zero"+RESET);
                          Assignment.systemPause();
                      }
                      

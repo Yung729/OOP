@@ -7,8 +7,6 @@ package Assignment;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -42,10 +40,11 @@ public class LowStockReport extends Report{
        
         ArrayList<Book> bookArray = new ArrayList<>();
         Scanner input = new Scanner(System.in);
+        
         try {
             Book.readBookFromFile(bookArray);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(Report.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Failed to read file");
         }
         
         Assignment.clearScreen();

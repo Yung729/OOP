@@ -15,6 +15,9 @@ import java.util.Scanner;
  */
 public class Assignment {
 
+    public static final String RED = "\u001B[31m";
+    public static final String RESET = "\u001B[0m";
+    
     public static void main(String[] args) {
         //logo();
         login();
@@ -57,6 +60,7 @@ public class Assignment {
                 error = true;
                 System.out.println("Invalid ID or Password. Please enter again!");
             }
+            
         }while(error == true);
     }
     
@@ -66,6 +70,8 @@ public class Assignment {
         boolean error = false;
         int choice;
 
+    do{
+        clearScreen();
         logo();
         System.out.println("===========================================");
         System.out.println("=                  MENU                   =");
@@ -76,7 +82,7 @@ public class Assignment {
         System.out.println("=        4. Membership Register           =");
         System.out.println("=        5. Stock Management              =");
         System.out.println("=        6. Sales Report                  =");
-        System.out.println("=        7. Exit                          =");
+        System.out.println("=        0. Exit                          =");
         System.out.println("===========================================");
         
         do{
@@ -84,11 +90,11 @@ public class Assignment {
             System.out.print("Enter your choice: ");
             choice = sc.nextInt();
             
-            if(choice < 1 || choice > 7){
-                error = true;
+            if(choice <= 6 && choice >= 0){
+                error = false;
             }
             else{
-                error = false;
+                error = true;
             }
             
         }while (error == true);
@@ -105,8 +111,10 @@ public class Assignment {
                 new Stock().StockMenu();
                 break;
                 
-            case 7:
+            case 0:
         }
+    
+    }while(choice != 0);
     }
     
        
