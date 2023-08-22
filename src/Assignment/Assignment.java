@@ -38,7 +38,6 @@ public class Assignment {
         String testAdminID = "Ali";
         String testAdminPW = "Abc123";
         
-        systemPause();
         logo();
         System.out.println("===========================================");
         System.out.println("=                 LOGIN                   =");
@@ -98,7 +97,9 @@ public class Assignment {
             case 1:
                 new StaffMain().staffMenu();
                 break;
-                
+              
+            case 3:
+                break;
             
             case 5:
                 new Stock().StockMenu();
@@ -108,7 +109,8 @@ public class Assignment {
         }
     }
     
-        public static void systemPause(){
+       
+    public static void systemPause(){
         Scanner buffer = new Scanner(System.in);
         System.out.print("Enter any key to continue....");
         buffer.nextLine(); 

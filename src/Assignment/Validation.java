@@ -50,6 +50,69 @@ public class Validation {
         return value;
     }
     
+
+
+    public static int getIntegerInput(String question) {
+        String res = getStringInput(question);
+        if (res == null)  return -1;
+        if (!res.matches("\\d+"))  return -1;  //if not number
+
+        return Integer.parseInt(res);
+    }
+
+
+    public static String getStringInput(){
+        String value;
+        try{
+            value = input.nextLine();
+        }catch(Exception e){
+            input.nextLine();
+            return null;
+        }
+        return value;
+    }
+
+    public static String getStringInput(String question) {
+        String value;
+        System.out.print(question);
+        try {
+            value = input.next();
+        } catch (Exception e) {
+            input.nextLine();
+            return null;
+        }
+        return value;
+    }
+
+    public static int getIsContinue(String ans) {
+        if(toUpperCase(ans.charAt(0)) != 'Y' && toUpperCase(ans.charAt(0)) != 'N'){
+            return -1;
+        }
+
+        if (toUpperCase(ans.charAt(0)) == 'Y') {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static boolean checkIsContinue(String question) {
+        String ans;
+        do {
+            ans = getStringInput(question);
+            if (ans == null) {
+                System.out.println("Invalid input!");
+                continue;
+            }
+            if (toUpperCase(ans.charAt(0)) != 'Y' && toUpperCase(ans.charAt(0)) != 'N') {
+                System.out.println("Invalid input!");
+                continue;
+            }
+            break;
+        } while (true);
+
+        return toUpperCase(ans.charAt(0)) == 'Y';
+    }
     
     
 }
