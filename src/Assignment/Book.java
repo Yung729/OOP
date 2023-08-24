@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author Yung
  */
 
-public class Book extends Stock{
+public class Book extends Stock {
      
     Author author;
     private  String bookName;
@@ -338,7 +338,7 @@ public class Book extends Stock{
             
     }
     
-    public static void display(){
+    public void display(){
                     
         Assignment.clearScreen();
         ArrayList<Book> bookArray = new ArrayList<>();
@@ -359,7 +359,7 @@ public class Book extends Stock{
         Assignment.systemPause();
     }
     
-    public static void adjust(){
+    public void adjust(){
         
         String IdSearch ,newBookName,confirm;
         char newBookType;
@@ -409,7 +409,7 @@ public class Book extends Stock{
                         }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
                             
                             System.out.println("Option");
-                            System.out.println("================");
+                            System.out.println("=========================");
                             System.out.println("1. Book Name");
                             System.out.println("2. Book Type");
                             System.out.println("3. Book Price");
@@ -417,6 +417,7 @@ public class Book extends Stock{
                             System.out.println("5. Author Name");
                             System.out.println("6. Author Year Of Birth");
                             System.out.println("7. Author Status");
+                            System.out.println("=========================");
                             
                             System.out.print("Enter Field to Edit [1-4] >");
                             choice = Validation.getIntegerInput();

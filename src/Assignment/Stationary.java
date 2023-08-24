@@ -262,7 +262,7 @@ public class Stationary extends Stock{
         }
     }
     
-    public static void display(){
+    public void display(){
                     Assignment.clearScreen();
             
                     ArrayList<Stationary> staArray = new ArrayList<>();
@@ -281,7 +281,7 @@ public class Stationary extends Stock{
                     Assignment.systemPause();
     }
     
-    public static void adjust(){
+    public void adjust(){
         String IdSearch ,newBookName,confirm;
         char newBookType;
         int choice , newBookQuantity, currentIndex = 0;

@@ -22,10 +22,9 @@ public class Stock {
     static Scanner inputString = new Scanner(System.in);
     
 
-        
-    public void StockMenu() {
-         
-      int choice;
+    
+    public void menu(){
+         int choice;
       
       do {
         
@@ -33,13 +32,11 @@ public class Stock {
 
         Assignment.logo();
         System.out.println("===========================================");
-        System.out.println("=           Book Management               =");
+        System.out.println("=           Stock Management              =");
         System.out.println("===========================================");
-        System.out.println("=        1. Add Stock                     =");
-        System.out.println("=        2. Adjust Stock                  =");
-        System.out.println("=        3. Remove Stock                  =");
-        System.out.println("=        4. Display Stock                 =");
-        System.out.println("=        5. Stock Report                  =");
+        System.out.println("=        1. Book Management               =");
+        System.out.println("=        2. Stationary Management         =");
+        System.out.println("=        3. Stock Report                  =");
         System.out.println("=        0. Exit                          =");
         System.out.println("===========================================");
         
@@ -48,17 +45,58 @@ public class Stock {
        
        switch(choice){
            
-           case 1 -> addStock();
+           case 1 -> stockMenu("Book Management",new Book() );
               
-           case 2 -> adjustStock();
+           case 2 -> stockMenu("Stationary Management",new Stationary());
      
-           case 3 -> removebook();
-   
-           case 4 -> displaybook();
-        
-           case 5 -> new Report().reportMenu();
+           case 0 -> {}
+
+           case 3 -> new Report().reportMenu();
            
+           default -> {
+                    System.out.println(RED + "Invalid Input ! " + RESET);
+                    Assignment.systemPause();
+           }
+       }
+   
+      } while (choice != 0); 
+    }
+        
+    
+    public void stockMenu(String title,Object obj) {
+         
+      int choice;
+
+        if (obj instanceof Book book) {
+            
+           do {
      
+       Assignment.clearScreen();
+
+        Assignment.logo();
+        System.out.println("===========================================");
+        System.out.printf("=           %s               =\n",title);
+        System.out.println("===========================================");
+        System.out.println("=        1. Add Stock                     =");
+        System.out.println("=        2. Adjust Stock                  =");
+        System.out.println("=        3. Remove Stock                  =");
+        System.out.println("=        4. Display Stock                 =");
+        System.out.println("=        0. Exit                          =");
+        System.out.println("===========================================");
+        
+       System.out.print("Enter Your Choice >");
+       choice = Validation.getIntegerInput();
+       
+       switch(choice){
+           
+           case 1 -> book.add();
+              
+           case 2 -> book.adjust();
+     
+           case 3 -> book.remove();
+   
+           case 4 -> book.display();
+
            case 0 -> {}
 
            default -> {
@@ -68,161 +106,51 @@ public class Stock {
        }
    
       } while (choice != 0);
-    
-    }
-    
-public void displaybook(){
-    
-    int choice;
-    
-    do {
-        Assignment.clearScreen();
+            
+        }else if (obj instanceof Stationary stationary) {
+            do {
+     
+       Assignment.clearScreen();
+
+        Assignment.logo();
         System.out.println("===========================================");
-        System.out.println("=           Display Stock System          =");
+        System.out.printf("=           %s         =\n",title);
         System.out.println("===========================================");
-        System.out.println("1. Display All Book");
-        System.out.println("2. Display All Stationary");
-        System.out.println("0. Exit");
-        System.out.print("Enter your choice >");
-        choice = Validation.getIntegerInput();
+        System.out.println("=        1. Add Stock                     =");
+        System.out.println("=        2. Adjust Stock                  =");
+        System.out.println("=        3. Remove Stock                  =");
+        System.out.println("=        4. Display Stock                 =");
+        System.out.println("=        0. Exit                          =");
+        System.out.println("===========================================");
         
-        switch(choice){
-        
-            case 1->{
-                    Book.display();
-            }
-            
-            case 2->{
-                    Stationary.display();
-            }
-            
-            case 0 ->{}
-            
-            default -> {
+       System.out.print("Enter Your Choice >");
+       choice = Validation.getIntegerInput();
+       
+       switch(choice){
+           
+           case 1 -> stationary.add();
+              
+           case 2 -> stationary.adjust();
+     
+           case 3 -> stationary.remove();
+   
+           case 4 -> stationary.display();
+
+           case 0 -> {}
+
+           default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
                     Assignment.systemPause();
            }
-        }
-                
-     } while (choice != 0);
-        
-        
-    }
-    
-    public void adjustStock() {
-    
-        int choice;
-        
-        do {
-            
-            Assignment.clearScreen();
-                    
-            System.out.println("===========================================");
-            System.out.println("=           Adjust Stock System           =");
-            System.out.println("===========================================");
-            System.out.println("1. Edit Book");
-            System.out.println("2. Edit Stationary");
-            System.out.println("0. Exit");
-            System.out.print("Enter your choice > ");
-            choice = Validation.getIntegerInput();
-            
-            switch (choice) {
-                case 1 -> {
-                    Book.adjust();
-                }
-                
-                case 2 -> {
-                    Stationary.adjust();
-                }
-                
-                case 0 ->{}
-                
-                default -> {
-                    System.out.println(RED + "Invalid Input ! " + RESET);
-                    Assignment.systemPause();
-                }
-            }
-            
-        } while (choice != 0);
-         
-    }
-    
-    public void addStock() {
-    
-    int choice;   
-    
-    do {
-        
-       Assignment.clearScreen();
-        
-       System.out.println("===========================================");
-       System.out.println("=           Add Stock System              =");
-       System.out.println("===========================================");
-       System.out.println("1. Add book");
-       System.out.println("2. Add Stationary");
-       System.out.println("0. Exit");
-       
-       System.out.print("Enter Your Choice >");
-       choice = Validation.getIntegerInput();
-       
-        switch (choice) {
-            case 1 -> {
-                new Book().add();
-            }
-            case 2 -> {
-                
-                new Stationary().add();
-            }
-            
-            case 0 ->{}
-            
-            default -> {
-                System.out.println(RED + "Invalid Input ! " + RESET);
-                Assignment.systemPause();
-            }
-        }
-        
+       }
+   
       } while (choice != 0);
-            
-     
-    }
-    
-    public void removebook() {
-       
-    int choice;
-      
-    do {
-        
-       Assignment.clearScreen();
-        
-       System.out.println("===========================================");
-       System.out.println("=           Remove Stock System           =");
-       System.out.println("===========================================");
-       System.out.println("1. Remove book");
-       System.out.println("2. Remove Stationary");      
-       System.out.println("0. Exit");
-       
-       System.out.print("Enter Your Choice >");
-       choice = Validation.getIntegerInput();
-       
-        switch (choice) {
-            case 1 -> {
-                new Book().remove();
-            }
-            case 2 -> {
-                new Stationary().remove();
-            }
-            
-            case 0 -> {}
-            
-            default -> {
-                System.out.println(RED + "Invalid Input ! " + RESET);
-                Assignment.systemPause();
-            }
         }
-       
-     } while (choice != 0);
+
+      
+    
     }
+ 
     
 
 

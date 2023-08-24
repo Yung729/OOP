@@ -108,7 +108,7 @@ public class Assignment {
                 break;
             
             case 5:
-                new Stock().StockMenu();
+                new Stock().menu();
                 break;
                 
             case 0:
