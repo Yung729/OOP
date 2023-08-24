@@ -322,8 +322,7 @@ public class Book extends Stock {
 
             
     }
-    
-    
+ 
     public static void displayBookDetails(Book book){
             System.out.println("====================================");
             System.out.println("|            Book Detail            |");
@@ -361,10 +360,8 @@ public class Book extends Stock {
     
     public void adjust(){
         
-        String IdSearch ,newBookName,confirm;
-        char newBookType;
+        String IdSearch ,confirm;
         int choice , newBookQuantity, currentIndex = 0;
-        double newBookPrice;
         boolean notFound ;
         
                     ArrayList<Book> bookArray = new ArrayList<>();
@@ -425,18 +422,17 @@ public class Book extends Stock {
                             switch(choice){
                                 
                                 case 1 -> {
-                                    
                                     System.out.println("Edit Book Name");
                                     System.out.println("==============");
                                     System.out.print("Enter Book Name :");
-                                    newBookName = inputString.nextLine();
+                                    bookArray.get(currentIndex).setBookName(inputString.nextLine());
                                     
                                     System.out.print("Confirm To Edit Book Name ? [Y/N] >");
                                     confirm = inputString.next();
                                     
                                     if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                                         try {
-                                            editBook(bookArray, IdSearch, newBookName);
+                                            editBook(bookArray, IdSearch, bookArray.get(currentIndex).getBookName());
                                             writeBookToFile(bookArray);
                                         } catch (IOException ex) {
                                             System.out.println("Failed to Edit The Book Name");
@@ -451,14 +447,14 @@ public class Book extends Stock {
                                     System.out.println("==============");
                                     
                                     System.out.print("Enter Book Type :");
-                                    newBookType = inputString.next().charAt(0);
+                                    bookArray.get(currentIndex).setBookType(inputString.next().charAt(0));
                                     
                                     System.out.print("Confirm To Edit Book Type ? [Y/N] >");
                                     confirm = inputString.next();
                                     
                                     if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                                         try {
-                                            editBook(bookArray, IdSearch, newBookType);
+                                            editBook(bookArray, IdSearch, bookArray.get(currentIndex).getBookType());
                                             writeBookToFile(bookArray);
                                         } catch (IOException ex) {
                                             System.out.println("Failed to Edit The Book Type");
@@ -469,7 +465,6 @@ public class Book extends Stock {
                                 }
                                 
                                 case 3 ->{
-                                    
                                     System.out.println("Edit Book Price");
                                     System.out.println("==============");
                                     System.out.print("Enter Book Price :");
@@ -479,14 +474,12 @@ public class Book extends Stock {
                                     confirm = inputString.next();
                                     
                                     if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        
                                         try {
                                             editBook(bookArray, IdSearch, bookArray.get(currentIndex).getSoldPrice());
                                             writeBookToFile(bookArray);
                                         } catch (IOException ex) {
                                             System.out.println("Failed to Edit The Book Type");
-                                        }
-                                        
+                                        }         
                                     }else {
                                         System.out.println(RED + "Edit is denied");
                                     }

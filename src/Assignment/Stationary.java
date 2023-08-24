@@ -210,6 +210,7 @@ public class Stationary extends Stock{
                             soldPrice,stockBalance);
     }
     
+//edit name
     public static void editSta(ArrayList<Stationary> staArray,String searchId,String newName){
          for (Stationary latestSta: staArray) {
           if (latestSta.getStaId().equals(searchId)) {
@@ -219,6 +220,7 @@ public class Stationary extends Stock{
         }
     }
     
+    // edit price
     public static void editSta(ArrayList<Stationary> staArray,String searchId,double newPrice){
          for (Stationary latestSta: staArray) {
           if (latestSta.getStaId().equals(searchId)) {
@@ -229,6 +231,7 @@ public class Stationary extends Stock{
         }
     }
     
+    //edit quantity
     public static void editSta(ArrayList<Stationary> staArray,String searchId,int newQuantity,boolean add,boolean sub){
          for (Stationary latestSta: staArray) {
              if (latestSta.getStaId().equals(searchId)) {
@@ -283,7 +286,6 @@ public class Stationary extends Stock{
     
     public void adjust(){
         String IdSearch ,newBookName,confirm;
-        char newBookType;
         int choice , newBookQuantity, currentIndex = 0;
         double newBookPrice;
         boolean notFound = true;
@@ -311,9 +313,10 @@ public class Stationary extends Stock{
                                 
                                 notFound = false;
                                 displayBookDetails(staArray.get(i));
+                                currentIndex = i;
                                 break;
                             }
-                            
+   
                         }
                         
                         if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
@@ -338,14 +341,14 @@ public class Stationary extends Stock{
                                     System.out.println("Edit Stationary Name");
                                     System.out.println("====================");
                                     System.out.print("Enter Stationary Name :");
-                                    newBookName = input.nextLine();
+                                    staArray.get(currentIndex).setName(input.nextLine());
                                     
                                     System.out.print("Confirm To Edit Book Name ? [Y/N] >");
                                     confirm = input.next();
                                     
                                     if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                                         try {
-                                            editSta(staArray, IdSearch, newBookName);
+                                            editSta(staArray, IdSearch, staArray.get(currentIndex).getName());
                                             writeStaToFile(staArray);
                                         } catch (IOException ex) {
                                             System.out.println("Failed to Edit The Book Name");
@@ -359,7 +362,7 @@ public class Stationary extends Stock{
                                     System.out.println("Edit Stationary Price");
                                     System.out.println("=====================");
                                     System.out.print("Enter Stationary Price :");
-                                    newBookPrice = input.nextDouble();
+                                    staArray.get(currentIndex).setSoldPrice(input.nextDouble());
                                     
                                     System.out.print("Confirm To Edit Stationary Price ? [Y/N] >");
                                     confirm = input.next();
@@ -367,7 +370,7 @@ public class Stationary extends Stock{
                                     if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                                         
                                         try {
-                                            editSta(staArray, IdSearch, newBookPrice);
+                                            editSta(staArray, IdSearch, staArray.get(currentIndex).getSoldPrice());
                                             writeStaToFile(staArray);
                                             
                                         } catch (IOException ex) {
