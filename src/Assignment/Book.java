@@ -414,6 +414,7 @@ public class Book extends Stock {
                             System.out.println("5. Author Name");
                             System.out.println("6. Author Year Of Birth");
                             System.out.println("7. Author Status");
+                            System.out.println("0. Stop Edit");
                             System.out.println("=========================");
                             
                             System.out.print("Enter Field to Edit [1-4] >");
@@ -487,7 +488,7 @@ public class Book extends Stock {
                                 
                                 case 4 -> {
                                     System.out.println("Edit Book Quantity");
-                                    System.out.println("==============");
+                                    System.out.println("==================");
                                     System.out.println("1. Add Book Quantity");
                                     System.out.println("2. Sub Book Quantity");
                                     System.out.println("3. Set Book Quantity");
@@ -540,9 +541,70 @@ public class Book extends Stock {
                                     }
                                 }
                                 
-                                case 5->{}
-                                case 6->{}
-                                case 7->{}
+                                case 5->{
+                                    System.out.println("Edit Author Name");
+                                    System.out.println("==================");
+                                    System.out.print("Enter Book Name :");
+                                    bookArray.get(currentIndex).author.setName(inputString.nextLine());
+                                    
+                                    System.out.print("Confirm To Edit Author Name ? [Y/N] >");
+                                    confirm = inputString.next();
+                                    
+                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                                        try {
+                                            Author.editAuthor(bookArray, IdSearch, bookArray.get(currentIndex).author.getName());
+                                            writeBookToFile(bookArray);
+                                        } catch (IOException ex) {
+                                            System.out.println("Failed to Edit The Book Name");
+                                        }
+                                    }else {
+                                        System.out.println(RED + "Edit is denied");
+                                    }
+                                }
+                                case 6->{
+                                    System.out.println("Edit Author Birth");
+                                    System.out.println("==================");
+                                    System.out.print("Enter Year Of Birth :");
+                                    
+                                    bookArray.get(currentIndex).author.setAge(inputString.nextInt());
+                                    
+                                    System.out.print("Confirm To Edit Author Birth ? [Y/N] >");
+                                    confirm = inputString.next();
+                                    
+                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                                        try {
+                                            Author.editAuthor(bookArray, IdSearch, bookArray.get(currentIndex).author.getAge());
+                                            writeBookToFile(bookArray);
+                                        } catch (IOException ex) {
+                                            System.out.println("Failed to Edit The Book Name");
+                                        }
+                                    }else {
+                                        System.out.println(RED + "Edit is denied");
+                                    }
+                                }
+                                case 7->{
+                                    System.out.println("Edit Author Status");
+                                    System.out.println("==================");
+                                    System.out.println("Current status : " + bookArray.get(currentIndex).author.checkArrive());
+                                    
+                                    System.out.print("Confirm To Edit Book Name ? [Y/N] >");
+                                    confirm = inputString.next();
+                                    
+                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                                        try {
+                                            if (bookArray.get(currentIndex).author.checkArrive()) {
+                                               Author.editAuthor(bookArray, IdSearch, false); 
+                                            }else{
+                                              Author.editAuthor(bookArray, IdSearch, false); 
+                                            }
+                                            writeBookToFile(bookArray);
+                                        } catch (IOException ex) {
+                                            System.out.println("Failed to Edit The Book Name");
+                                        }
+                                    }else {
+                                        System.out.println(RED + "Edit is denied");
+                                    }
+                                }
                                 
                                 case 0->{}
                                 

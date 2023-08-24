@@ -4,6 +4,8 @@
  */
 package Assignment;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yung
@@ -71,6 +73,36 @@ public class Author {
             System.out.println("|                                  |");
             System.out.println("====================================");
     }
+    
+    
+    // overloading method of editBook 
+    public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,String newAuthorName){
+         for (Book latestBook: bookArray) {
+          if (latestBook.getBookId().equals(searchBookId)) {
+                 latestBook.author.setName(newAuthorName);
+           }     
+            
+        }
+    }
+    
+    
+    public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,int newAge){
+         for (Book latestBook: bookArray) {
+             if (latestBook.getBookId().equals(searchBookId)) {
+                 latestBook.author.setAge(newAge);
+             }     
+        }
+    }
+    
+    public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,boolean arrive){
+         for (Book latestBook: bookArray) {
+             if (latestBook.getBookId().equals(searchBookId)) {
+                 latestBook.author.setArrive(arrive);
+             }     
+        }
+    }
+    
+    
     
     @Override
     public String toString(){
