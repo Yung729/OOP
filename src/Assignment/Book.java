@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 public class Book extends Stock {
      
     Author author;
-    private  String bookName;
     private  String bookId;
+    private  String bookName;
     private  char bookType;
     private  int bookBalance;
     private  double unitPrice;

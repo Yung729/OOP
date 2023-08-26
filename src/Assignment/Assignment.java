@@ -29,6 +29,7 @@ public class Assignment {
 	System.out.printf("%s\n", "     | | | | '_ ` _ \\| __|");
 	System.out.printf("%s\n", "     | |_| | | | | | | |_");
 	System.out.printf("%s\n\n", "      \\__,_|_| |_| |_|\\__|");
+        System.out.println("===========================================");
 	
 	
     }
@@ -42,7 +43,6 @@ public class Assignment {
         String testAdminPW = "Abc123";
         
         logo();
-        System.out.println("===========================================");
         System.out.println("=                 LOGIN                   =");
         System.out.println("===========================================");
         
@@ -73,7 +73,6 @@ public class Assignment {
     do{
         clearScreen();
         logo();
-        System.out.println("===========================================");
         System.out.println("=                  MENU                   =");
         System.out.println("===========================================");
         System.out.println("=        1. Staff Manage                  =");

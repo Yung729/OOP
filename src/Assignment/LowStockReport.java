@@ -39,7 +39,6 @@ public class LowStockReport extends Report{
     public void findLowStock(){
        
         ArrayList<Book> bookArray = new ArrayList<>();
-        Scanner input = new Scanner(System.in);
         
         try {
             Book.readBookFromFile(bookArray);
@@ -52,8 +51,8 @@ public class LowStockReport extends Report{
         System.out.println("Low Stock Report");
         System.out.println("================");
 
-        System.out.print("Please enter a low line > ");
-        lowStockLine = input.nextInt();
+        lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
+        
         for (Book bookCheck : bookArray) {
             if (checkLowStock(bookCheck)) {
                 System.out.println(bookCheck);              
