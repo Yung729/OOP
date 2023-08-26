@@ -389,7 +389,7 @@ public class Book extends Stock {
                                 
                                 notFound = false;
                                 displayBookDetails(bookArray.get(i));
-                                Author.displayAuthorDetail(bookArray.get(i));
+                                bookArray.get(i).author.displayAuthorDetail();
                                 currentIndex = i;
                                 break;
                             }

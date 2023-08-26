@@ -66,7 +66,7 @@ public class Author {
             System.out.println("====================================");
     }
     
-    public static void displayAuthorDetail(Book book){
+    public  void displayAuthorDetail(Book book){
             System.out.println("| Author Name :  " + book.author.name);
             System.out.println("| Author Age :  " + book.author.age);
             System.out.println("| Author status :  " + book.author.arrive);
@@ -102,6 +102,7 @@ public class Author {
         }
     }
     
+ 
     
     
     @Override
