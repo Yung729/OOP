@@ -21,6 +21,71 @@ public class Stock {
     static Scanner input = new Scanner(System.in);
     static Scanner inputString = new Scanner(System.in);
   
+    private String name;
+    private int stockQuantity;
+    private double unitPrice;
+    private double soldPrice;
+    private boolean stockStatus;
+
+    public Stock(String name, int stockQuantity, double unitPrice, double soldPrice, boolean stockStatus) {
+        this.name = name;
+        this.stockQuantity = stockQuantity;
+        this.unitPrice = unitPrice;
+        this.soldPrice = soldPrice;
+        this.stockStatus = stockStatus;
+    }
+    
+    Stock(){}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public double getSoldPrice() {
+        return soldPrice;
+    }
+
+    public void setSoldPrice(double soldPrice) {
+        this.soldPrice = soldPrice;
+    }
+
+    public boolean isStockStatus() {
+        return stockStatus;
+    }
+
+    public void setStockStatus(boolean stockStatus) {
+        this.stockStatus = stockStatus;
+    }
+    
+    public void addStockQuantity(int stockQuantity){
+        this.stockQuantity += stockQuantity;
+    }
+    
+    public void subStockQuantity(int stockQuantity){
+        
+        this.stockQuantity -= stockQuantity;
+    }
+    
     public void menu(){
          int choice;
       
@@ -153,6 +218,11 @@ public class Stock {
 
       
     
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s  %d  RM%.2f RM%.2f %s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
     }
  
 

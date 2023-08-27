@@ -25,115 +25,54 @@ import java.util.logging.Logger;
 
 public class Book extends Stock {
      
-    Author author;
+    Author author = new Author();
     private  String bookId;
-    private  String bookName;
     private  char bookType;
-    private  int bookBalance;
-    private  double unitPrice;
-    private  double soldPrice;
-    private boolean bookStatus;
+
     
     //private String startSellDate ;
     // language - can do report
-      
-    Book(Author author,String bookId, String bookName, char bookType, int bookBalance, double unitPrice,double soldPrice,boolean bookStatus){
-       
-        this.author = author;
-        this.bookId = bookId;
-        this.bookName = bookName;
-        this.bookType = bookType;
-        this.bookBalance = bookBalance;
-        this.unitPrice = unitPrice;
-        this.soldPrice = soldPrice;
-        this.bookStatus = bookStatus;
-        
-        
-        //startSellDate = formatter.format(java.time.LocalDate.now());
-    }
 
     Book(){
-        author = null;
+        super("",0,0.0,0.0,false);
+        this.author = null;
         bookId = "";
-        bookName = "";
-        bookType= 'N';
-        bookBalance = 0;
-        unitPrice =0.0;
-        soldPrice =0.0;
-        bookStatus = true; 
     }
-    
+
+    Book(String bookId, String name, int stockQuantity, double unitPrice, double soldPrice, boolean stockStatus,char bookType,Author author) {
+        super(name, stockQuantity, unitPrice, soldPrice, stockStatus);
+        this.bookId = bookId;
+        this.bookType = bookType;
+        this.author = author;
+    }
+
     //setter
     public void setBookId(String bookId){
         this.bookId = bookId;
-    }
-    
-    public void setBookName(String bookName){
-        this.bookName = bookName;
     }
     
     public void setBookType(char bookType){
         this.bookType = bookType;
     }
     
-    public void setBookBalance(int bookBalance){
-        this.bookBalance = bookBalance;
-    }
-    
- 
-    public void setUnitPrice(double unitPrice){
-        this.unitPrice = unitPrice;
-    }
-    
-    public void setSoldPrice(double soldPrice){
-        this.soldPrice = soldPrice;
-    }
-    
-    public void setBookStatus(boolean bookStatus){
-        this.bookStatus = bookStatus;
-    }
  
     //getter
-    public  String getBookName(){
-        return bookName;
-    }
-    
     public  char getBookType(){
         return bookType;
     }
-    
-    public  int getBookBalance(){
-        return bookBalance;
-    }
-    
-    public double getUnitPrice(){
-        return unitPrice;
-    }
-    
-    public double getSoldPrice(){
-        return soldPrice;
-    }
-    
+
     public String getBookId(){
         return bookId;
     }
-    
-    public boolean getBookStatus(){
-        return bookStatus;
-    }
-    
-
     
     //File Method
     public static void writeBookToFile(ArrayList<Book> bookArray) throws IOException{
         try ( FileWriter writeBookFile = new FileWriter("Book.txt")) {
             for (Book bookFromArray : bookArray) {
                
-                writeBookFile.write(bookFromArray.author.getName() +'|'+
-                                    bookFromArray.author.getAge() + '|'+ bookFromArray.author.checkArrive()+'|'+ 
-                                    bookFromArray.getBookId()+'|'+bookFromArray.getBookName()+'|'+ bookFromArray.getBookType() + '|'+ 
-                                    bookFromArray.getBookBalance() + '|' + bookFromArray.getUnitPrice() +'|' + bookFromArray.getSoldPrice()+'|'+
-                                    bookFromArray.getBookStatus()+'\n');
+                writeBookFile.write(bookFromArray.getBookId()+'|'+bookFromArray.getName()+'|'+
+                                    bookFromArray.getStockQuantity() + '|' + bookFromArray.getUnitPrice() +'|' + bookFromArray.getSoldPrice()+'|'+
+                                    bookFromArray.isStockStatus()+'|'+bookFromArray.getBookType() +'|'+bookFromArray.author.getName() +'|'+bookFromArray.author.getAge() + '|'+ bookFromArray.author.checkArrive()+'\n');
             }
         }
         System.out.println("Successfully wrote to the file.\n");
@@ -147,10 +86,9 @@ public class Book extends Stock {
             while (productRead.hasNextLine()) {
                 String line = productRead.nextLine();
                 String[] data = line.split("\\|");
-                bookArray.add(new Book(new Author(data[0],Integer.parseInt(data[1]),Boolean.parseBoolean(data[2])),
-                        data[3],data[4],data[5].charAt(0),Integer.parseInt(data[6]),
-                        Double.parseDouble(data[7]),Double.parseDouble(data[8]),
-                                Boolean.parseBoolean(data[9])));
+                bookArray.add(new Book(data[0],data[1],Integer.parseInt(data[2]),Double.parseDouble(data[3]),
+                        Double.parseDouble(data[4]),Boolean.parseBoolean(data[5]),data[6].charAt(0),
+                        new Author(data[7],Integer.parseInt(data[8]),Boolean.parseBoolean(data[9]))));
             } 
         }else {
             File createProductFile = new File("Book.txt");
@@ -167,14 +105,7 @@ public class Book extends Stock {
     }
          
     //other method
-    public void addBookBalance(int bookQuantity){
-        this.bookBalance += bookQuantity;
-    }
-    
-    public void subBookBalance(int bookQuantity){
-        
-        this.bookBalance -= bookQuantity;
-    }
+
     
     public String generateBookId(ArrayList<Book> bookArray){
         String bookIdGenerated;
@@ -218,8 +149,8 @@ public class Book extends Stock {
                          
             }
             
-            System.out.printf("%s   %s  %s  %d  RM%.2f  RM%.2f\n",allBook.getBookId(),allBook.getBookName(),specificBookType,
-                              allBook.getBookBalance(),allBook.getUnitPrice(),allBook.getSoldPrice());
+            System.out.printf("%s   %s  %s  %d  RM%.2f  RM%.2f\n",allBook.getBookId(),allBook.getName(),specificBookType,
+                              allBook.getStockQuantity(),allBook.getUnitPrice(),allBook.getSoldPrice());
         }
     }
     
@@ -262,7 +193,7 @@ public class Book extends Stock {
     public static void editBook(ArrayList<Book> bookArray,String searchBookId,String newBookName){
          for (Book latestBook: bookArray) {
           if (latestBook.getBookId().equals(searchBookId)) {
-                 latestBook.setBookName(newBookName);
+                 latestBook.setName(newBookName);
            }     
             
         }
@@ -289,51 +220,38 @@ public class Book extends Stock {
          for (Book latestBook: bookArray) {
              if (latestBook.getBookId().equals(searchBookId)) {
                  if (add) {
-                     latestBook.addBookBalance(newBookQuantity);
+                     latestBook.addStockQuantity(newBookQuantity);
                  }else if (sub) {
                      
-                     int check = latestBook.getBookBalance() - newBookQuantity;
+                     int check = latestBook.getStockQuantity() - newBookQuantity;
                      
-                     if (latestBook.getBookStatus() && check >= 0) {
-                         latestBook.subBookBalance(newBookQuantity);
+                     if (latestBook.isStockStatus() && check >= 0) {
+                         latestBook.subStockQuantity(newBookQuantity);
                      }else{
                          System.out.println(RED+"Book Quantity Is Zero"+RESET);
                          Assignment.systemPause();
                      }
                      
                  }else {
-                     latestBook.setBookBalance(newBookQuantity);
+                     latestBook.setStockQuantity(newBookQuantity);
                  }
              }     
         }
     }
     
-    public void displayBookDetails(){
-            System.out.println("====================================");
-            System.out.println("|            Book Detail            |");
-            System.out.println("====================================");
-            System.out.println("| Book ID : " + bookId);
-            System.out.println("| Book Name :  " + bookName);
-            System.out.println("| Book Type :  " + bookType);
-            System.out.println("| Book Price :  " + unitPrice);
-            System.out.println("| Book Sold Price :  " + soldPrice);
-            System.out.println("| Book Total Added :  " + bookBalance);
-            System.out.println("| Book Total Added (RM) :  " + (unitPrice * bookBalance));
 
-            
-    }
  
     public static void displayBookDetails(Book book){
             System.out.println("====================================");
             System.out.println("|            Book Detail            |");
             System.out.println("====================================");
-            System.out.println("| Book ID : " + book.getBookId());
-            System.out.println("| Book Name :  " + book.getBookName());
-            System.out.println("| Book Type :  " + book.getBookType());
+            System.out.println("| Book ID : " + book.bookId);
+            System.out.println("| Book Name :  " + book.getName());
+            System.out.println("| Book Type :  " + book.bookType);
             System.out.println("| Book Price :  " + book.getUnitPrice());
             System.out.println("| Book Sold Price :  " + book.getSoldPrice());
-            System.out.println("| Book Total Added :  " + book.getBookBalance());
-            System.out.println("| Book Total Added (RM) :  " + (book.getUnitPrice() * book.getBookBalance()));
+            System.out.println("| Book Total Added :  " + book.getStockQuantity());
+            System.out.println("| Book Total Added (RM) :  " + (book.getUnitPrice() * book.getStockQuantity()));
             
     }
     
@@ -345,6 +263,7 @@ public class Book extends Stock {
         System.out.println("Display All Book");
         System.out.println("Author Name Age Status  BookId  BookName    Type    Quantity    Unit Price  Sold Price  Book Status");
         System.out.println("===================================================================================================");
+        
         try {
             readBookFromFile(bookArray);
         } catch (FileNotFoundException ex) {
@@ -360,268 +279,271 @@ public class Book extends Stock {
     
     public void adjust(){
         
-        String IdSearch ,confirm;
+        String idSearch  ,confirm;
         int choice , newBookQuantity, currentIndex = 0;
         boolean notFound ;
         
-                    ArrayList<Book> bookArray = new ArrayList<>();
-                    try {
-                        readBookFromFile(bookArray);
-                    }
-                    catch (FileNotFoundException ex) {
-                        System.out.println("Failed to read book record");
-                    }  
-                    
-                    do{
-                        notFound = true;
-                        Assignment.clearScreen();
-                                
-                        checkAvailable(bookArray);
+        ArrayList<Book> bookArray = new ArrayList<>();
+        try {
+            readBookFromFile(bookArray);
+        }
+        catch (FileNotFoundException ex) {
+            System.out.println("Failed to read book record");
+        }  
+
+        do{
+            notFound = true;
+            Assignment.clearScreen();
+
+            checkAvailable(bookArray);
+            System.out.println("Edit Book Name");
+            System.out.println("==============");
+            System.out.print("Enter BookID [Q to exit]> ");
+            idSearch = Validation.getStringInput();
+
+
+        if (!idSearch.isEmpty() && Character.toUpperCase(idSearch.charAt(0)) == 'Q') {         
+                break;    
+
+        }else{
+            // find book pick
+            for (int i = 0; i < bookArray.size(); i++) {
+
+                if (idSearch.equals(bookArray.get(i).getBookId())) {
+
+                    notFound = false;
+                    displayBookDetails(bookArray.get(i));
+                    bookArray.get(i).author.displayAuthorDetail();
+                    currentIndex = i;
+                    break;
+                }
+
+            }
+
+            if (notFound) {                          
+                System.out.println("The BookId Entered Does Not Exist.");
+                Assignment.systemPause();
+
+            }else if(!notFound ){
+
+                System.out.println("Option");
+                System.out.println("=========================");
+                System.out.println("1. Book Name");
+                System.out.println("2. Book Type");
+                System.out.println("3. Book Price");
+                System.out.println("4. Book Quantity");
+                System.out.println("5. Author Name");
+                System.out.println("6. Author Year Of Birth");
+                System.out.println("7. Author Status");
+                System.out.println("0. Stop Edit");
+                System.out.println("=========================");
+
+                System.out.print("Enter Field to Edit [1-4] >");
+                choice = Validation.getIntegerInput();
+
+                switch(choice){
+
+                    case 1 -> {
                         System.out.println("Edit Book Name");
                         System.out.println("==============");
-                        System.out.print("Enter BookID [Q to exit]> ");
-                        IdSearch = input.nextLine();
-                        
-                        // find book pick
-                        for (int i = 0; i < bookArray.size(); i++) {
-                            
-                            if (IdSearch.equals(bookArray.get(i).getBookId())) {
-                                
-                                notFound = false;
-                                displayBookDetails(bookArray.get(i));
-                                bookArray.get(i).author.displayAuthorDetail();
-                                currentIndex = i;
-                                break;
+                        System.out.print("Enter Book Name :");
+                        bookArray.get(currentIndex).setName(Validation.getStringInput());
+
+                        System.out.print("Confirm To Edit Book Name ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            try {
+                                editBook(bookArray, idSearch, bookArray.get(currentIndex).getName());
+                                writeBookToFile(bookArray);
+                            } catch (IOException ex) {
+                                System.out.println("Failed to Edit The Book Name");
                             }
-                            
+                        }else {
+                            System.out.println(RED + "Edit is denied");
                         }
-                        
-                        
-                        
-                        if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
-                            
-                            System.out.println("The BookId Entered Does Not Exist.");
-                            Assignment.systemPause();
-                            
-                        }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
-                            
-                            System.out.println("Option");
-                            System.out.println("=========================");
-                            System.out.println("1. Book Name");
-                            System.out.println("2. Book Type");
-                            System.out.println("3. Book Price");
-                            System.out.println("4. Book Quantity");
-                            System.out.println("5. Author Name");
-                            System.out.println("6. Author Year Of Birth");
-                            System.out.println("7. Author Status");
-                            System.out.println("0. Stop Edit");
-                            System.out.println("=========================");
-                            
-                            System.out.print("Enter Field to Edit [1-4] >");
-                            choice = Validation.getIntegerInput();
-                            
-                            switch(choice){
-                                
+                    }
+
+                    case 2 -> {
+                        System.out.println("Edit Book Type");
+                        System.out.println("==============");
+
+                        System.out.print("Enter Book Type :");
+                        bookArray.get(currentIndex).setBookType(inputString.next().charAt(0));
+
+                        System.out.print("Confirm To Edit Book Type ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            try {
+                                editBook(bookArray, idSearch, bookArray.get(currentIndex).getBookType());
+                                writeBookToFile(bookArray);
+                            } catch (IOException ex) {
+                                System.out.println("Failed to Edit The Book Type");
+                            }
+                        }else {
+                            System.out.println(RED + "Edit is denied");
+                        }
+                    }
+
+                    case 3 ->{
+                        System.out.println("Edit Book Price");
+                        System.out.println("==============");
+                        System.out.print("Enter Book Price :");
+                        bookArray.get(currentIndex).setSoldPrice(input.nextDouble());
+
+                        System.out.print("Confirm To Edit Book Price ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            try {
+                                editBook(bookArray, idSearch, bookArray.get(currentIndex).getSoldPrice());
+                                writeBookToFile(bookArray);
+                            } catch (IOException ex) {
+                                System.out.println("Failed to Edit The Book Type");
+                            }         
+                        }else {
+                            System.out.println(RED + "Edit is denied");
+                        }
+                    }
+
+                    case 4 -> {
+                        System.out.println("Edit Book Quantity");
+                        System.out.println("==================");
+                        System.out.println("1. Add Book Quantity");
+                        System.out.println("2. Sub Book Quantity");
+                        System.out.println("3. Set Book Quantity");
+
+                        System.out.print("Enter your Choice > ");
+                        choice = Validation.getIntegerInput();
+
+
+                        System.out.print("Enter Book Quantiy >");
+                        newBookQuantity = Validation.getIntegerInput();
+
+
+                        System.out.print("Confirm To Edit Book Quantity ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            switch (choice) {
                                 case 1 -> {
-                                    System.out.println("Edit Book Name");
-                                    System.out.println("==============");
-                                    System.out.print("Enter Book Name :");
-                                    bookArray.get(currentIndex).setBookName(inputString.nextLine());
-                                    
-                                    System.out.print("Confirm To Edit Book Name ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        try {
-                                            editBook(bookArray, IdSearch, bookArray.get(currentIndex).getBookName());
-                                            writeBookToFile(bookArray);
-                                        } catch (IOException ex) {
-                                            System.out.println("Failed to Edit The Book Name");
-                                        }
-                                    }else {
-                                        System.out.println(RED + "Edit is denied");
+                                    try {
+                                        editBook(bookArray, idSearch, newBookQuantity,true,false);
+                                        writeBookToFile(bookArray);
+                                    } catch (IOException ex) {
+                                        System.out.println(RED + "Failed to Edit The Book Type" +RESET);
                                     }
+
                                 }
-                                
                                 case 2 -> {
-                                    System.out.println("Edit Book Type");
-                                    System.out.println("==============");
-                                    
-                                    System.out.print("Enter Book Type :");
-                                    bookArray.get(currentIndex).setBookType(inputString.next().charAt(0));
-                                    
-                                    System.out.print("Confirm To Edit Book Type ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        try {
-                                            editBook(bookArray, IdSearch, bookArray.get(currentIndex).getBookType());
-                                            writeBookToFile(bookArray);
-                                        } catch (IOException ex) {
-                                            System.out.println("Failed to Edit The Book Type");
-                                        }
-                                    }else {
-                                        System.out.println(RED + "Edit is denied");
+                                    try {
+                                        editBook(bookArray, idSearch, newBookQuantity,false,true);
+                                        writeBookToFile(bookArray);
+                                    } catch (IOException ex) {
+                                        System.out.println(RED + "Failed to Edit The Book Type" + RESET);
+                                    }
+
+                                }
+                                case 3 -> {
+                                    try {
+                                        editBook(bookArray, idSearch, newBookQuantity,false,false);
+                                        writeBookToFile(bookArray);
+                                    } catch (IOException ex) {
+                                        System.out.println(RED + "Failed to Edit The Book Type" + RESET);
                                     }
                                 }
-                                
-                                case 3 ->{
-                                    System.out.println("Edit Book Price");
-                                    System.out.println("==============");
-                                    System.out.print("Enter Book Price :");
-                                    bookArray.get(currentIndex).setSoldPrice(input.nextDouble());
-                                    
-                                    System.out.print("Confirm To Edit Book Price ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        try {
-                                            editBook(bookArray, IdSearch, bookArray.get(currentIndex).getSoldPrice());
-                                            writeBookToFile(bookArray);
-                                        } catch (IOException ex) {
-                                            System.out.println("Failed to Edit The Book Type");
-                                        }         
-                                    }else {
-                                        System.out.println(RED + "Edit is denied");
-                                    }
-                                }
-                                
-                                case 4 -> {
-                                    System.out.println("Edit Book Quantity");
-                                    System.out.println("==================");
-                                    System.out.println("1. Add Book Quantity");
-                                    System.out.println("2. Sub Book Quantity");
-                                    System.out.println("3. Set Book Quantity");
-                                    
-                                    System.out.print("Enter your Choice > ");
-                                    choice = Validation.getIntegerInput();
-                                    
-                                    
-                                    System.out.print("Enter Book Quantiy >");
-                                    newBookQuantity = Validation.getIntegerInput();
-                                    
-                                    
-                                    System.out.print("Confirm To Edit Book Quantity ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        switch (choice) {
-                                            case 1 -> {
-                                                try {
-                                                    editBook(bookArray, IdSearch, newBookQuantity,true,false);
-                                                    writeBookToFile(bookArray);
-                                                } catch (IOException ex) {
-                                                    System.out.println(RED + "Failed to Edit The Book Type" +RESET);
-                                                }
-                                               
-                                            }
-                                            case 2 -> {
-                                                try {
-                                                    editBook(bookArray, IdSearch, newBookQuantity,false,true);
-                                                    writeBookToFile(bookArray);
-                                                } catch (IOException ex) {
-                                                    System.out.println(RED + "Failed to Edit The Book Type" + RESET);
-                                                }
-                                                
-                                            }
-                                            case 3 -> {
-                                                try {
-                                                    editBook(bookArray, IdSearch, newBookQuantity,false,false);
-                                                    writeBookToFile(bookArray);
-                                                } catch (IOException ex) {
-                                                    System.out.println(RED + "Failed to Edit The Book Type" + RESET);
-                                                }
-                                            }
-                                            default -> {
-                                            }
-                                        }
-                                        
-                                    }else {
-                                        System.out.println(RED +"Edit is denied" + RESET);
-                                    }
-                                }
-                                
-                                case 5->{
-                                    System.out.println("Edit Author Name");
-                                    System.out.println("==================");
-                                    System.out.print("Enter Book Name :");
-                                    bookArray.get(currentIndex).author.setName(inputString.nextLine());
-                                    
-                                    System.out.print("Confirm To Edit Author Name ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        try {
-                                            Author.editAuthor(bookArray, IdSearch, bookArray.get(currentIndex).author.getName());
-                                            writeBookToFile(bookArray);
-                                        } catch (IOException ex) {
-                                            System.out.println("Failed to Edit The Book Name");
-                                        }
-                                    }else {
-                                        System.out.println(RED + "Edit is denied");
-                                    }
-                                }
-                                case 6->{
-                                    System.out.println("Edit Author Birth");
-                                    System.out.println("==================");
-                                    System.out.print("Enter Year Of Birth :");
-                                    
-                                    bookArray.get(currentIndex).author.setAge(inputString.nextInt());
-                                    
-                                    System.out.print("Confirm To Edit Author Birth ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        try {
-                                            Author.editAuthor(bookArray, IdSearch, bookArray.get(currentIndex).author.getAge());
-                                            writeBookToFile(bookArray);
-                                        } catch (IOException ex) {
-                                            System.out.println("Failed to Edit The Book Name");
-                                        }
-                                    }else {
-                                        System.out.println(RED + "Edit is denied");
-                                    }
-                                }
-                                case 7->{
-                                    System.out.println("Edit Author Status");
-                                    System.out.println("==================");
-                                    System.out.println("Current status : " + bookArray.get(currentIndex).author.checkArrive());
-                                    
-                                    System.out.print("Confirm To Edit Book Name ? [Y/N] >");
-                                    confirm = inputString.next();
-                                    
-                                    if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
-                                        try {
-                                            if (bookArray.get(currentIndex).author.checkArrive()) {
-                                               Author.editAuthor(bookArray, IdSearch, false); 
-                                            }else{
-                                              Author.editAuthor(bookArray, IdSearch, false); 
-                                            }
-                                            writeBookToFile(bookArray);
-                                        } catch (IOException ex) {
-                                            System.out.println("Failed to Edit The Book Name");
-                                        }
-                                    }else {
-                                        System.out.println(RED + "Edit is denied");
-                                    }
-                                }
-                                
-                                case 0->{}
-                                
-                                
                                 default -> {
-                                    System.out.println(RED + "INVALID INPUT" + RESET);
                                 }
                             }
+
+                        }else {
+                            System.out.println(RED +"Edit is denied" + RESET);
                         }
-                        
-                        
-                    } while(toUpperCase(IdSearch.charAt(0))!='Q');
+                    }
+
+                    case 5->{
+                        System.out.println("Edit Author Name");
+                        System.out.println("==================");
+                        System.out.print("Enter Book Name :");
+                        bookArray.get(currentIndex).author.setName(Validation.getStringInput());
+
+                        System.out.print("Confirm To Edit Author Name ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            try {
+                                Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getName());
+                                writeBookToFile(bookArray);
+                            } catch (IOException ex) {
+                                System.out.println("Failed to Edit The Book Name");
+                            }
+                        }else {
+                            System.out.println(RED + "Edit is denied");
+                        }
+                    }
+                    case 6->{
+                        System.out.println("Edit Author Birth");
+                        System.out.println("==================");
+                        System.out.print("Enter Year Of Birth :");
+
+                        bookArray.get(currentIndex).author.setAge(inputString.nextInt());
+
+                        System.out.print("Confirm To Edit Author Birth ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            try {
+                                Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getAge());
+                                writeBookToFile(bookArray);
+                            } catch (IOException ex) {
+                                System.out.println("Failed to Edit The Book Name");
+                            }
+                        }else {
+                            System.out.println(RED + "Edit is denied");
+                        }
+                    }
+                    case 7->{
+                        System.out.println("Edit Author Status");
+                        System.out.println("==================");
+                        System.out.println("Current status : " + bookArray.get(currentIndex).author.checkArrive());
+
+                        System.out.print("Confirm To Edit Book Name ? [Y/N] >");
+                        confirm = inputString.next();
+
+                        if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
+                            try {
+                                if (bookArray.get(currentIndex).author.checkArrive()) {
+                                   Author.editAuthor(bookArray, idSearch, false); 
+                                }else{
+                                  Author.editAuthor(bookArray, idSearch, false); 
+                                }
+                                writeBookToFile(bookArray);
+                            } catch (IOException ex) {
+                                System.out.println("Failed to Edit The Book Name");
+                            }
+                        }else {
+                            System.out.println(RED + "Edit is denied");
+                        }
+                    }
+
+                    case 0->{}
+
+
+                    default -> {
+                        System.out.println(RED + "INVALID INPUT" + RESET);
+                    }
+                }
+            }
+        } 
+
+        } while(toUpperCase(idSearch.charAt(0))!='Q');
     }
     
     public void add(){
        
-        
+        Author authorInput = new Author();
+        Book book = new Book();
         char confirmChoice;
         
                 ArrayList<Book> bookArray = new ArrayList<>();
@@ -631,21 +553,21 @@ public class Book extends Stock {
                     System.out.println("File Error");
                 }
         
-        
+                
                 do {
+                    
                     Assignment.clearScreen();
-                    bookId = generateBookId(bookArray);
+                    book.setBookId(generateBookId(bookArray));
                     
                     //prompt input
-                    System.out.println("Book Id : " + bookId);
+                    System.out.println("Book Id : " + book.getBookId());
                     
                     System.out.print("Enter Book Name : ");
+                    book.setName(Validation.getStringInput());
                     
-                    bookName = inputString.nextLine();
-                    
-                    
+                  
                     System.out.print("Enter Quantity :");
-                    bookBalance = Validation.getIntegerInput();
+                    book.setStockQuantity(Validation.getIntegerInput());
                     
                     System.out.println("Select Book Type :");
                     System.out.println("==================");
@@ -662,31 +584,36 @@ public class Book extends Stock {
                     
                     switch(choice){
                         case 1 -> {
-                            bookType = 'R';
+                            book.setBookType('R');
                         }
                         
                         case 2 ->{
-                            bookType = 'H';
+                            book.setBookType('H');
                         }
                         
                         case 3 ->{
-                            bookType = 'T';
+                            book.setBookType('T');
+                         
                         }
                         
                         case 4-> {
-                            bookType = 'F';
+                            book.setBookType('F');
+                            
                         }
                         
                         case 5 ->{
-                            bookType = 'E';
+                            book.setBookType('E');
+                           
                         }
                     }
                     
                     System.out.print("Enter Book price : ");
-                    unitPrice = input.nextDouble();
+                    book.setUnitPrice(input.nextDouble());
+                    
                     
                     System.out.print("Enter Book Sold price : ");
-                    soldPrice = input.nextDouble();
+                    book.setSoldPrice(input.nextDouble());
+                    
                     
                     Assignment.clearScreen();
                     
@@ -694,10 +621,10 @@ public class Book extends Stock {
                     System.out.println("===========");
                     
                     System.out.print("Enter Author name > ");
-                    author.setName(inputString.nextLine());
+                    authorInput.setName(Validation.getStringInput());
                     
                     System.out.print("Enter Author age > ");
-                    author.setAge(Validation.getIntegerInput());
+                    authorInput.setAge(Validation.getIntegerInput());
                     
                     
                     System.out.print("Author Arrive ? [Y/N] > ");
@@ -705,12 +632,12 @@ public class Book extends Stock {
                     
                     
                     if (confirmChoice == 'Y' && Validation.checkYesNo(confirmChoice)) {
-                        author.setArrive(true);
+                        authorInput.setArrive(true);
                     }else if(confirmChoice == 'N' && Validation.checkYesNo(confirmChoice)) {
-                        author.setArrive(false);
+                        authorInput.setArrive(false);
                     }
                     
-                    displayBookDetails();
+                    displayBookDetails(book);
                     
                     System.out.print("Comfirm [Y/N] > "); 
                     confirmChoice = inputString.next().charAt(0);
@@ -719,8 +646,9 @@ public class Book extends Stock {
                        
                         switch (toUpperCase(confirmChoice)) {
                             case 'Y' -> {
-                                addBook(bookArray,new Book(new Author(author.getName(),author.getAge(),author.checkArrive()),bookId,bookName,bookType,bookBalance
-                                        ,unitPrice,soldPrice,true));
+                                addBook(bookArray,new Book(book.getBookId(),book.getName(),book.getStockQuantity()
+                                        ,book.getUnitPrice(),book.getSoldPrice(),true,book.getBookType(),
+                                        new Author(authorInput.getName(),authorInput.getAge(),authorInput.checkArrive())));
                                 try {
                                     writeBookToFile(bookArray);
                                 } catch (IOException ex) {
@@ -734,6 +662,7 @@ public class Book extends Stock {
                         
                         System.out.print("Any More Book ? [Y/N] > ");
                         confirmChoice = inputString.next().charAt(0);
+                        Validation.getStringInput();
                         
                     }else{
                         System.out.println("Wrong Input");
@@ -743,29 +672,35 @@ public class Book extends Stock {
     }
     
     public void remove(){
-        String IdSearch,confirm;
-        boolean notFound = false;
+        String IdSearch ,confirm;
+        boolean notFound = true;
         int currentIndex = 0;
     
         ArrayList<Book> bookArray = new ArrayList<>();
         try {      
             readBookFromFile(bookArray);
         }
-
         catch (FileNotFoundException ex) {
             System.out.println("Failed to read book record");
-
         }
+    
         do {
 
+         if (!bookArray.isEmpty()) {
+            
+            notFound =true;
             Assignment.clearScreen();
             System.out.println("Remove book  System");
             System.out.println("====================");
 
 
             System.out.print("Enter BookID [Q to exit]> ");
-            IdSearch = inputString.nextLine();
-
+            IdSearch = Validation.getStringInput();
+            
+        if (!IdSearch.isEmpty() && Character.toUpperCase(IdSearch.charAt(0)) == 'Q') {         
+            break;    
+            
+        }else{
             for (int i = 0; i < bookArray.size(); i++) {
 
                 if (IdSearch.equals(bookArray.get(i).getBookId())) {
@@ -776,18 +711,21 @@ public class Book extends Stock {
                 }
             }
 
-            if (notFound && toUpperCase(IdSearch.charAt(0))!='Q') {
+            if (notFound ) {
 
                 System.out.println("The BookId Entered Does Not Exist.");
                 Assignment.systemPause();
 
-            }else if(!notFound && toUpperCase(IdSearch.charAt(0))!='Q'){
+            }else if(!notFound){
 
                 System.out.print("Confirm To Remove Book  ? [Y/N] >");
                 confirm = inputString.next();
 
+                
+                
                 if (toUpperCase(confirm.charAt(0)) == 'Y') {
                     removeBook(bookArray,bookArray.get(currentIndex));
+                    
                     try {
                         writeBookToFile(bookArray);
                     } catch (IOException ex) {
@@ -795,28 +733,37 @@ public class Book extends Stock {
                     }
 
 
-                    System.out.println("Succcesful Removed");
+                    System.out.println("Succesful Removed");
                     Assignment.systemPause();
                 }
             }
-
+        }
+            }else{
+                Assignment.clearScreen();
+                System.out.println("Book List Is Empty !");
+                Assignment.systemPause();
+                IdSearch = "Q";
+            }
+        
+            
         } while (toUpperCase(IdSearch.charAt(0)) != 'Q');
+        
     }
     
     @Override
     public String toString(){
         
-        return String.format("%s    %s  %s  %s  %d  RM%.2f  RM%.2f",author.toString() ,bookId,bookName,convertBookType(bookType),
-                     bookBalance,unitPrice,soldPrice); 
+        return String.format("%s  %s  %s %s",bookId,
+                     super.toString(),convertBookType(bookType),author.toString() ); 
     }
     
     //check stock balance 
     public static void checkAvailable(ArrayList<Book> bookArray){
         for (Book book:bookArray) {
-            if (book.bookBalance <= 0) {
-                book.bookStatus = false;
-            }else if (book.bookBalance > 0) {
-                book.bookStatus = true;
+            if (book.getStockQuantity() <= 0) {
+                book.setStockStatus(false);
+            }else if (book.getStockQuantity() > 0) {
+                book.setStockStatus(true);
             }
         }
     }

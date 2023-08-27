@@ -15,6 +15,8 @@ public class Author {
     private int age;
     private boolean arrive;
     
+    Author(){};
+    
     Author(String name,int age,boolean arrive){
         this.name = name;
         this.age = age;
