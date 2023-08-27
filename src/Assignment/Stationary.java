@@ -354,10 +354,7 @@ public class Stationary extends Stock{
                                 }
                             }
                         }
-                        
-                        
-                        
-                        
+                  
                     } while(toUpperCase(idSearch.charAt(0))!='Q');
     }
     

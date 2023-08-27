@@ -23,15 +23,9 @@ public class LowStockReport extends Report{
         this.lowStockLine = lowStockLine;
     }
     
-    public boolean checkLowStock(Book book){
-     
-        boolean lowStock = false;
-        
-        if (book.getStockQuantity() <= lowStockLine) {
-            lowStock = true;
-        }
-        
-        return lowStock;
+    public boolean checkLowStock(Stock book){
+ 
+        return book.getStockQuantity() <= lowStockLine;
         
     }
     
@@ -51,10 +45,28 @@ public class LowStockReport extends Report{
         System.out.println("================");
 
         lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
-        
+        System.out.println("Low Book Report");
+        System.out.println("================");
         for (Book bookCheck : bookArray) {
             if (checkLowStock(bookCheck)) {
                 System.out.println(bookCheck);              
+            }
+            
+        }
+        
+        ArrayList<Stationary> staArray = new ArrayList<>();
+        
+        try {
+            Stationary.readStaFromFile(staArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Failed to read file");
+        }
+ 
+        System.out.println("Low Stationary Report");
+        System.out.println("================");
+        for (Stationary staCheck : staArray) {
+            if (checkLowStock(staCheck)) {
+                System.out.println(staCheck);              
             }
             
         }
