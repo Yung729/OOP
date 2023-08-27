@@ -12,14 +12,15 @@ import java.util.ArrayList;
  */
 public class Author {
     private String name;
-    private int age;
+    private int yearOfBirth;
     private boolean arrive;
+    protected final double DISCOUNT_RATE = 0.5;
     
     Author(){};
     
-    Author(String name,int age,boolean arrive){
+    Author(String name,int yearOfBirth,boolean arrive){
         this.name = name;
-        this.age = age;
+        this.yearOfBirth = yearOfBirth;
         this.arrive = arrive;
     }
     
@@ -30,8 +31,8 @@ public class Author {
         this.name = name;
     }
     
-    public void setAge(int age){
-        this.age = age;
+    public void setYearOfBirth(int yearOfBirth){
+        this.yearOfBirth = yearOfBirth;
     }
     
     public void setArrive(boolean arrive){
@@ -43,8 +44,8 @@ public class Author {
         return name;
     }
     
-    public int getAge(){
-        return age;
+    public int getYearOfBirth(){
+        return yearOfBirth;
     }
     
     public boolean checkArrive(){
@@ -62,7 +63,7 @@ public class Author {
     
     public  void displayAuthorDetail(){
             System.out.println("| Author Name :  " + name);
-            System.out.println("| Author Age :  " + age);
+            System.out.println("| Author Age :  " + yearOfBirth);
             System.out.println("| Author status :  " + arrive);
             System.out.println("|                                  |");
             System.out.println("====================================");
@@ -70,10 +71,19 @@ public class Author {
     
     public  void displayAuthorDetail(Book book){
             System.out.println("| Author Name :  " + book.author.name);
-            System.out.println("| Author Age :  " + book.author.age);
+            System.out.println("| Author Age :  " + book.author.yearOfBirth);
             System.out.println("| Author status :  " + book.author.arrive);
             System.out.println("|                                  |");
             System.out.println("====================================");
+    }
+    
+    public double memoryDiscount(Book book){
+        double discount = 0.0;
+        if (!book.isStockStatus()) {
+            discount =  DISCOUNT_RATE;
+        }
+        
+        return discount;
     }
     
     
@@ -91,7 +101,7 @@ public class Author {
     public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,int newAge){
          for (Book latestBook: bookArray) {
              if (latestBook.getBookId().equals(searchBookId)) {
-                 latestBook.author.setAge(newAge);
+                 latestBook.author.setYearOfBirth(newAge);
              }     
         }
     }
@@ -109,7 +119,7 @@ public class Author {
     
     @Override
     public String toString(){
-        return String.format("%-15s    %d  %s",name,age,String.valueOf(arrive));
+        return String.format("%-15s    %d  %s",name,yearOfBirth,String.valueOf(arrive));
     }
   
     

@@ -1,2 +1,12 @@
-B0001|Titanic|200|20.0|25.0|true|R|James|20|true
+B0001|Titanic|200|20.0|25.0|true|R|James|1990|true
 B0002|Annabella|100|20.0|25.0|true|H|Anna|2022|false
+B0003|The Secret Garden|150|15.0|20.0|true|R|Frances|1911|true
+B0004|Midnight Shadows|80|18.0|22.0|true|M|Alex|2020|false
+B0005|Treasure Island|120|12.0|18.0|true|A|Robert|1882|true
+B0006|Whispering Winds|90|21.0|28.0|true|H|Emily|2018|true
+B0007|Moonlight Sonata|200|16.0|20.0|true|R|Michael|2005|false
+B0008|The Enchanted Forest|100|14.0|18.0|true|M|Sophia|2015|true
+B0009|Lost in Time|75|19.0|24.0|true|H|David|1998|false
+B0010|Starry Nights|60|10.0|15.0|true|A|Olivia|2019|true
+B0011|Echoes of Eternity|110|17.0|22.0|true|R|Jessica|2008|true
+B0012|Golden Dreams|50|23.0|30.0|true|H|Matthew|2002|false

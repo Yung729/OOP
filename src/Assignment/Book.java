@@ -28,8 +28,7 @@ public class Book extends Stock {
     Author author = new Author();
     private  String bookId;
     private  char bookType;
-
-    
+  
     //private String startSellDate ;
     // language - can do report
 
@@ -72,7 +71,8 @@ public class Book extends Stock {
                
                 writeBookFile.write(bookFromArray.getBookId()+'|'+bookFromArray.getName()+'|'+
                                     bookFromArray.getStockQuantity() + '|' + bookFromArray.getUnitPrice() +'|' + bookFromArray.getSoldPrice()+'|'+
-                                    bookFromArray.isStockStatus()+'|'+bookFromArray.getBookType() +'|'+bookFromArray.author.getName() +'|'+bookFromArray.author.getAge() + '|'+ bookFromArray.author.checkArrive()+'\n');
+                                    bookFromArray.isStockStatus()+'|'+bookFromArray.getBookType() +'|'+bookFromArray.author.getName() +'|'+bookFromArray.author.getYearOfBirth() + 
+                        '|'+ bookFromArray.author.checkArrive()+'\n');
             }
         }
         System.out.println("Successfully wrote to the file.\n");
@@ -302,10 +302,7 @@ public class Book extends Stock {
             idSearch = Validation.getStringInput();
 
 
-        if (!idSearch.isEmpty() && Character.toUpperCase(idSearch.charAt(0)) == 'Q') {         
-                break;    
-
-        }else{
+        
             // find book pick
             for (int i = 0; i < bookArray.size(); i++) {
 
@@ -320,11 +317,11 @@ public class Book extends Stock {
 
             }
 
-            if (notFound) {                          
+            if (notFound && Character.toUpperCase(idSearch.charAt(0)) != 'Q') {                          
                 System.out.println("The BookId Entered Does Not Exist.");
                 Assignment.systemPause();
 
-            }else if(!notFound ){
+            }else if(!notFound && Character.toUpperCase(idSearch.charAt(0)) != 'Q' ){
 
                 System.out.println("Option");
                 System.out.println("=========================");
@@ -487,14 +484,14 @@ public class Book extends Stock {
                         System.out.println("==================");
                         System.out.print("Enter Year Of Birth :");
 
-                        bookArray.get(currentIndex).author.setAge(inputString.nextInt());
+                        bookArray.get(currentIndex).author.setYearOfBirth(inputString.nextInt());
 
                         System.out.print("Confirm To Edit Author Birth ? [Y/N] >");
                         confirm = inputString.next();
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
-                                Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getAge());
+                                Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getYearOfBirth());
                                 writeBookToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Name");
@@ -535,7 +532,7 @@ public class Book extends Stock {
                     }
                 }
             }
-        } 
+        
 
         } while(toUpperCase(idSearch.charAt(0))!='Q');
     }
@@ -624,7 +621,7 @@ public class Book extends Stock {
                     authorInput.setName(Validation.getStringInput());
                     
                     System.out.print("Enter Author age > ");
-                    authorInput.setAge(Validation.getIntegerInput());
+                    authorInput.setYearOfBirth(Validation.getIntegerInput());
                     
                     
                     System.out.print("Author Arrive ? [Y/N] > ");
@@ -648,7 +645,7 @@ public class Book extends Stock {
                             case 'Y' -> {
                                 addBook(bookArray,new Book(book.getBookId(),book.getName(),book.getStockQuantity()
                                         ,book.getUnitPrice(),book.getSoldPrice(),true,book.getBookType(),
-                                        new Author(authorInput.getName(),authorInput.getAge(),authorInput.checkArrive())));
+                                        new Author(authorInput.getName(),authorInput.getYearOfBirth(),authorInput.checkArrive())));
                                 try {
                                     writeBookToFile(bookArray);
                                 } catch (IOException ex) {
@@ -673,7 +670,7 @@ public class Book extends Stock {
     
     public void remove(){
         String IdSearch ,confirm;
-        boolean notFound = true;
+        boolean notFound;
         int currentIndex = 0;
     
         ArrayList<Book> bookArray = new ArrayList<>();
@@ -697,10 +694,7 @@ public class Book extends Stock {
             System.out.print("Enter BookID [Q to exit]> ");
             IdSearch = Validation.getStringInput();
             
-        if (!IdSearch.isEmpty() && Character.toUpperCase(IdSearch.charAt(0)) == 'Q') {         
-            break;    
-            
-        }else{
+    
             for (int i = 0; i < bookArray.size(); i++) {
 
                 if (IdSearch.equals(bookArray.get(i).getBookId())) {
@@ -711,12 +705,12 @@ public class Book extends Stock {
                 }
             }
 
-            if (notFound ) {
+            if (notFound && Character.toUpperCase(IdSearch.charAt(0)) != 'Q') {
 
                 System.out.println("The BookId Entered Does Not Exist.");
                 Assignment.systemPause();
 
-            }else if(!notFound){
+            }else if(!notFound  && Character.toUpperCase(IdSearch.charAt(0)) != 'Q'){
 
                 System.out.print("Confirm To Remove Book  ? [Y/N] >");
                 confirm = inputString.next();
@@ -737,8 +731,8 @@ public class Book extends Stock {
                     Assignment.systemPause();
                 }
             }
-        }
-            }else{
+         
+         }else{
                 Assignment.clearScreen();
                 System.out.println("Book List Is Empty !");
                 Assignment.systemPause();

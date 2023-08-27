@@ -226,12 +226,7 @@ public class Stationary extends Stock{
                         System.out.println("========================");
                         idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
                         
-                        if (!idSearch.isEmpty() && Character.toUpperCase(idSearch.charAt(0)) == 'Q') {
-                            
-                            break;
-                            
-                        }else if (!idSearch.isEmpty() && Character.toUpperCase(idSearch.charAt(0)) != 'Q'){
-                            
+                        
                             for (int i = 0; i < staArray.size(); i++) {
                             
                             if (idSearch.equals(staArray.get(i).getStaId())) {
@@ -244,12 +239,12 @@ public class Stationary extends Stock{
    
                             }
                         
-                        if (notFound) {
+                        if (notFound && toUpperCase(idSearch.charAt(0))!='Q') {
                             
                             System.out.println("The Stationary Id Entered Does Not Exist.");
                             Assignment.systemPause();
                             
-                        }else if(!notFound){
+                        }else if(!notFound && toUpperCase(idSearch.charAt(0))!='Q'){
                             
                             System.out.println("1. Stationary Name");
                             System.out.println("2. Sold Price ");
@@ -359,7 +354,7 @@ public class Stationary extends Stock{
                                 }
                             }
                         }
-                        }
+                        
                         
                         
                         
