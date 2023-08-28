@@ -570,8 +570,17 @@ public class Book extends Stock {
                     } while (!validName(bookArray,book.getName()));
 
                     
-                    System.out.print("Enter Quantity :");
-                    book.setStockQuantity(Validation.getIntegerInput());
+                    do {
+                        System.out.print("Enter Quantity :");
+                        book.setStockQuantity(Validation.getIntegerInput());
+                        
+                        if (!validQuantity(book.getStockQuantity())) {
+                            System.out.println(RED +"Book Quantity Must At Least one" + RESET);
+                        }
+                        
+                    } while (!validQuantity(book.getStockQuantity()));
+                    
+                    
                     
                     System.out.println("Select Book Type :");
                     System.out.println("==================");
@@ -608,6 +617,10 @@ public class Book extends Stock {
                         case 5 ->{
                             book.setBookType('E');
                            
+                        }
+                        
+                        default ->{
+                            System.out.println(RED +"Book Tyoe Select Range [1-5] Only" + RESET);
                         }
                     }
                     
@@ -761,6 +774,12 @@ public class Book extends Stock {
         }  
         return true;
     }
+    
+    public Boolean validQuantity(int Quantity){
+
+        return Quantity > 0;
+    }
+    
     
     @Override
     public String toString(){
