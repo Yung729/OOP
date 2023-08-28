@@ -558,11 +558,18 @@ public class Book extends Stock {
                     
                     //prompt input
                     System.out.println("Book Id : " + book.getBookId());
-                    
-                    System.out.print("Enter Book Name : ");
-                    book.setName(Validation.getStringInput());
-                    
                   
+                    do {
+                        System.out.print("Enter Book Name : ");                 
+                        book.setName(Validation.getStringInput());
+                        
+                        if (!validName(bookArray,book.getName())) {
+                            System.out.println(RED +"Book Name Repeated" + RESET);
+                        }
+                        
+                    } while (!validName(bookArray,book.getName()));
+
+                    
                     System.out.print("Enter Quantity :");
                     book.setStockQuantity(Validation.getIntegerInput());
                     
@@ -742,6 +749,17 @@ public class Book extends Stock {
             
         } while (toUpperCase(IdSearch.charAt(0)) != 'Q');
         
+    }
+    
+    //validation
+    public Boolean validName(ArrayList<Book> bookArray,String name){
+        
+        for (Book book: bookArray) {
+            if (book.getName().equals(name)) {
+                return false;
+            }
+        }  
+        return true;
     }
     
     @Override
