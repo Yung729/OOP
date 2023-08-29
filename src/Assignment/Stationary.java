@@ -377,18 +377,53 @@ public class Stationary extends Stock{
                     //prompt input
                     System.out.println("Stationary Id : " + sta.getStaId());
                     
-                    System.out.print("Enter Stationary Name : ");
-                    sta.setName(Validation.getStringInput());
+                    do {
+                        System.out.print("Enter Stationary Name : ");
+                        sta.setName(Validation.getStringInput());
+                        
+                        if (!validName(staArray,sta.getName())) {
+                            System.out.println(RED + "The Stationary Name Already Exits" + RESET);
+                        }
+                        
+                    } while (!validName(staArray,sta.getName()));
                     
-                    System.out.print("Enter Quantity :");
-                    sta.setStockQuantity(Validation.getIntegerInput());
+                    
+                    do {
+                        System.out.print("Enter Quantity :");
+                    
+                        sta.setStockQuantity(Validation.getIntegerInput());
+                        
+                        if (!validQuantity(sta.getStockQuantity())) {
+                            System.out.println(RED +"Stationary Quantity Must At Least one" + RESET);
+                        }
+                        
+                    } while (!validQuantity(sta.getStockQuantity()));
+                    
+                    
+                    do {
+                        System.out.print("Enter Stationary price : ");
+                    
+                        sta.setUnitPrice(input.nextDouble());
+                        
+                        if (!validUnitPrice(sta.getUnitPrice())) {
+                            System.out.println(RED +"Stationary Price Must more than RM 0 " + RESET);
+                        }
+                        
+                    } while (!validUnitPrice(sta.getUnitPrice()));
 
-                    System.out.print("Enter Stationary price : ");
-                    sta.setUnitPrice(input.nextDouble());
                     
-                    System.out.print("Enter Stationary Sold price : ");
-                    sta.setSoldPrice(input.nextDouble());
+                    do {
+                        System.out.print("Enter Stationary Sold price : ");
                     
+                        sta.setSoldPrice(input.nextDouble());
+                        
+                        if (!validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice())) {
+                            System.out.println(RED +"Stationary Price Less Than Unit Price " + RESET);
+                        }
+                        
+                    } while (!validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice()));
+                    
+                           
                     Assignment.clearScreen();
                     
                     displayStaDetails(sta);
@@ -491,5 +526,31 @@ public class Stationary extends Stock{
                     }
                     
                 } while (toUpperCase(idSearch.charAt(0)) != 'Q');
+    }
+    
+       //validation
+    public Boolean validName(ArrayList<Stationary> staArray,String name){
+        
+        for (Stationary sta: staArray) {
+            if (sta.getName().equals(name)) {
+                return false;
+            }
+        }  
+        return true;
+    }
+    
+    public Boolean validQuantity(int Quantity){
+
+        return Quantity > 0;
+    }
+    
+    public Boolean validUnitPrice(double unitPrice){
+
+        return unitPrice > 0;
+    }
+    
+    public Boolean validSoldPrice(double soldPrice,double unitPrice){
+
+        return soldPrice >= unitPrice;
     }
 }
