@@ -624,14 +624,29 @@ public class Book extends Stock {
                         }
                     }
                     
-                    System.out.print("Enter Book price : ");
-                    book.setUnitPrice(input.nextDouble());
                     
                     
-                    System.out.print("Enter Book Sold price : ");
-                    book.setSoldPrice(input.nextDouble());
+                    do {
+                        System.out.print("Enter Book price : ");
+                        book.setUnitPrice(input.nextDouble());
+                        
+                        if (!validUnitPrice(book.getUnitPrice())) {
+                            System.out.println(RED +"Book Price Must more than RM 0 " + RESET);
+                        }
+                        
+                    } while (!validUnitPrice(book.getUnitPrice()));
                     
                     
+                    do {
+                        System.out.print("Enter Book Sold price : ");
+                        book.setSoldPrice(input.nextDouble());
+                        
+                        if (!validSoldPrice(book.getSoldPrice(),book.getUnitPrice())) {
+                            System.out.println(RED +"Book Price Less Than Unit Price " + RESET);
+                        }
+                        
+                    } while (!validSoldPrice(book.getSoldPrice(),book.getUnitPrice()));
+                 
                     Assignment.clearScreen();
                     
                     System.out.println("Book Author");
@@ -778,6 +793,16 @@ public class Book extends Stock {
     public Boolean validQuantity(int Quantity){
 
         return Quantity > 0;
+    }
+    
+    public Boolean validUnitPrice(double unitPrice){
+
+        return unitPrice > 0;
+    }
+    
+    public Boolean validSoldPrice(double soldPrice,double unitPrice){
+
+        return soldPrice >= unitPrice;
     }
     
     
