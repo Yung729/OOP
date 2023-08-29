@@ -31,6 +31,7 @@ public class LowStockReport extends Report{
     
     public void findLowStock(){
        
+        boolean record = false;
         ArrayList<Book> bookArray = new ArrayList<>();
         
         try {
@@ -47,13 +48,19 @@ public class LowStockReport extends Report{
         lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
         System.out.println("Low Book Report");
         System.out.println("================");
+        
         for (Book bookCheck : bookArray) {
             if (checkLowStock(bookCheck)) {
-                System.out.println(bookCheck);              
-            }
-            
+                System.out.println(bookCheck); 
+                record = true;
+            }     
         }
         
+        if (!record) {
+            System.out.println(Assignment.RED +"No Record" + Assignment.RESET);
+        }
+        
+        record = false;
         ArrayList<Stationary> staArray = new ArrayList<>();
         
         try {
@@ -66,9 +73,14 @@ public class LowStockReport extends Report{
         System.out.println("================");
         for (Stationary staCheck : staArray) {
             if (checkLowStock(staCheck)) {
-                System.out.println(staCheck);              
+                System.out.println(staCheck);
+                record = true;
             }
             
+        }
+        
+        if (!record) {
+            System.out.println(Assignment.RED +"No Record" + Assignment.RESET);
         }
         
         Assignment.systemPause();

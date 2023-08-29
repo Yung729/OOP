@@ -528,6 +528,51 @@ public class Stationary extends Stock{
                 } while (toUpperCase(idSearch.charAt(0)) != 'Q');
     }
     
+    public void search(){
+        String search,confirm;
+    
+         boolean notFound;
+    
+         int currentIndex = 0,choice;
+         
+        ArrayList <Stationary> staArray = new ArrayList<> ();
+        try {
+            readStaFromFile(staArray);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        do {
+            System.out.println("1. Search By Id");
+            choice = Validation.getIntegerInput();
+            
+            switch(choice){
+                case 1 ->{
+                    System.out.println("Enter Stationary Id > ");
+                    search = Validation.getStringInput();
+                    
+                    for (Stationary sta:staArray) {
+                        if (sta.getStaId().equals(search)) {
+                            System.out.println(sta);
+                        }
+                    }
+                }
+                
+                case 2 ->{
+                    System.out.println("Enter Stationary Name > ");
+                    search = Validation.getStringInput();
+                    
+                    for (Stationary sta:staArray) {
+                        if (sta.getName().equals(search)) {
+                            System.out.println(sta);
+                        }
+                    }
+                }
+            }
+            
+        } while (choice != 0);
+    }
+    
        //validation
     public Boolean validName(ArrayList<Stationary> staArray,String name){
         
