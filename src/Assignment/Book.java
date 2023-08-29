@@ -704,6 +704,7 @@ public class Book extends Stock {
     }
     
     public void remove(){
+        
         String IdSearch ,confirm;
         boolean notFound;
         int currentIndex = 0;
@@ -777,6 +778,62 @@ public class Book extends Stock {
             
         } while (toUpperCase(IdSearch.charAt(0)) != 'Q');
         
+    }
+    
+    public void search(){
+        
+        String search;
+        boolean notFound = true;
+        int choice;
+         
+        ArrayList <Book> bookArray = new ArrayList<> ();
+        try {
+            readBookFromFile(bookArray);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        do {
+            System.out.println("1. Search By Id");
+            System.out.println("2. Search By Name");
+            System.out.println("0. Exit");
+            choice = Validation.getIntegerInput();
+            
+            switch(choice){
+                case 1 ->{
+                    System.out.println("Enter Stationary Id > ");
+                    search = Validation.getStringInput();
+                    
+                    for (Book book : bookArray) {
+                        if (book.getBookId().equals(search)) {
+                            System.out.println(book);
+                            notFound = false;
+                        }
+                    }
+                    
+                    if (notFound) {
+                        System.out.println(RED +"Id Does Not Exist" + RESET);
+                    }
+                }
+                
+                case 2 ->{
+                    System.out.println("Enter Stationary Name > ");
+                    search = Validation.getStringInput();
+                    
+                    for (Book book : bookArray) {
+                        if (book.getName().equals(search)) {
+                            System.out.println(book);
+                            notFound = false;
+                        }
+                    }
+                    
+                    if (notFound) {
+                        System.out.println(RED +"Id Does Not Exist" + RESET);
+                    }
+                }
+            }
+            
+        } while (choice != 0);
     }
     
     //validation

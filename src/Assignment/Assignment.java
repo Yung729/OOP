@@ -19,7 +19,6 @@ public class Assignment {
     public static final String RESET = "\u001B[0m";
     
     public static void main(String[] args) {
-        //logo();
         login();
     }
     

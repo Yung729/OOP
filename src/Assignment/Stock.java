@@ -36,45 +36,48 @@ public class Stock {
     }
     
     Stock(){}
-
+    
+    //getter
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getStockQuantity() {
-        return stockQuantity;
-    }
-
-    public void setStockQuantity(int stockQuantity) {
-        this.stockQuantity = stockQuantity;
-    }
-
-    public double getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(double unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public double getSoldPrice() {
-        return soldPrice;
-    }
-
-    public void setSoldPrice(double soldPrice) {
-        this.soldPrice = soldPrice;
     }
 
     public boolean isStockStatus() {
         return stockStatus;
     }
 
+    public int getStockQuantity() {
+        return stockQuantity;
+    }
+
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public double getSoldPrice() {
+        return soldPrice;
+    }
+    
+    //setter
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
+    }
+
+    public void setSoldPrice(double soldPrice) {
+        this.soldPrice = soldPrice;
+    }
+
+    public void setStockQuantity(int stockQuantity) {
+        this.stockQuantity = stockQuantity;
+    }
+
     public void setStockStatus(boolean stockStatus) {
         this.stockStatus = stockStatus;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
     
     public void addStockQuantity(int stockQuantity){
@@ -214,9 +217,7 @@ public class Stock {
             }
             default -> {
             }
-        }
-
-      
+        } 
     
     }
     
