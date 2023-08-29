@@ -10,3 +10,13 @@ S0009|Highlighter (Yellow)|15|1.2|3.0|true
 S0010|Sticky Notes|50|1.0|2.5|true
 S0011|Whiteboard Marker|35|1.5|4.0|true
 S0012|Sharpener|40|0.7|1.5|true
+S0013|Gel Pen Set|40|4.5|8.0|true
+S0014|Mechanical Pencil|50|1.0|2.5|true
+S0015|Spiral Notebook|30|2.0|4.5|true
+S0016|Correction Tape|65|1.2|2.0|true
+S0017|Binder Clips|80|0.8|1.5|true
+S0018|Paper Clips|100|0.5|1.0|true
+S0019|Calligraphy Kit|20|10.0|18.0|true
+S0020|Stapler|45|2.5|5.0|true
+S0021|Push Pins|70|0.7|1.2|true
+S0022|Drawing Paper Set|25|3.5|6.0|true
