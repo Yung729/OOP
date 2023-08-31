@@ -146,6 +146,7 @@ public class Stock {
                     System.out.println("=        2. Adjust Stock                  =");
                     System.out.println("=        3. Remove Stock                  =");
                     System.out.println("=        4. Display Stock                 =");
+                    System.out.println("=        5. Search Stock                  =");
                     System.out.println("=        0. Exit                          =");
                     System.out.println("===========================================");
                     
@@ -161,6 +162,9 @@ public class Stock {
                         case 3 -> book.remove();
                         
                         case 4 -> book.display();
+                        
+                        
+                        case 5 -> book.search();
                         
                         case 0 -> {}
                         
@@ -189,6 +193,7 @@ public class Stock {
                     System.out.println("=        2. Adjust Stock                  =");
                     System.out.println("=        3. Remove Stock                  =");
                     System.out.println("=        4. Display Stock                 =");
+                    System.out.println("=        5. Search Stock                 =");
                     System.out.println("=        0. Exit                          =");
                     System.out.println("===========================================");
                     
@@ -204,6 +209,8 @@ public class Stock {
                         case 3 -> stationary.remove();
                         
                         case 4 -> stationary.display();
+                        
+                        case 5 -> stationary.search();
                         
                         case 0 -> {}
                         
@@ -224,7 +231,7 @@ public class Stock {
 
     @Override
     public String toString() {
-        return String.format("%s  %d  RM%.2f RM%.2f %s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
+        return String.format("%-30s  %-10d  RM%-10.2f RM%-10.2f %-10s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
     }
  
 

@@ -165,7 +165,7 @@ public class Book extends Stock {
                     specificBookType = "Horror";
                 }
                 case 'T'->{
-                    specificBookType = "Historical fiction";
+                    specificBookType = "Historical";
                 }
                 case 'F'->{
                     specificBookType = "Fiction";
@@ -261,8 +261,9 @@ public class Book extends Stock {
         ArrayList<Book> bookArray = new ArrayList<>();
 
         System.out.println("Display All Book");
-        System.out.println("Author Name Age Status  BookId  BookName    Type    Quantity    Unit Price  Sold Price  Book Status");
-        System.out.println("===================================================================================================");
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("============================================================================================================================================================");
         
         try {
             readBookFromFile(bookArray);
@@ -866,7 +867,7 @@ public class Book extends Stock {
     @Override
     public String toString(){
         
-        return String.format("%s  %s  %s %s",bookId,
+        return String.format("%-10s  %-10s  %-10s %-10s",bookId,
                      super.toString(),convertBookType(bookType),author.toString() ); 
     }
     

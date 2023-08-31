@@ -529,11 +529,11 @@ public class Stationary extends Stock{
     }
     
     public void search(){
-        String search,confirm;
+        String search;
     
-         boolean notFound;
+         boolean notFound = true;
     
-         int currentIndex = 0,choice;
+         int choice;
          
         ArrayList <Stationary> staArray = new ArrayList<> ();
         try {
@@ -544,29 +544,41 @@ public class Stationary extends Stock{
         
         do {
             System.out.println("1. Search By Id");
-            choice = Validation.getIntegerInput();
+            System.out.println("1. Search By Name");
+            choice = Validation.getIntegerInput("Enter your choice > ");
             
             switch(choice){
                 case 1 ->{
-                    System.out.println("Enter Stationary Id > ");
+                    System.out.print("Enter Stationary Id > ");
                     search = Validation.getStringInput();
                     
                     for (Stationary sta:staArray) {
                         if (sta.getStaId().equals(search)) {
                             System.out.println(sta);
+                            notFound = false;
                         }
+                    }
+                    
+                    if (notFound) {
+                        System.out.println(RED +"Stationary Does Not Exist" + RESET);
                     }
                 }
                 
                 case 2 ->{
-                    System.out.println("Enter Stationary Name > ");
+                    System.out.print("Enter Stationary Name > ");
                     search = Validation.getStringInput();
                     
                     for (Stationary sta:staArray) {
                         if (sta.getName().equals(search)) {
                             System.out.println(sta);
+                            notFound = false;
                         }
                     }
+                    
+                    if (notFound) {
+                        System.out.println(RED +"Stationary Does Not Exist" + RESET);
+                    }
+                    
                 }
             }
             

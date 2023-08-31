@@ -15,11 +15,7 @@ public class StockDiscountReport extends Report{
 
     StockDiscountReport() {
     }
-
-    StockDiscountReport(boolean discountActive) {
-        this.discountActive = discountActive;
-    }
-    
+   
     public boolean checkStockDiscount(Book book){
 
         return !book.author.checkArrive();
@@ -38,8 +34,10 @@ public class StockDiscountReport extends Report{
         System.out.println("===============================");
         for (Book book:bookArr) {
 
-            if (checkStockDiscount(book)) {
-                System.out.println(book);
+            double discount = book.author.memoryDiscount(book) ;
+            
+            if (discount > 0 ) {
+                System.out.println(book.getBookId() + " RM" + book.getSoldPrice() + " RM" + (book.getSoldPrice() - (book.getSoldPrice() * discount)) );
             }
         }
         Assignment.systemPause();

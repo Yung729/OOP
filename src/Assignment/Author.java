@@ -23,7 +23,6 @@ public class Author {
         this.yearOfBirth = yearOfBirth;
         this.arrive = arrive;
     }
-    
 
     //setter
     
@@ -78,8 +77,10 @@ public class Author {
     }
     
     public double memoryDiscount(Book book){
+
         double discount = 0.0;
-        if (!book.isStockStatus()) {
+        
+        if (!book.author.checkArrive()) {
             discount =  DISCOUNT_RATE;
         }
         
@@ -119,7 +120,7 @@ public class Author {
     
     @Override
     public String toString(){
-        return String.format("%-15s    %d  %s",name,yearOfBirth,String.valueOf(arrive));
+        return String.format("%-15s    %-6d  %s",name,yearOfBirth,String.valueOf(arrive));
     }
   
     
