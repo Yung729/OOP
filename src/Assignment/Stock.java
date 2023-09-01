@@ -4,9 +4,6 @@
  */
 package Assignment;
 
-
-import static Assignment.Assignment.RED;
-import static Assignment.Assignment.RESET;
 import java.util.Scanner;
 
 
