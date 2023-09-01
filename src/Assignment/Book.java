@@ -629,7 +629,7 @@ public class Book extends Stock {
                     
                     do {
                         System.out.print("Enter Book price : ");
-                        book.setUnitPrice(input.nextDouble());
+                        book.setUnitPrice(Validation.getDoubleInput());
                         
                         if (!validUnitPrice(book.getUnitPrice())) {
                             System.out.println(RED +"Book Price Must more than RM 0 " + RESET);
@@ -640,7 +640,7 @@ public class Book extends Stock {
                     
                     do {
                         System.out.print("Enter Book Sold price : ");
-                        book.setSoldPrice(input.nextDouble());
+                        book.setSoldPrice(Validation.getDoubleInput());
                         
                         if (!validSoldPrice(book.getSoldPrice(),book.getUnitPrice())) {
                             System.out.println(RED +"Book Price Less Than Unit Price " + RESET);
