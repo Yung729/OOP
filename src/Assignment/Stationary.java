@@ -186,6 +186,7 @@ public class Stationary extends Stock{
         }
     }
     
+    @Override
     public void display(){
                     Assignment.clearScreen();
             
@@ -205,6 +206,7 @@ public class Stationary extends Stock{
                     Assignment.systemPause();
     }
     
+    @Override
     public void adjust(){
         String idSearch,confirm;
         int choice , newBookQuantity, currentIndex = 0;    
@@ -358,6 +360,7 @@ public class Stationary extends Stock{
                     } while(toUpperCase(idSearch.charAt(0))!='Q');
     }
     
+    @Override
     public void add(){
                 
         char confirmChoice;
@@ -460,6 +463,7 @@ public class Stationary extends Stock{
                 } while (toUpperCase(confirmChoice) != 'N');
     }
     
+    @Override
     public void remove(){
          String idSearch,confirm;
     
@@ -528,6 +532,7 @@ public class Stationary extends Stock{
                 } while (toUpperCase(idSearch.charAt(0)) != 'Q');
     }
     
+    @Override
     public void search(){
         String search;
     
@@ -544,8 +549,10 @@ public class Stationary extends Stock{
         
         do {
             System.out.println("1. Search By Id");
-            System.out.println("1. Search By Name");
-            choice = Validation.getIntegerInput("Enter your choice > ");
+            System.out.println("2. Search By Name");
+            System.out.println("0. Exit");
+            System.out.print("Enter your Choice > ");
+            choice = Validation.getIntegerInput();
             
             switch(choice){
                 case 1 ->{

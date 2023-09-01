@@ -15,7 +15,7 @@ import java.util.Scanner;
  * @author Yung
  */
 
-public class Stock {
+public abstract class Stock {
 
     
     static Scanner input = new Scanner(System.in);
@@ -27,6 +27,12 @@ public class Stock {
     private double soldPrice;
     private boolean stockStatus;
 
+    public abstract void add();
+    public abstract void adjust();
+    public abstract void remove();
+    public abstract void display();
+    public abstract void search();
+    
     public Stock(String name, int stockQuantity, double unitPrice, double soldPrice, boolean stockStatus) {
         this.name = name;
         this.stockQuantity = stockQuantity;

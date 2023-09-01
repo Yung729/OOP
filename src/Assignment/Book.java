@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 public class Book extends Stock {
      
     Author author = new Author();
-    private  String bookId;
-    private  char bookType;
+    private String bookId;
+    private char bookType;
   
     //private String startSellDate ;
     // language - can do report
@@ -255,6 +255,7 @@ public class Book extends Stock {
             
     }
     
+    @Override
     public void display(){
                     
         Assignment.clearScreen();
@@ -278,6 +279,7 @@ public class Book extends Stock {
         Assignment.systemPause();
     }
     
+    @Override
     public void adjust(){
         
         String idSearch  ,confirm;
@@ -538,6 +540,7 @@ public class Book extends Stock {
         } while(toUpperCase(idSearch.charAt(0))!='Q');
     }
     
+    @Override
     public void add(){
        
         Author authorInput = new Author();
@@ -704,6 +707,7 @@ public class Book extends Stock {
                 } while (toUpperCase(confirmChoice) != 'N');
     }
     
+    @Override
     public void remove(){
         
         String IdSearch ,confirm;
@@ -781,6 +785,7 @@ public class Book extends Stock {
         
     }
     
+    @Override
     public void search(){
         
         String search;
@@ -798,6 +803,7 @@ public class Book extends Stock {
             System.out.println("1. Search By Id");
             System.out.println("2. Search By Name");
             System.out.println("0. Exit");
+            System.out.print("Enter your Choice > ");
             choice = Validation.getIntegerInput();
             
             switch(choice){
@@ -862,15 +868,13 @@ public class Book extends Stock {
 
         return soldPrice >= unitPrice;
     }
-    
-    
+   
     @Override
     public String toString(){
         
         return String.format("%-10s  %-10s  %-10s %-10s",bookId,
                      super.toString(),convertBookType(bookType),author.toString() ); 
-    }
-    
+    } 
     //check stock balance 
     public static void checkAvailable(ArrayList<Book> bookArray){
         for (Book book:bookArray) {
