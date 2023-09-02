@@ -14,7 +14,6 @@ import java.util.Scanner;
 
 public abstract class Stock {
 
-    
     static Scanner input = new Scanner(System.in);
     static Scanner inputString = new Scanner(System.in);
   
