@@ -87,6 +87,25 @@ public class Author {
         return discount;
     }
     
+    //validation
+    public boolean validAuthorName(String name){
+            if (name.length() < 10) {
+                return false;
+            }
+            
+            //no simbol
+            //no digit
+            
+            return true;
+    }
+    
+    public boolean validAuthorYearOfBirth(int yOB){
+        if (yOB <=1800) {
+            return false;
+        } // > current year
+        return true;
+    }
+    
     
     // overloading method of editBook 
     public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,String newAuthorName){

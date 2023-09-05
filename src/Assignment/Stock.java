@@ -101,16 +101,29 @@ public abstract class Stock {
         this.stockAddDate = stockAddDate;
     }
         
-    public static void writeStockToFile(String Id,LocalDate date) throws IOException{
+    public static void writeStockToFile(String Id,int quantity,LocalDate date) throws IOException{
         try ( FileWriter writeBookFile = new FileWriter("StockFlow.txt",true)) {
             
-                writeBookFile.write(Id + '|' + date +'\n');
+                writeBookFile.write(Id + '|' +quantity+ '|' + date +'\n');
             
             
         }
         System.out.println("Successfully wrote to the file.\n");
     }
     
+    public Boolean validQuantity(int Quantity){
+        return Quantity > 0;
+    }
+    
+    public Boolean validUnitPrice(double unitPrice){
+
+        return unitPrice > 0;
+    }
+    
+    public Boolean validSoldPrice(double soldPrice,double unitPrice){
+
+        return soldPrice >= unitPrice;
+    }
     
     
     @Override

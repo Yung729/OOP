@@ -704,7 +704,7 @@ public class Book extends Stock {
                                 }
                                 
                                 try {
-                                    writeStockToFile(book.getBookId(),book.getStockAddDate());
+                                    writeStockToFile(book.getBookId(),book.getStockQuantity(),book.getStockAddDate());
                                 } catch (IOException ex) {
                                     Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -862,6 +862,12 @@ public class Book extends Stock {
     
     //validation
     public Boolean validName(ArrayList<Book> bookArray,String name){
+                    
+            //no simbol
+            //no digit
+        if (name.length()<=10) {
+            return false;
+        }
         
         for (Book book: bookArray) {
             if (book.getName().equals(name)) {
@@ -871,19 +877,7 @@ public class Book extends Stock {
         return true;
     }
     
-    public Boolean validQuantity(int Quantity){
-        return Quantity > 0;
-    }
     
-    public Boolean validUnitPrice(double unitPrice){
-
-        return unitPrice > 0;
-    }
-    
-    public Boolean validSoldPrice(double soldPrice,double unitPrice){
-
-        return soldPrice >= unitPrice;
-    }
    
     @Override
     public String toString(){     
