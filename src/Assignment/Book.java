@@ -703,6 +703,12 @@ public class Book extends Stock {
                                     System.out.println("Failed To Write into File");
                                 }
                                 
+                                try {
+                                    writeStockToFile(book.getBookId(),book.getStockAddDate());
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                                }
+                                
                             }
                             case 'N' -> System.out.println("Thank you...");
                             default -> System.out.println("Wrong input");
@@ -894,4 +900,6 @@ public class Book extends Stock {
             }
         }
     }
+    
+   
 }

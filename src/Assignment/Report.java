@@ -12,8 +12,7 @@ package Assignment;
  */
 public class Report {
 
-    public void reportMenu(){
-        
+    public void reportMenu(){      
         int choice;
         
         do {

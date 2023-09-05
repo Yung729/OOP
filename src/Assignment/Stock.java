@@ -7,7 +7,15 @@ package Assignment;
  *
  * @author Yung
  */
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public abstract class Stock {
   
@@ -92,7 +100,19 @@ public abstract class Stock {
     public void setStockAddDate(LocalDate stockAddDate) {
         this.stockAddDate = stockAddDate;
     }
-
+        
+    public static void writeStockToFile(String Id,LocalDate date) throws IOException{
+        try ( FileWriter writeBookFile = new FileWriter("StockFlow.txt",true)) {
+            
+                writeBookFile.write(Id + '|' + date +'\n');
+            
+            
+        }
+        System.out.println("Successfully wrote to the file.\n");
+    }
+    
+    
+    
     @Override
     public String toString() {
         return String.format("%-30s  %-10d  RM%-10.2f RM%-10.2f %-10s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
