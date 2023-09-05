@@ -4,6 +4,7 @@
  */
 package Assignment;
 
+import java.time.Year;
 import java.util.ArrayList;
 
 /**
@@ -15,6 +16,7 @@ public class Author {
     private int yearOfBirth;
     private boolean arrive;
     protected final double DISCOUNT_RATE = 0.5;
+    protected int currentYear = Year.now().getValue();
     
     Author(){};
     
@@ -89,20 +91,28 @@ public class Author {
     
     //validation
     public boolean validAuthorName(String name){
-            if (name.length() < 10) {
+            if (name.length() < 10 ) {
                 return false;
             }
             
-            //no simbol
-            //no digit
-            
+            for (int i = 0; i < name.length(); i++) {
+                if (!(Character.isLetter(name.charAt(i)) )) {
+                    return false;
+                }else if (Character.isWhitespace(name.charAt(i))) {
+                    return false;
+                }
+
+            }
+
             return true;
     }
     
     public boolean validAuthorYearOfBirth(int yOB){
         if (yOB <=1800) {
             return false;
-        } // > current year
+        }else if (yOB > currentYear) {
+            return false;
+        }
         return true;
     }
     

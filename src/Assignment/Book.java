@@ -72,7 +72,6 @@ public class Book extends Stock {
                         '|'+ bookFromArray.author.checkArrive()+'\n');
             }
         }
-        System.out.println("Successfully wrote to the file.\n");
     }
     
     public static void readBookFromFile(ArrayList<Book> bookArray) throws FileNotFoundException{
@@ -94,7 +93,6 @@ public class Book extends Stock {
             } catch (IOException ex) {
                 Logger.getLogger(Stationary.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("File created : " + createProductFile.getName() + "\n");
         }     
         
     }
@@ -560,7 +558,7 @@ public class Book extends Stock {
                         book.setName(Validation.getStringInput());
                         
                         if (!validName(bookArray,book.getName())) {
-                            System.out.println(RED +"Book Name Repeated" + RESET);
+                            System.out.println(RED +"Book Name Repeated or Too Short" + RESET);
                         }
                         
                     } while (!validName(bookArray,book.getName()));
@@ -649,12 +647,25 @@ public class Book extends Stock {
                     System.out.println("Book Author");
                     System.out.println("===========");
                     
-                    System.out.print("Enter Author name > ");
-                    authorInput.setName(Validation.getStringInput());
+                    do {
+                        System.out.print("Enter Author name > ");
+                        authorInput.setName(Validation.getStringInput());
+                        
+                        if (!authorInput.validAuthorName(authorInput.getName())) {
+                            System.out.println(RED+"Author Name Invalid" + RESET);
+                        }
+                        
+                    } while (!authorInput.validAuthorName(authorInput.getName()));
                     
-                    System.out.print("Enter Author age > ");
-                    authorInput.setYearOfBirth(Validation.getIntegerInput());
                     
+                    
+                    do {
+                        System.out.print("Enter Author YOB > ");
+                        authorInput.setYearOfBirth(Validation.getIntegerInput());
+                        if (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth())) {
+                            System.out.println("Invalid Year Of Birth");
+                        }
+                    } while (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth()));
                     
                                         
                     do {

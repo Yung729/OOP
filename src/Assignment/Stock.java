@@ -108,7 +108,6 @@ public abstract class Stock {
             
             
         }
-        System.out.println("Successfully wrote to the file.\n");
     }
     
     public Boolean validQuantity(int Quantity){
@@ -122,7 +121,7 @@ public abstract class Stock {
     
     public Boolean validSoldPrice(double soldPrice,double unitPrice){
 
-        return soldPrice >= unitPrice;
+        return soldPrice > unitPrice;
     }
     
     

@@ -52,7 +52,6 @@ public class Stationary extends Stock{
                                    staFromArray.getSoldPrice()+'|'+staFromArray.isStockStatus()+'\n');
             }
         }
-        System.out.println("Successfully wrote to the file.\n");
     }
     
     public static void readStaFromFile(ArrayList<Stationary> staArray) throws FileNotFoundException{
@@ -73,7 +72,6 @@ public class Stationary extends Stock{
             } catch (IOException ex) {
                 Logger.getLogger(Stationary.class.getName()).log(Level.SEVERE, null, ex);
             }
-            System.out.println("File created : " + createProductFile.getName() + "\n");
         }
            
             
@@ -392,11 +390,11 @@ public class Stationary extends Stock{
                     
                         sta.setStockQuantity(Validation.getIntegerInput());
                         
-                        if (!validQuantity(sta.getStockQuantity())) {
+                        if (!super.validQuantity(sta.getStockQuantity())) {
                             System.out.println(RED +"Stationary Quantity Must At Least one" + RESET);
                         }
                         
-                    } while (!validQuantity(sta.getStockQuantity()));
+                    } while (!super.validQuantity(sta.getStockQuantity()));
                     
                     
                     do {
@@ -598,19 +596,5 @@ public class Stationary extends Stock{
         }  
         return true;
     }
-    
-    public Boolean validQuantity(int Quantity){
 
-        return Quantity > 0;
-    }
-    
-    public Boolean validUnitPrice(double unitPrice){
-
-        return unitPrice > 0;
-    }
-    
-    public Boolean validSoldPrice(double soldPrice,double unitPrice){
-
-        return soldPrice >= unitPrice;
-    }
 }
