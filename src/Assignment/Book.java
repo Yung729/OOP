@@ -862,7 +862,6 @@ public class Book extends Stock {
     
     //validation
     public Boolean validName(ArrayList<Book> bookArray,String name){
-                    
             //no simbol
             //no digit
         if (name.length()<=10) {
