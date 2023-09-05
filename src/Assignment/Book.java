@@ -26,9 +26,7 @@ public class Book extends Stock {
     Author author = new Author();
     private String bookId;
     private char bookType;
-  
-    //private String startSellDate ;
-    // language - can do report
+
     static Scanner input = new Scanner(System.in);
     static Scanner inputString = new Scanner(System.in);
   
@@ -149,7 +147,7 @@ public class Book extends Stock {
     
     public String convertBookType(char bookType){
     
-        String specificBookType = "Non Type";
+        String specificBookType = null;
         switch(bookType){
                 case 'R'->{
                     specificBookType = "Romantic";
@@ -331,7 +329,7 @@ public class Book extends Stock {
                 System.out.println("0. Stop Edit");
                 System.out.println("=========================");
 
-                System.out.print("Enter Field to Edit [1-4] >");
+                System.out.print("Enter Field to Edit [1-7] >");
                 choice = Validation.getIntegerInput();
 
                 switch(choice){
@@ -538,7 +536,9 @@ public class Book extends Stock {
        
         Author authorInput = new Author();
         Book book = new Book();
+        int choice;
         char confirmChoice;
+        boolean valid;
         
                 ArrayList<Book> bookArray = new ArrayList<>();
                 try {
@@ -546,8 +546,7 @@ public class Book extends Stock {
                 } catch (FileNotFoundException ex) {
                     System.out.println("File Error");
                 }
-        
-                
+    
                 do {
                     
                     Assignment.clearScreen();
@@ -576,9 +575,7 @@ public class Book extends Stock {
                         }
                         
                     } while (!validQuantity(book.getStockQuantity()));
-                    
-                    
-                    
+      
                     System.out.println("Select Book Type :");
                     System.out.println("==================");
                     System.out.println("1. Romantic");
@@ -588,9 +585,10 @@ public class Book extends Stock {
                     System.out.println("5. Education");
                     System.out.println("==================");
                     
-                    System.out.print("Enter your choice [1-5] > ");
-                    
-                    int choice = Validation.getIntegerInput();
+                    do {
+
+                    System.out.print("Enter your choice [1-5] > ");            
+                    choice = Validation.getIntegerInput();
                     
                     switch(choice){
                         case 1 -> {
@@ -620,6 +618,8 @@ public class Book extends Stock {
                             System.out.println(RED +"Book Tyoe Select Range [1-5] Only" + RESET);
                         }
                     }
+                    
+                    } while (choice == -1);
                     
                     
                     
@@ -656,8 +656,17 @@ public class Book extends Stock {
                     authorInput.setYearOfBirth(Validation.getIntegerInput());
                     
                     
-                    System.out.print("Author Arrive ? [Y/N] > ");
-                    confirmChoice = toUpperCase(inputString.next().charAt(0));
+                                        
+                    do {
+                        System.out.print("Author Arrive ? [Y/N] > ");
+                        confirmChoice = toUpperCase(inputString.next().charAt(0));
+
+                        valid = Validation.checkYesNo(confirmChoice);
+                        if (!valid) {
+                            System.out.println(RED +"Input Invalid Must 'Y'/'N'" + RESET);
+                        }
+                        
+                    } while (!valid);
                     
                     
                     if (confirmChoice == 'Y' && Validation.checkYesNo(confirmChoice)) {
@@ -665,11 +674,21 @@ public class Book extends Stock {
                     }else if(confirmChoice == 'N' && Validation.checkYesNo(confirmChoice)) {
                         authorInput.setArrive(false);
                     }
-                    
+                    Assignment.clearScreen();
                     displayBookDetails(book);
                     
-                    System.out.print("Comfirm [Y/N] > "); 
-                    confirmChoice = inputString.next().charAt(0);
+                    do {
+                         System.out.print("Comfirm [Y/N] > "); 
+                         confirmChoice = toUpperCase(inputString.next().charAt(0));
+
+                        valid = Validation.checkYesNo(confirmChoice);
+                        if (!valid) {
+                            System.out.println(RED +"Input Invalid Must 'Y'/'N'" + RESET);
+                        }
+                        
+                    } while (!valid);
+                    
+                   
                     
                     if (Validation.checkYesNo(confirmChoice)) {
                        
@@ -691,7 +710,6 @@ public class Book extends Stock {
                         
                         System.out.print("Any More Book ? [Y/N] > ");
                         confirmChoice = inputString.next().charAt(0);
-                        Validation.getStringInput();
                         
                     }else{
                         System.out.println("Wrong Input");
@@ -848,7 +866,6 @@ public class Book extends Stock {
     }
     
     public Boolean validQuantity(int Quantity){
-
         return Quantity > 0;
     }
     

@@ -3,12 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package Assignment;
-
-
 /**
  *
  * @author Yung
  */
+import java.time.LocalDate;
 
 public abstract class Stock {
   
@@ -17,12 +16,15 @@ public abstract class Stock {
     private double unitPrice;
     private double soldPrice;
     private boolean stockStatus;
+    LocalDate stockAddDate = LocalDate.now();
 
     public abstract void add();
     public abstract void adjust();
     public abstract void remove();
     public abstract void display();
     public abstract void search();
+    
+    Stock(){}
     
     public Stock(String name, int stockQuantity, double unitPrice, double soldPrice, boolean stockStatus) {
         this.name = name;
@@ -31,9 +33,7 @@ public abstract class Stock {
         this.soldPrice = soldPrice;
         this.stockStatus = stockStatus;
     }
-    
-    Stock(){}
-   
+     
     //getter
     public String getName() {
         return name;
@@ -46,7 +46,6 @@ public abstract class Stock {
     public int getStockQuantity() {
         return stockQuantity;
     }
-
 
     public double getUnitPrice() {
         return unitPrice;
@@ -84,6 +83,14 @@ public abstract class Stock {
     public void subStockQuantity(int stockQuantity){
         
         this.stockQuantity -= stockQuantity;
+    }
+
+    public LocalDate getStockAddDate() {
+        return stockAddDate;
+    }
+
+    public void setStockAddDate(LocalDate stockAddDate) {
+        this.stockAddDate = stockAddDate;
     }
 
     @Override

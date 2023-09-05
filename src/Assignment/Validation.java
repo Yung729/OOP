@@ -18,7 +18,8 @@ public class Validation {
     public static boolean checkYesNo(char input) {  
 
         boolean check = true;
-
+        
+           
         if (toUpperCase(input) != 'Y' && toUpperCase(input) != 'N') {
             check = false;
         }
@@ -33,6 +34,7 @@ public class Validation {
             input.nextLine();
         } catch (Exception e) {
             input.nextLine();
+            System.out.println(Assignment.RED+"Must In Integer"+Assignment.RESET);
             return -1; //invalid
         }
         return value;

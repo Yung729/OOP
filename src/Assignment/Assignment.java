@@ -28,7 +28,7 @@ public class Assignment {
 	System.out.printf("%s\n", "     | | | | '_ ` _ \\| __|");
 	System.out.printf("%s\n", "     | |_| | | | | | | |_");
 	System.out.printf("%s\n\n", "      \\__,_|_| |_| |_|\\__|");
-        System.out.println("===========================================");
+        
 	
 	
     }
