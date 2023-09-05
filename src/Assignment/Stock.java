@@ -4,8 +4,6 @@
  */
 package Assignment;
 
-import java.util.Scanner;
-
 
 /**
  *
@@ -13,9 +11,6 @@ import java.util.Scanner;
  */
 
 public abstract class Stock {
-
-    static Scanner input = new Scanner(System.in);
-    static Scanner inputString = new Scanner(System.in);
   
     private String name;
     private int stockQuantity;

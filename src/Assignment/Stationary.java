@@ -6,7 +6,6 @@ package Assignment;
 
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
-import static Assignment.Stock.input;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -24,18 +23,15 @@ import java.util.logging.Logger;
 public class Stationary extends Stock{
   
     private String staId;
-
+    static Scanner input = new Scanner(System.in);
+    static Scanner inputString = new Scanner(System.in);
+  
     Stationary(){}
     
     Stationary(String staId, String name, int stockQuantity, double unitPrice, double soldPrice, boolean stockStatus) {
         super(name, stockQuantity, unitPrice, soldPrice, stockStatus);
         this.staId = staId;
     }
-    
-    
-    
-    
-    
     
     //setter
     public void setStaId(String staId){
@@ -131,7 +127,7 @@ public class Stationary extends Stock{
         return String.format("%s   %s  ",staId,super.toString());
     }
     
-//edit name
+    //edit name
     public static void editSta(ArrayList<Stationary> staArray,String searchId,String newName){
          for (Stationary latestSta: staArray) {
           if (latestSta.getStaId().equals(searchId)) {

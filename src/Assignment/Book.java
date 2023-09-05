@@ -6,8 +6,6 @@ package Assignment;
 
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
-import static Assignment.Stock.input;
-import static Assignment.Stock.inputString;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -31,7 +29,9 @@ public class Book extends Stock {
   
     //private String startSellDate ;
     // language - can do report
-
+    static Scanner input = new Scanner(System.in);
+    static Scanner inputString = new Scanner(System.in);
+  
     Book(){
         super("",0,0.0,0.0,false);
         this.author = null;
@@ -53,8 +53,7 @@ public class Book extends Stock {
     public void setBookType(char bookType){
         this.bookType = bookType;
     }
-    
- 
+
     //getter
     public  char getBookType(){
         return bookType;
@@ -98,15 +97,11 @@ public class Book extends Stock {
                 Logger.getLogger(Stationary.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("File created : " + createProductFile.getName() + "\n");
-        }
-            
-          
+        }     
         
     }
          
     //other method
-
-    
     public String generateBookId(ArrayList<Book> bookArray){
         String bookIdGenerated;
        
@@ -127,8 +122,7 @@ public class Book extends Stock {
       String specificBookType = "Non Type";
        
         for (Book allBook: bookArray) {
-           
-            
+   
             switch(allBook.getBookType()){
                 case 'R'->{
                     specificBookType = "Romantic";
@@ -145,8 +139,7 @@ public class Book extends Stock {
                 case 'E'->{
                     specificBookType = "Education";
                 }
-                
-                         
+               
             }
             
             System.out.printf("%s   %s  %s  %d  RM%.2f  RM%.2f\n",allBook.getBookId(),allBook.getName(),specificBookType,
@@ -172,13 +165,10 @@ public class Book extends Stock {
                 }
                 case 'E'->{
                     specificBookType = "Education";
-                }
-                
-                         
+                }              
         }
         
-        return specificBookType;
-    
+        return specificBookType;  
     }
     
     public static void addBook(ArrayList<Book> bookArray, Book Book) {
@@ -198,8 +188,7 @@ public class Book extends Stock {
             
         }
     }
-    
-    
+
     public static void editBook(ArrayList<Book> bookArray,String searchBookId,char newBookType){
          for (Book latestBook: bookArray) {
              if (latestBook.getBookId().equals(searchBookId)) {
@@ -238,9 +227,7 @@ public class Book extends Stock {
              }     
         }
     }
-    
 
- 
     public static void displayBookDetails(Book book){
             System.out.println("====================================");
             System.out.println("|            Book Detail            |");
@@ -257,7 +244,8 @@ public class Book extends Stock {
     
     @Override
     public void display(){
-                    
+        double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
+        int quantity = 0,count=0;
         Assignment.clearScreen();
         ArrayList<Book> bookArray = new ArrayList<>();
 
@@ -273,9 +261,14 @@ public class Book extends Stock {
         }
 
         for (Book bookDisplay: bookArray) {
-            System.out.println(bookDisplay);         
+            System.out.println(bookDisplay);     
+            quantity += bookDisplay.getStockQuantity();
+            totalUnitPrice += (bookDisplay.getStockQuantity() * bookDisplay.getUnitPrice());
+            totalSoldPrice +=  (bookDisplay.getStockQuantity() * bookDisplay.getSoldPrice());
+            count++;
         }
         
+        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
         Assignment.systemPause();
     }
     
@@ -870,8 +863,7 @@ public class Book extends Stock {
     }
    
     @Override
-    public String toString(){
-        
+    public String toString(){     
         return String.format("%-10s  %-10s  %-10s %-10s",bookId,
                      super.toString(),convertBookType(bookType),author.toString() ); 
     } 

@@ -11,14 +11,12 @@ import java.util.ArrayList;
  * @author Yung
  */
 public class StockDiscountReport extends Report{
-    private boolean discountActive;
-
+    
     StockDiscountReport() {
     }
-   
-    public boolean checkStockDiscount(Book book){
-
-        return !book.author.checkArrive();
+    
+    public double calculateBookPrice(double soldPrice,double discount){
+        return soldPrice - (soldPrice * discount);
     }
     
     public void discountReport(){
@@ -29,15 +27,15 @@ public class StockDiscountReport extends Report{
             Book.readBookFromFile(bookArr);
         } catch (FileNotFoundException ex) {
         }
-
+        Assignment.clearScreen();
         System.out.println("Stock Discount Available Report");
         System.out.println("===============================");
         for (Book book:bookArr) {
 
-            double discount = book.author.memoryDiscount(book) ;
+            double bookPrice = calculateBookPrice(book.getSoldPrice(),book.author.memoryDiscount(book)) ;
             
-            if (discount > 0 ) {
-                System.out.println(book.getBookId() + " RM" + book.getSoldPrice() + " RM" + (book.getSoldPrice() - (book.getSoldPrice() * discount)) );
+            if (bookPrice != book.getSoldPrice() ) {
+                System.out.println(book.getBookId() + " RM" + book.getSoldPrice() + " RM" + bookPrice );
             }
         }
         Assignment.systemPause();
