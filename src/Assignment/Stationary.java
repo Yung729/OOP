@@ -55,10 +55,10 @@ public class Stationary extends Stock{
     }
     
     public static void readStaFromFile(ArrayList<Stationary> staArray) throws FileNotFoundException{
-        File readBookFile = new File("Stationary.txt");
+        File readStaFile = new File("Stationary.txt");
         
-        if (readBookFile.exists()) {
-             Scanner productRead = new Scanner(readBookFile);
+        if (readStaFile.exists()) {
+             Scanner productRead = new Scanner(readStaFile);
             while (productRead.hasNextLine()) {
                 String line = productRead.nextLine();
                 String[] data = line.split("\\|");
@@ -66,9 +66,9 @@ public class Stationary extends Stock{
                              Boolean.parseBoolean(data[5])));
             }
         }else {
-            File createProductFile = new File("Stationary.txt");
+            File createStaFile = new File("Stationary.txt");
             try {
-                createProductFile.createNewFile();
+                createStaFile.createNewFile();
             } catch (IOException ex) {
                 Logger.getLogger(Stationary.class.getName()).log(Level.SEVERE, null, ex);
             }

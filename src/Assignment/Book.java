@@ -663,7 +663,7 @@ public class Book extends Stock {
                         System.out.print("Enter Author YOB > ");
                         authorInput.setYearOfBirth(Validation.getIntegerInput());
                         if (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth())) {
-                            System.out.println("Invalid Year Of Birth");
+                            System.out.println(RED+ "Invalid Year Of Birth" + RESET);
                         }
                     } while (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth()));
                     
@@ -715,7 +715,7 @@ public class Book extends Stock {
                                 }
                                 
                                 try {
-                                    writeStockToFile(book.getBookId(),book.getStockQuantity(),book.getStockAddDate());
+                                    StockFlowReport.writeStockToFile(book.getBookId(),book.getStockQuantity(),book.getStockAddDate());
                                 } catch (IOException ex) {
                                     Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
                                 }

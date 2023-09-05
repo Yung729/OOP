@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public abstract class Stock {
   
     private String name;
-    private int stockQuantity;
+    private  int stockQuantity;
     private double unitPrice;
     private double soldPrice;
     private boolean stockStatus;
@@ -84,32 +84,22 @@ public abstract class Stock {
         this.name = name;
     }
     
-    public void addStockQuantity(int stockQuantity){
+    public  void addStockQuantity(int stockQuantity){
         this.stockQuantity += stockQuantity;
     }
     
-    public void subStockQuantity(int stockQuantity){
-        
+    public  void subStockQuantity(int stockQuantity){       
         this.stockQuantity -= stockQuantity;
     }
 
-    public LocalDate getStockAddDate() {
+    public  LocalDate getStockAddDate() {
         return stockAddDate;
     }
 
-    public void setStockAddDate(LocalDate stockAddDate) {
+    public  void setStockAddDate(LocalDate stockAddDate) {
         this.stockAddDate = stockAddDate;
     }
-        
-    public static void writeStockToFile(String Id,int quantity,LocalDate date) throws IOException{
-        try ( FileWriter writeBookFile = new FileWriter("StockFlow.txt",true)) {
-            
-                writeBookFile.write(Id + '|' +quantity+ '|' + date +'\n');
-            
-            
-        }
-    }
-    
+
     public Boolean validQuantity(int Quantity){
         return Quantity > 0;
     }
