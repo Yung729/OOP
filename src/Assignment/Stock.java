@@ -7,15 +7,9 @@ package Assignment;
  *
  * @author Yung
  */
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 public abstract class Stock {
   
