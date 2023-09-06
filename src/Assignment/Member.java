@@ -103,10 +103,15 @@ public class Member {
         this.memberPoints = memberPoints;
     }
     
+    public void rmtoPoints(double rm){
+        double point = rm /100;
+        this.memberPoints = point;
+    }
+    
     //other methods
     @Override
     public String toString(){
-        return "Member ID: " + memberID + "\nName: " + name + "\nPhone Number: " + phoneNumber + "\nEmail: " + email + "\nDate of Birth" + dateOfBirth + "\nDiscount Rate: " + discountRate;
+        return "Member ID: " + memberID + "Name: " + name + "Phone Number: " + phoneNumber + "Email: " + email + "Date of Birth" + dateOfBirth + "Discount Rate: " + discountRate;
     }
     
     public void addMember(ArrayList<Member> memberArray, Member member){
@@ -159,6 +164,7 @@ public class Member {
         int choice;
         
         do{
+            Assignment.clearScreen();
             System.out.println("========================================");
             System.out.println("=                MEMBER                =");
             System.out.println("========================================");
@@ -177,7 +183,7 @@ public class Member {
    
                 case 2 -> displayMember();
                     
-                case 3 ->{}
+                case 3 ->{DeleteMember();}
                     
                 case 4 -> {}
                  
