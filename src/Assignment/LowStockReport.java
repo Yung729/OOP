@@ -48,6 +48,9 @@ public class LowStockReport extends Report{
         lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
         System.out.println("Low Book Report");
         System.out.println("================");
+         System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("============================================================================================================================================================");
         
         for (Book bookCheck : bookArray) {
             if (checkLowStock(bookCheck)) {

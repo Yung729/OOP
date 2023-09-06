@@ -14,8 +14,8 @@ public class Report {
 
     public void reportMenu(){      
         int choice;
-        Report report = new Report();
         do {
+            
             Assignment.clearScreen();
             Assignment.logo();
             System.out.println("1. Low Stock Report");

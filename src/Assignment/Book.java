@@ -231,6 +231,9 @@ public class Book extends Stock {
             System.out.println("| Book ID : " + book.bookId);
             System.out.println("| Book Name :  " + book.getName());
             System.out.println("| Book Type :  " + book.bookType);
+            System.out.println("| Author Name: "+book.author.getName());
+            System.out.println("| Author YOB: "+book.author.getYearOfBirth());
+            System.out.println("| Author Status: "+book.author.checkArrive());
             System.out.println("| Book Price :  " + book.getUnitPrice());
             System.out.println("| Book Sold Price :  " + book.getSoldPrice());
             System.out.println("| Book Total Added :  " + book.getStockQuantity());

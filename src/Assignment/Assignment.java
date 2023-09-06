@@ -23,7 +23,7 @@ public class Assignment {
     public static String CURRENTNAME;
     
     public static void main(String[] args) {
-        logo();
+        
         login();
     }
     
@@ -53,7 +53,7 @@ public class Assignment {
         String password;
         
         try {
-            new Admin().readAdminFromFile(adminArray);
+            Admin.readAdminFromFile(adminArray);
         } catch (FileNotFoundException ex) {
             System.out.println(RED + "Cannot read the file!" + RESET);
             return;
@@ -67,6 +67,8 @@ public class Assignment {
         }
 
         do {
+            clearScreen();
+            logo();
             exist = true;
             
             System.out.println("===========================================");
@@ -133,6 +135,7 @@ public class Assignment {
         
         do{
             clearScreen(); 
+            logo();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
@@ -154,7 +157,7 @@ public class Assignment {
             switch(choice){
                 case 1 -> {new StaffMain().staffMenu();}
                 
-                case 2 ->{new StockDiscountReport().discountReport();}
+                case 2 ->{bookAvailableMenu();}
                 
                 case 5 ->{stockMainMenu();}
             
@@ -168,6 +171,38 @@ public class Assignment {
        
     }
    
+   public static void bookAvailableMenu(){
+        double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
+        int quantity = 0,count=0;
+        Assignment.clearScreen();
+        ArrayList<Book> bookArray = new ArrayList<>();
+
+        System.out.println("Display All Book");
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("============================================================================================================================================================");
+        
+        try {
+            Book.readBookFromFile(bookArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Failed to Read File.");
+        }
+
+        for (Book bookDisplay: bookArray) {
+            if (bookDisplay.isStockStatus()) {
+                System.out.println(bookDisplay);   
+            }
+              
+            quantity += bookDisplay.getStockQuantity();
+            totalUnitPrice += (bookDisplay.getStockQuantity() * bookDisplay.getUnitPrice());
+            totalSoldPrice +=  (bookDisplay.getStockQuantity() * bookDisplay.getSoldPrice());
+            count++;
+        }
+        
+        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+        Assignment.systemPause();
+    }
+   
    public static void cashierMenu(){
         //menu list of main program
         
@@ -176,6 +211,7 @@ public class Assignment {
 
         do{
             clearScreen(); 
+            logo();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
@@ -200,7 +236,7 @@ public class Assignment {
             switch(choice){
                 
                 case 1-> {
-                    new StockDiscountReport().discountReport();
+                    bookAvailableMenu();
                 }
                 case 4 -> {}
                 
@@ -238,9 +274,9 @@ public class Assignment {
               
            case 2 -> stockMenu("Stationary Management",new Stationary());
      
-           case 0 -> {}
-
            case 3 -> new Report().reportMenu();
+           
+           case 0 -> {}
            
            default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
@@ -261,7 +297,6 @@ public class Assignment {
                 do {
                     
                     Assignment.clearScreen();
-                    
                     Assignment.logo();
                     System.out.printf("=           %s               =\n",title);
                     System.out.println("===========================================");
@@ -279,14 +314,14 @@ public class Assignment {
                     switch(choice){
                         
                         case 1 -> book.add();
+                       
                         
                         case 2 -> book.adjust();
                         
                         case 3 -> book.remove();
                         
                         case 4 -> book.display();
-                        
-                        
+
                         case 5 -> book.search();
                         
                         case 0 -> {}
@@ -352,13 +387,13 @@ public class Assignment {
     }
    
     
-        public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
+    public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
         boolean exist = false;
         for(Admin ad : adminArray){
             if(ad.getId().equals(searchID) && ad.getPassword().equals(searchPassword))
                 exist = true;
         }
-        
+
         return exist;
     }
     
