@@ -1,0 +1,2 @@
+orderID,bookID,bookQuantity,stationaryID,stationaryQuantity,totalPrice,datetime
+I0001|B0001:B0002|2:1|S0001|1|100|2017-01-01 10:00:00
