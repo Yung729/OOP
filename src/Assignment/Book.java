@@ -287,7 +287,7 @@ public class Book extends Stock {
             notFound = true;
             Assignment.clearScreen();
 
-            checkAvailable(bookArray);
+            
             System.out.println("Edit Book Name");
             System.out.println("==============");
             System.out.print("Enter BookID [Q to exit]> ");
@@ -419,6 +419,7 @@ public class Book extends Stock {
                                 case 1 -> {
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,true,false);
+                                        checkAvailable(bookArray);
                                         writeBookToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" +RESET);
@@ -435,11 +436,12 @@ public class Book extends Stock {
                                 case 2 -> {
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,false,true);
+                                        checkAvailable(bookArray);
                                         writeBookToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" + RESET);
                                     }
-                                    
+                                   
                                     try {
                                         StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),-(newBookQuantity),
                                                 bookArray.get(currentIndex).getStockAddDate());
@@ -451,11 +453,12 @@ public class Book extends Stock {
                                 case 3 -> {
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,false,false);
+                                        checkAvailable(bookArray);
                                         writeBookToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" + RESET);
                                     }
-                                    
+                                 
                                     try {
                                         StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),
                                                 -(bookArray.get(currentIndex).getStockQuantity() - newBookQuantity),
@@ -467,6 +470,8 @@ public class Book extends Stock {
                                 default -> {
                                 }
                             }
+                            
+                            
 
                         }else {
                             System.out.println(RED +"Edit is denied" + RESET);
@@ -546,8 +551,7 @@ public class Book extends Stock {
                     }
                 }
             }
-        
-
+            
         } while(toUpperCase(idSearch.charAt(0))!='Q');
     }
     
@@ -709,6 +713,7 @@ public class Book extends Stock {
                     }
                     Assignment.clearScreen();
                     displayBookDetails(book);
+                    book.author.displayAuthorDetail();
                     
                     do {
                          System.out.print("Comfirm [Y/N] > "); 

@@ -61,15 +61,7 @@ public class Author {
             System.out.println("|                                  |");
             System.out.println("====================================");
     }
-    
-    public  void displayAuthorDetail(Book book){
-            System.out.println("| Author Name :  " + book.author.name);
-            System.out.println("| Author Age :  " + book.author.yearOfBirth);
-            System.out.println("| Author status :  " + book.author.arrive);
-            System.out.println("|                                  |");
-            System.out.println("====================================");
-    }
-    
+
     public double commemorativeOffer(Book book){
 
         double discount = 0.0;

@@ -217,7 +217,7 @@ public class Stationary extends Stock{
                     do{
                         notFound = true;
                         Assignment.clearScreen();
-                        checkAvailable(staArray);
+                        
                         System.out.println("Edit Stationary ");
                         System.out.println("========================");
                         idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
@@ -319,6 +319,7 @@ public class Stationary extends Stock{
                                             case 1 -> {
                                                 try {
                                                    editSta(staArray, idSearch, newBookQuantity,true,false);
+                                                   checkAvailable(staArray);
                                                    writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
@@ -335,6 +336,7 @@ public class Stationary extends Stock{
                                             case 2 -> {
                                                 try {
                                                    editSta(staArray, idSearch, newBookQuantity,false,true);
+                                                   checkAvailable(staArray);
                                                    writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
@@ -350,6 +352,7 @@ public class Stationary extends Stock{
                                             case 3 -> {
                                                 try {
                                                     editSta(staArray, idSearch, newBookQuantity,false,false);
+                                                    checkAvailable(staArray);
                                                     writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
