@@ -7,6 +7,8 @@ package Assignment;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -17,8 +19,11 @@ public class Assignment {
 
     public static final String RED = "\u001B[31m";
     public static final String RESET = "\u001B[0m";
+    static Scanner sc = new Scanner(System.in);
+    public static String CURRENTNAME;
     
     public static void main(String[] args) {
+        logo();
         login();
     }
     
@@ -33,88 +38,180 @@ public class Assignment {
 	
     }
     
-    public static void login(){
-        //login
-        Scanner sc = new Scanner(System.in);
+   public static void login(){
+ 
+        Admin admin = new Admin();
+        ArrayList<Admin> adminArray = new ArrayList();
+        Cashier cashier= new Cashier();
+        ArrayList<Cashier> cashierArray = new ArrayList();
+        
+        boolean exist = false;
         boolean error = false;
+        int currentIndex = 0;
         
-        String testAdminID = "Ali";
-        String testAdminPW = "Abc123";
+        String id;
+        String password;
         
-        logo();
-        System.out.println("=                 LOGIN                   =");
-        System.out.println("===========================================");
-        
-        do{
-            error = false;
-            System.out.printf("Enter ID: ");
-            String id = sc.nextLine();
-            System.out.printf("Enter Password: ");
-            String password = sc.nextLine();
-        
-            if(id.equals(testAdminID) && password.equals(testAdminPW)){
-                error = false;
-                menu();
-            } else{
-                error = true;
-                System.out.println("Invalid ID or Password. Please enter again!");
-            }
-            
-        }while(error == true);
-    }
-    
-    public static void menu(){
-        //menu list of main program
-        Scanner sc = new Scanner(System.in);
-        boolean error = false;
-        int choice;
-
-    do{
-        clearScreen();
-        logo();
-        System.out.println("=                  MENU                   =");
-        System.out.println("===========================================");
-        System.out.println("=        1. Staff Manage                  =");
-        System.out.println("=        2. Display Book Available Menu   =");
-        System.out.println("=        3. Sales Order                   =");
-        System.out.println("=        4. Membership Register           =");
-        System.out.println("=        5. Stock Management              =");
-        System.out.println("=        6. Sales Report                  =");
-        System.out.println("=        0. Exit                          =");
-        System.out.println("===========================================");
-        
-        do{
-            error = false;
-            System.out.print("Enter your choice: ");
-            choice = sc.nextInt();
-            
-            if(choice <= 6 && choice >= 0){
-                error = false;
-            }
-            else{
-                error = true;
-            }
-            
-        }while (error == true);
-        
-        switch(choice){
-            case 1:
-                new StaffMain().staffMenu();
-                break;
-              
-            case 3:
-                break;
-            
-            case 5:
-                stockMainMenu();
-                break;
-                
-            case 0:
+        try {
+            new Admin().readAdminFromFile(adminArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println(RED + "Cannot read the file!" + RESET);
+            return;
         }
-    
-    }while(choice != 0);
+        
+        try {
+            new Cashier().readCashierFromFile(cashierArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println(RED + "Cannot read the file!" + RESET);
+            return;
+        }
+
+        do {
+            exist = true;
+            
+            System.out.println("===========================================");
+            System.out.println("=                 LOGIN                   =");
+            System.out.println("===========================================");
+            
+            System.out.println("**Enter x to log out**");
+            
+
+            System.out.print("Enter ID > ");
+            id = sc.nextLine();
+            if(id.equalsIgnoreCase("x")){
+                return;
+            }
+            
+            System.out.print("Enter Password > ");
+            password = sc.nextLine();
+            if(password.equalsIgnoreCase("x")){
+                return;
+            }
+            
+     
+            if(id.startsWith("AD")){
+                exist = checkAdminIDPW(adminArray, id, password);
+                if(exist){
+                    printAdminLoginName(adminArray, id, password);
+                    CURRENTNAME = storeAdminLoginName(adminArray, id, password);
+                    systemPause();
+                    adminMenu();
+                    exist = false;
+                    sc.nextLine();
+                }
+                else{
+                    System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
+                }
+            } else if(id.startsWith("CH")){
+                exist = checkCashierIDPW(cashierArray, id, password);
+                if(exist){
+                    printCashierLoginName(cashierArray, id, password);
+                    CURRENTNAME = storeCashierLoginName(cashierArray, id, password);
+                    systemPause();
+                    cashierMenu();
+                    exist = false;
+                    sc.nextLine();
+                }
+                else{
+                    System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
+                }
+            } else{
+                exist = false;
+                System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
+            }
+           
+        } while (!exist);
+
+       
     }
-    
+ 
+   public static void adminMenu(){
+        //menu list of main program    
+        
+        int choice;
+        boolean error;
+        
+        do{
+            clearScreen(); 
+            error = false;
+            System.out.println("Current Login > " + CURRENTNAME);
+            
+            System.out.println("===========================================");
+            System.out.println("=                  MENU                   =");
+            System.out.println("===========================================");
+            System.out.println("=        1. Staff Manage                  =");
+            System.out.println("=        2. Display Book Available Menu   =");
+            System.out.println("=        3. Sales Order                   =");
+            System.out.println("=        4. Membership Register           =");
+            System.out.println("=        5. Stock Management              =");
+            System.out.println("=        6. Sales Report                  =");
+            System.out.println("=        7. Exit                          =");
+            System.out.println("===========================================");
+        
+            System.out.print("Enter your choice > ");
+                choice = sc.nextInt();
+            
+            switch(choice){
+                case 1 -> {new StaffMain().staffMenu();}
+                
+                case 2 ->{new StockDiscountReport().discountReport();}
+                
+                case 5 ->{stockMainMenu();}
+            
+                case 7 -> {}
+                
+                default -> System.out.println(RED + "Invalid input. Please enter again!" + RESET);
+                           
+            }
+        }while (choice != 7 || error);
+        
+       
+    }
+   
+   public static void cashierMenu(){
+        //menu list of main program
+        
+        int choice;
+        boolean error;
+
+        do{
+            clearScreen(); 
+            error = false;
+            System.out.println("Current Login > " + CURRENTNAME);
+            
+            System.out.println("===========================================");
+            System.out.println("=                  MENU                   =");
+            System.out.println("===========================================");
+            System.out.println("=        1. Display Book Available Menu   =");
+            System.out.println("=        2. Sales Order                   =");
+            System.out.println("=        3. Membership Register           =");
+            System.out.println("=        4. Exit                          =");
+            System.out.println("===========================================");
+            
+            System.out.print("Enter your choice > ");
+            try{
+                choice = sc.nextInt();
+            }catch (Exception e){
+                System.out.println("Invalid input!");
+                choice = 0;
+                error = true;
+            }
+            
+            switch(choice){
+                
+                case 1-> {
+                    new StockDiscountReport().discountReport();
+                }
+                case 4 -> {}
+                
+                default -> System.out.println("Invalid input. Please enter again!");
+                           
+            }
+        }while (choice != 4 || error);
+        
+        
+    }
+   
     public static void stockMainMenu(){
          int choice;
       
@@ -253,7 +350,79 @@ public class Assignment {
         } 
     
     }
+   
     
+        public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
+        boolean exist = false;
+        for(Admin ad : adminArray){
+            if(ad.getId().equals(searchID) && ad.getPassword().equals(searchPassword))
+                exist = true;
+        }
+        
+        return exist;
+    }
+    
+    public static boolean checkCashierIDPW(ArrayList<Cashier> cashierArray, String searchID, String searchPassword){
+        boolean exist = false;
+        for(Cashier ch : cashierArray){
+            if(ch.getId().equals(searchID) && ch.getPassword().equals(searchPassword))
+                exist = true;
+        }
+        
+        return exist;
+    }
+    
+    public static int checkAdminIndexNumber(ArrayList<Admin> adminArray, String searchID, String password){
+        int currentIndex = 0;
+        for(int i = 0; i < adminArray.size();i++){
+            if(searchID.equals(adminArray.get(i).getId())){
+                currentIndex = i;
+            }
+        }
+        
+        return currentIndex;
+    }
+    
+    public static int checkCashierIndexNumber(ArrayList<Cashier> cashierArray, String searchID, String password){
+        int currentIndex = 0;
+        for(int i = 0; i < cashierArray.size();i++){
+            if(searchID.equals(cashierArray.get(i).getId())){
+                currentIndex = i;
+            }
+        }
+        
+        return currentIndex;
+    }
+    
+    public static void printAdminLoginName(ArrayList<Admin> adminArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkAdminIndexNumber(adminArray, id, password);
+        System.out.println("\nWelcome, " + adminArray.get(currentIndex).getName() + "!");
+    }
+    
+    public static void printCashierLoginName(ArrayList<Cashier> cashierArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkCashierIndexNumber(cashierArray, id, password);
+        System.out.println("\nWelcome, " + cashierArray.get(currentIndex).getName() + "!");
+    }
+    
+    public static String storeAdminLoginName(ArrayList<Admin> adminArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkAdminIndexNumber(adminArray, id, password);
+        return adminArray.get(currentIndex).getName();
+    }
+    
+    public static String storeCashierLoginName(ArrayList<Cashier> cashierArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkCashierIndexNumber(cashierArray, id, password);
+        return cashierArray.get(currentIndex).getName();
+    }
+    
+    //common function
     public static void systemPause(){
         Scanner buffer = new Scanner(System.in);
         System.out.print("Enter any key to continue....");
