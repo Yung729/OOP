@@ -156,6 +156,8 @@ public class Assignment {
                 
                 case 2 ->{Stock.stockAvailableMenu();}
                 
+                case 4 ->{new Member().memberMenu();}
+                
                 case 5 ->{stockMainMenu();}
             
                 case 7 -> {}
