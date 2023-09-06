@@ -145,7 +145,7 @@ public class Assignment {
             System.out.println("=        4. Membership Register           =");
             System.out.println("=        5. Stock Management              =");
             System.out.println("=        6. Sales Report                  =");
-            System.out.println("=        7. Exit                          =");
+            System.out.println("=        0. Exit                          =");
             System.out.println("===========================================");
         
             System.out.print("Enter your choice > ");
@@ -154,7 +154,7 @@ public class Assignment {
             switch(choice){
                 case 1 -> {new StaffMain().staffMenu();}
                 
-                case 2 ->{new StockDiscountReport().discountReport();}
+                case 2 ->{Stock.stockAvailableMenu();}
                 
                 case 5 ->{stockMainMenu();}
             
@@ -163,7 +163,7 @@ public class Assignment {
                 default -> System.out.println(RED + "Invalid input. Please enter again!" + RESET);
                            
             }
-        }while (choice != 7 || error);
+        }while (choice != 0 || error);
         
        
     }
@@ -185,7 +185,7 @@ public class Assignment {
             System.out.println("=        1. Display Book Available Menu   =");
             System.out.println("=        2. Sales Order                   =");
             System.out.println("=        3. Membership Register           =");
-            System.out.println("=        4. Exit                          =");
+            System.out.println("=        0. Exit                          =");
             System.out.println("===========================================");
             
             System.out.print("Enter your choice > ");
@@ -200,14 +200,14 @@ public class Assignment {
             switch(choice){
                 
                 case 1-> {
-                    new StockDiscountReport().discountReport();
+                    Stock.stockAvailableMenu();
                 }
-                case 4 -> {}
+                case 0 -> {}
                 
                 default -> System.out.println("Invalid input. Please enter again!");
                            
             }
-        }while (choice != 4 || error);
+        }while (choice != 0 || error);
         
         
     }
@@ -217,9 +217,9 @@ public class Assignment {
       
       do {
         
-       Assignment.clearScreen();
+       clearScreen();
 
-        Assignment.logo();
+        logo();
         System.out.println("===========================================");
         System.out.println("=           Stock Management              =");
         System.out.println("===========================================");
@@ -244,7 +244,7 @@ public class Assignment {
            
            default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
-                    Assignment.systemPause();
+                    systemPause();
            }
        }
    
@@ -260,9 +260,9 @@ public class Assignment {
                 
                 do {
                     
-                    Assignment.clearScreen();
+                    clearScreen();
                     
-                    Assignment.logo();
+                    logo();
                     System.out.printf("=           %s               =\n",title);
                     System.out.println("===========================================");
                     System.out.println("=        1. Add Stock                     =");
@@ -293,7 +293,7 @@ public class Assignment {
                         
                         default -> {
                             System.out.println(RED + "Invalid Input ! " + RESET);
-                            Assignment.systemPause();
+                            systemPause();
                         }
                     }
                     
@@ -306,9 +306,9 @@ public class Assignment {
                 
                 do {
                     
-                    Assignment.clearScreen();
+                    clearScreen();
                     
-                    Assignment.logo();
+                    logo();
                     
                     System.out.printf("=           %s         =\n",title);
                     System.out.println("===========================================");
@@ -339,7 +339,7 @@ public class Assignment {
                         
                         default -> {
                             System.out.println(RED + "Invalid Input ! " + RESET);
-                            Assignment.systemPause();
+                            systemPause();
                         }
                     }
                     

@@ -8,7 +8,9 @@ package Assignment;
  * @author Yung
  */
 
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 public abstract class Stock {
@@ -114,5 +116,65 @@ public abstract class Stock {
         return String.format("%-30s  %-10d  RM%-10.2f RM%-10.2f %-10s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
     }
  
+    public static void stockAvailableMenu(){
+        double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
+        int quantity = 0,count=0;
+        Assignment.clearScreen();
+        ArrayList<Book> bookArray = new ArrayList<>();
+        ArrayList<Stationary> staArray = new ArrayList<>();
 
+        System.out.println("Display All Book");
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("============================================================================================================================================================");
+        
+        try {
+            Book.readBookFromFile(bookArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Failed to Read File.");
+        }
+
+        for (Book bookDisplay: bookArray) {
+            if (bookDisplay.isStockStatus()) {
+                System.out.println(bookDisplay);   
+            }
+              
+            quantity += bookDisplay.getStockQuantity();
+            totalUnitPrice += (bookDisplay.getStockQuantity() * bookDisplay.getUnitPrice());
+            totalSoldPrice +=  (bookDisplay.getStockQuantity() * bookDisplay.getSoldPrice());
+            count++;
+        }
+        
+        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+        Assignment.systemPause();
+        
+        System.out.println("Display All Stationary");
+        
+        System.out.println("============================================================================================================================================================");
+        
+        try {
+            Stationary.readStaFromFile(staArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Failed to Read File.");
+        }
+
+        quantity = 0;
+        totalUnitPrice = 0;
+        totalSoldPrice = 0;
+        count = 0;
+        
+        for (Stationary staDisplay: staArray) {
+            if (staDisplay.isStockStatus()) {
+                System.out.println(staDisplay);   
+            }
+              
+            quantity += staDisplay.getStockQuantity();
+            totalUnitPrice += (staDisplay.getStockQuantity() * staDisplay.getUnitPrice());
+            totalSoldPrice +=  (staDisplay.getStockQuantity() * staDisplay.getSoldPrice());
+            count++;
+        }
+        
+        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+        Assignment.systemPause();
+    }
 }

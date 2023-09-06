@@ -22,4 +22,3 @@ B0021|Forgotten Realms|100|11.0|18.0|true|F|Ethan|1999|false
 B0022|Celestial Dreams|55|22.0|30.0|true|E|Lucas|2016|true
 B0023|Boooooooooooooooo|22|20.0|24.0|true|R|Yung|23|true
 B0024|BOOOOOOOOOOOOOOOOOOOOOO24|23|20.0|23.0|true|T|yung|23|true
-B0025|Book2555555555555555555555|2|20.0|23.0|true|H|yungefffeff|2010|true
