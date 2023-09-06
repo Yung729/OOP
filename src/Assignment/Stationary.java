@@ -204,7 +204,7 @@ public class Stationary extends Stock{
     public void adjust(){
         String idSearch,confirm;
         int choice , newBookQuantity, currentIndex = 0;    
-        boolean notFound ;
+        boolean notFound,valid ;
         
                     ArrayList<Stationary> staArray = new ArrayList<>();
                     try {
@@ -310,6 +310,19 @@ public class Stationary extends Stock{
                                     System.out.print("Enter Stationary Quantiy >");
                                     newBookQuantity = Validation.getIntegerInput();
                                     
+                                    do {
+                                        valid = true;
+                                        System.out.print("Enter Book Quantiy >");
+                                        newBookQuantity = Validation.getIntegerInput();
+                                       if (choice == 2) {
+
+                                        if (newBookQuantity > staArray.get(currentIndex).getStockQuantity()) {
+                                            valid = false;
+                                            System.out.println(RED+ "Quantity Sub Exceed" + RESET);
+                                        }
+
+                                        } 
+                                    } while (!valid);
                                     
                                     System.out.println("Confirm To Edit Stationary Quantity ? [Y/N] >");
                                     confirm = input.next();

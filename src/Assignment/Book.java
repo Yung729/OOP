@@ -273,7 +273,7 @@ public class Book extends Stock {
         
         String idSearch  ,confirm;
         int choice , newBookQuantity, currentIndex = 0;
-        boolean notFound ;
+        boolean notFound,valid ;
         
         ArrayList<Book> bookArray = new ArrayList<>();
         try {
@@ -405,11 +405,20 @@ public class Book extends Stock {
 
                         System.out.print("Enter your Choice > ");
                         choice = Validation.getIntegerInput();
-
-
-                        System.out.print("Enter Book Quantiy >");
-                        newBookQuantity = Validation.getIntegerInput();
-
+   
+                        do {
+                            valid = true;
+                            System.out.print("Enter Book Quantiy >");
+                            newBookQuantity = Validation.getIntegerInput();
+                           if (choice == 2) {
+                               
+                            if (newBookQuantity > bookArray.get(currentIndex).getStockQuantity()) {
+                                valid = false;
+                            }
+                            
+                            } 
+                        } while (!valid);
+                        
 
                         System.out.print("Confirm To Edit Book Quantity ? [Y/N] >");
                         confirm = inputString.next();
