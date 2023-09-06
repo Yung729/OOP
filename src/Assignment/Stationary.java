@@ -203,7 +203,7 @@ public class Stationary extends Stock{
     @Override
     public void adjust(){
         String idSearch,confirm;
-        int choice , newStaQuantity, currentIndex = 0;    
+        int choice , newBookQuantity, currentIndex = 0;    
         boolean notFound ;
         
                     ArrayList<Stationary> staArray = new ArrayList<>();
@@ -308,7 +308,7 @@ public class Stationary extends Stock{
                                     
                                     
                                     System.out.print("Enter Stationary Quantiy >");
-                                    newStaQuantity = Validation.getIntegerInput();
+                                    newBookQuantity = Validation.getIntegerInput();
                                     
                                     
                                     System.out.println("Confirm To Edit Stationary Quantity ? [Y/N] >");
@@ -318,50 +318,26 @@ public class Stationary extends Stock{
                                         switch (choice) {
                                             case 1 -> {
                                                 try {
-                                                   editSta(staArray, idSearch, newStaQuantity,true,false);
+                                                   editSta(staArray, idSearch, newBookQuantity,true,false);
                                                    writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
-                                                }
-                                                
-                                                try {
-                                                    StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
-                                                            newStaQuantity,
-                                                            staArray.get(currentIndex).getStockAddDate());
-                                                } catch (IOException ex) {
-                                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
                                                 }
                                             }
                                             case 2 -> {
                                                 try {
-                                                   editSta(staArray, idSearch, newStaQuantity,false,true);
+                                                   editSta(staArray, idSearch, newBookQuantity,false,true);
                                                    writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
                                                 }
-                                                
-                                                try {
-                                                    StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
-                                                            -(newStaQuantity),
-                                                            staArray.get(currentIndex).getStockAddDate());
-                                                } catch (IOException ex) {
-                                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
-                                                }
                                             }
                                             case 3 -> {
                                                 try {
-                                                    editSta(staArray, idSearch, newStaQuantity,false,false);
+                                                    editSta(staArray, idSearch, newBookQuantity,false,false);
                                                     writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
-                                                }
-                                                
-                                                try {
-                                                    StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
-                                                            -(staArray.get(currentIndex).getStockQuantity() - newStaQuantity),
-                                                            staArray.get(currentIndex).getStockAddDate());
-                                                } catch (IOException ex) {
-                                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
                                                 }
                                             }
                                             default -> {
@@ -464,14 +440,6 @@ public class Stationary extends Stock{
                                 } catch (IOException ex) {
                                     Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
                                 }
-                                
-                                 try {
-                                    StockFlowReport.writeStockToFile(sta.getStaId(),
-                                            sta.getStockQuantity(),
-                                            sta.getStockAddDate());
-                                } catch (IOException ex) {
-                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
-                                }
 
                                 
                             }
@@ -539,24 +507,12 @@ public class Stationary extends Stock{
                         confirm = inputString.next();
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y') {
-                            
-                            try {
-                                StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
-                                        -(staArray.get(currentIndex).getStockQuantity()),
-                                        staArray.get(currentIndex).getStockAddDate());
-                            } catch (IOException ex) {
-                                Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
-                            }
-                            
                             removeSta(staArray,staArray.get(currentIndex));
                             try {
                                 writeStaToFile(staArray);
                             } catch (IOException ex) {
                                 Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            
-                            
-                             
                             System.out.println("Succcesful Removed");
                             Assignment.systemPause();
                         }
