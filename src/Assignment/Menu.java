@@ -244,7 +244,7 @@ public class Menu {
             System.out.println("Enter member ID");
             String memberID = Validation.getStringInput("Member ID > ");
             if (memberID == null) return;
-            if (!FileHandler.checkIDExist(1FileHandler.MEMBER_DB, memberID)) {
+            if (!FileHandler.checkIDExist(FileHandler.MEMBER_DB , memberID)) {
                 System.out.println("Member ID does not exist!\n");
                 return;
             }
