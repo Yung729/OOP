@@ -27,7 +27,6 @@ public class Member {
     private String name;
     private String phoneNumber;
     private String email;
-    private String dateOfBirth;
     private double discountRate;
     private double memberPoints;
     
@@ -62,10 +61,6 @@ public class Member {
         return email;
     }
     
-    public String getDateOfBirth(){
-        return dateOfBirth;
-    }
-    
     public double getDiscountRate(){
         return discountRate;
     }
@@ -90,11 +85,7 @@ public class Member {
     public void setEmail(String email){
         this.email = email;
     }
-    
-    public void setDateOfBirth(String dateOfBirth){
-        this.dateOfBirth = dateOfBirth;
-    }
-    
+
     public void setDiscountRate(double discountRate){
         this.discountRate = discountRate;
     }
@@ -111,7 +102,7 @@ public class Member {
     //other methods
     @Override
     public String toString(){
-        return "Member ID: " + memberID + "Name: " + name + "Phone Number: " + phoneNumber + "Email: " + email + "Date of Birth" + dateOfBirth + "Discount Rate: " + discountRate;
+        return "Member ID: " + memberID + "   Name: " + name + "  Phone Number: " + phoneNumber + "   Email: " + email + "   Discount Rate: " + discountRate;
     }
     
     public void addMember(ArrayList<Member> memberArray, Member member){
@@ -129,7 +120,6 @@ public class Member {
                                      member.getName() + "|" + 
                                      member.getPhoneNumber() + "|" +
                                      member.getEmail() + "|" +
-                                     member.getDateOfBirth() + "|" +
                                      member.getDiscountRate() + "|" +
                                      member.getMemberPoints() + "\n"
                                     );
@@ -335,6 +325,8 @@ public class Member {
         for (Member member:memberArray) {
             System.out.println(member);
         }
+        
+        Assignment.systemPause();
     }
     
     public void viewMember(){
@@ -347,7 +339,6 @@ public class Member {
         System.out.println("Name: " + name);
         System.out.println("Email: " + email);
         System.out.println("Contact Number: " + phoneNumber);
-        System.out.println("Date Of Birth: " + dateOfBirth);
         System.out.println("Member's Points: " + memberPoints);
         
         Assignment.systemPause();
@@ -372,9 +363,7 @@ public class Member {
         } catch (FileNotFoundException ex) {
             System.out.println(RED + "Cannot read the file!");
         }
-        
-        
-        
+   
         if(memberArray.isEmpty()){
             System.out.println("None Member Record!");
         }
@@ -387,7 +376,7 @@ public class Member {
                 System.out.println("=======================================");
                 
                 do{
-                    exist = true;
+                    exist = false;
                     System.out.println("Enter Member ID to delete(Press X to exit): ");
                     deleteID = inputString.nextLine();
                     
@@ -398,9 +387,8 @@ public class Member {
                     }
                     
                     for (int i = 0; i < memberArray.size(); i++) {
-
                         if (deleteID.equals(memberArray.get(i).getMemberID())) {
-                            exist = false;
+                            exist = true;
                             currentIndex = i; 
                             break;
                         }
@@ -412,9 +400,6 @@ public class Member {
                     
                 }while(!exist);
                 
-                
-                
-                viewMemberInformation();
                 
                 do{
                     error = false;
@@ -461,7 +446,7 @@ public class Member {
         
         Assignment.systemPause();
     }
-//    
+   
 //    public void viewMemberDiscount(){
 //        double MemberDiscount = 0.75;
 //        int choice;
@@ -523,23 +508,23 @@ public class Member {
         String generatedMemberID;
         
         if(memberArray.isEmpty()){
-            generatedMemberID = "MID0001";
+            generatedMemberID = "M0001";
         } else{
             generatedMemberID = memberArray.get(memberArray.size() - 1).getMemberID();
             int bufferMemberIDNum = Integer.parseInt(generatedMemberID.replaceAll("\\D+", ""));
-            generatedMemberID = String.format("MID%04d", bufferMemberIDNum + 1);
+            generatedMemberID = String.format("M%04d", bufferMemberIDNum + 1);
         }
         
         return generatedMemberID;
     }
      
-     public boolean checkMember(String checkMemeber){
+    public boolean checkMember(String checkMemeber){
          boolean error = false;
          String IDFormat = "M";
          int number;
          int bufferMemberIDNUm;
          
-         if(IDFormat == "M"){
+         if("M".equals(IDFormat)){
              error = false;
          }
          else{
@@ -548,9 +533,9 @@ public class Member {
          }
          
          return error; 
-     }
+    }
      
-     public boolean checkNameFormat(String checkName){
+    public boolean checkNameFormat(String checkName){
         boolean error = false;
         int countDigit = 0;
         
@@ -568,7 +553,7 @@ public class Member {
         return error;
     }  
      
-     public boolean checkPhoneNumberFormat(String checkPhoneNumber){
+    public boolean checkPhoneNumberFormat(String checkPhoneNumber){
         boolean error = false;
         int countDigit = 0;
         int countLetter = 0;
@@ -593,7 +578,7 @@ public class Member {
         return error;
     }
      
-     public boolean checkEmailFormat(String checkEmail){
+    public boolean checkEmailFormat(String checkEmail){
         boolean error = false;
         int countAlian = 0;
         int countDot = 0;
@@ -665,7 +650,6 @@ public class Member {
         System.out.println("member Name: " + name);
         System.out.println("phone number: " + phoneNumber);
         System.out.println("email: " + email);
-        System.out.println("date of birth: " + dateOfBirth);
         System.out.println("points:  " + memberPoints);
         
         return viewMemberInformation();
