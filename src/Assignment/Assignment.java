@@ -19,7 +19,7 @@ public class Assignment {
 
     public static final String RED = "\u001B[31m";
     public static final String RESET = "\u001B[0m";
-    static Scanner sc = new Scanner(System.in);
+    static Scanner input = new Scanner(System.in);
     public static String CURRENTNAME;
     
     public static void main(String[] args) {
@@ -77,13 +77,13 @@ public class Assignment {
             
 
             System.out.print("Enter ID > ");
-            id = sc.nextLine();
+            id = input.nextLine();
             if(id.equalsIgnoreCase("x")){
                 return;
             }
             
             System.out.print("Enter Password > ");
-            password = sc.nextLine();
+            password = input.nextLine();
             if(password.equalsIgnoreCase("x")){
                 return;
             }
@@ -97,7 +97,7 @@ public class Assignment {
                     systemPause();
                     adminMenu();
                     exist = false;
-                    sc.nextLine();
+                    input.nextLine();
                 }
                 else{
                     System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
@@ -110,7 +110,7 @@ public class Assignment {
                     systemPause();
                     cashierMenu();
                     exist = false;
-                    sc.nextLine();
+                    input.nextLine();
                 }
                 else{
                     System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
@@ -149,7 +149,7 @@ public class Assignment {
             System.out.println("===========================================");
         
             System.out.print("Enter your choice > ");
-                choice = sc.nextInt();
+                choice = input.nextInt();
             
             switch(choice){
                 case 1 -> {new StaffMain().staffMenu();}
@@ -190,7 +190,7 @@ public class Assignment {
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;

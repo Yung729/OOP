@@ -6,7 +6,7 @@ package Assignment;
 import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
-import static Assignment.Assignment.sc;
+import static Assignment.Assignment.input;
 import static Assignment.Assignment.CURRENTNAME;
 
 public class StaffMain {
@@ -36,7 +36,7 @@ public class StaffMain {
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
@@ -88,7 +88,7 @@ public class StaffMain {
             
             System.out.print("Enter your choice >  ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
@@ -131,7 +131,7 @@ public class StaffMain {
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
@@ -175,7 +175,7 @@ public class StaffMain {
 
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
@@ -220,7 +220,7 @@ public class StaffMain {
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
@@ -262,7 +262,7 @@ public class StaffMain {
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
@@ -305,7 +305,7 @@ public class StaffMain {
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;

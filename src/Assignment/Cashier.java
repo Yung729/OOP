@@ -17,7 +17,7 @@ import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.systemPause;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
-import static Assignment.Assignment.sc;
+import static Assignment.Assignment.input;
 import static Assignment.Assignment.CURRENTNAME;
 
 /**
@@ -199,7 +199,7 @@ public class Cashier extends Employees{
             System.out.println(RED + "Cannot read the file!" + RESET);
         }
         
-        sc.nextLine();
+        input.nextLine();
         
         do{
         clearScreen();
@@ -217,7 +217,7 @@ public class Cashier extends Employees{
             error = false;
             System.out.println("**Press x to exit**");
             System.out.print("Enter Password (8 to 12 characters and numbers) > ");
-            validatedPassword = sc.nextLine();
+            validatedPassword = input.nextLine();
             validatedPassword = validatedPassword.replace(" ","");
             
             if(validatedPassword.equalsIgnoreCase("x")){
@@ -244,7 +244,7 @@ public class Cashier extends Employees{
             error = false;
             
             System.out.print("Enter Name > ");
-            validatedName = sc.nextLine();
+            validatedName = input.nextLine();
             
             if(validatedName.equalsIgnoreCase("x")){
                 System.out.println("Thanks!");
@@ -275,7 +275,7 @@ public class Cashier extends Employees{
             duplicate = false;
             
             System.out.print("Enter IC (040420-01-0110) > ");
-            validatedIC = sc.nextLine();
+            validatedIC = input.nextLine();
             validatedIC = validatedIC.replace(" ","");
             
             if(validatedIC.equalsIgnoreCase("x")){
@@ -311,7 +311,7 @@ public class Cashier extends Employees{
         do{
             error = false;
             System.out.print("Enter your choice > ");
-            choice = sc.nextInt();
+            choice = input.nextInt();
             
             switch(choice){
                 case 1 -> super.setPosition("Full Time Cashier");
@@ -324,13 +324,13 @@ public class Cashier extends Employees{
             }
             
         }while(error);
-        sc.nextLine();
+        input.nextLine();
         
         do{
             error = false;
             
             System.out.print("Enter Phone Number > ");
-            validatedPhoneNumber = sc.nextLine();
+            validatedPhoneNumber = input.nextLine();
             validatedPhoneNumber = validatedPhoneNumber.trim();
             
             if(validatedPhoneNumber.equalsIgnoreCase("x")){
@@ -362,7 +362,7 @@ public class Cashier extends Employees{
             duplicate = false;
             
             System.out.print("Enter Email > ");
-            validatedEmail = sc.nextLine();
+            validatedEmail = input.nextLine();
             validatedEmail = validatedEmail.trim();
             
             if(validatedEmail.equalsIgnoreCase("x")){
@@ -392,7 +392,7 @@ public class Cashier extends Employees{
             error = false;
             
             System.out.print("Enter Address > ");
-            validatedAddress = sc.nextLine();
+            validatedAddress = input.nextLine();
             validatedAddress = validatedAddress.trim();
             
             if(validatedAddress.equalsIgnoreCase("x")){
@@ -417,7 +417,7 @@ public class Cashier extends Employees{
             error = false;
             
             System.out.print("Enter Basic Salary > ");
-            bSalary = sc.nextDouble();
+            bSalary = input.nextDouble();
            
             
             if(bSalary <= 1000 || bSalary >= 3000){
@@ -435,7 +435,7 @@ public class Cashier extends Employees{
             error = false;
             
             System.out.print("Enter Commission Rate > ");
-            commRate = sc.nextDouble();
+            commRate = input.nextDouble();
             
             if(commRate > 1.00 || commRate <= 0){
                 error = true;
@@ -456,7 +456,7 @@ public class Cashier extends Employees{
             error = false;
             
             System.out.print("Confirm Add (Y/N) > ");
-            confirm = sc.next().charAt(0);
+            confirm = input.next().charAt(0);
             confirm = Character.toUpperCase(confirm);
             
             check = checkYesNo(confirm);
@@ -480,13 +480,13 @@ public class Cashier extends Employees{
                  
         }while(error);
        
-        sc.nextLine();
+        input.nextLine();
             do{
                 error = false;
                 System.out.print("Add more Cashier? (Y/N) > ");
-                confirm = sc.next().charAt(0);
+                confirm = input.next().charAt(0);
                 confirm = Character.toUpperCase(confirm);
-                sc.nextLine();
+                input.nextLine();
             
                 check = checkYesNo(confirm);
             
@@ -530,7 +530,7 @@ public class Cashier extends Employees{
         System.out.println("=            DELETE Cashier           =");
         System.out.println("=======================================");
         
-        sc.nextLine();
+        input.nextLine();
         
         if(cashierArray.isEmpty()){
             System.out.println("========================================");
@@ -545,7 +545,7 @@ public class Cashier extends Employees{
                 do{
                     exist = true;
                     System.out.print("Enter Cashier ID to delete (Press X to exit) > ");
-                    deleteId = sc.nextLine();
+                    deleteId = input.nextLine();
                     
                     deleteId = deleteId.trim(); // Trim whitespace
 
@@ -566,7 +566,7 @@ public class Cashier extends Employees{
                 do{
                     exist = true;
                     System.out.print("Enter Cashier Password (Press X to exit) > ");
-                    deletePassword = sc.nextLine();
+                    deletePassword = input.nextLine();
                     
                     exist = checkCashierPassword(cashierArray, deletePassword);
                     
@@ -585,7 +585,7 @@ public class Cashier extends Employees{
                 
                 do{
                     System.out.print("Confirm Delete? (Y/N) > ");
-                    confirmDelete = sc.next().charAt(0);
+                    confirmDelete = input.next().charAt(0);
                     confirmDelete = Character.toUpperCase(confirmDelete);
                     
                     check = checkYesNo(confirmDelete);
@@ -611,7 +611,7 @@ public class Cashier extends Employees{
                     error = false;
                     
                     System.out.print("Delete more Cashier? (Y/N) > ");
-                    confirm = sc.next().charAt(0);
+                    confirm = input.next().charAt(0);
                     confirm = Character.toUpperCase(confirm);
                     
                     check = checkYesNo(confirm);
@@ -623,7 +623,7 @@ public class Cashier extends Employees{
                     
                 }while(error);
                 
-                sc.nextLine();
+                input.nextLine();
                 
             }while(confirm == 'Y');
         }
@@ -687,7 +687,7 @@ public class Cashier extends Employees{
                     exist = true;
                     
                     System.out.print("Enter Cashier ID to edit (Press X to exit) > ");
-                    editID = sc.nextLine();
+                    editID = input.nextLine();
                     
                     editID = editID.trim(); // Trim whitespace
 
@@ -709,7 +709,7 @@ public class Cashier extends Employees{
                 do{
                     exist = true;
                     System.out.print("Enter Cashier Password (Press X to exit) > ");
-                    editPassword = sc.nextLine();
+                    editPassword = input.nextLine();
                     exist = checkCashierPassword(cashierArray, editPassword);
                     
                     if((editPassword.equalsIgnoreCase("X"))){
@@ -734,7 +734,7 @@ public class Cashier extends Employees{
                     editCashierInformation(cashierArray, editID, editPassword);
                     
                     System.out.print("\nEnter your choice > ");
-                    choice = sc.nextInt();
+                    choice = input.nextInt();
                     
                     if(choice < 1 || choice > 8){
                         error = true;
@@ -749,16 +749,16 @@ public class Cashier extends Employees{
                     switch(choice){
                         case 1:
                             clearScreen();
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=             EDIT PASSWORD          =");
                             System.out.println("======================================");
                             
-                            sc.nextLine();
+                            input.nextLine();
                             do{
                                 error = false;
                                 System.out.print("Enter Old Password > ");
-                                oldPassword = sc.nextLine();
+                                oldPassword = input.nextLine();
 
                                 exist = checkCashierPassword(cashierArray, oldPassword);
                                 
@@ -772,7 +772,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Password > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkPasswordFormat(latest);
                                 
@@ -786,7 +786,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm New Password > ");
-                                confirmPassword = sc.nextLine();
+                                confirmPassword = input.nextLine();
                                 
                                 if(confirmPassword.equals(latest)){
                                     error = false;
@@ -808,7 +808,7 @@ public class Cashier extends Employees{
                                 error = false;
                                 check = true;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 check = checkYesNo(confirm);
                                 
@@ -834,7 +834,7 @@ public class Cashier extends Employees{
                             break;
                             
                         case 2:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("==================================");
                             System.out.println("=            Position            =");
                             System.out.println("==================================");
@@ -845,7 +845,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter your choice > ");
-                                choice = sc.nextInt();
+                                choice = input.nextInt();
                                     if(choice != 1 && choice != 2){
                                     error = true;
                                     System.out.println(RED + "Invalid input. Please enter again!");
@@ -869,7 +869,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -896,7 +896,7 @@ public class Cashier extends Employees{
                             break;
                          
                         case 3: 
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=          EDIT PHONE NUMBER         =");
                             System.out.println("======================================");
@@ -906,7 +906,7 @@ public class Cashier extends Employees{
                                 duplicate = false;
                                 
                                 System.out.print("Enter New Phone Number > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkPhoneNumberFormat(latest);
                                 duplicate = checkCashierPhoneNumberDuplicate(cashierArray, adminArray, latest);
@@ -932,7 +932,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -959,7 +959,7 @@ public class Cashier extends Employees{
                             break;
                             
                         case 4:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=             EDIT EMAIL             =");
                             System.out.println("======================================");
@@ -969,7 +969,7 @@ public class Cashier extends Employees{
                                 duplicate = false;
                                 
                                 System.out.print("Enter New Email > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkEmailFormat(latest);
                                 duplicate = checkCashierEmailDuplicate(cashierArray, adminArray, latest);
@@ -995,7 +995,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1023,7 +1023,7 @@ public class Cashier extends Employees{
                             break;
                         
                         case 5:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=           EDIT ADDRESS             =");
                             System.out.println("======================================");
@@ -1031,7 +1031,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Address > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkAddressFormat(latest);
                                 
@@ -1052,7 +1052,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1079,7 +1079,7 @@ public class Cashier extends Employees{
                             break;
                             
                         case 6:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=          EDIT BASIC SALARY         =");
                             System.out.println("======================================");
@@ -1087,7 +1087,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Basic Salary > ");
-                                latestNum = sc.nextDouble();
+                                latestNum = input.nextDouble();
                                 
                                 if(latestNum < 1000 || latestNum > 15000){
                                     error = true;
@@ -1109,7 +1109,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1136,7 +1136,7 @@ public class Cashier extends Employees{
                             }    
                             break;
                         case 7:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=        EDIT COMMISSION RATE        =");
                             System.out.println("======================================");
@@ -1144,7 +1144,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Basic Salary > ");
-                                latestNum = sc.nextDouble();
+                                latestNum = input.nextDouble();
                                 
                                 if(latestNum < 1000 || latestNum > 15000){
                                     error = true;
@@ -1159,7 +1159,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Commission Rate: ");
-                                latestNum2 = sc.nextDouble();
+                                latestNum2 = input.nextDouble();
                                 if(latestNum2> 1.00 || latestNum2 < 0.00){
                                     error = true;
                                 }
@@ -1186,7 +1186,7 @@ public class Cashier extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1221,7 +1221,7 @@ public class Cashier extends Employees{
                     do{
                         error = false;
                         System.out.print("Edit more? (Y/N) >  ");
-                        confirm = sc.next().charAt(0);
+                        confirm = input.next().charAt(0);
                         confirm = Character.toUpperCase(confirm);
                         
                         check = checkYesNo(confirm);
@@ -1232,7 +1232,7 @@ public class Cashier extends Employees{
                         }
                     }while(error);
                     
-                    sc.nextLine();
+                    input.nextLine();
                 
             }while(confirm == 'Y');
             
@@ -1285,8 +1285,8 @@ public class Cashier extends Employees{
             System.out.println("=========================================");
             
             System.out.print("Enter your choice > ");
-            choice = sc.nextInt();
-            sc.nextLine();
+            choice = input.nextInt();
+            input.nextLine();
             
                 switch(choice){
                     case 1:
@@ -1295,7 +1295,7 @@ public class Cashier extends Employees{
                         System.out.println("=             Search by ID          =");
                         System.out.println("=====================================");
                         System.out.print("Enter ID to search > ");
-                        searchId = sc.nextLine();
+                        searchId = input.nextLine();
                         
                         exist = checkCashier(CashierArray,searchId);
                         
@@ -1318,7 +1318,7 @@ public class Cashier extends Employees{
                         System.out.println("=            Search by Name           =");
                         System.out.println("=======================================");
                         System.out.print("Enter Name to search > ");
-                        searchName = sc.nextLine();
+                        searchName = input.nextLine();
                         
                         exist = checkCashierName(CashierArray,searchName);
                         
@@ -1350,7 +1350,7 @@ public class Cashier extends Employees{
                             System.out.println("=      2. Part Time Cashier      =");
                             System.out.println("==================================");
                             System.out.print("Enter your choice > ");
-                            choice = sc.nextInt();
+                            choice = input.nextInt();
                             
                             switch(choice){
                                 case 1:

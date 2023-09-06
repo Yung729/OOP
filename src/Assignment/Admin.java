@@ -16,7 +16,7 @@ import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.systemPause;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
-import static Assignment.Assignment.sc;
+import static Assignment.Assignment.input;
 import static Assignment.Assignment.CURRENTNAME;
 
 /**
@@ -222,13 +222,13 @@ public class Admin extends Employees{
         
         super.setId(generateAdminID(adminArray));
         System.out.println("ID: " + super.getId());
-        sc.nextLine();
+        input.nextLine();
         
         do{
             error = false;
             System.out.println("**Press x to exit**");
             System.out.print("Enter Password (8 to 12 characters and numbers) > ");
-            validatedPassword = sc.nextLine();
+            validatedPassword = input.nextLine();
             validatedPassword = validatedPassword.replace(" ","");
             
             if(validatedPassword.equalsIgnoreCase("x")){
@@ -254,7 +254,7 @@ public class Admin extends Employees{
             error = false;
             
             System.out.print("Enter Name > ");
-            validatedName = sc.nextLine();
+            validatedName = input.nextLine();
             
             if(validatedName.equalsIgnoreCase("x")){
                 System.out.println("Thanks!");
@@ -284,7 +284,7 @@ public class Admin extends Employees{
             
             System.out.print("Enter IC (040420-01-0110) > ");
             
-            validatedIC = sc.nextLine();
+            validatedIC = input.nextLine();
 
             validatedIC = validatedIC.replace(" ","");
             
@@ -321,7 +321,7 @@ public class Admin extends Employees{
             error = false;
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 error = true;
@@ -339,14 +339,14 @@ public class Admin extends Employees{
             }
             
         }while(error);
-        sc.nextLine();
+        input.nextLine();
         
         do{
             error = false;
             duplicate = false;
             
             System.out.print("Enter Phone Number > ");
-            validatedPhoneNumber = sc.nextLine();
+            validatedPhoneNumber = input.nextLine();
             validatedPhoneNumber = validatedPhoneNumber.trim();
             
             if(validatedPhoneNumber.equalsIgnoreCase("x")){
@@ -377,7 +377,7 @@ public class Admin extends Employees{
             duplicate = false;
             
             System.out.print("Enter Email > ");
-            validatedEmail = sc.nextLine();
+            validatedEmail = input.nextLine();
             validatedEmail = validatedEmail.trim();
             
             if(validatedEmail.equalsIgnoreCase("x")){
@@ -407,7 +407,7 @@ public class Admin extends Employees{
             error = false;
             
             System.out.print("Enter Address > ");
-            validatedAddress = sc.nextLine();
+            validatedAddress = input.nextLine();
             validatedAddress = validatedAddress.trim();
             
             if(validatedAddress.equalsIgnoreCase("x")){
@@ -433,7 +433,7 @@ public class Admin extends Employees{
             
             System.out.print("Enter Basic Salary > ");
             try{
-                bSalary = sc.nextDouble();
+                bSalary = input.nextDouble();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 error = true;
@@ -457,7 +457,7 @@ public class Admin extends Employees{
             
             System.out.print("Enter Bonus Rate > ");
             try{
-                bRate = sc.nextDouble();
+                bRate = input.nextDouble();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 error = true;
@@ -483,9 +483,9 @@ public class Admin extends Employees{
             error = false;
             
             System.out.print("Confirm Add (Y/N) > ");
-            confirm = sc.next().charAt(0);
+            confirm = input.next().charAt(0);
             confirm = Character.toUpperCase(confirm);
-            sc.nextLine();
+            input.nextLine();
             
             check = checkYesNo(confirm);
             
@@ -505,7 +505,7 @@ public class Admin extends Employees{
             
             }
         
-            sc.nextLine();
+            input.nextLine();
                  
         }while(error);
        
@@ -513,9 +513,9 @@ public class Admin extends Employees{
             do{
                 error = false;
                 System.out.print("Add more admin? (Y/N) > ");
-                confirm = sc.next().charAt(0);
+                confirm = input.next().charAt(0);
                 confirm = Character.toUpperCase(confirm);
-                sc.nextLine();
+                input.nextLine();
             
                 check = checkYesNo(confirm);
             
@@ -555,7 +555,7 @@ public class Admin extends Employees{
         
         System.out.println("Current Login > " + CURRENTNAME);
       
-        sc.nextLine();
+        input.nextLine();
         
         if(adminArray.isEmpty()){
             System.out.println("========================================");
@@ -575,7 +575,7 @@ public class Admin extends Employees{
                 do{
                     exist = true;
                     System.out.print("Enter Admin ID to delete (Press X to exit) > ");
-                    deleteId = sc.nextLine();
+                    deleteId = input.nextLine();
                     
                     deleteId = deleteId.trim(); // Trim whitespace
 
@@ -596,7 +596,7 @@ public class Admin extends Employees{
                 do{
                     exist = true;
                     System.out.print("Enter Admin Password (Press X to exit) > ");
-                    deletePassword = sc.nextLine();
+                    deletePassword = input.nextLine();
                     
                     exist = checkAdminPassword(adminArray, deletePassword);
                     
@@ -616,7 +616,7 @@ public class Admin extends Employees{
                 do{
                     error = false;
                     System.out.print("Confirm Delete? (Y/N) > ");
-                    confirmDelete = sc.next().charAt(0);
+                    confirmDelete = input.next().charAt(0);
                     confirmDelete = Character.toUpperCase(confirmDelete);
                     
                     check = checkYesNo(confirmDelete);
@@ -642,7 +642,7 @@ public class Admin extends Employees{
                     error = false;
                     
                     System.out.print("Delete more admin? (Y/N) > ");
-                    confirm = sc.next().charAt(0);
+                    confirm = input.next().charAt(0);
                     confirm = Character.toUpperCase(confirm);
                     
                     check = checkYesNo(confirm);
@@ -654,7 +654,7 @@ public class Admin extends Employees{
                     
                 }while(error);
                 
-                sc.nextLine();
+                input.nextLine();
             }while(confirm == 'Y');
         }
         
@@ -699,7 +699,7 @@ public class Admin extends Employees{
             System.out.println(RED + "Cannot read the file!" + RESET);
         }
         
-        sc.nextLine();
+        input.nextLine();
         
         if(adminArray.isEmpty()){
             System.out.println("========================================");
@@ -721,7 +721,7 @@ public class Admin extends Employees{
                     exist = true;
                     
                     System.out.print("Enter Admin ID to edit (Press X to exit) > ");
-                    editID = sc.nextLine();
+                    editID = input.nextLine();
                     
                     editID = editID.trim(); // Trim whitespace
 
@@ -743,7 +743,7 @@ public class Admin extends Employees{
                 do{
                     exist = true;
                     System.out.print("Enter Admin Password (Press X to exit) > ");
-                    editPassword = sc.nextLine();
+                    editPassword = input.nextLine();
                     exist = checkAdminPassword(adminArray, editPassword);
                     if(!exist){
                         System.out.println(RED + "Invalid password!" + RESET);
@@ -766,7 +766,7 @@ public class Admin extends Employees{
                     
                     System.out.print("\nEnter your choice > ");
                     try{
-                        choice = sc.nextInt();
+                        choice = input.nextInt();
                     }catch (Exception e){
                         System.out.println("Invalid Input!");
                         error = true;
@@ -786,16 +786,16 @@ public class Admin extends Employees{
                     switch(choice){
                         case 1:
                             clearScreen();
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=             EDIT PASSWORD          =");
                             System.out.println("======================================");
                             
-                            sc.nextLine();
+                            input.nextLine();
                             do{
                                 error = false;
                                 System.out.print("Enter Old Password > ");
-                                oldPassword = sc.nextLine();
+                                oldPassword = input.nextLine();
 
                                 exist = checkAdminPassword(adminArray, oldPassword);
                                 
@@ -809,7 +809,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Password > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkPasswordFormat(latest);
                                 
@@ -823,7 +823,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm New Password > ");
-                                confirmPassword = sc.nextLine();
+                                confirmPassword = input.nextLine();
                                 
                                 if(confirmPassword.equals(latest)){
                                     error = false;
@@ -845,7 +845,7 @@ public class Admin extends Employees{
                                 error = false;
                                 check = true;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 check = checkYesNo(confirm);
                                 
@@ -871,7 +871,7 @@ public class Admin extends Employees{
                             break;
                             
                         case 2:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=              EDIT POSITION         =");
                             System.out.println("======================================");
@@ -886,7 +886,7 @@ public class Admin extends Employees{
                                 error = false;
                                 System.out.print("Enter your choice > ");
                                 try{
-                                choice = sc.nextInt();
+                                choice = input.nextInt();
                                     }catch (Exception e){
                                 System.out.println("Invalid Input!");
                                     error = true;
@@ -915,7 +915,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -942,7 +942,7 @@ public class Admin extends Employees{
                             break;
                          
                         case 3: 
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=          EDIT PHONE NUMBER         =");
                             System.out.println("======================================");
@@ -952,7 +952,7 @@ public class Admin extends Employees{
                                 duplicate = false;
                                 
                                 System.out.print("Enter New Phone Number > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkPhoneNumberFormat(latest);
                                 duplicate = checkAdminPhoneNumberDuplicate(adminArray, cashierArray,latest);
@@ -978,7 +978,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1005,7 +1005,7 @@ public class Admin extends Employees{
                             break;
                             
                         case 4:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=             EDIT EMAIL             =");
                             System.out.println("======================================");
@@ -1014,7 +1014,7 @@ public class Admin extends Employees{
                                 error = false;
                                 duplicate = false;
                                 System.out.print("Enter New Email > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = super.checkEmailFormat(latest);
                                 duplicate = checkAdminEmailDuplicate(adminArray, cashierArray, latest);
@@ -1040,7 +1040,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1068,7 +1068,7 @@ public class Admin extends Employees{
                             break;
                         
                         case 5:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=           EDIT ADDRESS             =");
                             System.out.println("======================================");
@@ -1076,7 +1076,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Enter New Address > ");
-                                latest = sc.nextLine();
+                                latest = input.nextLine();
                                 
                                 error = checkAdminAddressFormat(latest);
                                 
@@ -1097,7 +1097,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1124,7 +1124,7 @@ public class Admin extends Employees{
                             break;
                             
                         case 6:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=          EDIT BASIC SALARY         =");
                             System.out.println("======================================");
@@ -1133,7 +1133,7 @@ public class Admin extends Employees{
                                 error = false;
                                 System.out.print("Enter New Basic Salary > ");
                                 try{
-                                    latestNum = sc.nextDouble();
+                                    latestNum = input.nextDouble();
                                 }catch (Exception e){
                                     System.out.println("Invalid Input!");
                                     error = true;
@@ -1160,7 +1160,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1187,7 +1187,7 @@ public class Admin extends Employees{
                             }    
                             break;
                         case 7:
-                            sc.nextLine();
+                            input.nextLine();
                             System.out.println("======================================");
                             System.out.println("=           EDIT BONUS RATE          =");
                             System.out.println("======================================");
@@ -1196,7 +1196,7 @@ public class Admin extends Employees{
                                 error = false;
                                 System.out.print("Enter New Basic Salary > ");
                                 try{
-                                    latestNum = sc.nextDouble();
+                                    latestNum = input.nextDouble();
                                 }catch (Exception e){
                                     System.out.println("Invalid Input!");
                                     error = true;
@@ -1217,7 +1217,7 @@ public class Admin extends Employees{
                                 error = false;
                                 System.out.print("Enter New Bonus Rate: ");
                                 try{
-                                    latestNum2 = sc.nextDouble();
+                                    latestNum2 = input.nextDouble();
                                 }catch (Exception e){
                                     System.out.println("Invalid Input!");
                                     error = true;
@@ -1249,7 +1249,7 @@ public class Admin extends Employees{
                             do{
                                 error = false;
                                 System.out.print("Confirm to edit? (Y/N) > ");
-                                confirm = sc.next().charAt(0);
+                                confirm = input.next().charAt(0);
                                 confirm = Character.toUpperCase(confirm);
                                 
                                 check = checkYesNo(confirm);
@@ -1284,7 +1284,7 @@ public class Admin extends Employees{
                     do{
                         error = false;
                         System.out.print("Edit more? (Y/N) >  ");
-                        confirm = sc.next().charAt(0);
+                        confirm = input.next().charAt(0);
                         confirm = Character.toUpperCase(confirm);
                         
                         check = checkYesNo(confirm);
@@ -1295,7 +1295,7 @@ public class Admin extends Employees{
                         }
                     }while(error);
                     
-                    sc.nextLine();
+                    input.nextLine();
                 
             }while(confirm == 'Y');
             
@@ -1348,13 +1348,13 @@ public class Admin extends Employees{
             
             System.out.print("Enter your choice > ");
             try{
-                choice = sc.nextInt();
+                choice = input.nextInt();
             }catch(Exception e){
                 System.out.println("Invalid input!");
                 error = true;
                 choice = 0;
             }
-            sc.nextLine();
+            input.nextLine();
             
                 switch(choice){
                     case 1:
@@ -1363,7 +1363,7 @@ public class Admin extends Employees{
                         System.out.println("=             Search by ID          =");
                         System.out.println("=====================================");
                         System.out.print("Enter ID to search > ");
-                        searchId = sc.nextLine();
+                        searchId = input.nextLine();
                         
                         exist = checkAdmin(adminArray,searchId);
                         
@@ -1384,7 +1384,7 @@ public class Admin extends Employees{
                         System.out.println("=            Search by Name           =");
                         System.out.println("=======================================");
                         System.out.print("Enter Name to search > ");
-                        searchName = sc.nextLine();
+                        searchName = input.nextLine();
                         
                         exist = checkAdminName(adminArray,searchName);
                         
@@ -1415,7 +1415,7 @@ public class Admin extends Employees{
                             System.out.println("==================================");
                             System.out.print("Enter your choice > ");
                             try{
-                                choice = sc.nextInt();
+                                choice = input.nextInt();
                             }catch(Exception e){
                                 System.out.println("Invalid input!");
                                 error = true;
