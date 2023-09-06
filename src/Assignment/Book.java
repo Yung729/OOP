@@ -423,6 +423,13 @@ public class Book extends Stock {
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" +RESET);
                                     }
+                                    
+                                    try {
+                                        StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),newBookQuantity,
+                                                bookArray.get(currentIndex).getStockAddDate());
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 
                                 }
                                 case 2 -> {
@@ -432,6 +439,13 @@ public class Book extends Stock {
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" + RESET);
                                     }
+                                    
+                                    try {
+                                        StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),-(newBookQuantity),
+                                                bookArray.get(currentIndex).getStockAddDate());
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                                    }
 
                                 }
                                 case 3 -> {
@@ -440,6 +454,14 @@ public class Book extends Stock {
                                         writeBookToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" + RESET);
+                                    }
+                                    
+                                    try {
+                                        StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),
+                                                -(bookArray.get(currentIndex).getStockQuantity() - newBookQuantity),
+                                                bookArray.get(currentIndex).getStockAddDate());
+                                    } catch (IOException ex) {
+                                        Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
                                     }
                                 }
                                 default -> {
@@ -787,6 +809,13 @@ public class Book extends Stock {
                 
                 
                 if (toUpperCase(confirm.charAt(0)) == 'Y') {
+                    
+                    try {
+                        StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),-(bookArray.get(currentIndex).getStockQuantity()),
+                                bookArray.get(currentIndex).getStockAddDate());
+                    } catch (IOException ex) {
+                        Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     removeBook(bookArray,bookArray.get(currentIndex));
                     
                     try {
