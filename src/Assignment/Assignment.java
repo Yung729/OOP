@@ -133,6 +133,7 @@ public class Assignment {
         int choice;
         boolean error;
         
+        
         do{
             clearScreen(); 
             logo();
@@ -161,6 +162,8 @@ public class Assignment {
                 
                 case 5 ->{stockMainMenu();}
             
+                case 4 ->{new Member().memberMenu();}
+                
                 case 7 -> {}
                 
                 default -> System.out.println(RED + "Invalid input. Please enter again!" + RESET);
@@ -169,38 +172,6 @@ public class Assignment {
         }while (choice != 7 || error);
         
        
-    }
-   
-   public static void bookAvailableMenu(){
-        double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
-        int quantity = 0,count=0;
-        Assignment.clearScreen();
-        ArrayList<Book> bookArray = new ArrayList<>();
-
-        System.out.println("Display All Book");
-        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
-                "Author Name","YearOfBirth","status");
-        System.out.println("============================================================================================================================================================");
-        
-        try {
-            Book.readBookFromFile(bookArray);
-        } catch (FileNotFoundException ex) {
-            System.out.println("Failed to Read File.");
-        }
-
-        for (Book bookDisplay: bookArray) {
-            if (bookDisplay.isStockStatus()) {
-                System.out.println(bookDisplay);   
-            }
-              
-            quantity += bookDisplay.getStockQuantity();
-            totalUnitPrice += (bookDisplay.getStockQuantity() * bookDisplay.getUnitPrice());
-            totalSoldPrice +=  (bookDisplay.getStockQuantity() * bookDisplay.getSoldPrice());
-            count++;
-        }
-        
-        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
-        Assignment.systemPause();
     }
    
    public static void cashierMenu(){
@@ -247,7 +218,40 @@ public class Assignment {
         
         
     }
+  
    
+      public static void bookAvailableMenu(){
+        double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
+        int quantity = 0,count=0;
+        Assignment.clearScreen();
+        ArrayList<Book> bookArray = new ArrayList<>();
+
+        System.out.println("Display All Book");
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("============================================================================================================================================================");
+        
+        try {
+            Book.readBookFromFile(bookArray);
+        } catch (FileNotFoundException ex) {
+            System.out.println("Failed to Read File.");
+        }
+
+        for (Book bookDisplay: bookArray) {
+            if (bookDisplay.isStockStatus()) {
+                System.out.println(bookDisplay);   
+            }
+              
+            quantity += bookDisplay.getStockQuantity();
+            totalUnitPrice += (bookDisplay.getStockQuantity() * bookDisplay.getUnitPrice());
+            totalSoldPrice +=  (bookDisplay.getStockQuantity() * bookDisplay.getSoldPrice());
+            count++;
+        }
+        
+        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+        Assignment.systemPause();
+    }
+      
     public static void stockMainMenu(){
          int choice;
       

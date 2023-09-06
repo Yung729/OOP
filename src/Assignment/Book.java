@@ -6,6 +6,8 @@ package Assignment;
 
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
+import static Assignment.Assignment.input;
+import static Assignment.Stationary.inputString;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -27,8 +29,7 @@ public class Book extends Stock {
     private String bookId;
     private char bookType;
 
-    static Scanner input = new Scanner(System.in);
-    static Scanner inputString = new Scanner(System.in);
+
   
     Book(){
         super("",0,0.0,0.0,false);
@@ -889,9 +890,7 @@ public class Book extends Stock {
         }  
         return true;
     }
-    
-    
-   
+
     @Override
     public String toString(){     
         return String.format("%-10s  %-10s  %-10s %-10s",bookId,
