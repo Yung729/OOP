@@ -4,55 +4,37 @@
  */
 package Assignment;
 
-import static java.lang.Character.toUpperCase;
-import java.util.Scanner;
-
 /**
  *
- * @author Yung
+ * @author xinru
  */
+import java.util.Scanner;
+import static java.lang.Character.toUpperCase;
+
 public class Validation {
-    
     static Scanner input = new Scanner(System.in);
-    
-    public static boolean checkYesNo(char input) {  
 
-        boolean check = true;
-        
-           
-        if (toUpperCase(input) != 'Y' && toUpperCase(input) != 'N') {
-            check = false;
-        }
-
-        return check;
+    public static boolean checkYesNo(String input) {
+    if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N")) {
+        return true;
+    } else {
+        return false;
     }
-    
-    public static int getIntegerInput() { //exception handling for int input
+}
+
+    public static int getIntegerInput(){
+        //exception handling for int input
         int value;
-        try {
+        try{
             value = input.nextInt();
             input.nextLine();
-        } catch (Exception e) {
-            input.nextLine();
-            System.out.println(Assignment.RED+"Must In Integer"+Assignment.RESET);
-            return -1; //invalid
-        }
-        return value;
-    }
-    
-    public static double getDoubleInput() { //exception handling for int input
-        double value;
-        try {
-            value = input.nextDouble();
-            input.nextLine();
-        } catch (Exception e) {
-            input.nextLine();
-            return -1; //invalid
-        }
-        return value;
-    }
-    
 
+        }catch(Exception e){
+            input.nextLine();
+            return -1; //invalid
+        }
+        return value;
+    }
 
     public static int getIntegerInput(String question) {
         String res = getStringInput(question);
@@ -62,6 +44,18 @@ public class Validation {
         return Integer.parseInt(res);
     }
 
+    public static double getDoubleInput(){
+        double value;
+        try{
+            value = input.nextDouble();
+            input.nextLine();
+
+        }catch(Exception e){
+            input.nextLine();
+            return -1;
+        }
+        return value;
+    }
 
     public static String getStringInput(){
         String value;
@@ -115,6 +109,4 @@ public class Validation {
 
         return toUpperCase(ans.charAt(0)) == 'Y';
     }
-    
-    
 }
