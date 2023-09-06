@@ -323,6 +323,14 @@ public class Stationary extends Stock{
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
                                                 }
+                                                
+                                                try {
+                                                    StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),newBookQuantity,
+                                                            staArray.get(currentIndex).getStockAddDate());
+                                                } catch (IOException ex) {
+                                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                                                }
+                                                
                                             }
                                             case 2 -> {
                                                 try {
@@ -331,6 +339,13 @@ public class Stationary extends Stock{
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
                                                 }
+                                                
+                                                try {
+                                                    StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),-(newBookQuantity),
+                                                            staArray.get(currentIndex).getStockAddDate());
+                                                } catch (IOException ex) {
+                                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                                                }
                                             }
                                             case 3 -> {
                                                 try {
@@ -338,6 +353,14 @@ public class Stationary extends Stock{
                                                     writeStaToFile(staArray);
                                                 } catch (IOException ex) {
                                                     System.out.println("Failed to Edit The Book Type");
+                                                }
+                                                
+                                                try {
+                                                    StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
+                                                            -(staArray.get(currentIndex).getStockQuantity() - newBookQuantity),
+                                                            staArray.get(currentIndex).getStockAddDate());
+                                                } catch (IOException ex) {
+                                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
                                                 }
                                             }
                                             default -> {
@@ -440,6 +463,14 @@ public class Stationary extends Stock{
                                 } catch (IOException ex) {
                                     Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
                                 }
+                                
+                                try {
+                                    StockFlowReport.writeStockToFile(sta.getStaId(),
+                                            sta.getStockQuantity() ,
+                                            sta.getStockAddDate());
+                                } catch (IOException ex) {
+                                    Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                                }
 
                                 
                             }
@@ -507,6 +538,14 @@ public class Stationary extends Stock{
                         confirm = inputString.next();
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y') {
+                            try {
+                                StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
+                                        -(staArray.get(currentIndex).getStockQuantity()) ,
+                                        staArray.get(currentIndex).getStockAddDate());
+                            } catch (IOException ex) {
+                                Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
                             removeSta(staArray,staArray.get(currentIndex));
                             try {
                                 writeStaToFile(staArray);
