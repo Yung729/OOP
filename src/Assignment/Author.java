@@ -54,14 +54,6 @@ public class Author {
     }
         
     //method
-    public double commemorativeOffer(boolean arrive){
-        double offerRate = 0.0;
-        if (arrive) {
-            offerRate =  0.2;
-        }
-        return offerRate;
-    }
-    
     public  void displayAuthorDetail(){
             System.out.println("| Author Name :  " + name);
             System.out.println("| Author Age :  " + yearOfBirth);
@@ -78,7 +70,7 @@ public class Author {
             System.out.println("====================================");
     }
     
-    public double memoryDiscount(Book book){
+    public double commemorativeOffer(Book book){
 
         double discount = 0.0;
         

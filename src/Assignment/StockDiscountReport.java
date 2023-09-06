@@ -30,12 +30,14 @@ public class StockDiscountReport extends Report{
         Assignment.clearScreen();
         System.out.println("Stock Discount Available Report");
         System.out.println("===============================");
+        System.out.println("Book ID" + " Original Sold Price" + " Sold Price Dicounted");
+        System.out.println("======================================================");
         for (Book book:bookArr) {
 
-            double bookPrice = calculateBookPrice(book.getSoldPrice(),book.author.memoryDiscount(book)) ;
+            double bookPrice = calculateBookPrice(book.getSoldPrice(),book.author.commemorativeOffer(book)) ;
             
             if (bookPrice != book.getSoldPrice() ) {
-                System.out.println(book.getBookId() + " RM" + book.getSoldPrice() + " RM" + bookPrice );
+                System.out.println(book.getBookId() + "          RM" + book.getSoldPrice() + "                RM" + bookPrice );
             }
         }
         Assignment.systemPause();
