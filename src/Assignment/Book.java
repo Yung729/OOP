@@ -293,8 +293,6 @@ public class Book extends Stock {
             System.out.print("Enter BookID [Q to exit]> ");
             idSearch = Validation.getStringInput();
 
-
-        
             // find book pick
             for (int i = 0; i < bookArray.size(); i++) {
 

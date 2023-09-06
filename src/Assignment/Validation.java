@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package sales;
+package Assignment;
 
 /**
  *
@@ -14,6 +14,19 @@ import static java.lang.Character.toUpperCase;
 public class Validation {
     static Scanner input = new Scanner(System.in);
 
+    
+     public static boolean checkYesNo(char input) {  
+
+        boolean check = true;
+        
+           
+        if (toUpperCase(input) != 'Y' && toUpperCase(input) != 'N') {
+            check = false;
+        }
+
+        return check;
+    }
+     
     public static boolean checkYesNo(String input) {
     if (input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N")) {
         return true;
