@@ -540,9 +540,13 @@ public class Book extends Stock {
                             try {
                                 if (bookArray.get(currentIndex).author.checkArrive()) {
                                    Author.editAuthor(bookArray, idSearch, false); 
+                                   Author.updateDiscount(bookArray.get(currentIndex),1);
                                 }else{
-                                  Author.editAuthor(bookArray, idSearch, false); 
+                                  Author.editAuthor(bookArray, idSearch, true);
+                                  Author.updateDiscount(bookArray.get(currentIndex),2);
                                 }
+                                
+                                
                                 writeBookToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Name");
@@ -717,12 +721,13 @@ public class Book extends Stock {
                     
                     if (confirmChoice == 'Y' && Validation.checkYesNo(confirmChoice)) {
                         authorInput.setArrive(true);
+                        Author.updateDiscount(book,2);
                     }else if(confirmChoice == 'N' && Validation.checkYesNo(confirmChoice)) {
                         authorInput.setArrive(false);
+                        Author.updateDiscount(book,1);
                     }
                     Assignment.clearScreen();
                     displayBookDetails(book);
-                    book.author.displayAuthorDetail();
                     
                     do {
                          System.out.print("Comfirm [Y/N] > "); 

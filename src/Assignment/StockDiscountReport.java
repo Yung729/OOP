@@ -15,10 +15,7 @@ public class StockDiscountReport extends Report{
     StockDiscountReport() {
     }
     
-    public double calculateBookPrice(double soldPrice,double discount){
-        return soldPrice - (soldPrice * discount);
-    }
-    
+
     public void discountReport(){
         
         ArrayList<Book> bookArr = new ArrayList<>();
@@ -33,12 +30,14 @@ public class StockDiscountReport extends Report{
         System.out.println("Book ID" + " Original Sold Price" + " Sold Price Dicounted");
         System.out.println("======================================================");
         for (Book book:bookArr) {
-
-            double bookPrice = calculateBookPrice(book.getSoldPrice(),book.author.commemorativeOffer(book)) ;
             
-            if (bookPrice != book.getSoldPrice() ) {
-                System.out.println(book.getBookId() + "          RM" + book.getSoldPrice() + "                RM" + bookPrice );
+            
+            if (!book.author.checkArrive()) {
+                double oriPrice = (book.getSoldPrice() / Author.DISCOUNT_RATE);
+                System.out.println(book.getBookId() + "          RM" + oriPrice + "                RM" + book.getSoldPrice() );
             }
+                
+            
         }
         Assignment.systemPause();
     }

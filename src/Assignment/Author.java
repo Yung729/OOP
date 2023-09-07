@@ -15,10 +15,14 @@ public class Author {
     private String name;
     private int yearOfBirth;
     private boolean arrive;
-    protected final double DISCOUNT_RATE = 0.5;
+    protected static final double DISCOUNT_RATE = 0.5;
     protected int currentYear = Year.now().getValue();
     
     Author(){};
+
+    public double getDISCOUNT_RATE() {
+        return DISCOUNT_RATE;
+    }
     
     Author(String name,int yearOfBirth,boolean arrive){
         this.name = name;
@@ -62,15 +66,21 @@ public class Author {
             System.out.println("====================================");
     }
 
-    public double commemorativeOffer(Book book){
-
-        double discount = 0.0;
-        
-        if (!book.author.checkArrive()) {
-            discount =  DISCOUNT_RATE;
+    
+    public static void updateDiscount(Book book,int mode){
+        if (mode == 1) {
+            double newSoldPrice = book.getSoldPrice() - (book.getSoldPrice() * DISCOUNT_RATE);
+            
+            book.setSoldPrice(newSoldPrice);
+            
+        }else if (mode == 2) {
+            
+            double newSoldPrice = (book.getSoldPrice() / DISCOUNT_RATE);
+            
+            book.setSoldPrice(newSoldPrice);
         }
-        
-        return discount;
+            
+ 
     }
     
     //validation

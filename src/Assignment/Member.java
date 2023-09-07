@@ -313,7 +313,8 @@ public class Member {
         ArrayList<Member> memberArray = new ArrayList<>();
         
         Assignment.clearScreen();
-        System.out.println("Member Record");
+        System.out.println("========================");
+        System.out.println("=    Member Record     =");
         System.out.println("========================");
         
         try {
@@ -365,14 +366,16 @@ public class Member {
         }
    
         if(memberArray.isEmpty()){
-            System.out.println("None Member Record!");
+            System.out.println("=========================");
+            System.out.println("=  None Member Record!  =");
+            System.out.println("=========================");
         }
         else{
             do{
                 confirm = 'N';
                 Assignment.clearScreen();
                 System.out.println("=======================================");
-                System.out.println("=          Delete Member              =");
+                System.out.println("=            Delete Member            =");
                 System.out.println("=======================================");
                 
                 do{
@@ -410,7 +413,7 @@ public class Member {
                     check = checkYesNo(confirmDelete);
                     if(!check){
                         error = true;
-                        System.out.println(RED + "Invalid input. Please enter again!" + RESET);
+                        System.out.println(RED + "Invalid input! Please enter again!" + RESET);
                     }
                 }while(error);
                 
@@ -421,7 +424,7 @@ public class Member {
                     }catch(IOException ex){
                         Logger.getLogger(Member.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    System.out.println("Successful Delete");
+                    System.out.println("Successful Delete!");
                 }
                 
                 do{

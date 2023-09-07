@@ -20,4 +20,3 @@ B0019|Whispers in the Wind|110|17.0|24.0|true|H|Noah|2007|true
 B0020|Sapphire Skies|80|19.0|25.0|true|T|Grace|2014|false
 B0021|Forgotten Realms|100|11.0|18.0|true|F|Ethan|1999|false
 B0022|Celestial Dreams|55|22.0|30.0|true|E|Lucas|2016|true
-B0023|Boooooooooooooooo|22|20.0|24.0|true|R|Yung|23|true
