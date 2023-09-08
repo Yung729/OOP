@@ -1,3 +1,4 @@
 orderID,bookID,bookQuantity,stationaryID,stationaryQuantity,totalPrice,datetime
 I0001|B0001:B0002|2:1|S0001|1|100|2017-01-01 10:00:00I0002|||S0022|5|31.8
 I0002|B0005:B0006|2:2|||97.52
+I0003|B0007|2000|||42400.0

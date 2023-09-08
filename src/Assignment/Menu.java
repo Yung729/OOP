@@ -21,7 +21,7 @@ public class Menu {
         int option;
 
         while (true) {
-//            clearScreen();
+            Assignment.clearScreen();
             System.out.println("             SALES MENU                 ");
             System.out.println("========================================");
             System.out.println("=        1. ADD ORDER                  =");
@@ -75,6 +75,7 @@ public class Menu {
     }
 
     public static void makeOrderMenu() {
+       
         if(currentOrder == null) currentOrder = new Order();
 
         while (true) {

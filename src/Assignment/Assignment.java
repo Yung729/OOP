@@ -162,7 +162,9 @@ public class Assignment {
                 
                 case 5 ->{stockMainMenu();}
             
-                case 7 -> {}
+                case 6 -> {Menu.reportMenu();}
+                
+                case 0 ->{}
                 
                 default -> System.out.println(RED + "Invalid input. Please enter again!" + RESET);
                            
