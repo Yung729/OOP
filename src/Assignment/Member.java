@@ -32,10 +32,10 @@ public class Member {
     
     
     public Member(){
-        this("","","","","",0.0,0.0);
+        this("","","","",0.0,0.0);
     }
     
-    public Member(String memberID, String name, String phoneNumber, String email, String dateOfBirth, double discountRate, double memberPoints){
+    public Member(String memberID, String name, String phoneNumber, String email, double discountRate, double memberPoints){
         this.memberID = memberID;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -136,7 +136,7 @@ public class Member {
             while(memberRead.hasNextLine()){
                 String line = memberRead.nextLine();
                 String[] info = line.split("\\|");
-                memberArray.add(new Member(info[0], info[1], info[2], info[3], info[4], Double.parseDouble(info[5]), Double.parseDouble(info[6])));
+                memberArray.add(new Member(info[0], info[1], info[2], info[3], Double.parseDouble(info[4]), Double.parseDouble(info[5])));
             }
         } else {
             File createMemberFile = new File("Member.txt");
@@ -281,8 +281,8 @@ public class Member {
         }while(error);
         
         if (confirm == 'Y') {
-            member.addMember(memberArray, new Member(getMemberID(),validatedName,validatedPhoneNumber,validatedEmail,
-                    validatedDateOfBirth,0,validatedPoints));
+            member.addMember(memberArray, new Member(getMemberID(),validatedName,validatedPhoneNumber,validatedEmail
+                  ,0,validatedPoints));
             
             try {
                 writeMember(memberArray);
