@@ -490,7 +490,7 @@ public class Book extends Stock {
                     case 5->{
                         System.out.println("Edit Author Name");
                         System.out.println("==================");
-                        System.out.print("Enter Book Name :");
+                        System.out.print("Enter Author Name :");
                         bookArray.get(currentIndex).author.setName(Validation.getStringInput());
 
                         System.out.print("Confirm To Edit Author Name ? [Y/N] >");
@@ -501,7 +501,7 @@ public class Book extends Stock {
                                 Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getName());
                                 writeBookToFile(bookArray);
                             } catch (IOException ex) {
-                                System.out.println("Failed to Edit The Book Name");
+                                System.out.println("Failed to Edit The Author Name");
                             }
                         }else {
                             System.out.println(RED + "Edit is denied");

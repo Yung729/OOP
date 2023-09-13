@@ -23,7 +23,7 @@ public class Assignment {
     public static String CURRENTNAME;
     
     public static void main(String[] args) {
-        logo();
+        
         login();
     }
     
@@ -53,7 +53,7 @@ public class Assignment {
         String password;
         
         try {
-            new Admin().readAdminFromFile(adminArray);
+            Admin.readAdminFromFile(adminArray);
         } catch (FileNotFoundException ex) {
             System.out.println(RED + "Cannot read the file!" + RESET);
             return;
@@ -67,6 +67,8 @@ public class Assignment {
         }
 
         do {
+            clearScreen();
+            logo();
             exist = true;
             
             System.out.println("===========================================");
@@ -119,7 +121,7 @@ public class Assignment {
                 exist = false;
                 System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
             }
-           
+           systemPause();
         } while (!exist);
 
        
@@ -140,7 +142,7 @@ public class Assignment {
             System.out.println("=                  MENU                   =");
             System.out.println("===========================================");
             System.out.println("=        1. Staff Manage                  =");
-            System.out.println("=        2. Display Book Available Menu   =");
+            System.out.println("=        2. Display Stock Available Menu  =");
             System.out.println("=        3. Sales Order                   =");
             System.out.println("=        4. Membership Register           =");
             System.out.println("=        5. Stock Management              =");
