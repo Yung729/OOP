@@ -113,7 +113,7 @@ public abstract class Stock {
     
     @Override
     public String toString() {
-        return String.format("%-30s  %-10d  RM%-10.2f RM%-10.2f %-10s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
+        return String.format("%-30s  %-10d  RM%-13.2f RM%-13.2f %-12s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
     }
  
     public static void stockAvailableMenu(){
@@ -123,10 +123,10 @@ public abstract class Stock {
         ArrayList<Book> bookArray = new ArrayList<>();
         ArrayList<Stationary> staArray = new ArrayList<>();
 
-        System.out.println("Display All Book");
-        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+         System.out.println("Display Available Book");
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-15s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Stock Status","Type",
                 "Author Name","YearOfBirth","status");
-        System.out.println("============================================================================================================================================================");
+        System.out.println("================================================================================================================================================================");
         
         try {
             Book.readBookFromFile(bookArray);
@@ -148,9 +148,10 @@ public abstract class Stock {
         System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
         Assignment.systemPause();
         
-        System.out.println("Display All Stationary");
-        
-        System.out.println("============================================================================================================================================================");
+        System.out.println("Display Available Stationary");
+        System.out.printf("%-15s %-28s    %-8s    %-6s    %-9s    %-15s    \n","Stationary Id","Stationary Name","Quantity",
+                "Unit Price","Sold Price","Stock Status");
+        System.out.println("==========================================================================================================");
         
         try {
             Stationary.readStaFromFile(staArray);

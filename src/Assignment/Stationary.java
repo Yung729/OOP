@@ -122,7 +122,7 @@ public class Stationary extends Stock{
 
     @Override
     public String toString( ){
-        return String.format("%s   %s  ",staId,super.toString());
+        return String.format("%-15s   %s  ",staId,super.toString());
     }
     
     //edit name
@@ -187,6 +187,9 @@ public class Stationary extends Stock{
                     ArrayList<Stationary> staArray = new ArrayList<>();
                     
                     System.out.println("Display All Stationary");
+                    System.out.printf("%-15s %-28s    %-8s    %-6s    %-9s    %-15s    \n","Stationary Id","Stationary Name","Quantity",
+                "Unit Price","Sold Price","Stock Status");
+                    System.out.println("==========================================================================================================");
                     
                     try {
                         readStaFromFile(staArray);

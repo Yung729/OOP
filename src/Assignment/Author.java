@@ -143,7 +143,7 @@ public class Author {
     
     @Override
     public String toString(){
-        return String.format("%-15s    %-6d  %s",name,yearOfBirth,String.valueOf(arrive));
+        return String.format("%-15s    %-10d  %s",name,yearOfBirth,String.valueOf(arrive));
     }
   
     

@@ -246,9 +246,9 @@ public class Book extends Stock {
         ArrayList<Book> bookArray = new ArrayList<>();
 
         System.out.println("Display All Book");
-        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-10s    %-10s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-15s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
                 "Author Name","YearOfBirth","status");
-        System.out.println("============================================================================================================================================================");
+        System.out.println("================================================================================================================================================================");
         
         try {
             readBookFromFile(bookArray);
@@ -939,7 +939,7 @@ public class Book extends Stock {
    
     @Override
     public String toString(){     
-        return String.format("%-10s  %-10s  %-10s %-10s",bookId,
+        return String.format("%-10s  %-10s  %-17s %-10s",bookId,
                      super.toString(),convertBookType(bookType),author.toString() ); 
     } 
     //check stock balance 
