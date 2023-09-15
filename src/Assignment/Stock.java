@@ -145,7 +145,11 @@ public abstract class Stock {
             count++;
         }
         
-        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+        System.out.println("\n\t\t\t\t\t\t\tTotal Book :" + count 
+                            +"\n\t\t\t\t\t\t\tTotal Quantity :" + quantity +
+                            "\n\t\t\t\t\t\t\tTotal UnitPrice :" +totalUnitPrice +
+                            "\n\t\t\t\t\t\t\tTotal SoldPrice:" + totalSoldPrice +
+                            "\n\t\t\t\t\t\t\tTotal Estimate Sold:" + (totalSoldPrice - totalUnitPrice));
         Assignment.systemPause();
         
         System.out.println("Display Available Stationary");
@@ -175,7 +179,13 @@ public abstract class Stock {
             count++;
         }
         
-        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+        System.out.println("\n\t\t\t\t\t\t\tTotal Book :" + count 
+                            +"\n\t\t\t\t\t\t\tTotal Quantity :" + quantity +
+                            "\n\t\t\t\t\t\t\tTotal UnitPrice :" +totalUnitPrice +
+                            "\n\t\t\t\t\t\t\tTotal SoldPrice:" + totalSoldPrice +
+                            "\n\t\t\t\t\t\t\tTotal Estimate Sold:" + (totalSoldPrice - totalUnitPrice));
+        
+        
         Assignment.systemPause();
     }
 }
