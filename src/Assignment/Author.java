@@ -62,7 +62,6 @@ public class Author {
             System.out.println("| Author Name :  " + name);
             System.out.println("| Author Age :  " + yearOfBirth);
             System.out.println("| Author status :  " + arrive);
-            System.out.println("|                                  |");
             System.out.println("====================================");
     }
 
@@ -136,6 +135,7 @@ public class Author {
                  latestBook.author.setArrive(arrive);
              }     
         }
+
     }
     
  

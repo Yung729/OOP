@@ -40,6 +40,14 @@ public class Validation {
         return value;
     }
     
+        public static int getIntegerInput(String question) {
+        String res = getStringInput(question);
+        if (res == null)  return -1;
+        if (!res.matches("\\d+"))  return -1;  //if not number
+
+        return Integer.parseInt(res);
+    }
+    
     public static double getDoubleInput() { //exception handling for int input
         double value;
         try {
@@ -52,18 +60,7 @@ public class Validation {
         return value;
     }
     
-
-
-    public static int getIntegerInput(String question) {
-        String res = getStringInput(question);
-        if (res == null)  return -1;
-        if (!res.matches("\\d+"))  return -1;  //if not number
-
-        return Integer.parseInt(res);
-    }
-
-
-    public static String getStringInput(){
+        public static String getStringInput(){
         String value;
         try{
             value = input.nextLine();
@@ -73,6 +70,8 @@ public class Validation {
         }
         return value;
     }
+
+
 
     public static String getStringInput(String question) {
         String value;
