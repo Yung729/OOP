@@ -135,6 +135,7 @@ public class Assignment {
         
         do{
             clearScreen(); 
+            logo();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             

@@ -117,9 +117,9 @@ public class Book extends Stock {
     public void displayAllRecord(ArrayList<Book> bookArray){
       String specificBookType = "Non Type";
        
-        for (Book allBook: bookArray) {
+        for (Book book: bookArray) {
    
-            switch(allBook.getBookType()){
+            switch(book.getBookType()){
                 case 'R'->{
                     specificBookType = "Romantic";
                 }
@@ -138,8 +138,8 @@ public class Book extends Stock {
                
             }
             
-            System.out.printf("%s   %s  %s  %d  RM%.2f  RM%.2f\n",allBook.getBookId(),allBook.getName(),specificBookType,
-                              allBook.getStockQuantity(),allBook.getUnitPrice(),allBook.getSoldPrice());
+            System.out.printf("%s   %s  %s  %d  RM%.2f  RM%.2f\n",book.getBookId(),book.getName(),specificBookType,
+                              book.getStockQuantity(),book.getUnitPrice(),book.getSoldPrice());
         }
     }
     
