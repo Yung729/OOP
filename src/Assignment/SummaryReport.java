@@ -8,7 +8,7 @@ package Assignment;
  *
  * @author user
  */
-public class SummaryReport extends SReport {
+public class SummaryReport extends Report {
 
     @Override
     public void printReport() {

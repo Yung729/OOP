@@ -11,9 +11,8 @@ package Assignment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.Objects;
 
-public class HotSellReport extends SReport {
+public class HotSellReport extends Report {
     private final ArrayList<Order> orderList;
     private final HashMap<String, Integer> itemsMap;
 

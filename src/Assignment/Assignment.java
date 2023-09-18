@@ -258,7 +258,7 @@ public class Assignment {
      
            case 0 -> {}
 
-           case 3 -> new Report().reportMenu();
+           case 3 -> new Report().stockReportMenu();
            
            default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
