@@ -460,6 +460,7 @@ public class Book extends Stock {
 
                                 }
                                 case 3 -> {
+                                    int previousQuantity = bookArray.get(currentIndex).getStockQuantity();
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,false,false);
                                         checkAvailable(bookArray);
@@ -470,7 +471,7 @@ public class Book extends Stock {
                                  
                                     try {
                                         StockFlowReport.writeStockToFile(bookArray.get(currentIndex).getBookId(),
-                                                -(bookArray.get(currentIndex).getStockQuantity() - newBookQuantity),
+                                                -(previousQuantity - newBookQuantity),
                                                 bookArray.get(currentIndex).getStockAddDate());
                                     } catch (IOException ex) {
                                         Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
@@ -702,7 +703,7 @@ public class Book extends Stock {
                         System.out.print("Enter Author YOB > ");
                         authorInput.setYearOfBirth(Validation.getIntegerInput());
                         if (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth())) {
-                            System.out.println(RED+ "Invalid Year Of Birth" + RESET);
+                            System.out.println(RED+ "Invalid Year Of Birth, YOB accept 1800 to current only !" + RESET);
                         }
                     } while (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth()));
                     
@@ -713,7 +714,7 @@ public class Book extends Stock {
 
                         valid = Validation.checkYesNo(confirmChoice);
                         if (!valid) {
-                            System.out.println(RED +"Input Invalid Must 'Y'/'N'" + RESET);
+                            System.out.println(RED +"Invalid Input Must 'Y'/'N'" + RESET);
                         }
                         
                     } while (!valid);
@@ -735,7 +736,7 @@ public class Book extends Stock {
 
                         valid = Validation.checkYesNo(confirmChoice);
                         if (!valid) {
-                            System.out.println(RED +"Input Invalid Must 'Y'/'N'" + RESET);
+                            System.out.println(RED +"Invalid Input Must 'Y'/'N'" + RESET);
                         }
                         
                     } while (!valid);
@@ -921,8 +922,7 @@ public class Book extends Stock {
     
     //validation
     public Boolean validName(ArrayList<Book> bookArray,String name){
-            //no simbol
-            //no digit
+
         if (name.length()<=10) {
             return false;
         }

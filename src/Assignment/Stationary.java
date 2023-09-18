@@ -206,7 +206,7 @@ public class Stationary extends Stock{
     @Override
     public void adjust(){
         String idSearch,confirm;
-        int choice , newBookQuantity, currentIndex = 0;    
+        int choice , newBookQuantity,previousQuantity, currentIndex = 0;    
         boolean notFound,valid ;
         
                     ArrayList<Stationary> staArray = new ArrayList<>();
@@ -308,14 +308,10 @@ public class Stationary extends Stock{
                                     
                                     System.out.print("Enter your Choice > ");
                                     choice = Validation.getIntegerInput();
-                                    
-                                    
-                                    System.out.print("Enter Stationary Quantiy >");
-                                    newBookQuantity = Validation.getIntegerInput();
-                                    
+
                                     do {
                                         valid = true;
-                                        System.out.print("Enter Book Quantiy >");
+                                        System.out.print("Enter Stationary Quantiy >");
                                         newBookQuantity = Validation.getIntegerInput();
                                        if (choice == 2) {
 
@@ -327,7 +323,7 @@ public class Stationary extends Stock{
                                         } 
                                     } while (!valid);
                                     
-                                    System.out.println("Confirm To Edit Stationary Quantity ? [Y/N] >");
+                                    System.out.print("Confirm To Edit Stationary Quantity ? [Y/N] >");
                                     confirm = input.next();
                                     
                                     if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
@@ -366,6 +362,7 @@ public class Stationary extends Stock{
                                                 }
                                             }
                                             case 3 -> {
+                                                previousQuantity =staArray.get(currentIndex).getStockQuantity();
                                                 try {
                                                     editSta(staArray, idSearch, newBookQuantity,false,false);
                                                     checkAvailable(staArray);
@@ -376,7 +373,7 @@ public class Stationary extends Stock{
                                                 
                                                 try {
                                                     StockFlowReport.writeStockToFile(staArray.get(currentIndex).getStaId(),
-                                                            -(staArray.get(currentIndex).getStockQuantity() - newBookQuantity),
+                                                            -( previousQuantity - newBookQuantity),
                                                             staArray.get(currentIndex).getStockAddDate());
                                                 } catch (IOException ex) {
                                                     Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);

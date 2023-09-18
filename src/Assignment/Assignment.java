@@ -211,6 +211,15 @@ public class Assignment {
                 case 1-> {
                     Stock.stockAvailableMenu();
                 }
+                
+                case 2-> {
+                    Menu.salesMenu();
+                }
+                
+                case 3-> {
+                    new Member().memberRegistration();
+                }
+                
                 case 0 -> {}
                 
                 default -> System.out.println("Invalid input. Please enter again!");
@@ -360,8 +369,7 @@ public class Assignment {
     
     }
    
-    
-        public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
+    public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
         boolean exist = false;
         for(Admin ad : adminArray){
             if(ad.getId().equals(searchID) && ad.getPassword().equals(searchPassword))
