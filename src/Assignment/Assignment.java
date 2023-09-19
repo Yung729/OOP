@@ -294,6 +294,7 @@ public class Assignment {
                     clearScreen();
                     
                     logo();
+                    System.out.println("===========================================");
                     System.out.printf("=           %s               =\n",title);
                     System.out.println("===========================================");
                     System.out.println("=        1. Add Stock                     =");
@@ -340,7 +341,7 @@ public class Assignment {
                     clearScreen();
                     
                     logo();
-                    
+                    System.out.println("===========================================");
                     System.out.printf("=           %s         =\n",title);
                     System.out.println("===========================================");
                     System.out.println("=        1. Add Stock                     =");

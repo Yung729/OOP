@@ -288,8 +288,9 @@ public class Book extends Stock {
             Assignment.clearScreen();
 
             
-            System.out.println("Edit Book Name");
-            System.out.println("==============");
+            System.out.println("===========================================");
+            System.out.println("               Adjust Stock                 ");
+            System.out.println("===========================================");
             System.out.print("Enter BookID [Q to exit]> ");
             idSearch = Validation.getStringInput();
 
@@ -315,29 +316,28 @@ public class Book extends Stock {
 
             }else if(!notFound && Character.toUpperCase(idSearch.charAt(0)) != 'Q' ){
 
-                System.out.println("Option");
-                System.out.println("=========================");
-                System.out.println("1. Book Name");
-                System.out.println("2. Book Type");
-                System.out.println("3. Book Price");
-                System.out.println("4. Book Quantity");
-                System.out.println("5. Author Name");
-                System.out.println("6. Author Year Of Birth");
-                System.out.println("7. Author Status");
-                System.out.println("0. Stop Edit");
+                System.out.println(Assignment.GREENBG+"Option"+Assignment.RESET);
+                System.out.println("1. Book Name \t 2. Book Type \t 3. Book Price \t 4. Book Quantity");
+                System.out.println("5. Author Name \t 6. Author Year Of Birth \t 7.Author Status");
                 System.out.println("=========================");
 
-                System.out.print("Enter Field to Edit [1-7] >");
+                System.out.print("Enter Field to Edit [0 to cancel] >");
                 choice = Validation.getIntegerInput();
 
                 switch(choice){
 
                     case 1 -> {
-                        System.out.println("Edit Book Name");
-                        System.out.println("==============");
+
+                        do {
                         System.out.print("Enter Book Name :");
                         bookArray.get(currentIndex).setName(Validation.getStringInput());
-
+                        
+                        if (!validName(bookArray,bookArray.get(currentIndex).getName())) {
+                            System.out.println(RED +"Book Name Repeated or Too Short" + RESET);
+                        }
+                        
+                        } while (!validName(bookArray,bookArray.get(currentIndex).getName()));
+                        
                         System.out.print("Confirm To Edit Book Name ? [Y/N] >");
                         confirm = inputString.next();
 
@@ -354,8 +354,6 @@ public class Book extends Stock {
                     }
 
                     case 2 -> {
-                        System.out.println("Edit Book Type");
-                        System.out.println("==============");
 
                         System.out.print("Enter Book Type :");
                         bookArray.get(currentIndex).setBookType(inputString.next().charAt(0));
@@ -376,8 +374,7 @@ public class Book extends Stock {
                     }
 
                     case 3 ->{
-                        System.out.println("Edit Book Price");
-                        System.out.println("==============");
+
                         System.out.print("Enter Book Price :");
                         bookArray.get(currentIndex).setSoldPrice(input.nextDouble());
 
@@ -489,8 +486,7 @@ public class Book extends Stock {
                     }
 
                     case 5->{
-                        System.out.println("Edit Author Name");
-                        System.out.println("==================");
+
                         System.out.print("Enter Author Name :");
                         bookArray.get(currentIndex).author.setName(Validation.getStringInput());
 
@@ -509,8 +505,7 @@ public class Book extends Stock {
                         }
                     }
                     case 6->{
-                        System.out.println("Edit Author Birth");
-                        System.out.println("==================");
+
                         System.out.print("Enter Year Of Birth :");
 
                         bookArray.get(currentIndex).author.setYearOfBirth(inputString.nextInt());
@@ -530,8 +525,7 @@ public class Book extends Stock {
                         }
                     }
                     case 7->{
-                        System.out.println("Edit Author Status");
-                        System.out.println("==================");
+
                         System.out.println("Current status : " + bookArray.get(currentIndex).author.checkArrive());
 
                         System.out.print("Confirm To Edit Book Name ? [Y/N] >");
@@ -586,6 +580,9 @@ public class Book extends Stock {
                 }
     
                 do {
+                    System.out.println("===========================================");
+                    System.out.println("                 Add Stock                 ");
+                    System.out.println("===========================================");
                     
                     Assignment.clearScreen();
                     book.setBookId(generateBookId(bookArray));
@@ -798,8 +795,9 @@ public class Book extends Stock {
             
             notFound =true;
             Assignment.clearScreen();
-            System.out.println("Remove book  System");
-            System.out.println("====================");
+            System.out.println("===========================================");
+            System.out.println("              Remove Stock                 ");
+            System.out.println("===========================================");
 
 
             System.out.print("Enter BookID [Q to exit]> ");
@@ -877,6 +875,9 @@ public class Book extends Stock {
         }
         
         do {
+            System.out.println("===========================================");
+            System.out.println("              Search Stock                 ");
+            System.out.println("===========================================");
             System.out.println("1. Search By Id");
             System.out.println("2. Search By Name");
             System.out.println("0. Exit");
