@@ -18,7 +18,22 @@ import java.util.Scanner;
 public class Assignment {
 
     public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001B[32m";
+    public static final String YELLOW = "\u001B[33m";
+    public static final String BLUE = "\u001B[34m";
+    public static final String PURPLE = "\u001B[35m";
+    public static final String CYAN = "\u001B[36m";
+    
+    public static final String REDBG = "\u001B[41m";
+    public static final String GREENBG = "\u001B[42m";
+    public static final String YELLOWBG = "\u001B[43m";
+    public static final String BLUEBG = "\u001B[44m";
+    public static final String PURPLEBG = "\u001B[45m";
+    public static final String CYANBG = "\u001B[46m";
     public static final String RESET = "\u001B[0m";
+    
+    
+    
     static Scanner input = new Scanner(System.in);
     public static String CURRENTNAME;
     
@@ -28,21 +43,19 @@ public class Assignment {
     }
     
     public static void logo(){
-        System.out.printf("%s\n", "                      _");
-	System.out.printf("%s\n", "      _   _ _ __ ___ | |_");
-	System.out.printf("%s\n", "     | | | | '_ ` _ \\| __|");
-	System.out.printf("%s\n", "     | |_| | | | | | | |_");
-	System.out.printf("%s\n\n", "      \\__,_|_| |_| |_|\\__|");
+        System.out.printf(PURPLE+"%s\n", "                      _"+RESET);
+	System.out.printf(BLUE+"%s\n", "      _   _ _ __ ___ | |_"+RESET);
+	System.out.printf(PURPLE+"%s\n", "     | | | | '_ ` _ \\| __|"+RESET);
+	System.out.printf(BLUE+"%s\n", "     | |_| | | | | | | |_"+RESET);
+	System.out.printf(PURPLE+"%s\n\n", "      \\__,_|_| |_| |_|\\__|"+RESET);
         
 	
 	
     }
     
    public static void login(){
- 
-        Admin admin = new Admin();
+
         ArrayList<Admin> adminArray = new ArrayList();
-        Cashier cashier= new Cashier();
         ArrayList<Cashier> cashierArray = new ArrayList();
         
         boolean exist = false;
@@ -75,7 +88,7 @@ public class Assignment {
             System.out.println("=                 LOGIN                   =");
             System.out.println("===========================================");
             
-            System.out.println("**Enter x to log out**");
+            System.out.println(GREEN+"**Enter x to log out**"+RESET);
             
 
             System.out.print("Enter ID > ");
@@ -121,7 +134,7 @@ public class Assignment {
                 exist = false;
                 System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
             }
-           systemPause();
+           
         } while (!exist);
 
        
@@ -211,6 +224,15 @@ public class Assignment {
                 case 1-> {
                     Stock.stockAvailableMenu();
                 }
+                
+                case 2-> {
+                    Menu.salesMenu();
+                }
+                
+                case 3-> {
+                    new Member().memberRegistration();
+                }
+                
                 case 0 -> {}
                 
                 default -> System.out.println("Invalid input. Please enter again!");
@@ -246,10 +268,11 @@ public class Assignment {
            case 1 -> stockMenu("Book Management",new Book() );
               
            case 2 -> stockMenu("Stationary Management",new Stationary());
-     
+           
+           case 3 -> new Report().stockReportMenu();
+           
            case 0 -> {}
-
-           case 3 -> new Report().reportMenu();
+           
            
            default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
@@ -272,6 +295,7 @@ public class Assignment {
                     clearScreen();
                     
                     logo();
+                    System.out.println("===========================================");
                     System.out.printf("=           %s               =\n",title);
                     System.out.println("===========================================");
                     System.out.println("=        1. Add Stock                     =");
@@ -294,8 +318,7 @@ public class Assignment {
                         case 3 -> book.remove();
                         
                         case 4 -> book.display();
-                        
-                        
+
                         case 5 -> book.search();
                         
                         case 0 -> {}
@@ -318,7 +341,7 @@ public class Assignment {
                     clearScreen();
                     
                     logo();
-                    
+                    System.out.println("===========================================");
                     System.out.printf("=           %s         =\n",title);
                     System.out.println("===========================================");
                     System.out.println("=        1. Add Stock                     =");
@@ -360,8 +383,7 @@ public class Assignment {
     
     }
    
-    
-        public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
+    public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
         boolean exist = false;
         for(Admin ad : adminArray){
             if(ad.getId().equals(searchID) && ad.getPassword().equals(searchPassword))
@@ -434,7 +456,13 @@ public class Assignment {
     //common function
     public static void systemPause(){
         Scanner buffer = new Scanner(System.in);
-        System.out.print("Enter any key to continue....");
+        System.out.print(GREEN+"Enter any key to continue...."+RESET);
+        buffer.nextLine(); 
+    }
+    
+    public static void systemPause(String sentence){
+        Scanner buffer = new Scanner(System.in);
+        System.out.print(sentence);
         buffer.nextLine(); 
     }
     

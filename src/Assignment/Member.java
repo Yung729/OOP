@@ -165,7 +165,7 @@ public class Member {
             System.out.println("=       0. Exit                        =");
             System.out.println("========================================");
             
-            System.out.println("Enter your choice > ");
+            System.out.print("Enter your choice > ");
             choice = input.nextInt();
             
             switch(choice){
@@ -233,7 +233,6 @@ public class Member {
             
         }while(error);
        
-        inputString.nextLine();
         
         do{
             System.out.print("Enter Phone Number: ");
@@ -380,7 +379,7 @@ public class Member {
                 
                 do{
                     exist = false;
-                    System.out.println("Enter Member ID to delete(Press X to exit): ");
+                    System.out.print("Enter Member ID to delete(Press X to exit): ");
                     deleteID = inputString.nextLine();
                     
                     deleteID = deleteID.trim();

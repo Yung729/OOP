@@ -4,6 +4,8 @@
  */
 package Assignment;
 
+import java.util.ArrayList;
+
 
 
 /**
@@ -11,18 +13,43 @@ package Assignment;
  * @author Yung
  */
 public class Report {
+    
+    private final ArrayList<Transaction> transactionList;
+    
+    public Report(){
+        transactionList = new ArrayList<>();
+        initTransactionList();
+    }
+    
+    private void initTransactionList(){
+        ArrayList<String> transactionIDList = FileHandler.getColumnByType(FileHandler.TRANSACTION_DB, 0);
+        for (String transactionID : transactionIDList) {
+            transactionList.add(new Transaction(transactionID));
+        }
+    }
 
-    public void reportMenu(){      
+    public void printReport(){
+        System.out.println("Display Report");
+    }
+
+    protected ArrayList<Transaction> getTransactionList(){
+        return transactionList;
+    }
+    
+    public void stockReportMenu(){      
         int choice;
-        Report report = new Report();
+        
         do {
             Assignment.clearScreen();
             Assignment.logo();
+            System.out.println("Stock Report List  ");
+            System.out.println("=========================");
             System.out.println("1. Low Stock Report");
             System.out.println("2. Stock Discount Report");
             System.out.println("3. Stock Flow Report");
             System.out.println("0. Exit");
-
+            System.out.println("=========================");
+            
             choice = Validation.getIntegerInput("Enter your choice : ");
             
             switch(choice){

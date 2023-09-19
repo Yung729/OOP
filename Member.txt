@@ -1,1 +1,3 @@
 M0001|Jianxun|011-22223333|leongkahyung@gmail.com|0.0|0.0
+M0002|Yung|011-33324332|leong@gmail.com|0.0|0.0
+M0003|Ting|011-23455678|Ting@gmail.com|0.0|0.0

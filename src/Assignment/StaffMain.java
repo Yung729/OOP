@@ -31,7 +31,7 @@ public class StaffMain {
             System.out.println("=      4. Search Staff              =");
             System.out.println("=      5. View Staff                =");
             System.out.println("=      6. Staff Sales Performance   =");
-            System.out.println("=      7. Exit                      =");
+            System.out.println("=      0. Exit                      =");
             System.out.println("=====================================");
             
             System.out.print("Enter your choice > ");
@@ -56,13 +56,13 @@ public class StaffMain {
                 
                 case 6 -> staffSalesPerformance();
                 
-                case 7 -> {}
+                case 0 -> {}
                 
                 default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                              
             }
             
-        }while(choice != 7 || error);
+        }while(choice != 0 || error);
         
 
     }
@@ -83,7 +83,7 @@ public class StaffMain {
             System.out.println("============================================");
             System.out.println("=              1. Add Admin                =");
             System.out.println("=              2. Add Cashier              =");
-            System.out.println("=              3. Exit                     =");
+            System.out.println("=              0. Exit                     =");
             System.out.println("============================================");
             
             System.out.print("Enter your choice >  ");
@@ -100,13 +100,13 @@ public class StaffMain {
                 
                 case 2 -> new Cashier().addCashier();
                 
-                case 3 -> {}
+                case 0 -> {}
                 
                 default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                                      
             }
             
-        }while(choice != 3 || error);
+        }while(choice != 0 || error);
         
     }
     
@@ -126,7 +126,7 @@ public class StaffMain {
             System.out.println("============================================");
             System.out.println("=             1. Delete Admin              =");
             System.out.println("=             2. Delete Cashier            =");
-            System.out.println("=             3. Exit                      =");
+            System.out.println("=             0. Exit                      =");
             System.out.println("============================================");
             
             System.out.print("Enter your choice > ");
@@ -143,14 +143,14 @@ public class StaffMain {
                 
                 case 2 -> new Cashier().deleteCashier();
                 
-                case 3 -> {}
+                case 0 -> {}
                 
                 default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                                
                             
             }
             
-        }while(choice != 3 || error);
+        }while(choice != 0 || error);
 
     }
     
@@ -170,7 +170,7 @@ public class StaffMain {
             System.out.println("============================================");
             System.out.println("=             1. Edit Admin                =");
             System.out.println("=             2. Edit Cashier              =");
-            System.out.println("=             3. Exit                      =");
+            System.out.println("=             0. Exit                      =");
             System.out.println("============================================");
 
             System.out.print("Enter your choice > ");
@@ -193,7 +193,7 @@ public class StaffMain {
                             
             }
             
-        }while(choice != 3 || error);
+        }while(choice != 0 || error);
         
        
 
@@ -215,7 +215,7 @@ public class StaffMain {
             System.out.println("============================================");
             System.out.println("=             1. Search Admin              =");
             System.out.println("=             2. Search Cashier            =");
-            System.out.println("=             3. Exit                      =");
+            System.out.println("=             0. Exit                      =");
             System.out.println("============================================");
             
             System.out.print("Enter your choice > ");
@@ -238,7 +238,7 @@ public class StaffMain {
                                
                             
             }
-        } while(choice !=3 || error);
+        } while(choice !=0 || error);
     }
     
     public void viewStaff(){
@@ -257,7 +257,7 @@ public class StaffMain {
             System.out.println("============================================");
             System.out.println("=             1. View Admin                =");
             System.out.println("=             2. View Cashier              =");
-            System.out.println("=             3. Exit                      =");
+            System.out.println("=             0. Exit                      =");
             System.out.println("============================================");
             
             System.out.print("Enter your choice > ");
@@ -274,12 +274,12 @@ public class StaffMain {
                 
                 case 2 -> new Cashier().viewCashierInformation();
                 
-                case 3 -> {}
+                case 0 -> {}
                 
                 default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                                 
             }
-        } while(choice !=3 || error);
+        } while(choice !=0 || error);
         
         
     }
@@ -300,7 +300,7 @@ public class StaffMain {
             System.out.println("============================================");
             System.out.println("=             1. View Admin                =");
             System.out.println("=             2. View Cashier              =");
-            System.out.println("=             3. Exit                      =");
+            System.out.println("=             0. Exit                      =");
             System.out.println("============================================");
             
             System.out.print("Enter your choice > ");
@@ -317,14 +317,14 @@ public class StaffMain {
                 
                 case 2 -> new Cashier().cashierSalesPerformance();
                 
-                case 3 -> {}
+                case 0 -> {}
                 
                 default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                                
                             
             }
             
-        }while(choice != 3 || error);
+        }while(choice != 0 || error);
         
     }
     

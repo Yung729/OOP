@@ -12,9 +12,9 @@ import java.util.ArrayList;
  * @author Yung
  */
 public class Author {
-    private String name;
-    private int yearOfBirth;
-    private boolean arrive;
+    protected String name;
+    protected int yearOfBirth;
+    protected boolean arrive;
     protected static final double DISCOUNT_RATE = 0.5;
     protected int currentYear = Year.now().getValue();
     
