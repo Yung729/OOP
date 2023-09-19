@@ -15,11 +15,11 @@ import java.util.ArrayList;
 
 public abstract class Stock {
   
-    private String name;
-    private  int stockQuantity;
-    private double unitPrice;
-    private double soldPrice;
-    private boolean stockStatus;
+    protected String name;
+    protected  int stockQuantity;
+    protected double unitPrice;
+    protected double soldPrice;
+    protected boolean stockStatus;
     LocalDate stockAddDate = LocalDate.now();
 
     public abstract void add();

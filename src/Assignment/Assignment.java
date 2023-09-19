@@ -134,7 +134,7 @@ public class Assignment {
                 exist = false;
                 System.out.println(RED + "Invalid ID or Password. Please enter again!" + RESET);
             }
-           systemPause();
+           
         } while (!exist);
 
        
@@ -268,10 +268,11 @@ public class Assignment {
            case 1 -> stockMenu("Book Management",new Book() );
               
            case 2 -> stockMenu("Stationary Management",new Stationary());
-     
-           case 0 -> {}
-
+           
            case 3 -> new Report().stockReportMenu();
+           
+           case 0 -> {}
+           
            
            default -> {
                     System.out.println(RED + "Invalid Input ! " + RESET);
@@ -317,8 +318,7 @@ public class Assignment {
                         case 3 -> book.remove();
                         
                         case 4 -> book.display();
-                        
-                        
+
                         case 5 -> book.search();
                         
                         case 0 -> {}

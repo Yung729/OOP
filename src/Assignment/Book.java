@@ -936,8 +936,7 @@ public class Book extends Stock {
         return true;
     }
     
-    
-   
+
     @Override
     public String toString(){     
         return String.format("%-10s  %-10s  %-17s %-10s",bookId,
