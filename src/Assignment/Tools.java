@@ -2,6 +2,7 @@ package Assignment;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.io.IOException;
@@ -56,14 +57,24 @@ public class Tools {
 
         double totalPrice = Double.parseDouble(orderList.get(5));
 
-        ArrayList<String> bookOrder = new ArrayList<>(Arrays.asList(bookOrderList));
+        ArrayList<String> bookOrder, stationaryOrder;
+        if (!bookOrderList[0].equals("")) {
+            bookOrder = new ArrayList<>(Arrays.asList(bookOrderList));
+        } else {
+            bookOrder = new ArrayList<>();
+        }
         for (String quantity : bookQuantityList) {
             if (quantity.equals("")) {
                 break;
             }
             bookQuantity.add(Integer.parseInt(quantity));
         }
-        ArrayList<String> stationaryOrder = new ArrayList<>(Arrays.asList(stationaryOrderList));
+
+        if (!stationaryOrderList[0].equals("")) {
+            stationaryOrder = new ArrayList<>(Arrays.asList(stationaryOrderList));
+        } else {
+            stationaryOrder = new ArrayList<>();
+        }
         for (String quantity : stationaryQuantityList) {
             if (quantity.equals("")) {
                 break;
@@ -180,5 +191,10 @@ public class Tools {
         }
         quantity = currentStock + quantity;
         FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
+    }
+     
+     public static boolean checkItemStock(String id, int quantity) {
+        int currentStock = getItemStock(id);
+        return currentStock >= quantity;
     }
 }

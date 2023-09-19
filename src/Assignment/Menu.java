@@ -75,7 +75,6 @@ public class Menu {
     }
 
     public static void makeOrderMenu() {
-       
         if(currentOrder == null) currentOrder = new Order();
 
         while (true) {
@@ -92,6 +91,11 @@ public class Menu {
 
             String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
             int quantity = Validation.getIntegerInput("Quantity\t\t > ");
+            if (!Tools.checkItemStock(itemID, quantity)) {
+                System.out.println("Not enough stock!\n");
+                continue;
+            }
+
             boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
 
             if (!FileHandler.checkIDExist(FileHandler.BOOK_STORE_DB,itemID)
@@ -102,8 +106,10 @@ public class Menu {
             }
             else {
                 assert itemID != null;
-                if (itemID.startsWith("B"))  currentOrder.addBookOrder(itemID, quantity);
-                if (itemID.startsWith("S"))  currentOrder.addStationaryOrder(itemID, quantity);
+                if (itemID.startsWith("B"))
+                    currentOrder.addBookOrder(itemID, quantity);
+                if (itemID.startsWith("S"))
+                    currentOrder.addStationaryOrder(itemID, quantity);
                 System.out.println("\n\nAdd to cart! \n\n");
 
                 if (!isContinue) {
@@ -314,9 +320,5 @@ public class Menu {
             System.out.println("\n");
         }
     }
-        
-
-
-
-    
+           
 }
