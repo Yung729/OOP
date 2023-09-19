@@ -12,6 +12,10 @@ import java.util.ArrayList;
  * @author user
  */
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 public class Order {
     private String orderID;
     private ArrayList<String> bookOrder;
