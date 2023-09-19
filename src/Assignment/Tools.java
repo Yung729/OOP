@@ -2,24 +2,16 @@ package Assignment;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
-<<<<<<< Updated upstream
 
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.io.IOException;
-=======
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
->>>>>>> Stashed changes
 import java.util.ArrayList;
 import java.util.Arrays;
 
 import static java.lang.Integer.parseInt;
-<<<<<<< Updated upstream
 import java.util.logging.Level;
 import java.util.logging.Logger;
-=======
->>>>>>> Stashed changes
 /**
  *
  * @author user
@@ -27,11 +19,7 @@ import java.util.logging.Logger;
 public class Tools {
 
     public static String getCurrentDatetime() {
-<<<<<<< Updated upstream
         //format yyyy-mm-dd hh:mm:ss
-=======
-        //format is yyyy-mm-dd hh:mm:ss
->>>>>>> Stashed changes
         String datetime = java.time.LocalDateTime.now().toString();
         String[] datetimeArr = datetime.split("T");
         String[] dateArr = datetimeArr[0].split("-");
@@ -57,18 +45,10 @@ public class Tools {
 
     public static Order getOrderObjByID(String orderID) {
         ArrayList<String> orderList = FileHandler.getRowByMainID(FileHandler.ORDER_DB, orderID);
-<<<<<<< Updated upstream
         ArrayList<Integer> bookQuantity = new ArrayList<>();
         ArrayList<Integer> stationaryQuantity = new ArrayList<>();
         
         //comma first, then :
-=======
-//        System.out.println(orderList);
-        ArrayList<Integer> bookQuantity = new ArrayList<>();
-        ArrayList<Integer> stationaryQuantity = new ArrayList<>();
-
-        //split with comma first, then split with :
->>>>>>> Stashed changes
         String id = orderList.get(0);
         String[] bookOrderList = orderList.get(1).split(":");
         String[] bookQuantityList = orderList.get(2).split(":");
@@ -77,7 +57,6 @@ public class Tools {
 
         double totalPrice = Double.parseDouble(orderList.get(5));
 
-<<<<<<< Updated upstream
         ArrayList<String> bookOrder, stationaryOrder;
         if (!bookOrderList[0].equals("")) {
             bookOrder = new ArrayList<>(Arrays.asList(bookOrderList));
@@ -100,14 +79,6 @@ public class Tools {
             if (quantity.equals("")) {
                 break;
             }
-=======
-        ArrayList<String> bookOrder = new ArrayList<>(Arrays.asList(bookOrderList));
-        for (String quantity : bookQuantityList) {
-            bookQuantity.add(Integer.parseInt(quantity));
-        }
-        ArrayList<String> stationaryOrder = new ArrayList<>(Arrays.asList(stationaryOrderList));
-        for (String quantity : stationaryQuantityList) {
->>>>>>> Stashed changes
             stationaryQuantity.add(Integer.parseInt(quantity));
         }
 
@@ -202,15 +173,12 @@ public class Tools {
             return;
         }
         quantity = currentStock - quantity;
-<<<<<<< Updated upstream
         
         try {
             StockFlowReport.writeStockToFile(id,-(currentStock - quantity),new Book().getStockAddDate());
         } catch (IOException ex) {
             Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
         }
-=======
->>>>>>> Stashed changes
         FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
      }
 
@@ -224,12 +192,9 @@ public class Tools {
         quantity = currentStock + quantity;
         FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
     }
-<<<<<<< Updated upstream
      
      public static boolean checkItemStock(String id, int quantity) {
         int currentStock = getItemStock(id);
         return currentStock >= quantity;
     }
-=======
->>>>>>> Stashed changes
 }

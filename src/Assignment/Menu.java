@@ -21,11 +21,7 @@ public class Menu {
         int option;
 
         while (true) {
-<<<<<<< Updated upstream
             Assignment.clearScreen();
-=======
-//            clearScreen();
->>>>>>> Stashed changes
             System.out.println("             SALES MENU                 ");
             System.out.println("========================================");
             System.out.println("=        1. ADD ORDER                  =");
@@ -95,14 +91,11 @@ public class Menu {
 
             String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
             int quantity = Validation.getIntegerInput("Quantity\t\t > ");
-<<<<<<< Updated upstream
             if (!Tools.checkItemStock(itemID, quantity)) {
                 System.out.println("Not enough stock!\n");
                 continue;
             }
 
-=======
->>>>>>> Stashed changes
             boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
 
             if (!FileHandler.checkIDExist(FileHandler.BOOK_STORE_DB,itemID)
@@ -113,15 +106,10 @@ public class Menu {
             }
             else {
                 assert itemID != null;
-<<<<<<< Updated upstream
                 if (itemID.startsWith("B"))
                     currentOrder.addBookOrder(itemID, quantity);
                 if (itemID.startsWith("S"))
                     currentOrder.addStationaryOrder(itemID, quantity);
-=======
-                if (itemID.startsWith("B"))  currentOrder.addBookOrder(itemID, quantity);
-                if (itemID.startsWith("S"))  currentOrder.addStationaryOrder(itemID, quantity);
->>>>>>> Stashed changes
                 System.out.println("\n\nAdd to cart! \n\n");
 
                 if (!isContinue) {
@@ -304,11 +292,7 @@ public class Menu {
     }
 
     public static void reportMenu() {
-<<<<<<< Updated upstream
         SummaryReport sReport = new SummaryReport();
-=======
-        SummaryReport report = new SummaryReport();
->>>>>>> Stashed changes
         HotSellReport hotSellReport = new HotSellReport();
         while(true) {
             System.out.println("========================================");
@@ -322,11 +306,7 @@ public class Menu {
             switch(option) {
                 case 1:
                     System.out.println("\n(Sales Summary Report)");
-<<<<<<< Updated upstream
                     sReport.printReport();
-=======
-                    report.printReport();
->>>>>>> Stashed changes
                     break;
                 case 2:
                     System.out.println("\nHot Sales Report (Top 5 Items)");
@@ -340,13 +320,5 @@ public class Menu {
             System.out.println("\n");
         }
     }
-<<<<<<< Updated upstream
            
-=======
-        
-
-
-
-    
->>>>>>> Stashed changes
 }

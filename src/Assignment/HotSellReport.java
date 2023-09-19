@@ -11,10 +11,6 @@ package Assignment;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-<<<<<<< Updated upstream
-=======
-import java.util.Objects;
->>>>>>> Stashed changes
 
 public class HotSellReport extends Report {
     private final ArrayList<Order> orderList;
@@ -41,12 +37,8 @@ public class HotSellReport extends Report {
                 if (itemsMap.containsKey(bookID)) {
                     itemsMap.put(bookID, itemsMap.get(bookID) + order.getBookQuantity().get(i));
                 } else {
-<<<<<<< Updated upstream
                     if (order.getBookQuantity().size() > 0)
                         itemsMap.put(bookID, order.getBookQuantity().get(i));
-=======
-                    itemsMap.put(bookID, order.getBookQuantity().get(i));
->>>>>>> Stashed changes
                 }
             }
             for (int i = 0; i < order.getStationaryOrder().size(); i++) {
@@ -54,12 +46,8 @@ public class HotSellReport extends Report {
                 if (itemsMap.containsKey(stationaryID)) {
                     itemsMap.put(stationaryID, itemsMap.get(stationaryID) + order.getStationaryQuantity().get(i));
                 } else {
-<<<<<<< Updated upstream
                     if (order.getStationaryQuantity().size() > 0)
                         itemsMap.put(stationaryID, order.getStationaryQuantity().get(i));
-=======
-                    itemsMap.put(stationaryID, order.getStationaryQuantity().get(i));
->>>>>>> Stashed changes
                 }
             }
         }
