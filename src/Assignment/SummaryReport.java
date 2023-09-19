@@ -4,6 +4,9 @@
  */
 package Assignment;
 
+import static Assignment.Assignment.clearScreen;
+import static Assignment.Assignment.logo;
+
 /**
  *
  * @author user
@@ -12,6 +15,8 @@ public class SummaryReport extends Report {
 
     @Override
     public void printReport() {
+        clearScreen(); 
+        logo();
         System.out.println("====================================================");
         for (Transaction transaction : super.getTransactionList()) {
             transaction.printTransaction();

@@ -8,6 +8,8 @@ package Assignment;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
 
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
@@ -48,7 +50,6 @@ public class Tools {
         ArrayList<Integer> bookQuantity = new ArrayList<>();
         ArrayList<Integer> stationaryQuantity = new ArrayList<>();
         
-        //comma first, then :
         String id = orderList.get(0);
         String[] bookOrderList = orderList.get(1).split(":");
         String[] bookQuantityList = orderList.get(2).split(":");
@@ -115,13 +116,13 @@ public class Tools {
 
     public static ArrayList<String[]> getAvailableBookList(){
         ArrayList<String[]> bookList = Tools.getBookListFromDB();
-        bookList.removeIf(book -> parseInt(book[2]) == 0);  //remove book with 0 stock
+        bookList.removeIf(book -> parseInt(book[2]) == 0);
         return bookList;
     }
 
     public static ArrayList<String[]> getAvailableStationaryList(){
         ArrayList<String[]> stationaryList = Tools.getStationaryListFromDB();
-        stationaryList.removeIf(stationary -> parseInt(stationary[2]) == 0);  //remove stationary with 0 stock
+        stationaryList.removeIf(stationary -> parseInt(stationary[2]) == 0);
         return stationaryList;
     }
 
@@ -169,7 +170,7 @@ public class Tools {
         String filename = checkItemTypeByID(id);
         int currentStock = getItemStock(id);
         if (currentStock < quantity) {
-            System.out.println("Not enough stock");
+            System.out.println(RED + "Not enough stock" + RESET);
             return;
         }
         quantity = currentStock - quantity;
@@ -186,7 +187,7 @@ public class Tools {
         String filename = checkItemTypeByID(id);
         int currentStock = getItemStock(id);
         if (currentStock < quantity) {
-            System.out.println("Not enough stock");
+            System.out.println(RED + "Not enough stock" + RESET);
             return;
         }
         quantity = currentStock + quantity;

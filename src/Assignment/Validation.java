@@ -4,6 +4,9 @@
  */
 package Assignment;
 
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
+
 import static java.lang.Character.toUpperCase;
 import java.util.Scanner;
 
@@ -27,15 +30,15 @@ public class Validation {
         return check;
     }
     
-    public static int getIntegerInput() { //exception handling for int input
+    public static int getIntegerInput() {
         int value;
         try {
             value = input.nextInt();
             input.nextLine();
         } catch (Exception e) {
             input.nextLine();
-            System.out.println(Assignment.RED+"Must In Integer"+Assignment.RESET);
-            return -1; //invalid
+            System.out.println(RED + "Must In Integer" + RESET);
+            return -1; 
         }
         return value;
     }
@@ -43,19 +46,19 @@ public class Validation {
         public static int getIntegerInput(String question) {
         String res = getStringInput(question);
         if (res == null)  return -1;
-        if (!res.matches("\\d+"))  return -1;  //if not number
+        if (!res.matches("\\d+"))  return -1; 
 
         return Integer.parseInt(res);
     }
     
-    public static double getDoubleInput() { //exception handling for int input
+    public static double getDoubleInput() { 
         double value;
         try {
             value = input.nextDouble();
             input.nextLine();
         } catch (Exception e) {
             input.nextLine();
-            return -1; //invalid
+            return -1; 
         }
         return value;
     }
@@ -102,11 +105,11 @@ public class Validation {
         do {
             ans = getStringInput(question);
             if (ans == null) {
-                System.out.println("Invalid input!");
+                System.out.println(RED + "Invalid input!" + RESET);
                 continue;
             }
             if (toUpperCase(ans.charAt(0)) != 'Y' && toUpperCase(ans.charAt(0)) != 'N') {
-                System.out.println("Invalid input!");
+                System.out.println(RED + "Invalid input!" + RESET);
                 continue;
             }
             break;

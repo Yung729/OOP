@@ -7,6 +7,10 @@ package Assignment;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Objects;
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
+import static Assignment.Assignment.clearScreen;
+import static Assignment.Assignment.logo;
 
 import static Assignment.StaticStorage.*;
 
@@ -21,13 +25,15 @@ public class Menu {
         int option;
 
         while (true) {
-            Assignment.clearScreen();
+            clearScreen(); 
+            logo();
+            System.out.println("========================================");
             System.out.println("             SALES MENU                 ");
             System.out.println("========================================");
             System.out.println("=        1. ADD ORDER                  =");
             System.out.println("=        2. DISPLAY ORDER CART         =");
             System.out.println("=        3. PAYMENT                    =");
-            System.out.println("=        4. EXIT                       =");
+            System.out.println("=        0. EXIT                       =");
             System.out.println("========================================");
             System.out.print("Enter your choice: ");
             option = Validation.getIntegerInput();
@@ -39,9 +45,8 @@ public class Menu {
                     break;
                 case 2:
                     System.out.println("Display Order Cart");
-                    //change the logic here
                     if (currentOrder == null) {
-                        System.out.println("No order has been made yet!");
+                        System.out.println(RED + "No order has been made yet!" + RESET);
                         break;
                     }
                     cartOptionMenu();
@@ -50,10 +55,10 @@ public class Menu {
                 case 3:
                     paymentMenu();
                     break;
-                case 4:
+                case 0:
                     return;
                 default:
-                    System.out.println("Invalid input!");
+                    System.out.println(RED + "Invalid input!" + RESET);
             }
         }
     }
@@ -78,21 +83,22 @@ public class Menu {
         if(currentOrder == null) currentOrder = new Order();
 
         while (true) {
-            System.out.println("========================================");
-            System.out.println("             MAKE ORDER                 ");
-            System.out.println("========================================");
-            System.out.println("(Book)");
+            clearScreen();
+            System.out.println("================================================================================");
+            System.out.println("=                                 MAKE ORDER                                   =");
+            System.out.println("================================================================================");
+            System.out.println("=====================================Book=======================================");
             bookListMenu(Tools.getAvailableBookList());
 
-            System.out.println("\n(Stationary)");
+            System.out.println("==================================Stationary====================================");
             stationaryListMenu(Tools.getAvailableStationaryList());
 
-            System.out.println("========================================");
+            System.out.println("================================================================================");
 
             String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
             int quantity = Validation.getIntegerInput("Quantity\t\t > ");
             if (!Tools.checkItemStock(itemID, quantity)) {
-                System.out.println("Not enough stock!\n");
+                System.out.println(RED + "Not enough stock!\n" + RESET);
                 continue;
             }
 
@@ -102,7 +108,7 @@ public class Menu {
                     && !FileHandler.checkIDExist(FileHandler.STATIONARY_DB,itemID)
                     && !Objects.equals(itemID, ""))
             {
-                System.out.println("Input Item's ID does not exist! \n\n\n");
+                System.out.println(RED + "Input Item's ID does not exist! \n\n\n" + RESET);
             }
             else {
                 assert itemID != null;
@@ -121,7 +127,7 @@ public class Menu {
 
     public static void cartOptionMenu() {
         if (currentOrder == null) {
-            System.out.println("No order has been made yet!");
+            System.out.println(RED + "No order has been made yet! " + RESET);
             System.out.println("\n\n");
             return;
         }
@@ -143,7 +149,7 @@ public class Menu {
                 case 3 -> {
                     return;
                 }
-                default -> System.out.println("Invalid input!");
+                default -> System.out.println(RED + "Invalid input!" + RESET);
             }
             System.out.println("\n\n\n\n\n");
         }
@@ -151,7 +157,7 @@ public class Menu {
 
     private static void editCartMenu() {
         if(currentCart == null) {
-            System.out.println("No order has been made yet!");
+            System.out.println(RED + "No order has been made yet!" + RESET);
             return;
         }
 
@@ -166,7 +172,7 @@ public class Menu {
             currentCart.displayCart();
             System.out.println("             EDIT CART                  ");
             System.out.println("1. Add Item \t\t\t\t\t2. Remove Item");
-            System.out.println("3. Edit Item Quantity \t\t\t4. Back");
+            System.out.println("3. Edit Item Quantity \t\t\t\t4. Back");
             int option = Validation.getIntegerInput("Enter your choice > ");
             switch (option) {
                 case 1:
@@ -179,7 +185,7 @@ public class Menu {
                     String itemID = Validation.getStringInput("Item ID > ");
                     if (itemID == null) break;
                     if (currentOrder.checkItemIsExist(itemID)) {
-                        System.out.println("Item does not exist in cart!");
+                        System.out.println(RED + "Item does not exist in cart!" + RESET);
                         break;
                     }
                     currentCart.removeItem(itemID);
@@ -212,21 +218,20 @@ public class Menu {
                     }
 
                     if (currentOrder.checkItemIsExist(itemID)) {
-                        System.out.println("Item does not exist in cart!");
+                        System.out.println(RED + "Item does not exist in cart!" + RESET);
                         break;
                     }
                     if (Tools.checkCurrentStockAvailable(itemID, quantity)) {
                         currentCart.editItemQuantity(itemID, quantity);
-                        //update stock here
                         System.out.println("Stock updated!");
                     } else {
-                        System.out.println("Not enough stock!");
+                        System.out.println(RED + "Not enough stock!" + RESET);
                     }
                     break;
                 case 4:
                     return;
                 default:
-                    System.out.println("Invalid input!");
+                    System.out.println(RED + "Invalid input!" + RESET);
             }
             System.out.println("\n\n\n\n\n");
         }
@@ -234,7 +239,7 @@ public class Menu {
 
     public static void paymentMenu() {
         if (currentOrder == null) {
-            System.out.println("No order has been made yet! \n");
+            System.out.println(RED + "No order has been made yet! \n" + RESET);
             return;
         }
         if (currentCart == null) currentCart = new Cart(currentOrder);
@@ -252,7 +257,7 @@ public class Menu {
             String memberID = Validation.getStringInput("Member ID > ");
             if (memberID == null) return;
             if (!FileHandler.checkIDExist(FileHandler.MEMBER_DB, memberID)) {
-                System.out.println("Member ID does not exist!\n");
+                System.out.println(RED + "Member ID does not exist!\n" + RESET);
                 return;
             }
             currentOrder.setMemberDiscount(true);
@@ -269,7 +274,7 @@ public class Menu {
             case 2 -> method = "Ewallet";
             case 3 -> method = "Cash";
             default -> {
-                System.out.println("Invalid input! \n");
+                System.out.println(RED + "Invalid input! \n" + RESET);
                 return;
             }
         }
@@ -280,12 +285,15 @@ public class Menu {
     }
 
     private static void displayReceipt() {
+        clearScreen(); 
+        logo();
+        System.out.println("=============================================");
         System.out.println("\nReceipt\n");
         System.out.println("Transaction Method: " + currentTransaction.getMethod() + "\t\t" + "Transaction ID: " + currentTransaction.getTransactionID());
         System.out.println("Date: " + currentTransaction.getDatetime());
         currentCart.displayCart();
         System.out.println("=============================================");
-        System.out.println("\t\t\tThank you for purchasing\n\n");
+        System.out.println("\t\t\tThank you for purchasing. HAVE A NICE DAY!\n\n");
         currentCart = null;
         currentOrder = null;
         currentTransaction = null;
@@ -295,12 +303,14 @@ public class Menu {
         SummaryReport sReport = new SummaryReport();
         HotSellReport hotSellReport = new HotSellReport();
         while(true) {
+            clearScreen(); 
+            logo();
             System.out.println("========================================");
             System.out.println("             REPORT MENU                ");
             System.out.println("========================================");
             System.out.println("1. View Sales Summary Report");
             System.out.println("2. View Famous Book Report");
-            System.out.println("3. Exit");
+            System.out.println("0. Exit");
             System.out.println("========================================");
             int option = Validation.getIntegerInput("Enter your choice > ");
             switch(option) {
@@ -312,10 +322,10 @@ public class Menu {
                     System.out.println("\nHot Sales Report (Top 5 Items)");
                     hotSellReport.printReport();
                     break;
-                case 3:
+                case 0:
                     return;
                 default:
-                    System.out.println("Invalid input!");
+                    System.out.println(RED + "Invalid input!" + RESET);
             }
             System.out.println("\n");
         }

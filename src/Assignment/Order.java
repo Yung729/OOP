@@ -149,7 +149,7 @@ public class Order {
 
     public void updateBookOrderQuantity(String bookID, int quantity) {
         int index = bookOrder.indexOf(bookID);
-        //if previous quantity is lower than new quantity, add the difference to total price, else subtract
+        
         if (bookQuantity.get(index) < quantity) {
             this.totalPrice += (quantity - bookQuantity.get(index)) * Tools.getBookPriceByID(bookID);
             Tools.substractItemStock(bookID, quantity);
@@ -203,7 +203,7 @@ public class Order {
 
     public void updateStationaryOrderQuantity(String stationaryID, int quantity) {
         int index = stationaryOrder.indexOf(stationaryID);
-        //if previous quantity is lower than new quantity, add the difference to total price, else subtract
+
         if (stationaryQuantity.get(index) < quantity) {
             this.totalPrice += (quantity - stationaryQuantity.get(index)) * Tools.getStationaryPriceByID(stationaryID);
             Tools.substractItemStock(stationaryID, quantity);
@@ -249,7 +249,6 @@ public class Order {
         System.out.printf("%-30s\t%-5.2f\n", "Total Amount:", totalPrice);
     }
 
-    //call this when user confirm order
     public void saveOrderToDB() {
         String newLine = orderID + "|" + String.join(":", bookOrder) + "|" + String.join(":",getBookQuantityStrArr()) + "|" +
                 String.join(":", stationaryOrder) + "|" + String.join(":",getStationaryQuantityStrArr()) + "|" + getTotalPriceWithTax();

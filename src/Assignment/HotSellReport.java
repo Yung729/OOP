@@ -8,6 +8,8 @@ package Assignment;
  *
  * @author user
  */
+import static Assignment.Assignment.clearScreen;
+import static Assignment.Assignment.logo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -67,11 +69,13 @@ public class HotSellReport extends Report {
     public void printReport() {
         HashMap<String, Integer> filteredMap = getFilteredMap();
         int count = 0;
-        System.out.println("===============================================");
-        System.out.println("|                Hot Sell Report              |");
-        System.out.println("===============================================");
+        clearScreen(); 
+        logo();
+        System.out.println("================================================================================");
+        System.out.println("=                                Hot Sell Report                               =");
+        System.out.println("================================================================================");
         System.out.printf("| %-8s\t%-20s\t%-8s  |\n", "Item ID", "Item Name", "Quantity");
-        System.out.println("===============================================");
+        System.out.println("================================================================================");
         for (String itemID : filteredMap.keySet()) {
             if (count == 5) {
                 break;
@@ -79,7 +83,7 @@ public class HotSellReport extends Report {
             System.out.printf("| %-8s\t%-20s\t%-8d  |\n", itemID, Tools.getItemNameByID(itemID), filteredMap.get(itemID));
             count++;
         }
-        System.out.println("===============================================");
+        System.out.println("================================================================================");
     }
 }
 

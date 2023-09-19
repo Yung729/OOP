@@ -5,6 +5,10 @@ package Assignment;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.ArrayList;
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
+import static Assignment.Assignment.clearScreen;
+import static Assignment.Assignment.logo;
 /**
  *
  * @author user
@@ -52,7 +56,7 @@ public class Transaction {
     private void initTransaction() {
         ArrayList<String> transactionList = FileHandler.getRowByMainID(FileHandler.TRANSACTION_DB, transactionID);
         if (transactionList.isEmpty()) {
-            System.out.println("No transaction found!");
+            System.out.println(RED + "No transaction found!" + RESET);
             return;
         }
         this.paymentMethod = transactionList.get(1);
@@ -102,6 +106,9 @@ public class Transaction {
     }
 
     public void printTransaction(){
+        clearScreen(); 
+        logo();
+
         System.out.println("Order ID: \t\t" + orderID);
         System.out.println("Transaction ID: " + transactionID  + "\t\t\tPayment Method: " + paymentMethod);
         System.out.println("Datetime: \t\t" + datetime + "\n");
