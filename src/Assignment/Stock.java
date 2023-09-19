@@ -145,13 +145,13 @@ public abstract class Stock {
             count++;
         }
         
-        System.out.println("\n\t\t\t\t\t\t\tTotal Book :" + count 
-                            +"\n\t\t\t\t\t\t\tTotal Quantity :" + quantity +
-                            "\n\t\t\t\t\t\t\tTotal UnitPrice :" +totalUnitPrice +
-                            "\n\t\t\t\t\t\t\tTotal SoldPrice:" + totalSoldPrice +
-                            "\n\t\t\t\t\t\t\tTotal Estimate Sold:" + (totalSoldPrice - totalUnitPrice));
-        Assignment.systemPause();
-        
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTotal Book :" + count 
+                            +"\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTotal Quantity :" + quantity +
+                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTotal UnitPrice :" +totalUnitPrice +
+                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTotal SoldPrice:" + totalSoldPrice +
+                            "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\tTotal Estimate Sold:" + (totalSoldPrice - totalUnitPrice));
+        Assignment.systemPause(Assignment.GREEN+"Press Any Key To Show Stationary List...."+Assignment.RESET);
+        Assignment.clearScreen();
         System.out.println("Display Available Stationary");
         System.out.printf("%-15s %-28s    %-8s    %-6s    %-9s    %-15s    \n","Stationary Id","Stationary Name","Quantity",
                 "Unit Price","Sold Price","Stock Status");
@@ -179,11 +179,11 @@ public abstract class Stock {
             count++;
         }
         
-        System.out.println("\n\t\t\t\t\t\t\tTotal Book :" + count 
-                            +"\n\t\t\t\t\t\t\tTotal Quantity :" + quantity +
-                            "\n\t\t\t\t\t\t\tTotal UnitPrice :" +totalUnitPrice +
-                            "\n\t\t\t\t\t\t\tTotal SoldPrice:" + totalSoldPrice +
-                            "\n\t\t\t\t\t\t\tTotal Estimate Sold:" + (totalSoldPrice - totalUnitPrice));
+        System.out.println("\n\t\t\t\t\t\t\t\t\t\tTotal Book :" + count 
+                            +"\n\t\t\t\t\t\t\t\t\t\tTotal Quantity :" + quantity +
+                            "\n\t\t\t\t\t\t\t\t\t\tTotal UnitPrice :" +totalUnitPrice +
+                            "\n\t\t\t\t\t\t\t\t\t\tTotal SoldPrice:" + totalSoldPrice +
+                            "\n\t\t\t\t\t\t\t\t\t\tTotal Estimate Sold:" + (totalSoldPrice - totalUnitPrice));
         
         
         Assignment.systemPause();
