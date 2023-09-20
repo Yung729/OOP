@@ -367,7 +367,7 @@ public class Member {
     public void DeleteMember(){
         Assignment.clearScreen();
         
-        Member member = new Member();
+        
         ArrayList<Member> memberArray = new ArrayList();
 
         String deleteID;
@@ -470,7 +470,7 @@ public class Member {
     }
   
      
-     public String generateMemberID(ArrayList<Member> memberArray){
+    public String generateMemberID(ArrayList<Member> memberArray){
         String generatedMemberID;
         
         if(memberArray.isEmpty()){
