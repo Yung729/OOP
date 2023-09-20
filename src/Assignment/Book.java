@@ -963,20 +963,6 @@ public class Book extends Stock {
     }
 
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Book other = (Book) obj;
-        return Objects.equals(this.bookId, other.bookId);
-    }
 
 
     

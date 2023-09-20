@@ -103,6 +103,8 @@ public class Report {
                 default -> System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
             }
             
+            
+            
         } while (choice != 0);
     }
     

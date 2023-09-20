@@ -47,8 +47,11 @@ public class LowStockReport extends Report{
         System.out.println("================");
 
         lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
-        System.out.println("Low Book Report");
+        System.out.println("\n\nLow Book Report");
         System.out.println("================");
+         System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-15s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("================================================================================================================================================================");
         
         for (Book bookCheck : bookArray) {
             if (checkLowStock(bookCheck)) {
@@ -72,6 +75,10 @@ public class LowStockReport extends Report{
  
         System.out.println("Low Stationary Report");
         System.out.println("================");
+        System.out.printf("%-15s %-28s    %-8s    %-6s    %-9s    %-15s    \n","Stationary Id","Stationary Name","Quantity",
+                "Unit Price","Sold Price","Stock Status");
+                    System.out.println("==========================================================================================================");
+                    
         for (Stationary staCheck : staArray) {
             if (checkLowStock(staCheck)) {
                 System.out.println(staCheck);
