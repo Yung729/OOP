@@ -29,21 +29,26 @@ public class Member {
     private String email;
     private double discountRate;
     private double memberPoints;
+    private char memberGrade;
+
     
     
     public Member(){
-        this("","","","",0.0,0.0);
+        this("","","","",'B',0.0,0.0);
     }
     
-    public Member(String memberID, String name, String phoneNumber, String email, double discountRate, double memberPoints){
+    public Member(String memberID, String name, String phoneNumber, String email, char memberGrade, double discountRate, double memberPoints){
         this.memberID = memberID;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.memberGrade = memberGrade;
         this.discountRate = discountRate;
         this.memberPoints = memberPoints;
+        
     }
-    
+
+   
     //getter
     public String getMemberID(){
         return memberID;
@@ -59,6 +64,10 @@ public class Member {
     
     public String getEmail(){
         return email;
+    }
+    
+    public char getMemberGrade(){
+        return memberGrade;
     }
     
     public double getDiscountRate(){
@@ -85,6 +94,10 @@ public class Member {
     public void setEmail(String email){
         this.email = email;
     }
+    
+    public void setMemberGrade(char memberGrade){
+        this.memberGrade = memberGrade;
+    }
 
     public void setDiscountRate(double discountRate){
         this.discountRate = discountRate;
@@ -102,7 +115,7 @@ public class Member {
     //other methods
     @Override
     public String toString(){
-        return "Member ID: " + memberID + "   Name: " + name + "  Phone Number: " + phoneNumber + "   Email: " + email + "   Discount Rate: " + discountRate;
+        return "Member ID: " + memberID + "\nName: " + name + "\nPhone Number: " + phoneNumber + "\nEmail: " + email + "\nMember grade: " + memberGrade + "\nDiscount Rate: " + discountRate + "\n-----------------------------------------------------------";
     }
     
     public void addMember(ArrayList<Member> memberArray, Member member){
@@ -120,8 +133,10 @@ public class Member {
                                      member.getName() + "|" + 
                                      member.getPhoneNumber() + "|" +
                                      member.getEmail() + "|" +
+                                     member.getMemberGrade() + "|" +
                                      member.getDiscountRate() + "|" +
-                                     member.getMemberPoints() + "\n"
+                                     member.getMemberPoints() + "|"
+                                     + "\n"
                                     );
             }
         }
@@ -136,14 +151,14 @@ public class Member {
             while(memberRead.hasNextLine()){
                 String line = memberRead.nextLine();
                 String[] info = line.split("\\|");
-                memberArray.add(new Member(info[0], info[1], info[2], info[3], Double.parseDouble(info[4]), Double.parseDouble(info[5])));
+                memberArray.add(new Member(info[0], info[1], info[2], info[3], info[4].charAt(0), Double.parseDouble(info[5]), Double.parseDouble(info[6])));
             }
         } else {
             File createMemberFile = new File("Member.txt");
             try{
                 createMemberFile.createNewFile();
             } catch(IOException ex){
-                Logger.getLogger(Member.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Assignment.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.out.println("File created : " + createMemberFile.getName() + "\n");
         }
@@ -197,6 +212,7 @@ public class Member {
         String validatedName;
         String validatedPhoneNumber;
         String validatedEmail;
+        char validatedMemberGrade;
         String validatedDateOfBirth = null;
         double validatedPoints = 0.0;
         
@@ -264,7 +280,28 @@ public class Member {
             
         }while(error);
         
-       
+        do{
+            error = false;
+            System.out.print("Enter Member Grade (B, S, G) : ");
+            validatedMemberGrade = inputString.next().charAt(0);
+            memberGrade = Character.toUpperCase(memberGrade);
+            
+         
+            switch (validatedMemberGrade) {
+            case 'B' -> setDiscountRate(0.1);
+            case 'S' -> setDiscountRate(0.13);
+            case 'G' -> setDiscountRate(0.15);
+            default -> {
+                error = true;
+                }
+            }
+
+            if(error){
+                System.out.println(RED + "Invalid member. Please enter again!" + RESET);
+                System.out.println(RED + "Example: B, S, G" + RESET);
+            }
+
+        }while(error);
         
         do{
             error = false;
@@ -280,8 +317,8 @@ public class Member {
         }while(error);
         
         if (confirm == 'Y') {
-            member.addMember(memberArray, new Member(getMemberID(),validatedName,validatedPhoneNumber,validatedEmail
-                  ,0,validatedPoints));
+            member.addMember(memberArray, new Member(getMemberID(),validatedName,validatedPhoneNumber,validatedEmail,validatedMemberGrade
+                  ,discountRate,validatedPoints));
             
             try {
                 writeMember(memberArray);
@@ -339,6 +376,8 @@ public class Member {
         System.out.println("Name: " + name);
         System.out.println("Email: " + email);
         System.out.println("Contact Number: " + phoneNumber);
+        System.out.println("Member Grade: " + memberGrade);
+        System.out.println("Discount Rate: " + discountRate);
         System.out.println("Member's Points: " + memberPoints);
         
         Assignment.systemPause();
@@ -607,6 +646,15 @@ public class Member {
         
         return error;
     }
+    
+    public boolean checkMemberGradeFormat(char checkMemberGrade){
+        boolean error = false;
+       
+        
+        
+        
+        return error;
+    }
      
     public boolean checkPointsFormat(double checkPoints){
          boolean error = false;
@@ -652,6 +700,8 @@ public class Member {
         System.out.println("member Name: " + name);
         System.out.println("phone number: " + phoneNumber);
         System.out.println("email: " + email);
+        System.out.println("member grade: " + memberGrade);
+        System.out.println("discount rate: " + discountRate);
         System.out.println("points:  " + memberPoints);
         
         return viewMemberInformation();
@@ -666,6 +716,12 @@ public class Member {
         
         return checkYN;
     }
+
+  
+
+   
+
+
 
     
     }
