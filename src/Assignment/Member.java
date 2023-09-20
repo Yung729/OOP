@@ -213,7 +213,6 @@ public class Member {
         String validatedPhoneNumber;
         String validatedEmail;
         char validatedMemberGrade;
-        String validatedDateOfBirth = null;
         double validatedPoints = 0.0;
         
         int choice;
@@ -642,7 +641,15 @@ public class Member {
             }else if(check == dot){
                 countDot++;
             }
-        }       
+        }
+        
+        if (countAlian == 0) {
+            error = true;
+        }
+        
+        if (countDot == 0) {
+            error = true;
+        }
         
         return error;
     }
