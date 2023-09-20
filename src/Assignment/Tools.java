@@ -96,11 +96,15 @@ public class Tools {
 
     public static String getBookNameByID(String ID) {
         ArrayList<String> bookList = FileHandler.getRowByMainID(FileHandler.BOOK_STORE_DB, ID);
+        if (bookList.isEmpty()) {
+            return "";
+        }
         return bookList.get(1);
     }
 
     public static String getStationaryNameByID(String ID) {
         ArrayList<String> stationaryList = FileHandler.getRowByMainID(FileHandler.STATIONARY_DB, ID);
+        
         return stationaryList.get(1);
     }
 

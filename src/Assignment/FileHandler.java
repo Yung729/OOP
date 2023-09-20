@@ -119,7 +119,8 @@ public class FileHandler {
 
     public static int getLastRowID(String filename){
         ArrayList<String[]> fileContent = readFileToArray(filename);
-        if (fileContent.size() == 0) {
+        System.out.println("here: " + Arrays.toString(fileContent.get(0)));
+        if (fileContent.size() == 0 || Arrays.toString(fileContent.get(0)).equals("[]")) {
             return 0;
         }
         String lastLineID = fileContent.get(fileContent.size() - 1)[0];
