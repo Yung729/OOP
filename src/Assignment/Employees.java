@@ -380,7 +380,6 @@ public class Employees {
                     Assignment.systemPause();
                     Admin.adminMenu();
                     exist = false;
-                    input.nextLine();
                 }
                 else{
                     System.out.println(Assignment.RED + "Invalid ID or Password. Please enter again!" + Assignment.RESET);
@@ -393,7 +392,6 @@ public class Employees {
                     Assignment.systemPause();
                     Cashier.cashierMenu();
                     exist = false;
-                    input.nextLine();
                 }
                 else{
                     System.out.println(Assignment.RED + "Invalid ID or Password. Please enter again!" + Assignment.RESET);
