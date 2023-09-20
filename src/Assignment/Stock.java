@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public abstract class Stock {
   
     protected String name;
-    protected  int stockQuantity;
-    protected double unitPrice;
-    protected double soldPrice;
-    protected boolean stockStatus;
+    private  int stockQuantity;
+    private double unitPrice;
+    private double soldPrice;
+    private boolean stockStatus;
     LocalDate stockAddDate = LocalDate.now();
 
     public abstract void add();
@@ -95,7 +95,8 @@ public abstract class Stock {
     public  void setStockAddDate(LocalDate stockAddDate) {
         this.stockAddDate = stockAddDate;
     }
-
+    
+    //validation
     public Boolean validQuantity(int Quantity){
         return Quantity > 0;
     }
