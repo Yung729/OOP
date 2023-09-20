@@ -400,6 +400,8 @@ public class Employees {
                 exist = false;
                 System.out.println(Assignment.RED + "Invalid ID or Password. Please enter again!" + Assignment.RESET);
             }
+            
+            input.nextLine();
            
         } while (!exist);
 

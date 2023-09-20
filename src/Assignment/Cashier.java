@@ -1590,7 +1590,7 @@ public class Cashier extends Employees{
         }
         
         systemPause();
-        
+        clearScreen();
     }
     
     public void cashierSalesPerformance(){
