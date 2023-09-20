@@ -110,7 +110,6 @@ public abstract class Stock {
         return soldPrice > unitPrice;
     }
     
-    
     @Override
     public String toString() {
         return String.format("%-30s  %-10d  RM%-13.2f RM%-13.2f %-12s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
@@ -120,16 +119,17 @@ public abstract class Stock {
         double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
         int quantity = 0,count=0;
         Assignment.clearScreen();
+        
         ArrayList<Book> bookArray = new ArrayList<>();
         ArrayList<Stationary> staArray = new ArrayList<>();
 
-         System.out.println("Display Available Book");
+        System.out.println("Display Available Book");
         System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-15s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Stock Status","Type",
                 "Author Name","YearOfBirth","status");
         System.out.println("================================================================================================================================================================");
         
         try {
-            Book.readBookFromFile(bookArray);
+            Book.readFromFile(bookArray);
         } catch (FileNotFoundException ex) {
             System.out.println("Failed to Read File.");
         }
@@ -187,5 +187,95 @@ public abstract class Stock {
         
         
         Assignment.systemPause();
+    }
+    
+       
+    public static void stockMainMenu(){
+         int choice;
+      
+      do {
+        
+       Assignment.clearScreen();
+
+        Assignment.logo();
+        System.out.println("===========================================");
+        System.out.println("=           Stock Management              =");
+        System.out.println("===========================================");
+        System.out.println("=        1. Book Management               =");
+        System.out.println("=        2. Stationary Management         =");
+        System.out.println("=        3. Stock Report                  =");
+        System.out.println("=        0. Exit                          =");
+        System.out.println("===========================================");
+        
+       System.out.print("Enter Your Choice >");
+       choice = Validation.getIntegerInput();
+       
+       switch(choice){
+           
+           case 1 -> stockMenu("Book Management",new Book() );
+              
+           case 2 -> stockMenu("Stationary Management",new Stationary());
+           
+           case 3 -> new Report().stockReportMenu();
+           
+           case 0 -> {}
+           
+           
+           default -> {
+                    System.out.println(Assignment.RED + "Invalid Input ! " + Assignment.RESET);
+                    Assignment.systemPause();
+           }
+       }
+   
+      } while (choice != 0); 
+    }
+
+    public static void stockMenu(String title,Stock obj) {
+         
+        int choice;
+        Stock stock = obj;
+      
+        do {
+
+            Assignment.clearScreen();
+
+            Assignment.logo();
+            System.out.println("===========================================");
+            System.out.printf("=           %s               =\n",title);
+            System.out.println("===========================================");
+            System.out.println("=        1. Add Stock                     =");
+            System.out.println("=        2. Adjust Stock                  =");
+            System.out.println("=        3. Remove Stock                  =");
+            System.out.println("=        4. Display Stock                 =");
+            System.out.println("=        5. Search Stock                  =");
+            System.out.println("=        0. Exit                          =");
+            System.out.println("===========================================");
+
+            System.out.print("Enter Your Choice >");
+            choice = Validation.getIntegerInput();
+
+            switch(choice){
+
+                case 1 -> stock.add();
+
+                case 2 -> stock.adjust();
+
+                case 3 -> stock.remove();
+
+                case 4 -> stock.display();
+
+                case 5 -> stock.search();
+
+                case 0 -> {}
+
+                default -> {
+                    System.out.println(Assignment.RED + "Invalid Input ! " + Assignment.RESET);
+                    Assignment.systemPause();
+                }
+            }
+
+        } while (choice != 0);
+                
+      
     }
 }

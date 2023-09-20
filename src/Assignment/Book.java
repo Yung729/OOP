@@ -12,6 +12,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Character.toUpperCase;
 import java.util.ArrayList;
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -62,7 +63,7 @@ public class Book extends Stock {
     }
     
     //File Method
-    public static void writeBookToFile(ArrayList<Book> bookArray) throws IOException{
+    public static void writeToFile(ArrayList<Book> bookArray) throws IOException{
         try ( FileWriter writeBookFile = new FileWriter("Book.txt")) {
             for (Book bookFromArray : bookArray) {
                
@@ -74,7 +75,7 @@ public class Book extends Stock {
         }
     }
     
-    public static void readBookFromFile(ArrayList<Book> bookArray) throws FileNotFoundException{
+    public static void readFromFile(ArrayList<Book> bookArray) throws FileNotFoundException{
         File readBookFile = new File("Book.txt");
         
         if (readBookFile.exists()) {
@@ -98,7 +99,7 @@ public class Book extends Stock {
     }
          
     //other method
-    public String generateBookId(ArrayList<Book> bookArray){
+    public String generateId(ArrayList<Book> bookArray){
         String bookIdGenerated;
        
         if  (bookArray.isEmpty()) {
@@ -113,36 +114,7 @@ public class Book extends Stock {
         
         return bookIdGenerated;
     }
-    
-    public void displayAllRecord(ArrayList<Book> bookArray){
-      String specificBookType = "Non Type";
-       
-        for (Book book: bookArray) {
-   
-            switch(book.getBookType()){
-                case 'R'->{
-                    specificBookType = "Romantic";
-                }
-                case 'H'->{
-                    specificBookType = "Horror";
-                }
-                case 'T'->{
-                    specificBookType = "Historical fiction";
-                }
-                case 'F'->{
-                    specificBookType = "Fiction";
-                }
-                case 'E'->{
-                    specificBookType = "Education";
-                }
-               
-            }
-            
-            System.out.printf("%s   %s  %s  %d  RM%.2f  RM%.2f\n",book.getBookId(),book.getName(),specificBookType,
-                              book.getStockQuantity(),book.getUnitPrice(),book.getSoldPrice());
-        }
-    }
-    
+
     public String convertBookType(char bookType){
     
         String specificBookType = null;
@@ -251,7 +223,7 @@ public class Book extends Stock {
         System.out.println("================================================================================================================================================================");
         
         try {
-            readBookFromFile(bookArray);
+            readFromFile(bookArray);
         } catch (FileNotFoundException ex) {
             System.out.println("Failed to Read File.");
         }
@@ -277,7 +249,7 @@ public class Book extends Stock {
         
         ArrayList<Book> bookArray = new ArrayList<>();
         try {
-            readBookFromFile(bookArray);
+            readFromFile(bookArray);
         }
         catch (FileNotFoundException ex) {
             System.out.println("Failed to read book record");
@@ -355,7 +327,7 @@ public class Book extends Stock {
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
                                 editBook(bookArray, idSearch, bookArray.get(currentIndex).getName());
-                                writeBookToFile(bookArray);
+                                writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Name");
                             }
@@ -375,7 +347,7 @@ public class Book extends Stock {
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
                                 editBook(bookArray, idSearch, bookArray.get(currentIndex).getBookType());
-                                writeBookToFile(bookArray);
+                                writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Type");
                             }
@@ -395,7 +367,7 @@ public class Book extends Stock {
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
                                 editBook(bookArray, idSearch, bookArray.get(currentIndex).getSoldPrice());
-                                writeBookToFile(bookArray);
+                                writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Type");
                             }         
@@ -437,7 +409,7 @@ public class Book extends Stock {
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,true,false);
                                         checkAvailable(bookArray);
-                                        writeBookToFile(bookArray);
+                                        writeToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" +RESET);
                                     }
@@ -454,7 +426,7 @@ public class Book extends Stock {
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,false,true);
                                         checkAvailable(bookArray);
-                                        writeBookToFile(bookArray);
+                                        writeToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" + RESET);
                                     }
@@ -472,7 +444,7 @@ public class Book extends Stock {
                                     try {
                                         editBook(bookArray, idSearch, newBookQuantity,false,false);
                                         checkAvailable(bookArray);
-                                        writeBookToFile(bookArray);
+                                        writeToFile(bookArray);
                                     } catch (IOException ex) {
                                         System.out.println(RED + "Failed to Edit The Book Type" + RESET);
                                     }
@@ -507,7 +479,7 @@ public class Book extends Stock {
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
                                 Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getName());
-                                writeBookToFile(bookArray);
+                                writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Author Name");
                             }
@@ -527,7 +499,7 @@ public class Book extends Stock {
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
                                 Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getYearOfBirth());
-                                writeBookToFile(bookArray);
+                                writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Name");
                             }
@@ -553,7 +525,7 @@ public class Book extends Stock {
                                 }
                                 
                                 
-                                writeBookToFile(bookArray);
+                                writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Name");
                             }
@@ -585,7 +557,7 @@ public class Book extends Stock {
         
                 ArrayList<Book> bookArray = new ArrayList<>();
                 try {
-                    readBookFromFile(bookArray);
+                    readFromFile(bookArray);
                 } catch (FileNotFoundException ex) {
                     System.out.println("File Error");
                 }
@@ -596,7 +568,7 @@ public class Book extends Stock {
                     System.out.println("===========================================");
                     
                     Assignment.clearScreen();
-                    book.setBookId(generateBookId(bookArray));
+                    book.setBookId(generateId(bookArray));
                     
                     //prompt input
                     System.out.println("Book Id : " + book.getBookId());
@@ -759,7 +731,7 @@ public class Book extends Stock {
                                         ,book.getUnitPrice(),book.getSoldPrice(),true,book.getBookType(),
                                         new Author(authorInput.getName(),authorInput.getYearOfBirth(),authorInput.checkArrive())));
                                 try {
-                                    writeBookToFile(bookArray);
+                                    writeToFile(bookArray);
                                 } catch (IOException ex) {
                                     System.out.println("Failed To Write into File");
                                 }
@@ -794,7 +766,7 @@ public class Book extends Stock {
     
         ArrayList<Book> bookArray = new ArrayList<>();
         try {      
-            readBookFromFile(bookArray);
+            readFromFile(bookArray);
         }
         catch (FileNotFoundException ex) {
             System.out.println("Failed to read book record");
@@ -848,7 +820,7 @@ public class Book extends Stock {
                     removeBook(bookArray,bookArray.get(currentIndex));
                     
                     try {
-                        writeBookToFile(bookArray);
+                        writeToFile(bookArray);
                     } catch (IOException ex) {
                         Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -880,7 +852,7 @@ public class Book extends Stock {
          
         ArrayList <Book> bookArray = new ArrayList<> ();
         try {
-            readBookFromFile(bookArray);
+            readFromFile(bookArray);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Stock.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -944,7 +916,7 @@ public class Book extends Stock {
     //validation
     public Boolean validID(String id){
 
-        if (id.length()<=5) {
+        if (id.length() <  5) {
             return false;
         }else if(id.charAt(0) != 'B'){
             return false;
@@ -989,6 +961,24 @@ public class Book extends Stock {
             }
         }
     }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Book other = (Book) obj;
+        return Objects.equals(this.bookId, other.bookId);
+    }
+
+
     
    
 }

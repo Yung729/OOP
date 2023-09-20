@@ -78,7 +78,7 @@ public class Stationary extends Stock{
         
     }
     
-    public String generateStaId(ArrayList<Stationary> StaArray){
+    public String generateId(ArrayList<Stationary> StaArray){
         String staIdGenerated;
        
         if  (StaArray.isEmpty()) {
@@ -421,7 +421,7 @@ public class Stationary extends Stock{
                 
                 do {
                     Assignment.clearScreen();
-                    sta.setStaId(generateStaId(staArray));
+                    sta.setStaId(generateId(staArray));
                     System.out.println("Stationary Id : " + sta.getStaId());
                     
                     do {
@@ -665,7 +665,7 @@ public class Stationary extends Stock{
        //validation
     public Boolean validID(String id){
 
-        if (id.length()<=5) {
+        if (id.length()< 5) {
             return false;
         }else if(id.charAt(0) != 'B'){
             return false;

@@ -4,6 +4,8 @@
  */
 package Assignment;
 
+import static Assignment.Assignment.RED;
+import static Assignment.Assignment.RESET;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -12,12 +14,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.systemPause;
-import static Assignment.Assignment.RED;
-import static Assignment.Assignment.RESET;
 import static Assignment.Assignment.input;
-import static Assignment.Assignment.CURRENTNAME;
+import static Assignment.Assignment.clearScreen;
+import static Assignment.Assignment.logo;
 
 /**
  *
@@ -1857,7 +1857,7 @@ public class Admin extends Employees{
         return error;
     }
 
-    public int checkAdminIndexNumber(ArrayList<Admin> adminArray, String searchID, String password){
+    public static int checkAdminIndexNumber(ArrayList<Admin> adminArray, String searchID, String password){
         int currentIndex = 0;
         for(int i = 0; i < adminArray.size();i++){
             if(searchID.equals(adminArray.get(i).getId())){
@@ -1878,6 +1878,81 @@ public class Admin extends Employees{
         return checkYN;
     }
     
+   public static void adminMenu(){
+        //menu list of main program    
+        
+        int choice;
+        boolean error;
+        
+        do{
+            clearScreen(); 
+            logo();
+            error = false;
+            System.out.println("Current Login > " + CURRENTNAME);
+            
+            System.out.println("===========================================");
+            System.out.println("=                  MENU                   =");
+            System.out.println("===========================================");
+            System.out.println("=        1. Staff Manage                  =");
+            System.out.println("=        2. Display Stock Available Menu  =");
+            System.out.println("=        3. Sales Order                   =");
+            System.out.println("=        4. Membership Register           =");
+            System.out.println("=        5. Stock Management              =");
+            System.out.println("=        6. Sales Report                  =");
+            System.out.println("=        0. Exit                          =");
+            System.out.println("===========================================");
+        
+            System.out.print("Enter your choice > ");
+                choice = Validation.getIntegerInput();
+            
+            switch(choice){
+                case 1 -> {staffMenu();}
+                
+                case 2 ->{Stock.stockAvailableMenu();}
+                
+                case 3->{Menu.salesMenu();}
+                
+                case 4 ->{new Member().memberMenu();}
+                
+                case 5 ->{Stock.stockMainMenu();}
+            
+                case 6 -> {Menu.reportMenu();}
+                
+                case 0 ->{}
+                
+                default -> System.out.println(RED + "Invalid input. Please enter again!" + RESET);
+                           
+            }
+        }while (choice != 0 || error);
+        
+       
+    }   
+   
+       public static boolean checkAdminIDPW(ArrayList<Admin> adminArray, String searchID,String searchPassword){
+        boolean exist = false;
+        for(Admin ad : adminArray){
+            if(ad.getId().equals(searchID) && ad.getPassword().equals(searchPassword))
+                exist = true;
+        }
+        
+        return exist;
+    }
+       
+    public static void printAdminLoginName(ArrayList<Admin> adminArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkAdminIndexNumber(adminArray, id, password);
+        System.out.println("\nWelcome, " + adminArray.get(currentIndex).getName() + "!");
+    }
+    
+
+    
+    public static String storeAdminLoginName(ArrayList<Admin> adminArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkAdminIndexNumber(adminArray, id, password);
+        return adminArray.get(currentIndex).getName();
+    }
     
     
 }

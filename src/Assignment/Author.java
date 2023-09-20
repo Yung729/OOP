@@ -19,10 +19,6 @@ public class Author {
     protected int currentYear = Year.now().getValue();
     
     Author(){};
-
-    public double getDISCOUNT_RATE() {
-        return DISCOUNT_RATE;
-    }
     
     Author(String name,int yearOfBirth,boolean arrive){
         this.name = name;
@@ -140,8 +136,6 @@ public class Author {
         }
 
     }
-    
- 
     
     
     @Override

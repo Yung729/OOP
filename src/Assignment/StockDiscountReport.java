@@ -21,7 +21,7 @@ public class StockDiscountReport extends Report{
         ArrayList<Book> bookArr = new ArrayList<>();
         
         try {
-            Book.readBookFromFile(bookArr);
+            Book.readFromFile(bookArr);
         } catch (FileNotFoundException ex) {
         }
         Assignment.clearScreen();
