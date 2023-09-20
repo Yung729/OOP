@@ -637,7 +637,7 @@ public class Book extends Stock {
                         }
                     }
                     
-                    } while (choice == -1);
+                    } while (choice == -1 || (choice < 1 || choice > 5) );
                     
                     
                     
@@ -933,7 +933,7 @@ public class Book extends Stock {
     
     public Boolean validName(ArrayList<Book> bookArray,String name){
 
-        if (name.length() < 10) {
+        if (name.length() < 8) {
             return false;
         }
         
