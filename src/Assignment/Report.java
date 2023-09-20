@@ -36,12 +36,47 @@ public class Report {
         return transactionList;
     }
     
+    public static void reportMenu() {
+        SummaryReport sReport = new SummaryReport();
+        HotSellReport hotSellReport = new HotSellReport();
+        
+        while(true) {
+            Assignment.clearScreen(); 
+            Assignment.logo();
+            System.out.println("========================================");
+            System.out.println("             REPORT MENU                ");
+            System.out.println("========================================");
+            System.out.println("1. View Sales Summary Report");
+            System.out.println("2. View Famous Book Report");
+            System.out.println("0. Exit");
+            System.out.println("========================================");
+            int option = Validation.getIntegerInput("Enter your choice > ");
+            
+            switch(option) {
+                case 1 -> {
+                    System.out.println("\n(Sales Summary Report)");
+                    sReport.printReport();
+                }
+                case 2 -> {
+                    System.out.println("\nHot Sales Report (Top 5 Items)");
+                    hotSellReport.printReport();
+                }
+                case 0 -> {
+                    return;
+                }
+                default -> System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
+            }
+            System.out.println("\n");
+        }
+    }
+    
     public void stockReportMenu(){      
         int choice;
         
         do {
             Assignment.clearScreen();
             Assignment.logo();
+            System.out.println("=========================");
             System.out.println("Stock Report List  ");
             System.out.println("=========================");
             System.out.println("1. Low Stock Report");
@@ -54,16 +89,18 @@ public class Report {
             
             switch(choice){
                 case 1->{
-                    new LowStockReport().findLowStock();
+                    new LowStockReport().printReport();
                 }
                 
                 case 2 ->{
-                    new StockDiscountReport().discountReport();
+                    new StockDiscountReport().printReport();
                 }
                 
                 case 3 ->{
-                    new StockFlowReport().report();
+                    new StockFlowReport().printReport();
                 }
+                
+                default -> System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
             }
             
         } while (choice != 0);

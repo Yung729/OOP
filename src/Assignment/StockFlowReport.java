@@ -57,7 +57,8 @@ public class StockFlowReport extends Report {
         this.stockFlowDate = stockFlowDate;
     }
     
-    public void report(){
+    @Override
+    public void printReport(){
         ArrayList<StockFlowReport> flowArray = new ArrayList<>();
         try {
             readStockFromFile(flowArray);

@@ -176,7 +176,6 @@ public class Member {
             System.out.println("=       1. Register Member             =");
             System.out.println("=       2. View Member                 =");
             System.out.println("=       3. Delete Member               =");
-            System.out.println("=       4. View Member Discount        =");
             System.out.println("=       0. Exit                        =");
             System.out.println("========================================");
             
@@ -189,9 +188,7 @@ public class Member {
                 case 2 -> displayMember();
                     
                 case 3 ->{DeleteMember();}
-                    
-                case 4 -> {}
-                 
+
                 case 0 -> {}
                    
                 default -> {
@@ -207,14 +204,7 @@ public class Member {
 
         Member member = new Member();
         ArrayList<Member> memberArray = new ArrayList();
-        
-        
-        String validatedName;
-        String validatedPhoneNumber;
-        String validatedEmail;
-        char validatedMemberGrade;
-        String validatedDateOfBirth = null;
-        double validatedPoints = 0.0;
+
         
         int choice;
         char confirm;
@@ -237,14 +227,12 @@ public class Member {
         
         do{
             System.out.print("Enter Name: ");
-            validatedName = inputString.nextLine();
+            setName(inputString.nextLine());
             
-            error = checkNameFormat(validatedName);
+            error = checkNameFormat(getName());
             
             if(error){
                 System.out.println(RED + "Invalid Name Format!" + RESET);
-            }else if(!error){
-                setName(validatedName);
             }
             
         }while(error);
@@ -252,30 +240,25 @@ public class Member {
         
         do{
             System.out.print("Enter Phone Number: ");
-            validatedPhoneNumber = inputString.nextLine();
+            setPhoneNumber(inputString.nextLine());
             
-            error = checkPhoneNumberFormat(validatedPhoneNumber);
+            error = checkPhoneNumberFormat(getPhoneNumber());
             if(error){
                 
                 System.out.println(RED + "Invalid format. Please enter again!" + RESET);
                 System.out.println(RED + "Example: 012-3456789" + RESET);
-                
-            }else if(!error){
-                setPhoneNumber(validatedPhoneNumber);
             }
             
         }while(error);
         
         do{
             System.out.print("Enter Email: ");
-            validatedEmail = inputString.nextLine();
+            setEmail(inputString.nextLine());
             
-            error = checkEmailFormat(validatedEmail);
+            error = checkEmailFormat(getEmail());
             if(error){
                 System.out.println(RED + "Invalid format. Please enter again!" + RESET);
                 System.out.println(RED + "Example: abc123@gmail.com" + RESET);
-            }else if(!error){
-                setEmail(validatedEmail);
             }
             
         }while(error);
@@ -283,11 +266,9 @@ public class Member {
         do{
             error = false;
             System.out.print("Enter Member Grade (B, S, G) : ");
-            validatedMemberGrade = inputString.next().charAt(0);
-            memberGrade = Character.toUpperCase(memberGrade);
-            
-         
-            switch (validatedMemberGrade) {
+            setMemberGrade(Character.toUpperCase(inputString.next().charAt(0)));
+
+            switch (getMemberGrade()) {
             case 'B' -> setDiscountRate(0.1);
             case 'S' -> setDiscountRate(0.13);
             case 'G' -> setDiscountRate(0.15);
@@ -295,7 +276,7 @@ public class Member {
                 error = true;
                 }
             }
-
+            
             if(error){
                 System.out.println(RED + "Invalid member. Please enter again!" + RESET);
                 System.out.println(RED + "Example: B, S, G" + RESET);
@@ -317,8 +298,8 @@ public class Member {
         }while(error);
         
         if (confirm == 'Y') {
-            member.addMember(memberArray, new Member(getMemberID(),validatedName,validatedPhoneNumber,validatedEmail,validatedMemberGrade
-                  ,discountRate,validatedPoints));
+            member.addMember(memberArray, new Member(memberID,name,phoneNumber,email,memberGrade
+                  ,discountRate,memberPoints));
             
             try {
                 writeMember(memberArray);
@@ -372,7 +353,7 @@ public class Member {
         System.out.println("Enter Member that you want to view: ");
         String MemberID = sc.nextLine();
         
-        System.out.println("member that you search is: " + MemberID); // output user input
+        System.out.println("member that you search is: " + memberID); // output user input
         System.out.println("Name: " + name);
         System.out.println("Email: " + email);
         System.out.println("Contact Number: " + phoneNumber);
@@ -386,7 +367,7 @@ public class Member {
     public void DeleteMember(){
         Assignment.clearScreen();
         
-        Member member = new Member();
+        
         ArrayList<Member> memberArray = new ArrayList();
 
         String deleteID;
@@ -487,65 +468,9 @@ public class Member {
         
         Assignment.systemPause();
     }
-   
-//    public void viewMemberDiscount(){
-//        double MemberDiscount = 0.75;
-//        int choice;
-//        
-//        clearScreen();
-//        
-//        System.out.println("====================================");
-//        System.out.println("=         Member Discount          =");
-//        System.out.println("=         1. View Only             =");
-//        System.out.println("=         2. Modify Discount       =");
-//        System.out.println("=         3. Exit                  =");
-//        System.out.println("====================================");
-//        
-//        System.out.println("Enter your choice > ");
-//            choice = sc.nextInt();
-//            
-//            switch(choice){
-//                case 1 -> System.out.println("MemberDiscount: " + MemberDiscount);
-//   
-//                case 2 -> ModifyMemberDiscount();
-//                
-//                case 3 -> {}
-//                
-//                default -> {
-//                    System.out.println("Error!!!!Please Choose a correct number.");
-//                }
-//            }
-//        systemPause();
-//    }
-//    
-//    public void memberPointEarned(){
-//        double MemberPoints;
-//        int choice;
-//        
-//        
-//        clearScreen();
-//        
-//        Scanner MemberID = new Scanner(System.in);
-//        System.out.println("Please enter memberID that want to view: ");
-//        MemberPoints = sc.nextDouble();
-//        
-//        
-//        System.out.println("===================================");
-//        System.out.println("=           Total Points          =");
-//        System.out.println(  "=        Member Points:" + MemberPoints +"       =");
-//        System.out.println("===================================");
-//        
-//        System.out.println("Do you want to continue?(YES/NO): ");
-//        choice = sc.nextInt();
-//        if(choice == 'YES'){
-//            memberPointEarned();
-//        }
-//        else(choice == 'NO'){
-//        systemPause();
-//    }
-//    }
+  
      
-     public String generateMemberID(ArrayList<Member> memberArray){
+    public String generateMemberID(ArrayList<Member> memberArray){
         String generatedMemberID;
         
         if(memberArray.isEmpty()){
@@ -558,23 +483,7 @@ public class Member {
         
         return generatedMemberID;
     }
-     
-    public boolean checkMember(String checkMemeber){
-         boolean error = false;
-         String IDFormat = "M";
-         int number;
-         int bufferMemberIDNUm;
-         
-         if("M".equals(IDFormat)){
-             error = false;
-         }
-         else{
-             System.out.println("Invalid memberID!");
-             error = true;
-         }
-         
-         return error; 
-    }
+
      
     public boolean checkNameFormat(String checkName){
         boolean error = false;
@@ -642,70 +551,23 @@ public class Member {
             }else if(check == dot){
                 countDot++;
             }
-        }       
+        }
+        
+        if (countAlian == 0) {
+            error = true;
+        }
+        
+        if (countDot == 0) {
+            error = true;
+        }
         
         return error;
     }
-    
-    public boolean checkMemberGradeFormat(char checkMemberGrade){
-        boolean error = false;
-       
-        
-        
-        
-        return error;
-    }
+
+
      
-    public boolean checkPointsFormat(double checkPoints){
-         boolean error = false;
-         int countPositive = 0;
-         int countNegative = 0;
-         char positive = '+';
-         char negative ='-';
-         
-         if(memberPoints >0){
-             error = true;
-         }
-         
-         return error;
-    }
-     
-    public static void ModifyMemberDiscount(){
-         String confirm;
-         double newMemberDiscount;
-        
-         boolean error;
-         Scanner sc = new Scanner(System.in);
-         
-        do{
-         System.out.println("Please enter new Member Discount: ");
-         newMemberDiscount = sc.nextDouble();
-         
-            do{
-                error = false;
-                System.out.print("Add more Member? (yes/no): ");
-                confirm = sc.nextLine();
-            
-                if(confirm != "yes" && confirm != "no"){
-                    error = true;
-                }
-            
-            }while(error);
-        
-        }while(confirm == "yes");
-    }
+
     
-    public boolean viewMemberInformation(){
-        System.out.println("member ID: " + memberID);
-        System.out.println("member Name: " + name);
-        System.out.println("phone number: " + phoneNumber);
-        System.out.println("email: " + email);
-        System.out.println("member grade: " + memberGrade);
-        System.out.println("discount rate: " + discountRate);
-        System.out.println("points:  " + memberPoints);
-        
-        return viewMemberInformation();
-    }
     
     public boolean checkYesNo(char check){
         boolean checkYN = true;

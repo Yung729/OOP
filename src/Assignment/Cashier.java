@@ -18,7 +18,6 @@ import static Assignment.Assignment.systemPause;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
 import static Assignment.Assignment.input;
-import static Assignment.Assignment.CURRENTNAME;
 
 /**
  *
@@ -1759,7 +1758,7 @@ public class Cashier extends Employees{
         return duplicate;
     }
     
-    public int checkCashierIndexNumber(ArrayList<Cashier> cashierArray, String searchID, String password){
+    public static int checkCashierIndexNumber(ArrayList<Cashier> cashierArray, String searchID, String password){
         int currentIndex = 0;
         for(int i = 0; i < cashierArray.size();i++){
             if(searchID.equals(cashierArray.get(i).getId())){
@@ -1779,5 +1778,81 @@ public class Cashier extends Employees{
         
         return checkYN;
     }
+   
+    public static void cashierMenu(){
+        //menu list of main program
+        
+        int choice;
+        boolean error;
+
+        do{
+            clearScreen(); 
+            error = false;
+            System.out.println("Current Login > " + CURRENTNAME);
+            
+            System.out.println("===========================================");
+            System.out.println("=                  MENU                   =");
+            System.out.println("===========================================");
+            System.out.println("=        1. Display Book Available Menu   =");
+            System.out.println("=        2. Sales Order                   =");
+            System.out.println("=        3. Membership Register           =");
+            System.out.println("=        0. Exit                          =");
+            System.out.println("===========================================");
+            
+            System.out.print("Enter your choice > ");
+            try{
+                choice = input.nextInt();
+            }catch (Exception e){
+                System.out.println("Invalid input!");
+                choice = 0;
+                error = true;
+            }
+            
+            switch(choice){
+                
+                case 1-> {
+                    Stock.stockAvailableMenu();
+                }
+                
+                case 2-> {
+                    Menu.salesMenu();
+                }
+                
+                case 3-> {
+                    new Member().memberRegistration();
+                }
+                
+                case 0 -> {}
+                
+                default -> System.out.println("Invalid input. Please enter again!");
+                           
+            }
+        }while (choice != 0 || error);
+        
+        
+    }
     
+     public static boolean checkCashierIDPW(ArrayList<Cashier> cashierArray, String searchID, String searchPassword){
+        boolean exist = false;
+        for(Cashier ch : cashierArray){
+            if(ch.getId().equals(searchID) && ch.getPassword().equals(searchPassword))
+                exist = true;
+        }
+        
+        return exist;
+    }
+         
+     public static String storeCashierLoginName(ArrayList<Cashier> cashierArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkCashierIndexNumber(cashierArray, id, password);
+        return cashierArray.get(currentIndex).getName();
+    }
+    
+    public static void printCashierLoginName(ArrayList<Cashier> cashierArray, String id, String password){
+        int currentIndex = 0;
+        
+        currentIndex = checkCashierIndexNumber(cashierArray, id, password);
+        System.out.println("\nWelcome, " + cashierArray.get(currentIndex).getName() + "!");
+    }
 }

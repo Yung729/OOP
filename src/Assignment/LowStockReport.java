@@ -29,13 +29,14 @@ public class LowStockReport extends Report{
         
     }
     
-    public void findLowStock(){
+    @Override
+    public void printReport(){
        
         boolean record = false;
         ArrayList<Book> bookArray = new ArrayList<>();
         
         try {
-            Book.readBookFromFile(bookArray);
+            Book.readFromFile(bookArray);
         } catch (FileNotFoundException ex) {
             System.out.println("Failed to read file");
         }

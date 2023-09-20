@@ -299,36 +299,6 @@ public class Menu {
         currentTransaction = null;
     }
 
-    public static void reportMenu() {
-        SummaryReport sReport = new SummaryReport();
-        HotSellReport hotSellReport = new HotSellReport();
-        while(true) {
-            clearScreen(); 
-            logo();
-            System.out.println("========================================");
-            System.out.println("             REPORT MENU                ");
-            System.out.println("========================================");
-            System.out.println("1. View Sales Summary Report");
-            System.out.println("2. View Famous Book Report");
-            System.out.println("0. Exit");
-            System.out.println("========================================");
-            int option = Validation.getIntegerInput("Enter your choice > ");
-            switch(option) {
-                case 1:
-                    System.out.println("\n(Sales Summary Report)");
-                    sReport.printReport();
-                    break;
-                case 2:
-                    System.out.println("\nHot Sales Report (Top 5 Items)");
-                    hotSellReport.printReport();
-                    break;
-                case 0:
-                    return;
-                default:
-                    System.out.println(RED + "Invalid input!" + RESET);
-            }
-            System.out.println("\n");
-        }
-    }
+    
            
 }

@@ -22,5 +22,6 @@ public class SummaryReport extends Report {
             transaction.printTransaction();
             System.out.println("====================================================");
         }
+        Assignment.systemPause();
     }
 }
