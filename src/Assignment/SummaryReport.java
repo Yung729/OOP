@@ -19,6 +19,7 @@ public class SummaryReport extends Report {
         logo();
         System.out.println("====================================================");
         for (Transaction transaction : super.getTransactionList()) {
+            
             transaction.printTransaction();
             System.out.println("====================================================");
         }

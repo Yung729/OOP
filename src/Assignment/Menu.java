@@ -83,16 +83,17 @@ public class Menu {
         if(currentOrder == null) currentOrder = new Order();
 
         while (true) {
-            System.out.println("========================================");
+            clearScreen();
+            System.out.println("================================================================================");
             System.out.println("             MAKE ORDER                 ");
-            System.out.println("========================================");
+            System.out.println("================================================================================");
             System.out.println("(Book)");
             bookListMenu(Tools.getAvailableBookList());
 
             System.out.println("\n(Stationary)");
             stationaryListMenu(Tools.getAvailableStationaryList());
 
-            System.out.println("========================================");
+            System.out.println("================================================================================");
 
             String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
             if (!FileHandler.checkIDExist(FileHandler.BOOK_DB,itemID)
@@ -130,7 +131,7 @@ public class Menu {
         if (currentCart == null) currentCart = new Cart(currentOrder);
         while (true) {
             currentCart.displayCart();
-            System.out.println("1. Edit Cart \t\t\t2. Clear Cart \t\t\t3. Back");
+            System.out.println("\n1. Edit Cart \t\t\t2. Clear Cart \t\t\t3. Back");
             int option = Validation.getIntegerInput("Enter your choice > ");
             switch (option) {
                 case 1 -> editCartMenu();
@@ -166,9 +167,13 @@ public class Menu {
 
         while (true) {
             currentCart.displayCart();
+            clearScreen();
+            System.out.println("=================================================================");
             System.out.println("             EDIT CART                  ");
+            System.out.println("=================================================================");
             System.out.println("1. Add Item \t\t\t\t\t2. Remove Item");
             System.out.println("3. Edit Item Quantity \t\t\t\t4. Back");
+            System.out.println("=================================================================");
             int option = Validation.getIntegerInput("Enter your choice > ");
             switch (option) {
                 case 1:
@@ -176,8 +181,7 @@ public class Menu {
                     makeOrderMenu();
                     break;
                 case 2:
-                    System.out.println("\nRemove Item");
-                    System.out.println("Enter the item ID to remove");
+                    System.out.println("\nEnter the item ID to remove");
                     String itemID = Validation.getStringInput("Item ID > ");
                     if (itemID == null) break;
                     if (currentOrder.checkItemIsExist(itemID)) {
@@ -196,8 +200,7 @@ public class Menu {
 
                     break;
                 case 3:
-                    System.out.println("\nEdit Item Quantity");
-                    System.out.println("Enter the item ID to edit");
+                    System.out.println("\nEnter the item ID to edit");
                     itemID = Validation.getStringInput("Item ID > ");
                     if (itemID == null) break;
                     int quantity = Validation.getIntegerInput("Quantity > ");
@@ -260,6 +263,7 @@ public class Menu {
             System.out.println("\tDiscount Active !!!  10% off");
             System.out.println("\tTotal Price: " + currentOrder.getTotalPriceWithTax());
         }
+        clearScreen();
 
         System.out.println("\nPayment By: ");
         System.out.println("1. Bank \t\t2. Ewallet \t\t3. Cash");

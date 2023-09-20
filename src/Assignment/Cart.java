@@ -7,6 +7,7 @@ import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.logo;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
+
 import java.util.ArrayList;
 
 
@@ -101,37 +102,40 @@ public class Cart {
     public void displayCart() {
         clearScreen(); 
         logo();
-        System.out.println("==========================================================================================================");
+        System.out.println("======================================================================================");
         System.out.println("=                                                Order Cart                                              =");
-        System.out.println("==========================================================================================================");
-        System.out.println("= Order ID : " + order.getOrderID());
-        System.out.println("= Book Selected:");
-        System.out.println("= Book ID\t\tBook Name\t\t\tQuantity\tPrice(RM)");
+        System.out.println("======================================================================================");
+        System.out.println(" Order ID : " + order.getOrderID());
+        
+        System.out.println(" \nBook Selected:");
+        System.out.println(" Book ID\t\tBook Name\t\t\tQuantity\tPrice(RM)");
         if (getOrderBookList().size() == 0) {
             System.out.println(RED + "   No Book Selected" + RESET);
         }
         for (int i = 0; i < getOrderBookList().size(); i++) {
-            System.out.printf("= %-15s\t%-25s\t%-5d\t\t%-12.2f\n",
+            System.out.printf(" %-15s\t%-25s\t%-5d\t\t%-12.2f\n",
                     getOrderBookList().get(i), Tools.getBookNameByID(getOrderBookList().get(i)),
                     getOrderBookQuantity().get(i), getOrderBookQuantity().get(i) * Tools.getBookPriceByID(getOrderBookList().get(i))
             );
         }
+        
+        System.out.println("\n======================================================================================");
 
-        System.out.println("\n= Stationary Selected:");
-        System.out.println("= Stationary ID\t\tStationary Name\t\t\tQuantity\tPrice(RM)");
+        System.out.println(" Stationary Selected:");
+        System.out.println(" Stationary ID\t\tStationary Name\t\t\tQuantity\tPrice(RM)");
         if (getOrderStationaryList().size() == 0) {
             System.out.println(RED + "   No Stationary Selected" + RESET);
         }
         for (int i = 0; i < getOrderStationaryList().size(); i++) {
-            System.out.printf("= %-15s\t%-25s\t%-5d\t\t%-12.2f\n",
+            System.out.printf(" %-15s\t%-25s\t%-5d\t\t%-12.2f\n",
                     getOrderStationaryList().get(i), Tools.getStationaryNameByID(getOrderStationaryList().get(i)),
                     getOrderStationaryQuantity().get(i), getOrderStationaryQuantity().get(i) * Tools.getStationaryPriceByID(getOrderStationaryList().get(i))
             );
         }
 
-        System.out.println("\nTax:\t\t\t"+ order.getOrderTax());
-        System.out.println("Total:\t\t\t" + (order.getTotalPrice() == 0 ? "0.00" : order.getTotalPriceWithTax()));
-        System.out.println("==========================================================================================================\n");
+        System.out.println("\n Tax:\t"+ order.getOrderTax());
+        System.out.println(" Total:\t" + (order.getTotalPrice() == 0 ? "0.00" : order.getTotalPriceWithTax()));
+        System.out.println("======================================================================================\n");
 
     }
 }

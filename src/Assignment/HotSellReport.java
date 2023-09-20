@@ -71,11 +71,11 @@ public class HotSellReport extends Report {
         int count = 0;
         clearScreen(); 
         logo();
-        System.out.println("================================================================================");
-        System.out.println("=                                Hot Sell Report                               =");
-        System.out.println("================================================================================");
-        System.out.printf("| %-8s\t%-20s\t%-8s  |\n", "Item ID", "Item Name", "Quantity");
-        System.out.println("================================================================================");
+        System.out.println("==================================================");
+        System.out.println("=                 Hot Sell Report                =");
+        System.out.println("==================================================");
+        System.out.printf("= %-8s\t%-20s\t%-8s  =\n", "Item ID", "Item Name", "Quantity");
+        System.out.println("==================================================");
         for (String itemID : filteredMap.keySet()) {
             if (count == 5) {
                 break;
@@ -83,7 +83,7 @@ public class HotSellReport extends Report {
             System.out.printf("| %-8s\t%-20s\t%-8d  |\n", itemID, Tools.getItemNameByID(itemID), filteredMap.get(itemID));
             count++;
         }
-        System.out.println("================================================================================");
+        System.out.println("==================================================");
         Assignment.systemPause();
     }
 }

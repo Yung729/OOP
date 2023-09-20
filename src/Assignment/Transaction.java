@@ -109,11 +109,14 @@ public class Transaction {
     public void printTransaction(){
         clearScreen(); 
         logo();
-
-        System.out.println("Order ID: \t\t" + orderID);
-        System.out.println("Transaction ID: " + transactionID  + "\t\t\tPayment Method: " + paymentMethod);
-        System.out.println("Datetime: \t\t" + datetime + "\n");
+        
+        System.out.println("====================================================");
+        System.out.println("Order ID: " + orderID);
+        System.out.println("Transaction ID: " + transactionID  + "\nPayment Method: " + paymentMethod);
+        System.out.println("Date & time: " + datetime + "\n");
         System.out.println("Order Details:");
+        System.out.println("====================================================");
+   
         order.printOrderDetails();
     }
 

@@ -246,7 +246,9 @@ public class Order {
                 System.out.printf("%-6s\t%-20s\t%-5d\n", stationaryOrder.get(i), Tools.getStationaryNameByID(stationaryOrder.get(i)), stationaryQuantity.get(i));
             }
         }
-        System.out.printf("%-30s\t%-5.2f\n", "Total Amount:", totalPrice);
+        System.out.println("\n====================================================");
+        System.out.printf("%-30s\t%-5.2f\n", ""
+                + "Total Amount:", totalPrice);
     }
 
     public void saveOrderToDB() {
