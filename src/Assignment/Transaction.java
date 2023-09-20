@@ -5,6 +5,7 @@ package Assignment;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 import java.util.ArrayList;
+import java.util.Arrays;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
 import static Assignment.Assignment.clearScreen;
@@ -55,7 +56,7 @@ public class Transaction {
 
     private void initTransaction() {
         ArrayList<String> transactionList = FileHandler.getRowByMainID(FileHandler.TRANSACTION_DB, transactionID);
-        if (transactionList.isEmpty()) {
+        if (transactionList.isEmpty() || Arrays.toString(transactionList.toArray()).equals("[]")) {
             System.out.println(RED + "No transaction found!" + RESET);
             return;
         }

@@ -34,7 +34,7 @@ public class Tools {
     }
 
     public static ArrayList<String[]> getBookListFromDB() {
-        return FileHandler.readFileToArray(FileHandler.BOOK_STORE_DB);
+        return FileHandler.readFileToArray(FileHandler.BOOK_DB);
     }
 
     public static ArrayList<String[]> getOrderListFromDB() {
@@ -95,7 +95,7 @@ public class Tools {
     }
 
     public static String getBookNameByID(String ID) {
-        ArrayList<String> bookList = FileHandler.getRowByMainID(FileHandler.BOOK_STORE_DB, ID);
+        ArrayList<String> bookList = FileHandler.getRowByMainID(FileHandler.BOOK_DB, ID);
         if (bookList.isEmpty()) {
             return "";
         }
@@ -109,7 +109,7 @@ public class Tools {
     }
 
     public static double getBookPriceByID(String ID) {
-        ArrayList<String> bookList = FileHandler.getRowByMainID(FileHandler.BOOK_STORE_DB, ID);
+        ArrayList<String> bookList = FileHandler.getRowByMainID(FileHandler.BOOK_DB, ID);
         return Double.parseDouble(bookList.get(4));
     }
 
@@ -139,7 +139,7 @@ public class Tools {
     }
 
      public static ArrayList<String> getSelectedBookByID(String bookID){
-        return FileHandler.getRowByMainID(FileHandler.BOOK_STORE_DB, bookID);
+        return FileHandler.getRowByMainID(FileHandler.BOOK_DB, bookID);
      }
 
      public static ArrayList<String[]> getAllStationaryByList(ArrayList<String> stationaryList) {
@@ -161,7 +161,7 @@ public class Tools {
 
      private static String checkItemTypeByID(String id) {
          if (id.charAt(0) == 'S') return FileHandler.STATIONARY_DB;
-         else if (id.charAt(0) == 'B') return FileHandler.BOOK_STORE_DB;
+         else if (id.charAt(0) == 'B') return FileHandler.BOOK_DB;
          else return "";
      }
 

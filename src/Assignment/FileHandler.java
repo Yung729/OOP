@@ -15,7 +15,7 @@ import java.util.Scanner;
  */
 public class FileHandler {
     public static final String ORDER_DB = "orders";
-    public static final String BOOK_STORE_DB = "Book";
+    public static final String BOOK_DB = "Book";
     public static final String STATIONARY_DB = "Stationary";
     public static final String TRANSACTION_DB = "transaction";
     public static final String MEMBER_DB = "Member";

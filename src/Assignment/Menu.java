@@ -104,7 +104,7 @@ public class Menu {
 
             boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
 
-            if (!FileHandler.checkIDExist(FileHandler.BOOK_STORE_DB,itemID)
+            if (!FileHandler.checkIDExist(FileHandler.BOOK_DB,itemID)
                     && !FileHandler.checkIDExist(FileHandler.STATIONARY_DB,itemID)
                     && !Objects.equals(itemID, ""))
             {
