@@ -1916,7 +1916,7 @@ public class Admin extends Employees{
                 
                 case 5 ->{Stock.stockMainMenu();}
             
-                case 6 -> {Menu.reportMenu();}
+                case 6 -> {Report.reportMenu();}
                 
                 case 0 ->{}
                 

@@ -9,7 +9,7 @@ import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
 import java.util.ArrayList;
 
-import static Assignment.StaticStorage.currentOrder;
+
 /**
  *
  * @author user

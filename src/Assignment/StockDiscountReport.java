@@ -16,7 +16,8 @@ public class StockDiscountReport extends Report{
     }
     
 
-    public void discountReport(){
+    @Override
+    public void printReport(){
         
         ArrayList<Book> bookArr = new ArrayList<>();
         

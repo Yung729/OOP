@@ -29,7 +29,7 @@ public class LowStockReport extends Report{
         
     }
     
-    public void findLowStock(){
+    public void printReport(){
        
         boolean record = false;
         ArrayList<Book> bookArray = new ArrayList<>();
