@@ -291,10 +291,21 @@ public class Book extends Stock {
             System.out.println("===========================================");
             System.out.println("               Adjust Stock                 ");
             System.out.println("===========================================");
-            System.out.print("Enter BookID [Q to exit]> ");
-            idSearch = Validation.getStringInput();
+            
 
-
+            do {
+                System.out.print("Enter BookID [Q to exit]> ");
+                idSearch = Validation.getStringInput();
+                        
+                if (toUpperCase(idSearch.charAt(0)) == 'Q') {
+                    break;
+                }
+                
+                if (!validID(idSearch)) {
+                   System.out.println(RED +"Book ID Must in B0001 format" + RESET);
+                }
+                        
+            } while (!validID(idSearch));
         
             // find book pick
             for (int i = 0; i < bookArray.size(); i++) {
@@ -662,11 +673,11 @@ public class Book extends Stock {
                         System.out.print("Enter Book price : ");
                         book.setUnitPrice(Validation.getDoubleInput());
                         
-                        if (!validUnitPrice(book.getUnitPrice())) {
+                        if (!super.validUnitPrice(book.getUnitPrice())) {
                             System.out.println(RED +"Book Price Must more than RM 0 " + RESET);
                         }
                         
-                    } while (!validUnitPrice(book.getUnitPrice()));
+                    } while (!super.validUnitPrice(book.getUnitPrice()));
                     
                     
                     do {
@@ -875,6 +886,7 @@ public class Book extends Stock {
         }
         
         do {
+            Assignment.clearScreen();
             System.out.println("===========================================");
             System.out.println("              Search Stock                 ");
             System.out.println("===========================================");
@@ -886,9 +898,17 @@ public class Book extends Stock {
             
             switch(choice){
                 case 1 ->{
-                    System.out.print("Enter Book Id > ");
-                    search = Validation.getStringInput();
-                    
+
+                    do {
+                        System.out.print("Enter Book Id > ");
+                        search = Validation.getStringInput();
+
+                        if (!validID(search)) {
+                           System.out.println(RED +"Book ID Must in B0001 format" + RESET);
+                        }
+
+                    } while (!validID(search));
+            
                     for (Book book : bookArray) {
                         if (book.getBookId().equals(search)) {
                             System.out.println(book);
@@ -913,18 +933,35 @@ public class Book extends Stock {
                     }
                     
                     if (notFound) {
-                        System.out.println(RED +"Id Does Not Exist" + RESET);
+                        System.out.println(RED +"Book Name Does Not Exist" + RESET);
                     }
                 }
             }
-            
+            Assignment.systemPause();
         } while (choice != 0);
     }
     
     //validation
+    public Boolean validID(String id){
+
+        if (id.length()<=5) {
+            return false;
+        }else if(id.charAt(0) != 'B'){
+            return false;
+        }
+        
+        for (int i = 1; i < 5; i++) {
+            if (!Character.isDigit(id.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
     public Boolean validName(ArrayList<Book> bookArray,String name){
 
-        if (name.length()<=10) {
+        if (name.length() < 10) {
             return false;
         }
         

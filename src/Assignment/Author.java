@@ -89,9 +89,12 @@ public class Author {
             }
             
             for (int i = 0; i < name.length(); i++) {
-                if (!(Character.isLetter(name.charAt(i)) )) {
-                    return false;
-                }else if (!Character.isWhitespace(name.charAt(i))) {
+                
+                if (!(Character.isLetter(name.charAt(i)) ) ) {
+                    
+                    if (Character.isWhitespace(name.charAt(i))) {
+                        continue;
+                    }
                     return false;
                 }
 

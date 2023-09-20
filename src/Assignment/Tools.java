@@ -174,12 +174,17 @@ public class Tools {
             return;
         }
         quantity = currentStock - quantity;
-        
+         
+        if (quantity == 0) {
+             FileHandler.updateDataByID(filename, id, 5, String.valueOf(false));
+        }
+         
         try {
             StockFlowReport.writeStockToFile(id,-(currentStock - quantity),new Book().getStockAddDate());
         } catch (IOException ex) {
             Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
      }
 

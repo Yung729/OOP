@@ -223,9 +223,21 @@ public class Stationary extends Stock{
                         
                         System.out.println("Edit Stationary ");
                         System.out.println("========================");
-                        idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
                         
                         
+                        do {
+                            idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
+
+                            if (toUpperCase(idSearch.charAt(0)) == 'Q') {
+                                break;
+                            }
+
+                            if (!validID(idSearch)) {
+                               System.out.println(RED +"Stationary ID Must in S0001 format" + RESET);
+                            }
+
+                        } while (!validID(idSearch));
+            
                             for (int i = 0; i < staArray.size(); i++) {
                             
                             if (idSearch.equals(staArray.get(i).getStaId())) {
@@ -410,7 +422,6 @@ public class Stationary extends Stock{
                 do {
                     Assignment.clearScreen();
                     sta.setStaId(generateStaId(staArray));
-                    //prompt input
                     System.out.println("Stationary Id : " + sta.getStaId());
                     
                     do {
@@ -441,11 +452,11 @@ public class Stationary extends Stock{
                     
                         sta.setUnitPrice(input.nextDouble());
                         
-                        if (!validUnitPrice(sta.getUnitPrice())) {
+                        if (!super.validUnitPrice(sta.getUnitPrice())) {
                             System.out.println(RED +"Stationary Price Must more than RM 0 " + RESET);
                         }
                         
-                    } while (!validUnitPrice(sta.getUnitPrice()));
+                    } while (!super.validUnitPrice(sta.getUnitPrice()));
 
                     
                     do {
@@ -453,11 +464,11 @@ public class Stationary extends Stock{
                     
                         sta.setSoldPrice(input.nextDouble());
                         
-                        if (!validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice())) {
+                        if (!super.validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice())) {
                             System.out.println(RED +"Stationary Price Less Than Unit Price " + RESET);
                         }
                         
-                    } while (!validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice()));
+                    } while (!super.validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice()));
                     
                            
                     Assignment.clearScreen();
@@ -597,6 +608,7 @@ public class Stationary extends Stock{
         }
         
         do {
+            Assignment.clearScreen();
             System.out.println("1. Search By Id");
             System.out.println("2. Search By Name");
             System.out.println("0. Exit");
@@ -605,8 +617,17 @@ public class Stationary extends Stock{
             
             switch(choice){
                 case 1 ->{
-                    System.out.print("Enter Stationary Id > ");
-                    search = Validation.getStringInput();
+                    
+                    
+                    do {
+                            System.out.print("Enter Stationary Id > ");
+                            search = Validation.getStringInput();
+                         
+                            if (!validID(search)) {
+                               System.out.println(RED +"Stationary ID Must in S0001 format" + RESET);
+                            }
+
+                    } while (!validID(search));
                     
                     for (Stationary sta:staArray) {
                         if (sta.getStaId().equals(search)) {
@@ -637,11 +658,28 @@ public class Stationary extends Stock{
                     
                 }
             }
-            
+            Assignment.systemPause();
         } while (choice != 0);
     }
     
        //validation
+    public Boolean validID(String id){
+
+        if (id.length()<=5) {
+            return false;
+        }else if(id.charAt(0) != 'B'){
+            return false;
+        }
+        
+        for (int i = 1; i < 5; i++) {
+            if (!Character.isDigit(id.charAt(i))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    
     public Boolean validName(ArrayList<Stationary> staArray,String name){
         
         for (Stationary sta: staArray) {

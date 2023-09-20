@@ -1,4 +1,4 @@
-B0001|Titanic|20|20.0|25.0|true|R|James book|1990|false
+B0001|Titanic|30|20.0|25.0|true|R|James book|1990|false
 B0002|Annabella|0|20.0|25.0|false|H|Anna|2022|false
 B0003|The Secret Garden|0|15.0|20.0|false|R|Frances|1911|true
 B0004|Midnight Shadows|0|18.0|22.0|false|H|Alex|2020|false
