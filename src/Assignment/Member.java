@@ -176,7 +176,6 @@ public class Member {
             System.out.println("=       1. Register Member             =");
             System.out.println("=       2. View Member                 =");
             System.out.println("=       3. Delete Member               =");
-            System.out.println("=       4. View Member Discount        =");
             System.out.println("=       0. Exit                        =");
             System.out.println("========================================");
             
@@ -189,9 +188,7 @@ public class Member {
                 case 2 -> displayMember();
                     
                 case 3 ->{DeleteMember();}
-                    
-                case 4 -> {}
-                 
+
                 case 0 -> {}
                    
                 default -> {
