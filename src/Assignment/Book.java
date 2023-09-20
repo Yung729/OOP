@@ -886,7 +886,7 @@ public class Book extends Stock {
             
             switch(choice){
                 case 1 ->{
-                    System.out.println("Enter Stationary Id > ");
+                    System.out.print("Enter Book Id > ");
                     search = Validation.getStringInput();
                     
                     for (Book book : bookArray) {
@@ -902,7 +902,7 @@ public class Book extends Stock {
                 }
                 
                 case 2 ->{
-                    System.out.println("Enter Stationary Name > ");
+                    System.out.print("Enter Book Name > ");
                     search = Validation.getStringInput();
                     
                     for (Book book : bookArray) {
