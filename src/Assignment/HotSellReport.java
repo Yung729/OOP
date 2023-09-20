@@ -84,6 +84,7 @@ public class HotSellReport extends Report {
             count++;
         }
         System.out.println("================================================================================");
+        Assignment.systemPause();
     }
 }
 

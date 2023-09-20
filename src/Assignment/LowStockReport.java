@@ -29,6 +29,7 @@ public class LowStockReport extends Report{
         
     }
     
+    @Override
     public void printReport(){
        
         boolean record = false;
