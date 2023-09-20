@@ -1,20 +1,5 @@
-B0001|Titanic|30|20.0|25.0|true|R|James book|1990|false
-B0002|Annabella|0|20.0|25.0|false|H|Anna|2022|false
-B0003|The Secret Garden|0|15.0|20.0|false|R|Frances|1911|true
-B0004|Midnight Shadows|0|18.0|22.0|false|H|Alex|2020|false
-B0005|Treasure Island|118|12.0|18.0|true|T|Robert|1882|true
-B0006|Whispering Winds|88|21.0|28.0|true|H|Emily|2018|true
-B0007|Moonlight Sonata|200|16.0|20.0|true|R|Michael|2005|false
-B0008|The Enchanted Forest|100|14.0|18.0|true|F|Sophia|2015|true
-B0009|Lost in Time|0|19.0|24.0|false|H|David|1998|false
-B0010|Starry Nights|60|10.0|15.0|true|E|Olivia|2019|true
-B0011|Echoes of Eternity|110|17.0|22.0|true|R|Jessica|2008|true
-B0012|Golden Dreams|50|23.0|30.0|true|H|Matthew|2002|false
-B0013|The Alchemist's Legacy|95|18.0|24.0|true|T|Daniel|2010|true
-B0014|Crimson Chronicles|70|16.0|22.0|true|F|Isabella|2017|false
-B0015|Sunset Serenade|120|14.0|20.0|true|E|William|1995|true
-B0016|Eternal Embrace|85|20.0|26.0|true|R|Sophie|2021|true
-B0017|Midsummer Magic|150|12.0|18.0|true|H|Joshua|2003|false
-B0018|The Crystal Key|65|15.0|22.0|true|R|Lily|2012|true
-B0019|Whispers in the Wind|110|17.0|24.0|true|H|Noah|2007|true
-B0020|Sapphire Skies|80|19.0|25.0|true|T|Grace|2014|false
+B0001|Titanic|40|20.0|25.0|true|R|James book|1990|false
+B0002|Annabella|220|20.0|25.0|true|H|Anna|2022|false
+B0003|The Secret Garden|90|15.0|20.0|true|R|Frances|1911|true
+B0004|Midnight Shadows|80|18.0|22.0|true|H|Alex|2020|false
+B0005|Treasure Island|100|12.0|18.0|true|T|Robert|1882|true

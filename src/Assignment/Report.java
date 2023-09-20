@@ -77,7 +77,7 @@ public class Report {
             Assignment.clearScreen();
             Assignment.logo();
             System.out.println("=========================");
-            System.out.println("Stock Report List  ");
+            System.out.println("   Stock Report List  ");
             System.out.println("=========================");
             System.out.println("1. Low Stock Report");
             System.out.println("2. Stock Discount Report");

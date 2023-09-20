@@ -196,6 +196,9 @@ public class Tools {
             return;
         }
         quantity = currentStock + quantity;
+        if (quantity >= 0) {
+             FileHandler.updateDataByID(filename, id, 5, String.valueOf(true));
+        }
         FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
     }
      

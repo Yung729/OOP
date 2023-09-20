@@ -27,29 +27,6 @@ public class StockFlowReport extends Report {
        
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(String quantity) {
-        this.quantity = quantity;
-    }
-
-    public String getStockFlowDate() {
-        return stockFlowDate;
-    }
-
-    public void setStockFlowDate(String stockFlowDate) {
-        this.stockFlowDate = stockFlowDate;
-    }
 
     public StockFlowReport(String id, String quantity, String stockFlowDate) {
         this.id = id;
@@ -59,18 +36,26 @@ public class StockFlowReport extends Report {
     
     @Override
     public void printReport(){
+        String buffer = "c";
         ArrayList<StockFlowReport> flowArray = new ArrayList<>();
         try {
             readStockFromFile(flowArray);
         } catch (FileNotFoundException ex) {
-            Logger.getLogger(StockFlowReport.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Unable Read The File");
         }
         
         Assignment.clearScreen();
         System.out.println("Stock Flow Report");
         System.out.println("=================");
+        System.out.println("Date \t\t\t Stock ID \t\tQuantity");
+        System.out.println("============================================================");
         for (StockFlowReport report:flowArray) {
-            System.out.println(report.getId() +" "+ report.getQuantity() +" " + report.getStockFlowDate());
+            
+            if (report.stockFlowDate.equals(buffer) || buffer.equals("")) {
+                report.stockFlowDate = "";
+            }
+            System.out.printf("%-21s    %-20s   %-20s\n",report.stockFlowDate,report.id , report.quantity );
+            buffer = report.stockFlowDate;
         }
         
         Assignment.systemPause();
