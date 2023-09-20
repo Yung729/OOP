@@ -47,7 +47,7 @@ public class Report {
             System.out.println("             REPORT MENU                ");
             System.out.println("========================================");
             System.out.println("1. View Sales Summary Report");
-            System.out.println("2. View Famous Book Report");
+            System.out.println("2. View Hot Sell Report");
             System.out.println("0. Exit");
             System.out.println("========================================");
             int option = Validation.getIntegerInput("Enter your choice > ");
