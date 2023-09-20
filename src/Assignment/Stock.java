@@ -110,9 +110,17 @@ public abstract class Stock {
         return soldPrice > unitPrice;
     }
     
+    public String convertBooleanToString(boolean arrive){
+        if (arrive) {
+            return Assignment.GREEN +"Enough"+Assignment.RESET;
+        }else{
+            return Assignment.RED+"Out Of Stock"+Assignment.RESET;
+        }
+    }
+    
     @Override
     public String toString() {
-        return String.format("%-30s  %-10d  RM%-13.2f RM%-13.2f %-12s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
+        return String.format("%-30s  %-10d  RM%-12.2f RM%-12.2f %-25s",name,stockQuantity,unitPrice,soldPrice,convertBooleanToString(stockStatus));
     }
  
     public static void stockAvailableMenu(){

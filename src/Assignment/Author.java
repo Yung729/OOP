@@ -137,10 +137,18 @@ public class Author {
 
     }
     
+    public String convertBooleanToString(boolean arrive){
+        if (arrive) {
+            return Assignment.GREEN+"Arrive"+Assignment.RESET;
+        }else{
+            return Assignment.RED+"Pass Away"+Assignment.RESET;
+        }
+    }
+    
     
     @Override
     public String toString(){
-        return String.format("%-15s    %-10d  %s",name,yearOfBirth,String.valueOf(arrive));
+        return String.format("%-15s    %-10d  %s",name,yearOfBirth,convertBooleanToString(arrive));
     }
   
     
