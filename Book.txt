@@ -1,4 +1,4 @@
-B0001|Titanic|30|20.0|25.0|true|R|James book|1990|false
+B0001|Titanic|26|20.0|25.0|true|R|James book|1990|false
 B0002|Annabella|0|20.0|25.0|false|H|Anna|2022|false
 B0003|The Secret Garden|0|15.0|20.0|false|R|Frances|1911|true
 B0004|Midnight Shadows|0|18.0|22.0|false|H|Alex|2020|false
@@ -17,4 +17,4 @@ B0016|Eternal Embrace|85|20.0|26.0|true|R|Sophie|2021|true
 B0017|Midsummer Magic|150|12.0|18.0|true|H|Joshua|2003|false
 B0018|The Crystal Key|65|15.0|22.0|true|R|Lily|2012|true
 B0019|Whispers in the Wind|110|17.0|24.0|true|H|Noah|2007|true
-B0020|Sapphire Skies|80|19.0|25.0|true|T|Grace|2014|false
+B0020|Sapphire Skies|75|19.0|25.0|true|T|Grace|2014|false
