@@ -236,14 +236,12 @@ public class Member {
         
         do{
             System.out.print("Enter Name: ");
-            validatedName = inputString.nextLine();
+            setName(inputString.nextLine());
             
-            error = checkNameFormat(validatedName);
+            error = checkNameFormat(getName());
             
             if(error){
                 System.out.println(RED + "Invalid Name Format!" + RESET);
-            }else if(!error){
-                setName(validatedName);
             }
             
         }while(error);
@@ -251,30 +249,25 @@ public class Member {
         
         do{
             System.out.print("Enter Phone Number: ");
-            validatedPhoneNumber = inputString.nextLine();
+            setPhoneNumber(inputString.nextLine());
             
-            error = checkPhoneNumberFormat(validatedPhoneNumber);
+            error = checkPhoneNumberFormat(getPhoneNumber());
             if(error){
                 
                 System.out.println(RED + "Invalid format. Please enter again!" + RESET);
                 System.out.println(RED + "Example: 012-3456789" + RESET);
-                
-            }else if(!error){
-                setPhoneNumber(validatedPhoneNumber);
             }
             
         }while(error);
         
         do{
             System.out.print("Enter Email: ");
-            validatedEmail = inputString.nextLine();
+            setEmail(inputString.nextLine());
             
-            error = checkEmailFormat(validatedEmail);
+            error = checkEmailFormat(getEmail());
             if(error){
                 System.out.println(RED + "Invalid format. Please enter again!" + RESET);
                 System.out.println(RED + "Example: abc123@gmail.com" + RESET);
-            }else if(!error){
-                setEmail(validatedEmail);
             }
             
         }while(error);
@@ -282,11 +275,9 @@ public class Member {
         do{
             error = false;
             System.out.print("Enter Member Grade (B, S, G) : ");
-            validatedMemberGrade = inputString.next().charAt(0);
-            memberGrade = Character.toUpperCase(memberGrade);
-            
-         
-            switch (validatedMemberGrade) {
+            setMemberGrade(Character.toUpperCase(inputString.next().charAt(0)));
+
+            switch (getMemberGrade()) {
             case 'B' -> setDiscountRate(0.1);
             case 'S' -> setDiscountRate(0.13);
             case 'G' -> setDiscountRate(0.15);
@@ -294,7 +285,7 @@ public class Member {
                 error = true;
                 }
             }
-
+            
             if(error){
                 System.out.println(RED + "Invalid member. Please enter again!" + RESET);
                 System.out.println(RED + "Example: B, S, G" + RESET);
@@ -316,8 +307,8 @@ public class Member {
         }while(error);
         
         if (confirm == 'Y') {
-            member.addMember(memberArray, new Member(getMemberID(),validatedName,validatedPhoneNumber,validatedEmail,validatedMemberGrade
-                  ,discountRate,validatedPoints));
+            member.addMember(memberArray, new Member(memberID,name,phoneNumber,email,memberGrade
+                  ,discountRate,memberPoints));
             
             try {
                 writeMember(memberArray);
