@@ -1,1 +1,2 @@
-CH0001|abc12345|Mu Jun Yi|010203-02-0202|Part Time Cashier|012-4929523|junyi@gmail.com|10, PV13|2000.0|0.01|0.0|2000.0|
+CH0001|abc12345|Mu Jun Yi|010203-02-0202|Part Time Cashier|012-4929523|junyi@gmail.com|10, PV13|2000.0|0.0|0.01|2000.0|
+CH0002|abc12345|lai Yong Le|030223-03-0332|Full Time Cashier|011-33233332|yongle@gmail.com|17 Ipoh|2000.0|0.0|1.0|2000.0|
