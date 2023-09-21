@@ -434,8 +434,9 @@ public class Employees {
             System.out.println("=====================================");
             
             System.out.print("Enter your choice > ");
+            
             try{
-                choice = input.nextInt();
+                choice = Validation.getIntegerInput();
             }catch (Exception e){
                 System.out.println("Invalid input!");
                 choice = 0;
