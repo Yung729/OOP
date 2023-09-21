@@ -692,9 +692,7 @@ public class Employees {
         
         int choice;
         boolean error;
-        
-          
-        
+    
         do{
             clearScreen();
             error = false;
