@@ -230,6 +230,10 @@ public class Stationary extends Stock{
                         do {
                             idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
 
+                             if ("".equals(idSearch)) {
+                                continue;
+                            }
+                             
                             if (toUpperCase(idSearch.charAt(0)) == 'Q') {
                                 break;
                             }
@@ -568,9 +572,23 @@ public class Stationary extends Stock{
                     System.out.println("Remove Stationary System");
                     System.out.println("========================");
                     
+                    do {
+                        idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
+
+                         if ("".equals(idSearch)) {
+                            continue;
+                        }
+
+                        if (toUpperCase(idSearch.charAt(0)) == 'Q') {
+                            break;
+                        }
+
+                        if (!validID(idSearch)) {
+                           System.out.println(RED +"Stationary ID Must in S0001 format" + RESET);
+                        }
+
+                    } while (!validID(idSearch));
                     
-                    System.out.print("Enter Stationart ID [Q to exit]> ");
-                    idSearch = Validation.getStringInput();
 
                     for (int i = 0; i < staArray.size(); i++) {
 
