@@ -16,10 +16,10 @@ import java.util.ArrayList;
 public abstract class Stock {
   
     protected String name;
-    protected  int stockQuantity;
-    protected double unitPrice;
-    protected double soldPrice;
-    protected boolean stockStatus;
+    private  int stockQuantity;
+    private double unitPrice;
+    private double soldPrice;
+    private boolean stockStatus;
     LocalDate stockAddDate = LocalDate.now();
 
     public abstract void add();
@@ -95,7 +95,8 @@ public abstract class Stock {
     public  void setStockAddDate(LocalDate stockAddDate) {
         this.stockAddDate = stockAddDate;
     }
-
+    
+    //validation
     public Boolean validQuantity(int Quantity){
         return Quantity > 0;
     }
@@ -110,9 +111,17 @@ public abstract class Stock {
         return soldPrice > unitPrice;
     }
     
+    public String convertBooleanToString(boolean arrive){
+        if (arrive) {
+            return Assignment.GREEN +"Enough"+Assignment.RESET;
+        }else{
+            return Assignment.RED+"Out Of Stock"+Assignment.RESET;
+        }
+    }
+    
     @Override
     public String toString() {
-        return String.format("%-30s  %-10d  RM%-13.2f RM%-13.2f %-12s",name,stockQuantity,unitPrice,soldPrice,String.valueOf(stockStatus));
+        return String.format("%-30s  %-10d  RM%-12.2f RM%-12.2f %-25s",name,stockQuantity,unitPrice,soldPrice,convertBooleanToString(stockStatus));
     }
  
     public static void stockAvailableMenu(){

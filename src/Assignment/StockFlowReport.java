@@ -22,16 +22,18 @@ public class StockFlowReport extends Report {
     private String id;
     private String quantity;
     private String stockFlowDate;
+    private String staffID;
     
     StockFlowReport(){
        
     }
 
 
-    public StockFlowReport(String id, String quantity, String stockFlowDate) {
+    public StockFlowReport(String id, String quantity, String stockFlowDate,String staffID) {
         this.id = id;
         this.quantity = quantity;
         this.stockFlowDate = stockFlowDate;
+        this.staffID = staffID;
     }
     
     @Override
@@ -47,14 +49,14 @@ public class StockFlowReport extends Report {
         Assignment.clearScreen();
         System.out.println("Stock Flow Report");
         System.out.println("=================");
-        System.out.println("Date \t\t\t Stock ID \t\tQuantity");
-        System.out.println("============================================================");
+        System.out.println("Date \t\t\t Stock ID \t\tQuantity \t\tIncharge staff");
+        System.out.println("============================================================================================");
         for (StockFlowReport report:flowArray) {
             
             if (report.stockFlowDate.equals(buffer) || buffer.equals("")) {
                 report.stockFlowDate = "";
             }
-            System.out.printf("%-21s    %-20s   %-20s\n",report.stockFlowDate,report.id , report.quantity );
+            System.out.printf("%-21s    %-20s   %-20s   %-20s\n",report.stockFlowDate,report.id , report.quantity ,report.staffID);
             buffer = report.stockFlowDate;
         }
         
@@ -64,7 +66,7 @@ public class StockFlowReport extends Report {
     public static void writeStockToFile(String id,int quantity,LocalDate date) throws IOException{
         try ( FileWriter writeBookFile = new FileWriter("StockFlow.txt",true)) {
             
-                writeBookFile.write(id + '|' +quantity+ '|' + date +'\n');
+                writeBookFile.write(id + '|' +quantity+ '|' + date +'|' + Employees.CURRENTID +'\n');
             
             
         }
@@ -78,7 +80,7 @@ public class StockFlowReport extends Report {
             while (productRead.hasNextLine()) {
                 String line = productRead.nextLine();
                 String[] data = line.split("\\|");
-                obj.add(new StockFlowReport(data[0],data[1],data[2]));
+                obj.add(new StockFlowReport(data[0],data[1],data[2],data[3]));
                
             }
         }else {
