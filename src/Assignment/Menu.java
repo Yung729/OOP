@@ -11,6 +11,7 @@ import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
 import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.logo;
+import static Assignment.Assignment.systemPause;
 
 import static Assignment.StaticStorage.*;
 
@@ -25,7 +26,7 @@ public class Menu {
         int option;
 
         while (true) {
-            clearScreen(); 
+            clearScreen();
             logo();
             System.out.println("========================================");
             System.out.println("             SALES MENU                 ");
@@ -263,7 +264,7 @@ public class Menu {
             System.out.println("\tDiscount Active !!!  10% off");
             System.out.println("\tTotal Price: " + currentOrder.getTotalPriceWithTax());
         }
-        clearScreen();
+        
 
         System.out.println("\nPayment By: ");
         System.out.println("1. Bank \t\t2. Ewallet \t\t3. Cash");
@@ -285,7 +286,6 @@ public class Menu {
     }
 
     private static void displayReceipt() {
-        clearScreen(); 
         logo();
         System.out.println("=============================================");
         System.out.println("\nReceipt\n");
@@ -297,6 +297,7 @@ public class Menu {
         currentCart = null;
         currentOrder = null;
         currentTransaction = null;
+        systemPause();
     }
 
     
