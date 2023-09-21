@@ -210,8 +210,10 @@ public class Stationary extends Stock{
         boolean notFound,valid ;
         
                     ArrayList<Stationary> staArray = new ArrayList<>();
+                    ArrayList<Stationary> checkArray = new ArrayList<>();
                     try {
                         readStaFromFile(staArray);
+                        readStaFromFile(checkArray);
                     }
                     catch (FileNotFoundException ex) {
                         System.out.println("Failed to read book record");
@@ -271,8 +273,19 @@ public class Stationary extends Stock{
                                     
                                     System.out.println("Edit Stationary Name");
                                     System.out.println("====================");
-                                    System.out.print("Enter Stationary Name :");
-                                    staArray.get(currentIndex).setName(Validation.getStringInput());
+                                    
+                                    do {
+                                        System.out.print("Enter Stationary Name :");
+                                        staArray.get(currentIndex).setName(Validation.getStringInput());
+
+                                        if (!validName(checkArray,staArray.get(currentIndex).getName())) {
+                                            System.out.println(RED +"Book Name Repeated or Too Short" + RESET);
+                                        }
+
+                                    } while (!validName(checkArray,staArray.get(currentIndex).getName()));
+                        
+                                    
+                                    
                                     
                                     System.out.print("Confirm To Edit Stationary Name ? [Y/N] >");
                                     confirm = input.next();
@@ -292,8 +305,17 @@ public class Stationary extends Stock{
                                     
                                     System.out.println("Edit Stationary Price");
                                     System.out.println("=====================");
-                                    System.out.print("Enter Stationary Price :");
-                                    staArray.get(currentIndex).setSoldPrice(input.nextDouble());
+                                    do {
+                                        System.out.print("Enter Stationary Price :");
+                                        staArray.get(currentIndex).setSoldPrice(input.nextDouble());
+
+                                        if (!super.validSoldPrice(staArray.get(currentIndex).getSoldPrice(),staArray.get(currentIndex).getUnitPrice())) {
+                                            System.out.println(RED +"Stationary Price Less Than Unit Price " + RESET);
+                                        }
+
+                                    } while (!super.validSoldPrice(staArray.get(currentIndex).getSoldPrice(),staArray.get(currentIndex).getUnitPrice()));
+                                    
+                                    
                                     
                                     System.out.print("Confirm To Edit Stationary Price ? [Y/N] >");
                                     confirm = input.next();
@@ -320,7 +342,10 @@ public class Stationary extends Stock{
                                     
                                     System.out.print("Enter your Choice > ");
                                     choice = Validation.getIntegerInput();
-
+                                    
+                                    if (choice > 0 && choice <=3) {
+                                        
+                                    
                                     do {
                                         valid = true;
                                         System.out.print("Enter Stationary Quantiy >");
@@ -397,7 +422,10 @@ public class Stationary extends Stock{
                                         
                                     }else {
                                         System.out.println("Edit is denied");
-                                    }
+                                    } 
+                                    }else
+                                        System.out.println(RED +"Invalid Input" + RESET);
+                                    
                                 }
                             }
                         }

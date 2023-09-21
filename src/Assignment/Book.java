@@ -438,7 +438,7 @@ public class Book extends Stock {
                         System.out.print("Enter your Choice > ");
                         choice = Validation.getIntegerInput();
                         
-                        if (choice > 0 || choice <= 3) {
+                        if (choice > 0 && choice <= 3) {
                             
                         
                         do {
