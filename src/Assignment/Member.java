@@ -193,6 +193,7 @@ public class Member {
                    
                 default -> {
                           System.out.println("Invalid Input. Please enter again!");
+                          Assignment.systemPause();
                          }
             }
         }while(choice != 0);

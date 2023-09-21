@@ -349,25 +349,28 @@ public class Book extends Stock {
                         switch(Character.toUpperCase(bookArray.get(currentIndex).getBookType())){
                             case 'R' -> {
                                 bookArray.get(currentIndex).setBookType('R');
+                                error = false;
                             }
 
                             case 'H' ->{
                                 bookArray.get(currentIndex).setBookType('H');
+                                error = false;
                             }
 
                             case 'T' ->{
                                 bookArray.get(currentIndex).setBookType('T');
+                                error = false;
 
                             }
 
                             case 'F'-> {
                                 bookArray.get(currentIndex).setBookType('F');
-
+                                error = false;
                             }
 
                             case 'E' ->{
                                 bookArray.get(currentIndex).setBookType('E');
-
+                                error = false;
                             }
 
                             default ->{
