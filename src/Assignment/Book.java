@@ -561,10 +561,12 @@ public class Book extends Stock {
                         do {
                         System.out.print("Enter Year Of Birth :");
 
-                        bookArray.get(currentIndex).author.setYearOfBirth(inputString.nextInt());
+                        bookArray.get(currentIndex).author.setYearOfBirth(Validation.getIntegerInput());
+                        
                         if (!bookArray.get(currentIndex).author.validAuthorYearOfBirth(bookArray.get(currentIndex).author.getYearOfBirth())) {
                             System.out.println(RED+ "Invalid Year Of Birth, YOB accept 1800 to current only !" + RESET);
                         }
+                        
                     } while (!bookArray.get(currentIndex).author.validAuthorYearOfBirth(bookArray.get(currentIndex).author.getYearOfBirth()));
                         
 
