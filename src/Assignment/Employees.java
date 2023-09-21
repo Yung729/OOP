@@ -458,7 +458,8 @@ public class Employees {
                 
                 case 0 -> {}
                 
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                default ->{System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                            Assignment.systemPause();} 
                              
             }
             
