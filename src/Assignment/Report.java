@@ -36,7 +36,7 @@ public class Report {
         return transactionList;
     }
     
-    public static void reportMenu() {
+    public static void salesReportMenu() {
         SummaryReport sReport = new SummaryReport();
         HotSellReport hotSellReport = new HotSellReport();
         

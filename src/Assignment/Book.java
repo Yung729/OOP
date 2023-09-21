@@ -246,6 +246,7 @@ public class Book extends Stock {
         String idSearch  ,confirm;
         int choice , newBookQuantity, currentIndex = 0;
         boolean notFound,valid ;
+        boolean error= false;
         
         ArrayList<Book> bookArray = new ArrayList<>();
         ArrayList<Book> checkArray = new ArrayList<>();
@@ -339,10 +340,46 @@ public class Book extends Stock {
                     }
 
                     case 2 -> {
-
-                        System.out.print("Enter Book Type :");
+                        
+      
+                        do {
+                        System.out.print("Enter Book Type [R,H,T,F,E] :");
                         bookArray.get(currentIndex).setBookType(inputString.next().charAt(0));
+                        
+                        switch(Character.toUpperCase(bookArray.get(currentIndex).getBookType())){
+                            case 'R' -> {
+                                bookArray.get(currentIndex).setBookType('R');
+                            }
 
+                            case 'H' ->{
+                                bookArray.get(currentIndex).setBookType('H');
+                            }
+
+                            case 'T' ->{
+                                bookArray.get(currentIndex).setBookType('T');
+
+                            }
+
+                            case 'F'-> {
+                                bookArray.get(currentIndex).setBookType('F');
+
+                            }
+
+                            case 'E' ->{
+                                bookArray.get(currentIndex).setBookType('E');
+
+                            }
+
+                            default ->{
+                                System.out.println(RED +"Book Tyoe Select Range [1-5] Only" + RESET);
+                                Assignment.systemPause();
+                                error = true;
+                            }
+                        }
+                        
+                        
+                        } while (error);
+                        
                         System.out.print("Confirm To Edit Book Type ? [Y/N] >");
                         confirm = inputString.next();
 
@@ -358,10 +395,20 @@ public class Book extends Stock {
                         }
                     }
 
-                    case 3 ->{
 
+                    case 3 ->{
+                        
+                        do {
                         System.out.print("Enter Book Price :");
-                        bookArray.get(currentIndex).setSoldPrice(input.nextDouble());
+                        bookArray.get(currentIndex).setSoldPrice(Validation.getDoubleInput());
+                        
+                        if (!validSoldPrice( bookArray.get(currentIndex).getSoldPrice(), bookArray.get(currentIndex).getUnitPrice())) {
+                            System.out.println(RED +"Book Price Less Than Unit Price " + RESET);
+                        }
+                        
+                        } while (!validSoldPrice( bookArray.get(currentIndex).getSoldPrice(), bookArray.get(currentIndex).getUnitPrice()));
+                        
+                        
 
                         System.out.print("Confirm To Edit Book Price ? [Y/N] >");
                         confirm = inputString.next();
@@ -374,7 +421,7 @@ public class Book extends Stock {
                                 System.out.println("Failed to Edit The Book Type");
                             }         
                         }else {
-                            System.out.println(RED + "Edit is denied");
+                            System.out.println(RED + "Edit is denied" + RESET);
                         }
                     }
 
@@ -387,12 +434,15 @@ public class Book extends Stock {
 
                         System.out.print("Enter your Choice > ");
                         choice = Validation.getIntegerInput();
-   
+                        
+                        if (choice > 0 || choice <= 3) {
+                            
+                        
                         do {
                             valid = true;
                             System.out.print("Enter Book Quantiy >");
                             newBookQuantity = Validation.getIntegerInput();
-                           if (choice == 2) {
+                            if (choice == 2) {
                                
                             if (newBookQuantity > bookArray.get(currentIndex).getStockQuantity()) {
                                 valid = false;
@@ -468,6 +518,8 @@ public class Book extends Stock {
                         }else {
                             System.out.println(RED +"Edit is denied" + RESET);
                         }
+                        }else
+                            System.out.println(RED +"Invalid Input" + RESET);
                     }
 
                     case 5->{
@@ -547,6 +599,7 @@ public class Book extends Stock {
             }
             
         } while(toUpperCase(idSearch.charAt(0))!='Q');
+        
     }
     
     @Override
