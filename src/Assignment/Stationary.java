@@ -311,7 +311,7 @@ public class Stationary extends Stock{
                                     System.out.println("=====================");
                                     do {
                                         System.out.print("Enter Stationary Price :");
-                                        staArray.get(currentIndex).setSoldPrice(input.nextDouble());
+                                        staArray.get(currentIndex).setSoldPrice(Validation.getDoubleInput());
 
                                         if (!super.validSoldPrice(staArray.get(currentIndex).getSoldPrice(),staArray.get(currentIndex).getUnitPrice())) {
                                             System.out.println(RED +"Stationary Price Less Than Unit Price " + RESET);
@@ -713,7 +713,7 @@ public class Stationary extends Stock{
 
         if (id.length()< 5) {
             return false;
-        }else if(id.charAt(0) != 'B'){
+        }else if(id.charAt(0) != 'S'){
             return false;
         }
         
@@ -733,6 +733,19 @@ public class Stationary extends Stock{
                 return false;
             }
         }  
+        
+        for (int i = 0; i < name.length(); i++) {
+                
+                if (!(Character.isLetter(name.charAt(i)) ) ) {
+                    
+                    if (Character.isWhitespace(name.charAt(i))) {
+                        continue;
+                    }
+                    return false;
+                }
+
+            }
+        
         return true;
     }
 
