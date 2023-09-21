@@ -1,5 +1,6 @@
-B0001|Titanic|31|20.0|25.0|true|R|James book|1990|false
-B0002|Annabella|220|20.0|25.0|true|H|Anna|2022|false
+B0001|Titanic|0|20.0|50.0|false|R|James book|1990|true
+B0002|Annabella|198|20.0|50.0|true|H|Anna|2022|true
 B0003|The Secret Garden|90|15.0|20.0|true|R|Frances|1911|true
 B0004|Midnight Shadows|80|18.0|22.0|true|H|Alex|2020|false
 B0005|Treasure Island|100|12.0|18.0|true|T|Robert|1882|true
+B0006|The Nun Session2|200|20.0|50.0|true|H|Ami Father|2022|true
