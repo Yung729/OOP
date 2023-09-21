@@ -524,9 +524,18 @@ public class Book extends Stock {
 
                     case 5->{
 
+                        
+                        
+                      do {
                         System.out.print("Enter Author Name :");
                         bookArray.get(currentIndex).author.setName(Validation.getStringInput());
-
+                        
+                        if (!bookArray.get(currentIndex).author.validAuthorName(bookArray.get(currentIndex).author.getName())) {
+                            System.out.println(RED+"Author Name Invalid" + RESET);
+                        }
+                        
+                      } while (!bookArray.get(currentIndex).author.validAuthorName(bookArray.get(currentIndex).author.getName()));
+                        
                         System.out.print("Confirm To Edit Author Name ? [Y/N] >");
                         confirm = inputString.next();
 
@@ -541,11 +550,20 @@ public class Book extends Stock {
                             System.out.println(RED + "Edit is denied");
                         }
                     }
+                    
                     case 6->{
 
+                        
+                        
+                        do {
                         System.out.print("Enter Year Of Birth :");
 
                         bookArray.get(currentIndex).author.setYearOfBirth(inputString.nextInt());
+                        if (!bookArray.get(currentIndex).author.validAuthorYearOfBirth(bookArray.get(currentIndex).author.getYearOfBirth())) {
+                            System.out.println(RED+ "Invalid Year Of Birth, YOB accept 1800 to current only !" + RESET);
+                        }
+                    } while (!bookArray.get(currentIndex).author.validAuthorYearOfBirth(bookArray.get(currentIndex).author.getYearOfBirth()));
+                        
 
                         System.out.print("Confirm To Edit Author Birth ? [Y/N] >");
                         confirm = inputString.next();
@@ -565,8 +583,8 @@ public class Book extends Stock {
 
                         System.out.println("Current status : " + bookArray.get(currentIndex).author.checkArrive());
 
-                        System.out.print("Confirm To Edit Book Name ? [Y/N] >");
-                        confirm = inputString.next();
+                        System.out.print("Confirm To Edit Status ? [Y/N] >");
+                        confirm = Validation.getStringInput();
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {

@@ -180,7 +180,7 @@ public class Member {
             System.out.println("========================================");
             
             System.out.print("Enter your choice > ");
-            choice = input.nextInt();
+            choice = Validation.getIntegerInput();
             
             switch(choice){
                 case 1 -> memberRegistration();
