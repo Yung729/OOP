@@ -695,7 +695,7 @@ public class Book extends Stock {
                     
                                         
                     do {
-                        System.out.print("Author Arrive ? [Y/N] > ");
+                        System.out.print("Author Alive ? [Y/N] > ");
                         confirmChoice = toUpperCase(inputString.next().charAt(0));
 
                         valid = Validation.checkYesNo(confirmChoice);
