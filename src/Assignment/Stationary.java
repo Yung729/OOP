@@ -482,7 +482,7 @@ public class Stationary extends Stock{
                     do {
                         System.out.print("Enter Stationary price : ");
                     
-                        sta.setUnitPrice(input.nextDouble());
+                        sta.setUnitPrice(Validation.getDoubleInput());
                         
                         if (!super.validUnitPrice(sta.getUnitPrice())) {
                             System.out.println(RED +"Stationary Price Must more than RM 0 " + RESET);
@@ -494,7 +494,7 @@ public class Stationary extends Stock{
                     do {
                         System.out.print("Enter Stationary Sold price : ");
                     
-                        sta.setSoldPrice(input.nextDouble());
+                        sta.setSoldPrice(Validation.getDoubleInput());
                         
                         if (!super.validSoldPrice(sta.getSoldPrice(),sta.getUnitPrice())) {
                             System.out.println(RED +"Stationary Price Less Than Unit Price " + RESET);
