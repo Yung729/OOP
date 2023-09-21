@@ -1920,7 +1920,8 @@ public class Admin extends Employees{
                 
                 case 0 ->{}
                 
-                default -> System.out.println(RED + "Invalid input. Please enter again!" + RESET);
+                default -> {System.out.println(RED + "Invalid input. Please enter again!" + RESET);
+                            systemPause();}
                            
             }
         }while (choice != 0 || error);
