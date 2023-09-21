@@ -139,7 +139,7 @@ public class Author {
     
     public String convertBooleanToString(boolean arrive){
         if (arrive) {
-            return Assignment.GREEN+"Arrive"+Assignment.RESET;
+            return Assignment.GREEN+"Alive"+Assignment.RESET;
         }else{
             return Assignment.RED+"Pass Away"+Assignment.RESET;
         }
