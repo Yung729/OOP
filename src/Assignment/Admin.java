@@ -180,7 +180,8 @@ public class Admin extends Employees{
     
     
     //Main Function
-    public void addAdmin(){
+    @Override
+    public void add(){
         
         Admin admin = new Admin();
         ArrayList<Admin> adminArray = new ArrayList();
@@ -504,11 +505,10 @@ public class Admin extends Employees{
                 }
             
             }
-        
-            input.nextLine();
                  
         }while(error);
        
+        input.nextLine();
         
             do{
                 error = false;
@@ -532,7 +532,8 @@ public class Admin extends Employees{
         
     } 
     
-    public void deleteAdmin(){
+    @Override
+    public void delete(){
         clearScreen();
         
         Admin admin = new Admin();
@@ -661,7 +662,8 @@ public class Admin extends Employees{
         systemPause();
     }  
      
-    public void editAdmin(){
+    @Override
+    public void edit(){
         clearScreen();
     
         Admin admin = new Admin();
@@ -1305,7 +1307,8 @@ public class Admin extends Employees{
        
 }  
     
-    public void searchAdmin(){
+    @Override
+    public void search(){
         Admin admin = new Admin();
         ArrayList<Admin> adminArray = new ArrayList();
         
@@ -1619,7 +1622,8 @@ public class Admin extends Employees{
         
     }
      
-    public void viewAdminInformation(){
+    @Override
+    public void view(){
         clearScreen();
         Scanner sc = new Scanner(System.in);
         
@@ -1663,7 +1667,8 @@ public class Admin extends Employees{
         
     }
     
-    public void adminSalesPerformance(){
+    @Override
+    public void salesPerformance(){
       
         clearScreen();
     

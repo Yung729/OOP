@@ -163,9 +163,9 @@ public class Cashier extends Employees{
     }
     
     //Main method
-    
-    //done checking
-    public void addCashier(){
+   
+    @Override
+    public void add(){
         
         Admin admin = new Admin();
         ArrayList<Admin> adminArray = new ArrayList();
@@ -502,7 +502,8 @@ public class Cashier extends Employees{
         
     } 
     
-    public void deleteCashier(){
+    @Override
+    public void delete(){
         clearScreen();
         
         System.out.println("Current Login > " + CURRENTNAME);
@@ -630,7 +631,8 @@ public class Cashier extends Employees{
         systemPause();
     }  
      
-    public void editCashier(){
+    @Override
+    public void edit(){
         clearScreen();
         
         System.out.println("Current Login > " + CURRENTNAME);
@@ -1241,7 +1243,8 @@ public class Cashier extends Employees{
        
 }  
     
-    public void searchCashier(){
+    @Override
+    public void search(){
         Cashier Cashier = new Cashier();
         ArrayList<Cashier> CashierArray = new ArrayList();
         
@@ -1546,8 +1549,9 @@ public class Cashier extends Employees{
         systemPause();
         
     }
-     
-    public void viewCashierInformation(){
+   
+    @Override
+    public void view(){
         clearScreen();
         
         int count = 0;
@@ -1593,7 +1597,8 @@ public class Cashier extends Employees{
         clearScreen();
     }
     
-    public void cashierSalesPerformance(){
+    @Override
+    public void salesPerformance(){
       
         clearScreen();
     

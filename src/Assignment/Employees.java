@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @Jesmine
  */
-public class Employees {
+public abstract class Employees {
         private String id;
         private String password;
         private String name;
@@ -28,6 +28,14 @@ public class Employees {
         
         public static String CURRENTNAME;
         public static String CURRENTID;
+        
+        public abstract void add();
+        public abstract void edit();
+        public abstract void delete();
+        public abstract void view();
+        public abstract void search();
+        public abstract void salesPerformance();
+        
         
         //constructor
         public Employees(){
@@ -498,9 +506,9 @@ public class Employees {
             }
             
             switch(choice){
-                case 1 -> new Admin().addAdmin();
+                case 1 -> new Admin().add();
                 
-                case 2 -> new Cashier().addCashier();
+                case 2 -> new Cashier().add();
                 
                 case 0 -> {}
                 
@@ -542,9 +550,9 @@ public class Employees {
             }
             
             switch(choice){
-                case 1 -> new Admin().deleteAdmin();
+                case 1 -> new Admin().delete();
                 
-                case 2 -> new Cashier().deleteCashier();
+                case 2 -> new Cashier().delete();
                 
                 case 0 -> {}
                 
@@ -587,9 +595,9 @@ public class Employees {
             }
             
             switch(choice){
-                case 1 -> new Admin().editAdmin();
+                case 1 -> new Admin().edit();
                 
-                case 2 -> new Cashier().editCashier();
+                case 2 -> new Cashier().edit();
                 
                 case 3 -> {}
                 
@@ -633,9 +641,9 @@ public class Employees {
             }
             
             switch(choice){
-                case 1 -> new Admin().searchAdmin();
+                case 1 -> new Admin().search();
                 
-                case 2 -> new Cashier().searchCashier();
+                case 2 -> new Cashier().search();
                 
                 case 3 -> {}
                 
@@ -676,9 +684,9 @@ public class Employees {
             }
             
             switch(choice){
-                case 1 -> new Admin().viewAdminInformation();
+                case 1 -> new Admin().view();
                 
-                case 2 -> new Cashier().viewCashierInformation();
+                case 2 -> new Cashier().view();
                 
                 case 0 -> {}
                 
@@ -718,9 +726,9 @@ public class Employees {
             }
             
             switch(choice){
-                case 1 -> new Admin().adminSalesPerformance();
+                case 1 -> new Admin().salesPerformance();
                 
-                case 2 -> new Cashier().cashierSalesPerformance();
+                case 2 -> new Cashier().salesPerformance();
                 
                 case 0 -> {}
                 
