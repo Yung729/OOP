@@ -116,7 +116,7 @@ public class Transaction {
         System.out.println("Date & time: " + datetime + "\n");
         System.out.println("Order Details:");
         System.out.println("====================================================");
-   
+        
         order.printOrderDetails();
     }
 

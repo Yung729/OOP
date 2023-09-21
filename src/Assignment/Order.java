@@ -247,8 +247,7 @@ public class Order {
             }
         }
         System.out.println("\n====================================================");
-        System.out.printf("%-30s\t%-5.2f\n", ""
-                + "Total Amount:", totalPrice);
+        System.out.printf("%-30s\t%-5.2f\n","Total Amount:", totalPrice);
     }
 
     public void saveOrderToDB() {
