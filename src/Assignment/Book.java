@@ -248,8 +248,10 @@ public class Book extends Stock {
         boolean notFound,valid ;
         
         ArrayList<Book> bookArray = new ArrayList<>();
+        ArrayList<Book> checkArray = new ArrayList<>();
         try {
             readFromFile(bookArray);
+            readFromFile(checkArray);
         }
         catch (FileNotFoundException ex) {
             System.out.println("Failed to read book record");
@@ -315,11 +317,11 @@ public class Book extends Stock {
                         System.out.print("Enter Book Name :");
                         bookArray.get(currentIndex).setName(Validation.getStringInput());
                         
-                        if (!validName(bookArray,bookArray.get(currentIndex).getName())) {
+                        if (!validName(checkArray,bookArray.get(currentIndex).getName())) {
                             System.out.println(RED +"Book Name Repeated or Too Short" + RESET);
                         }
                         
-                        } while (!validName(bookArray,bookArray.get(currentIndex).getName()));
+                        } while (!validName(checkArray,bookArray.get(currentIndex).getName()));
                         
                         System.out.print("Confirm To Edit Book Name ? [Y/N] >");
                         confirm = inputString.next();
@@ -539,6 +541,7 @@ public class Book extends Stock {
 
                     default -> {
                         System.out.println(RED + "INVALID INPUT" + RESET);
+                        Assignment.systemPause();
                     }
                 }
             }
@@ -750,8 +753,18 @@ public class Book extends Stock {
                             default -> System.out.println("Wrong input");
                         }
                         
-                        System.out.print("Any More Book ? [Y/N] > ");
-                        confirmChoice = inputString.next().charAt(0);
+                        do {
+                         System.out.print("Any More Book ? [Y/N] > ");
+                         confirmChoice = inputString.next().charAt(0);
+
+                         valid = Validation.checkYesNo(confirmChoice);
+                         if (!valid) {
+                            System.out.println(RED +"Invalid Input Must 'Y'/'N'" + RESET);
+                         }
+                        
+                        } while (!valid);
+                        
+                 
                         
                     }else{
                         System.out.println("Wrong Input");

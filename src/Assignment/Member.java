@@ -489,6 +489,10 @@ public class Member {
         boolean error = false;
         int countDigit = 0;
         
+        if (checkName.length() < 3) {
+            error = true;
+        }
+        
         for(int i = 0; i < checkName.length(); i++){
             char check = checkName.charAt(i);
             if(Character.isDigit(check)){
