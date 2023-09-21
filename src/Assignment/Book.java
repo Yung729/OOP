@@ -1023,7 +1023,7 @@ public class Book extends Stock {
                         System.out.println(RED +"Book Name Does Not Exist" + RESET);
                     }
                 }
-                
+                case 0 ->{}
                 default ->{ System.out.println(RED+"Invalid Input" + RESET);}
             }
             Assignment.systemPause();
