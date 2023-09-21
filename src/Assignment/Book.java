@@ -271,7 +271,11 @@ public class Book extends Stock {
             do {
                 System.out.print("Enter BookID [Q to exit]> ");
                 idSearch = Validation.getStringInput();
-                        
+                 
+                if ("".equals(idSearch)) {
+                    continue;
+                }
+                
                 if (toUpperCase(idSearch.charAt(0)) == 'Q') {
                     break;
                 }
@@ -876,10 +880,27 @@ public class Book extends Stock {
             System.out.println("===========================================");
 
 
-            System.out.print("Enter BookID [Q to exit]> ");
-            IdSearch = Validation.getStringInput();
             
-    
+            
+            do {
+                System.out.print("Enter BookID [Q to exit]> ");
+                IdSearch = Validation.getStringInput();
+                 
+                if ("".equals(IdSearch)) {
+                    continue;
+                }
+                
+                if (toUpperCase(IdSearch.charAt(0)) == 'Q') {
+                    break;
+                }
+                
+                if (!validID(IdSearch)) {
+                   System.out.println(RED +"Book ID Must in B0001 format" + RESET);
+                }
+                        
+            } while (!validID(IdSearch));
+            
+            
             for (int i = 0; i < bookArray.size(); i++) {
 
                 if (IdSearch.equals(bookArray.get(i).getBookId())) {
