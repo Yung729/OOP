@@ -27,7 +27,6 @@ public class Employees {
         private double basicSalary;
         
         public static String CURRENTNAME;
-        public static String CURRENTID;
         
         //constructor
         public Employees(){
@@ -377,7 +376,6 @@ public class Employees {
                 exist = Admin.checkAdminIDPW(adminArray, id, password);
                 if(exist){
                     Admin.printAdminLoginName(adminArray, id, password);
-                    CURRENTID = id;
                     CURRENTNAME = Admin.storeAdminLoginName(adminArray, id, password);
                     Assignment.systemPause();
                     Admin.adminMenu();
@@ -414,10 +412,10 @@ public class Employees {
   
             int choice;
             boolean error;
-         
         
-        do{ 
-            clearScreen();
+            clearScreen();  
+        
+        do{
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
@@ -471,10 +469,9 @@ public class Employees {
         int choice;
         boolean error;
         
-         
+        clearScreen();  
         
         do{
-            clearScreen();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
              
@@ -515,10 +512,9 @@ public class Employees {
         int choice;
         boolean error;
         
-          
+        clearScreen();  
         
         do{
-            clearScreen();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
@@ -560,10 +556,9 @@ public class Employees {
         int choice;
         boolean error;
      
-        
+        clearScreen();  
         
         do{
-            clearScreen();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
@@ -606,10 +601,9 @@ public class Employees {
         int choice;
         boolean error;
         
-         
+        clearScreen();  
         
         do{
-            clearScreen();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
            
@@ -649,10 +643,9 @@ public class Employees {
         int choice;
         boolean error;
         
-          
+        clearScreen();  
         
         do{
-            clearScreen();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
@@ -692,9 +685,10 @@ public class Employees {
         
         int choice;
         boolean error;
-    
+        
+        clearScreen();  
+        
         do{
-            clearScreen();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
            

@@ -102,9 +102,9 @@ public class Cart {
     public void displayCart() {
         clearScreen(); 
         logo();
-        System.out.println("===============================================================");
-        System.out.println("=                         Order Cart                          =");
-        System.out.println("===============================================================");
+        System.out.println("======================================================================================");
+        System.out.println("=                                                Order Cart                                              =");
+        System.out.println("======================================================================================");
         System.out.println(" Order ID : " + order.getOrderID());
         
         System.out.println(" \nBook Selected:");

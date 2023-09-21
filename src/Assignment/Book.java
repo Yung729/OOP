@@ -215,11 +215,10 @@ public class Book extends Stock {
         double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
         int quantity = 0,count=0;
         Assignment.clearScreen();
-        Assignment.logo();
         ArrayList<Book> bookArray = new ArrayList<>();
 
         System.out.println("Display All Book");
-        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+        System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-15s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
                 "Author Name","YearOfBirth","status");
         System.out.println("================================================================================================================================================================");
         
@@ -564,13 +563,11 @@ public class Book extends Stock {
                 }
     
                 do {
-                    Assignment.clearScreen();
-                    Assignment.logo();
                     System.out.println("===========================================");
                     System.out.println("                 Add Stock                 ");
                     System.out.println("===========================================");
                     
-                    
+                    Assignment.clearScreen();
                     book.setBookId(generateId(bookArray));
                     
                     //prompt input
@@ -666,7 +663,6 @@ public class Book extends Stock {
                     } while (!validSoldPrice(book.getSoldPrice(),book.getUnitPrice()));
                  
                     Assignment.clearScreen();
-                    Assignment.logo();
                     
                     System.out.println("Book Author");
                     System.out.println("===========");
@@ -782,7 +778,6 @@ public class Book extends Stock {
             
             notFound =true;
             Assignment.clearScreen();
-            Assignment.logo();
             System.out.println("===========================================");
             System.out.println("              Remove Stock                 ");
             System.out.println("===========================================");
@@ -864,7 +859,6 @@ public class Book extends Stock {
         
         do {
             Assignment.clearScreen();
-            Assignment.logo();
             System.out.println("===========================================");
             System.out.println("              Search Stock                 ");
             System.out.println("===========================================");

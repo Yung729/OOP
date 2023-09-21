@@ -84,9 +84,9 @@ public class Menu {
 
         while (true) {
             clearScreen();
-            System.out.println("===========================================");
+            System.out.println("================================================================================");
             System.out.println("             MAKE ORDER                 ");
-            System.out.println("===========================================");
+            System.out.println("================================================================================");
             System.out.println("(Book)");
             bookListMenu(Tools.getAvailableBookList());
 

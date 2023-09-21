@@ -134,7 +134,7 @@ public class Cashier extends Employees{
                                      cashier.getBasicSalary() + "|" +
                                      cashier.getCommissionRate() + "|" +
                                      cashier.getSales() + "|" +
-                                     cashier.getTotalSalary() + "\n"
+                                     cashier.getTotalSalary() + "|"
                                     );
             }
         }
