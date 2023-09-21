@@ -995,9 +995,14 @@ public class Book extends Stock {
                         }
 
                     } while (!validID(search));
-            
+                    
+                    
                     for (Book book : bookArray) {
                         if (book.getBookId().equals(search)) {
+                            System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                                            "Author Name","YearOfBirth","status");
+                            System.out.println("================================================================================================================================================================");
+        
                             System.out.println(book);
                             notFound = false;
                         }
@@ -1014,6 +1019,10 @@ public class Book extends Stock {
                     
                     for (Book book : bookArray) {
                         if (book.getName().equals(search)) {
+                            System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                                    "Author Name","YearOfBirth","status");
+                            System.out.println("================================================================================================================================================================");
+
                             System.out.println(book);
                             notFound = false;
                         }
