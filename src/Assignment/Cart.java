@@ -108,7 +108,7 @@ public class Cart {
         System.out.println(" Order ID : " + order.getOrderID());
         
         System.out.println(" \nBook Selected:");
-        System.out.println(" Book ID\t\tBook Name\t\t\tQuantity\tPrice(RM)");
+        System.out.println(" Book ID\t\tBook Name\t\tQuantity\t\tPrice(RM)");
         if (getOrderBookList().size() == 0) {
             System.out.println(RED + "   No Book Selected" + RESET);
         }
@@ -122,7 +122,7 @@ public class Cart {
         System.out.println("\n======================================================================================");
 
         System.out.println(" Stationary Selected:");
-        System.out.println(" Stationary ID\t\tStationary Name\t\t\tQuantity\tPrice(RM)");
+        System.out.println(" Stat ID\t\tStationary Name\t\tQuantity\t\tPrice(RM)");
         if (getOrderStationaryList().size() == 0) {
             System.out.println(RED + "   No Stationary Selected" + RESET);
         }

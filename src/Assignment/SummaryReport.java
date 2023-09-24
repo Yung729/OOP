@@ -4,8 +4,7 @@
  */
 package Assignment;
 
-import static Assignment.Assignment.clearScreen;
-import static Assignment.Assignment.logo;
+import static Assignment.Assignment.systemPause;
 
 /**
  *
@@ -15,14 +14,16 @@ public class SummaryReport extends Report {
 
     @Override
     public void printReport() {
-        clearScreen(); 
-        logo();
+        System.out.println("Total transaction: " + super.getTransactionList().size());
+
         System.out.println("====================================================");
         for (Transaction transaction : super.getTransactionList()) {
             
-            transaction.printTransaction();
+             transaction.printTransaction();
+            
             System.out.println("====================================================");
+
         }
-        Assignment.systemPause();
+        systemPause();
     }
 }

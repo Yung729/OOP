@@ -81,47 +81,56 @@ public class Menu {
     }
 
     public static void makeOrderMenu() {
-        if(currentOrder == null) currentOrder = new Order();
+    if (currentOrder == null) currentOrder = new Order();
 
-        while (true) {
-            clearScreen();
-            System.out.println("===========================================");
-            System.out.println("             MAKE ORDER                 ");
-            System.out.println("===========================================");
-            System.out.println("(Book)");
-            bookListMenu(Tools.getAvailableBookList());
+    while (true) {
+        clearScreen();
+        System.out.println("===========================================");
+        System.out.println("             MAKE ORDER                 ");
+        System.out.println("===========================================");
+        System.out.println("(Book)");
+        bookListMenu(Tools.getAvailableBookList());
 
-            System.out.println("\n(Stationary)");
-            stationaryListMenu(Tools.getAvailableStationaryList());
+        System.out.println("\n(Stationary)");
+        stationaryListMenu(Tools.getAvailableStationaryList());
 
-            System.out.println("================================================================================");
+        System.out.println("================================================================================");
 
-            String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
-            if (!FileHandler.checkIDExist(FileHandler.BOOK_DB,itemID)
-                    && !FileHandler.checkIDExist(FileHandler.STATIONARY_DB,itemID)
-                    && !Objects.equals(itemID, ""))
-            {
-                System.out.println(RED + "Input Item's ID does not exist! \n\n\n" + RESET);
-                continue;
-            }
+        String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
 
+        if (isValidItemID(itemID)) {
             int quantity = Validation.getIntegerInput("Quantity\t\t > ");
-            if (!Tools.checkItemStock(itemID, quantity)) {
-                System.out.println(RED + "Not enough stock!\n" + RESET);
-                continue;
+
+            if (quantity > 0 && Tools.checkItemStock(itemID, quantity)) {
+                boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
+
+                if (itemID.startsWith("B"))
+                    currentOrder.addBookOrder(itemID, quantity);
+                else if (itemID.startsWith("S"))
+                    currentOrder.addStationaryOrder(itemID, quantity);
+
+                System.out.println("\n\nAdded to cart!\n\n");
+
+                if (!isContinue) break;
+            } else {
+                System.out.println(RED + "Invalid quantity or not enough stock!\n" + RESET);
+                systemPause();
             }
-
-            boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
-
-            assert itemID != null;
-            if (itemID.startsWith("B"))
-                currentOrder.addBookOrder(itemID, quantity);
-            if (itemID.startsWith("S"))
-                currentOrder.addStationaryOrder(itemID, quantity);
-            System.out.println("\n\nAdd to cart! \n\n");
-            if (!isContinue) break;
+        } else {
+            System.out.println(RED + "Invalid Item ID format or does not exist!\n" + RESET);
+            systemPause();
         }
     }
+}
+
+private static boolean isValidItemID(String itemID) {
+    return itemID.matches("^[BS]\\d+$") &&
+           (FileHandler.checkIDExist(FileHandler.BOOK_DB, itemID) || 
+            FileHandler.checkIDExist(FileHandler.STATIONARY_DB, itemID));
+}
+
+
+
 
     public static void cartOptionMenu() {
         if (currentOrder == null) {
@@ -303,5 +312,3 @@ public class Menu {
     
            
 }
-
-

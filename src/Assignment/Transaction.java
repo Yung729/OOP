@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
-import static Assignment.Assignment.clearScreen;
-import static Assignment.Assignment.logo;
+
 /**
  *
  * @author user
@@ -107,8 +106,8 @@ public class Transaction {
     }
 
     public void printTransaction(){
-        clearScreen(); 
-        logo();
+ 
+
         
         System.out.println("====================================================");
         System.out.println("Order ID: " + orderID);
