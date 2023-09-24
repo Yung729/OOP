@@ -4,7 +4,10 @@
  */
 package Assignment;
 
-import static Assignment.Assignment.systemPause;
+import static Assignment.Assignment.clearScreen;
+import static Assignment.Assignment.logo;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -12,18 +15,30 @@ import static Assignment.Assignment.systemPause;
  */
 public class SummaryReport extends Report {
 
+    private final ArrayList<Order> orderList;
+    Transaction transaction;
+
+    public SummaryReport() {
+        super();
+        orderList = new ArrayList<>();
+        initOrderList();
+    }
+
+    private void initOrderList(){
+        for (Transaction summary : super.getTransactionList()) {
+            orderList.add(summary.getOrder());
+        }
+    }
+    
     @Override
     public void printReport() {
-        System.out.println("Total transaction: " + super.getTransactionList().size());
-
+        clearScreen(); 
+        logo();
         System.out.println("====================================================");
-        for (Transaction transaction : super.getTransactionList()) {
-            
-             transaction.printTransaction();
-            
-            System.out.println("====================================================");
-
-        }
-        systemPause();
+        Transaction summary = super.getTransactionList().get(0);
+        
+        summary.printSummaryTransaction(orderList);
+   
+        Assignment.systemPause();
     }
 }

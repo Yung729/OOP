@@ -118,6 +118,23 @@ public class Transaction {
         
         order.printOrderDetails();
     }
+    
+    public void printSummaryTransaction(ArrayList<Order> order){
+         
+        double summaryPrice = 0;
+        double total = 0.0;
+        
+        for (Order summary:order) {
+            summaryPrice = summary.printSummaryOrderDetails();
+            total += summaryPrice;
+        }
+
+        
+        System.out.println("\n====================================================");
+        System.out.printf("%-30s\t%-5.2f\n","Total Amount:", total);
+        
+    }
+    
 
     public void storeTransaction(){
         String[] transactionData = {transactionID, paymentMethod, orderID, datetime};

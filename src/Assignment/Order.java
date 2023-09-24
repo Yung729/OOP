@@ -249,6 +249,25 @@ public class Order {
         System.out.println("\n====================================================");
         System.out.printf("%-30s\t%-5.2f\n","Total Amount:", totalPrice);
     }
+    
+    public double printSummaryOrderDetails(){
+        
+        if (bookOrder.size() != 0) {
+            System.out.printf("%-6s\t%-20s\t%-5s\n", "BookID", "Book", "Quantity");
+            for (int i = 0; i < bookOrder.size(); i++) {
+                System.out.printf("%-6s\t%-20s\t%-5d\n", bookOrder.get(i), Tools.getBookNameByID(bookOrder.get(i)), bookQuantity.get(i));
+            }
+            System.out.println();
+        }
+        if (stationaryOrder.size() != 0) {
+            System.out.printf("%-6s\t%-20s\t%-5s\n", "StaID", "Stationary", "Quantity");
+            for (int i = 0; i < stationaryOrder.size(); i++) {
+                System.out.printf("%-6s\t%-20s\t%-5d\n", stationaryOrder.get(i), Tools.getStationaryNameByID(stationaryOrder.get(i)), stationaryQuantity.get(i));
+            }
+        }
+        
+        return totalPrice;
+    }
 
     public void saveOrderToDB() {
         String newLine = orderID + "|" + String.join(":", bookOrder) + "|" + String.join(":",getBookQuantityStrArr()) + "|" +
