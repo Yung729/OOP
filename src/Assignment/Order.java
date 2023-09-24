@@ -20,6 +20,7 @@ public class Order {
     private ArrayList<Integer> stationaryQuantity;
     private double totalPrice;
     private boolean memberDiscount = false;
+    private static int quantity ;
 
     public Order() {
         this.orderID = initNewOrderID();
@@ -28,6 +29,7 @@ public class Order {
         bookQuantity = new ArrayList<>();
         stationaryQuantity = new ArrayList<>();
         totalPrice = 0;
+        quantity = 0;
     }
 
     public Order(String id, ArrayList<String> bookOrder, ArrayList<Integer> bookQuantity,
@@ -256,6 +258,7 @@ public class Order {
             System.out.printf("%-6s\t%-20s\t%-5s\n", "BookID", "Book", "Quantity");
             for (int i = 0; i < bookOrder.size(); i++) {
                 System.out.printf("%-6s\t%-20s\t%-5d\n", bookOrder.get(i), Tools.getBookNameByID(bookOrder.get(i)), bookQuantity.get(i));
+                quantity += bookQuantity.get(i);
             }
             System.out.println();
         }
@@ -263,10 +266,15 @@ public class Order {
             System.out.printf("%-6s\t%-20s\t%-5s\n", "StaID", "Stationary", "Quantity");
             for (int i = 0; i < stationaryOrder.size(); i++) {
                 System.out.printf("%-6s\t%-20s\t%-5d\n", stationaryOrder.get(i), Tools.getStationaryNameByID(stationaryOrder.get(i)), stationaryQuantity.get(i));
+                quantity += stationaryQuantity.get(i);
             }
         }
         
         return totalPrice;
+    }
+    
+    public static int getQuantity(){
+        return quantity;
     }
 
     public void saveOrderToDB() {
