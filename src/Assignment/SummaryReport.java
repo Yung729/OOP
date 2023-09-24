@@ -35,6 +35,8 @@ public class SummaryReport extends Report {
         clearScreen(); 
         logo();
         System.out.println("====================================================");
+        System.out.println("                    Summary Report                  ");
+        System.out.println("====================================================");
         Transaction summary = super.getTransactionList().get(0);
         
         summary.printSummaryTransaction(orderList);
