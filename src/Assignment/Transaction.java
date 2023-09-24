@@ -131,7 +131,7 @@ public class Transaction {
 
         
         System.out.println("\n====================================================");
-        System.out.printf("%-30s\t%-5d %-30s\t%-5.2f\n","Total Quantity:", Order.getQuantity(),"Total Amount:", total);
+        System.out.printf("%-20s\t%-5d %-20s\t%-5.2f\n","Total Quantity:", Order.getQuantity(),"Total Amount:", total);
         
     }
     
