@@ -132,14 +132,14 @@ private static boolean isValidItemID(String itemID) {
 
 
 
-    public static void cartOptionMenu() {
+public static void cartOptionMenu() {
         if (currentOrder == null) {
             System.out.println(RED + "No order has been made yet! " + RESET);
             System.out.println("\n\n");
             return;
         }
         if (currentCart == null) currentCart = new Cart(currentOrder);
-        while (true) {
+        while (currentCart != null) {
             currentCart.displayCart();
             System.out.println("\n1. Edit Cart \t\t\t2. Clear Cart \t\t\t3. Back");
             int option = Validation.getIntegerInput("Enter your choice > ");
@@ -175,9 +175,9 @@ private static boolean isValidItemID(String itemID) {
             return;
         }
 
-        while (true) {
-            currentCart.displayCart();
+        while (currentCart != null) {
             clearScreen();
+            currentCart.displayCart();
             System.out.println("=================================================================");
             System.out.println("             EDIT CART                  ");
             System.out.println("=================================================================");

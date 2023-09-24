@@ -102,9 +102,11 @@ public class Tools {
         return bookList.get(1);
     }
 
-    public static String getStationaryNameByID(String ID) {
+public static String getStationaryNameByID(String ID) {
         ArrayList<String> stationaryList = FileHandler.getRowByMainID(FileHandler.STATIONARY_DB, ID);
-        
+        if (stationaryList.isEmpty()) {
+            return "";
+        }
         return stationaryList.get(1);
     }
 
@@ -154,9 +156,9 @@ public class Tools {
         return FileHandler.getRowByMainID(FileHandler.STATIONARY_DB, stationaryID);
      }
 
-     public static boolean checkCurrentStockAvailable(String id, int quantity) {
+    public static boolean checkCurrentStockAvailable(String id, int quantity) {
         ArrayList<String> row = FileHandler.getRowByMainID(checkItemTypeByID(id), id);
-        return Integer.parseInt(row.get(3)) >= quantity;
+        return Integer.parseInt(row.get(2)) >= quantity;
      }
 
      private static String checkItemTypeByID(String id) {

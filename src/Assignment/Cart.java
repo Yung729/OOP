@@ -119,7 +119,7 @@ public class Cart {
             );
         }
         
-        System.out.println("\n======================================================================================");
+        System.out.println("\n===============================================================");
 
         System.out.println(" Stationary Selected:");
         System.out.println(" Stat ID\t\tStationary Name\t\tQuantity\t\tPrice(RM)");
@@ -135,7 +135,7 @@ public class Cart {
 
         System.out.println("\n Tax:\t"+ order.getOrderTax());
         System.out.println(" Total:\t" + (order.getTotalPrice() == 0 ? "0.00" : order.getTotalPriceWithTax()));
-        System.out.println("======================================================================================\n");
+        System.out.println("===============================================================\n");
 
     }
 }
