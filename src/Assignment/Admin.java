@@ -1915,7 +1915,7 @@ public class Admin extends Employees{
                 
                 case 2 ->{Stock.stockAvailableMenu();}
                 
-                case 3->{Menu.salesMenu();}
+                case 3->{Sales.salesMenu();}
                 
                 case 4 ->{new Member().memberMenu();}
                 

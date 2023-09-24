@@ -6,7 +6,6 @@ package Assignment;
 
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Objects;
 import static Assignment.Assignment.RED;
 import static Assignment.Assignment.RESET;
 import static Assignment.Assignment.clearScreen;
@@ -20,7 +19,7 @@ import static Assignment.StaticStorage.*;
  * @author xinru
  */
 
-public class Menu {
+public class Sales {
 
     public static void salesMenu(){
         int option;
@@ -128,9 +127,6 @@ private static boolean isValidItemID(String itemID) {
            (FileHandler.checkIDExist(FileHandler.BOOK_DB, itemID) || 
             FileHandler.checkIDExist(FileHandler.STATIONARY_DB, itemID));
 }
-
-
-
 
 public static void cartOptionMenu() {
         if (currentOrder == null) {

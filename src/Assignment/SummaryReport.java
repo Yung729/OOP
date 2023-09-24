@@ -7,7 +7,6 @@ package Assignment;
 import static Assignment.Assignment.clearScreen;
 import static Assignment.Assignment.logo;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *

@@ -1820,7 +1820,7 @@ public class Cashier extends Employees{
                 }
                 
                 case 2-> {
-                    Menu.salesMenu();
+                    Sales.salesMenu();
                 }
                 
                 case 3-> {
