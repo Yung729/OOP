@@ -553,7 +553,7 @@ public class Stationary extends Stock{
                             default -> System.out.println("Wrong input");
                         }
                         
-                        System.out.print("Any More Book ? [Y/N] > ");
+                        System.out.print("Any More Stationary ? [Y/N] > ");
                         confirmChoice = inputString.next().charAt(0);
                         
                     }else{
