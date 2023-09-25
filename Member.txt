@@ -1,5 +1,5 @@
-M0001|Jianxun|011-22223333|leongkahyung@gmail.com|B|0.0|0.0|
-M0002|Yung|011-33324332|leong@gmail.com|B|0.0|0.0|
-M0003|Ting|011-23455678|Ting@gmail.com|B|0.0|0.0|
+M0001|Jianxun|011-22223333|leongkahyung@gmail.com|B|0.1|0.0|
+M0002|Yung|011-33324332|leong@gmail.com|B|0.1|0.0|
+M0003|Ting|011-23455678|Ting@gmail.com|B|0.1|0.0|
 M0004|Jian Xun|011-23344433|Xun@gmail.com|G|0.15|0.0|
 M0005|Member|011-22223344|abc@gmail.com|B|0.1|0.0|
