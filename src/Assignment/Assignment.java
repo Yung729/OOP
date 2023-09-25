@@ -42,9 +42,7 @@ public class Assignment {
 	System.out.printf(PURPLE+"%s\n", "     | | | | '_ ` _ \\| __|"+RESET);
 	System.out.printf(BLUE+"%s\n", "     | |_| | | | | | | |_"+RESET);
 	System.out.printf(PURPLE+"%s\n\n", "      \\__,_|_| |_| |_|\\__|"+RESET);
-        
-	
-	
+
     }
 
     public static void systemPause(){

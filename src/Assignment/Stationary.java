@@ -94,12 +94,10 @@ public class Stationary extends Stock{
         return staIdGenerated;
     }
     
-    //overloading display method
 
-    
     public static void displayStaDetails(Stationary sta){
             System.out.println("====================================");
-            System.out.println("|            Book Detail            |");
+            System.out.println("|         Stationary Detail        |");
             System.out.println("====================================");
             System.out.println("  Stationary ID           : " + sta.getStaId());
             System.out.println("  Stationary Name         :  " + sta.getName());          
@@ -699,6 +697,8 @@ public class Stationary extends Stock{
                     
                     for (Stationary sta:staArray) {
                         if (sta.getStaId().equals(search)) {
+                            Assignment.clearScreen();
+                        Assignment.logo();
                             displayStaDetails(sta);
                             notFound = false;
                         }
@@ -717,6 +717,8 @@ public class Stationary extends Stock{
                     
                     for (Stationary sta:staArray) {
                         if (sta.getName().equals(search)) {
+                            Assignment.clearScreen();
+                        Assignment.logo();
                             displayStaDetails(sta);
                             notFound = false;
                         }

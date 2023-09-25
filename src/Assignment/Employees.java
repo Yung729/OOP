@@ -52,7 +52,6 @@ public abstract class Employees {
             this.email = email;
             this.address = address;
             this.basicSalary = basicSalary;
-
         }
         
         //getter

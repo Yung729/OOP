@@ -1013,6 +1013,8 @@ public class Book extends Stock {
                     
                     for (Book book : bookArray) {
                         if (book.getBookId().equals(search)) {
+                            Assignment.clearScreen();
+                        Assignment.logo();
                             displayBookDetails(book);
                             notFound = false;
                         }
@@ -1032,6 +1034,8 @@ public class Book extends Stock {
                     
                     for (Book book : bookArray) {
                         if (book.getName().equals(search)) {
+                            Assignment.clearScreen();
+                        Assignment.logo();
                             displayBookDetails(book);
                             notFound = false;
                         }
