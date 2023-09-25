@@ -95,15 +95,15 @@ public class Stationary extends Stock{
     }
     
 
-    public static void displayStaDetails(Stationary sta){
+    public void displayStaDetails(Stationary sta){
             System.out.println("====================================");
             System.out.println("|         Stationary Detail        |");
             System.out.println("====================================");
             System.out.println("  Stationary ID           : " + sta.getStaId());
-            System.out.println("  Stationary Name         :  " + sta.getName());          
+            System.out.println("  Stationary Name         : " + sta.getName());          
             System.out.println("  Stationary Price        : RM " + sta.getUnitPrice());
             System.out.println("  Stationary Sold Price   : RM " + sta.getSoldPrice());
-            System.out.println("  Stationary Total Added  :  " + sta.getStockQuantity());
+            System.out.println("  Stationary Total Added  : " + sta.getStockQuantity());
             System.out.println("  Stationary Total Added  : RM " + (sta.getUnitPrice() * sta.getStockQuantity()));
             System.out.println("====================================");
             

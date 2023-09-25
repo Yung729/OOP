@@ -119,7 +119,7 @@ public abstract class Stock {
         }
     }
  
-        public static void stockAvailableMenu(){
+    public static void stockAvailableMenu(){
         double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
         int quantity = 0,count=0;
         Assignment.clearScreen();

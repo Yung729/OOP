@@ -55,9 +55,9 @@ public class Author {
         
     //method
     public  void displayAuthorDetail(Author author){
-            System.out.println("  Author Name           :  " + author.name);
-            System.out.println("  Author Age            :  " + author.yearOfBirth);
-            System.out.println("  Author status         :  " + convertBooleanToString(author.arrive));
+            System.out.println("  Author Name           : " + author.name);
+            System.out.println("  Author Age            : " + author.yearOfBirth);
+            System.out.println("  Author status         : " + convertBooleanToString(author.arrive));
             System.out.println("====================================");
     }
 

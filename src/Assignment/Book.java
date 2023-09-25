@@ -200,11 +200,11 @@ public class Book extends Stock {
             System.out.println("|            Book Detail            |");
             System.out.println("====================================");
             System.out.println("  Book ID               : " + book.bookId);
-            System.out.println("  Book Name             :  " + book.getName());
-            System.out.println("  Book Type             :  " + convertBookType(book.bookType));
+            System.out.println("  Book Name             : " + book.getName());
+            System.out.println("  Book Type             : " + convertBookType(book.bookType));
             System.out.println("  Book Price            : RM " + book.getUnitPrice());
             System.out.println("  Book Sold Price       : RM " + book.getSoldPrice());
-            System.out.println("  Book Total Added      :  " + book.getStockQuantity());
+            System.out.println("  Book Total Added      : " + book.getStockQuantity());
             System.out.println("  Book Total Added (RM) : RM " + (book.getUnitPrice() * book.getStockQuantity()));
             book.author.displayAuthorDetail(book.author);
     }
@@ -214,11 +214,11 @@ public class Book extends Stock {
             System.out.println("|            Book Detail            |");
             System.out.println("====================================");
             System.out.println("  Book ID               : " + book.bookId);
-            System.out.println("  Book Name             :  " + book.getName());
-            System.out.println("  Book Type             :  " + convertBookType(book.bookType));
+            System.out.println("  Book Name             : " + book.getName());
+            System.out.println("  Book Type             : " + convertBookType(book.bookType));
             System.out.println("  Book Price            : RM " + book.getUnitPrice());
             System.out.println("  Book Sold Price       : RM " + book.getSoldPrice());
-            System.out.println("  Book Total Added      :  " + book.getStockQuantity());
+            System.out.println("  Book Total Added      : " + book.getStockQuantity());
             System.out.println("  Book Total Added (RM) : RM " + (book.getUnitPrice() * book.getStockQuantity()));
             authorDisplay.displayAuthorDetail(authorDisplay);
     }
@@ -1090,6 +1090,7 @@ public class Book extends Stock {
         return String.format("%-10s  %-10s  %-17s %-10s",bookId,
                      super.toString(),convertBookType(bookType),author.toString() ); 
     } 
+    
     //check stock balance 
     public static void checkAvailable(ArrayList<Book> bookArray){
         for (Book book:bookArray) {
