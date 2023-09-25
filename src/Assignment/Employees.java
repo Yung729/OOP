@@ -422,10 +422,10 @@ public abstract class Employees {
   
             int choice;
             boolean error;
-         
         
         do{ 
             clearScreen();
+            Assignment.logo();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             
