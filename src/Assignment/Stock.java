@@ -118,13 +118,8 @@ public abstract class Stock {
             return Assignment.RED+"Out Of Stock"+Assignment.RESET;
         }
     }
-    
-    @Override
-    public String toString() {
-        return String.format("%-30s  %-10d  RM%-12.2f RM%-12.2f %-25s",name,stockQuantity,unitPrice,soldPrice,convertBooleanToString(stockStatus));
-    }
  
-    public static void stockAvailableMenu(){
+        public static void stockAvailableMenu(){
         double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
         int quantity = 0,count=0;
         Assignment.clearScreen();
@@ -287,4 +282,11 @@ public abstract class Stock {
                 
       
     }
+    
+    @Override
+    public String toString() {
+        return String.format("%-30s  %-10d  RM%-12.2f RM%-12.2f %-25s",name,stockQuantity,unitPrice,soldPrice,convertBooleanToString(stockStatus));
+    }
+ 
+
 }

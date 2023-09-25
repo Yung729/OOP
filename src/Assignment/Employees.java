@@ -476,270 +476,275 @@ public abstract class Employees {
 
     }
     
-    public static void addStaff(){  
+        public static void addStaff(){  
 
-        int choice;
-        boolean error;
-        
-         
-        
-        do{
-            clearScreen();
-            error = false;
-            System.out.println("Current Login > " + CURRENTNAME);
-             
-            System.out.println("============================================");
-            System.out.println("=                 ADD STAFF                =");
-            System.out.println("============================================");
-            System.out.println("=              1. Add Admin                =");
-            System.out.println("=              2. Add Cashier              =");
-            System.out.println("=              0. Exit                     =");
-            System.out.println("============================================");
-            
-            System.out.print("Enter your choice >  ");
-            try{
-                choice = input.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
-            
-            switch(choice){
-                case 1 -> new Admin().add();
-                
-                case 2 -> new Cashier().add();
-                
-                case 0 -> {}
-                
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
-                                     
-            }
-            
-        }while(choice != 0 || error);
-        
-    }
-    
-    public static void removeStaff(){
-        
-        int choice;
-        boolean error;
-        
-          
-        
-        do{
-            clearScreen();
-            error = false;
-            System.out.println("Current Login > " + CURRENTNAME);
-            
-            System.out.println("============================================");
-            System.out.println("=               DELETE STAFF               =");
-            System.out.println("============================================");
-            System.out.println("=             1. Delete Admin              =");
-            System.out.println("=             2. Delete Cashier            =");
-            System.out.println("=             0. Exit                      =");
-            System.out.println("============================================");
-            
-            System.out.print("Enter your choice > ");
-            try{
-                choice = input.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
-            
-            switch(choice){
-                case 1 -> new Admin().delete();
-                
-                case 2 -> new Cashier().delete();
-                
-                case 0 -> {}
-                
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
-                               
-                            
-            }
-            
-        }while(choice != 0 || error);
+            int choice;
+            boolean error;
 
-    }
-    
-    public static void editStaff(){
-        
-        int choice;
-        boolean error;
-     
-        
-        
-        do{
-            clearScreen();
-            error = false;
-            System.out.println("Current Login > " + CURRENTNAME);
-            
-            System.out.println("============================================");
-            System.out.println("=                EDIT STAFF                =");
-            System.out.println("============================================");
-            System.out.println("=             1. Edit Admin                =");
-            System.out.println("=             2. Edit Cashier              =");
-            System.out.println("=             0. Exit                      =");
-            System.out.println("============================================");
 
-            System.out.print("Enter your choice > ");
-            try{
-                choice = input.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
-            
-            switch(choice){
-                case 1 -> new Admin().edit();
-                
-                case 2 -> new Cashier().edit();
-                
-                case 3 -> {}
-                
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
-                            
-            }
-            
-        }while(choice != 0 || error);
-        
-       
 
-    }
-    
-    public static void searchStaff(){
+            do{
+                clearScreen();
+                error = false;
+                System.out.println("Current Login > " + CURRENTNAME);
 
-        int choice;
-        boolean error;
-        
-         
-        
-        do{
-            clearScreen();
-            error = false;
-            System.out.println("Current Login > " + CURRENTNAME);
-           
-            System.out.println("============================================");
-            System.out.println("=              SEARCH STAFF                =");
-            System.out.println("============================================");
-            System.out.println("=             1. Search Admin              =");
-            System.out.println("=             2. Search Cashier            =");
-            System.out.println("=             0. Exit                      =");
-            System.out.println("============================================");
-            
-            System.out.print("Enter your choice > ");
-            try{
-                choice = input.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
-            
-            switch(choice){
-                case 1 -> new Admin().search();
-                
-                case 2 -> new Cashier().search();
-                
-                case 3 -> {}
-                
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
-                               
-                            
-            }
-        } while(choice !=0 || error);
-    }
-    
-    public static void viewStaff(){
-        
-        int choice;
-        boolean error;
-        
-          
-        
-        do{
-            clearScreen();
-            error = false;
-            System.out.println("Current Login > " + CURRENTNAME);
-            
-            System.out.println("============================================");
-            System.out.println("=                VIEW STAFF                =");
-            System.out.println("============================================");
-            System.out.println("=             1. View Admin                =");
-            System.out.println("=             2. View Cashier              =");
-            System.out.println("=             0. Exit                      =");
-            System.out.println("============================================");
-            
-            System.out.print("Enter your choice > ");
-            try{
-                choice = input.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
-            
-            switch(choice){
-                case 1 -> new Admin().view();
-                
-                case 2 -> new Cashier().view();
-                
-                case 0 -> {}
-                
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
-                                
-            }
-        } while(choice !=0 || error);
-        
-        
-    }
-    
-    public static void staffSalesPerformance(){
-        
-        int choice;
-        boolean error;
-    
-        do{
-            clearScreen();
-            error = false;
-            System.out.println("Current Login > " + CURRENTNAME);
-           
-            System.out.println("============================================");
-            System.out.println("=           STAFF SALES PERFORMANCE        =");
-            System.out.println("============================================");
-            System.out.println("=             1. View Admin                =");
-            System.out.println("=             2. View Cashier              =");
-            System.out.println("=             0. Exit                      =");
-            System.out.println("============================================");
-            
-            System.out.print("Enter your choice > ");
-            try{
-                choice = input.nextInt();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
-            
-            switch(choice){
-                case 1 -> new Admin().salesPerformance();
-                
-                case 2 -> new Cashier().salesPerformance();
-                
-                case 0 -> {}
-                
-                default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
-                               
-                            
-            }
-            
-        }while(choice != 0 || error);
-        
-    }   
+                System.out.println("============================================");
+                System.out.println("=                 ADD STAFF                =");
+                System.out.println("============================================");
+                System.out.println("=              1. Add Admin                =");
+                System.out.println("=              2. Add Cashier              =");
+                System.out.println("=              0. Exit                     =");
+                System.out.println("============================================");
+
+                System.out.print("Enter your choice >  ");
+                try{
+                    choice = input.nextInt();
+                }catch (Exception e){
+                    System.out.println("Invalid input!");
+                    choice = 0;
+                    error = true;
+                }
+
+                switch(choice){
+                    case 1 -> new Admin().add();
+
+                    case 2 -> new Cashier().add();
+
+                    case 0 -> {}
+
+                    default ->{ System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                                Assignment.systemPause();}
+
+                }
+
+            }while(choice != 0 || error);
+
+        }
+
+        public static void removeStaff(){
+
+            int choice;
+            boolean error;
+
+
+
+            do{
+                clearScreen();
+                error = false;
+                System.out.println("Current Login > " + CURRENTNAME);
+
+                System.out.println("============================================");
+                System.out.println("=               DELETE STAFF               =");
+                System.out.println("============================================");
+                System.out.println("=             1. Delete Admin              =");
+                System.out.println("=             2. Delete Cashier            =");
+                System.out.println("=             0. Exit                      =");
+                System.out.println("============================================");
+
+                System.out.print("Enter your choice > ");
+                try{
+                    choice = input.nextInt();
+                }catch (Exception e){
+                    System.out.println("Invalid input!");
+                    choice = 0;
+                    error = true;
+                }
+
+                switch(choice){
+                    case 1 -> new Admin().delete();
+
+                    case 2 -> new Cashier().delete();
+
+                    case 0 -> {}
+
+                    default -> { System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                                Assignment.systemPause();}
+
+
+                }
+
+            }while(choice != 0 || error);
+
+        }
+
+        public static void editStaff(){
+
+            int choice;
+            boolean error;
+
+
+
+            do{
+                clearScreen();
+                error = false;
+                System.out.println("Current Login > " + CURRENTNAME);
+
+                System.out.println("============================================");
+                System.out.println("=                EDIT STAFF                =");
+                System.out.println("============================================");
+                System.out.println("=             1. Edit Admin                =");
+                System.out.println("=             2. Edit Cashier              =");
+                System.out.println("=             0. Exit                      =");
+                System.out.println("============================================");
+
+                System.out.print("Enter your choice > ");
+                try{
+                    choice = input.nextInt();
+                }catch (Exception e){
+                    System.out.println("Invalid input!");
+                    choice = 0;
+                    error = true;
+                }
+
+                switch(choice){
+                    case 1 -> new Admin().edit();
+
+                    case 2 -> new Cashier().edit();
+
+                    case 3 -> {}
+
+                    default -> { System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                                Assignment.systemPause();}
+
+                }
+
+            }while(choice != 0 || error);
+
+
+
+        }
+
+        public static void searchStaff(){
+
+            int choice;
+            boolean error;
+
+
+
+            do{
+                clearScreen();
+                error = false;
+                System.out.println("Current Login > " + CURRENTNAME);
+
+                System.out.println("============================================");
+                System.out.println("=              SEARCH STAFF                =");
+                System.out.println("============================================");
+                System.out.println("=             1. Search Admin              =");
+                System.out.println("=             2. Search Cashier            =");
+                System.out.println("=             0. Exit                      =");
+                System.out.println("============================================");
+
+                System.out.print("Enter your choice > ");
+                try{
+                    choice = input.nextInt();
+                }catch (Exception e){
+                    System.out.println("Invalid input!");
+                    choice = 0;
+                    error = true;
+                }
+
+                switch(choice){
+                    case 1 -> new Admin().search();
+
+                    case 2 -> new Cashier().search();
+
+                    case 3 -> {}
+
+                    default -> { System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                                Assignment.systemPause();}
+
+
+                }
+            } while(choice !=0 || error);
+        }
+
+        public static void viewStaff(){
+
+            int choice;
+            boolean error;
+
+
+
+            do{
+                clearScreen();
+                error = false;
+                System.out.println("Current Login > " + CURRENTNAME);
+
+                System.out.println("============================================");
+                System.out.println("=                VIEW STAFF                =");
+                System.out.println("============================================");
+                System.out.println("=             1. View Admin                =");
+                System.out.println("=             2. View Cashier              =");
+                System.out.println("=             0. Exit                      =");
+                System.out.println("============================================");
+
+                System.out.print("Enter your choice > ");
+                try{
+                    choice = input.nextInt();
+                }catch (Exception e){
+                    System.out.println("Invalid input!");
+                    choice = 0;
+                    error = true;
+                }
+
+                switch(choice){
+                    case 1 -> new Admin().view();
+
+                    case 2 -> new Cashier().view();
+
+                    case 0 -> {}
+
+                    default -> { System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+                                Assignment.systemPause();}
+
+                }
+            } while(choice !=0 || error);
+
+
+        }
+
+        public static void staffSalesPerformance(){
+
+            int choice;
+            boolean error;
+
+            do{
+                clearScreen();
+                error = false;
+                System.out.println("Current Login > " + CURRENTNAME);
+
+                System.out.println("============================================");
+                System.out.println("=           STAFF SALES PERFORMANCE        =");
+                System.out.println("============================================");
+                System.out.println("=             1. View Admin                =");
+                System.out.println("=             2. View Cashier              =");
+                System.out.println("=             0. Exit                      =");
+                System.out.println("============================================");
+
+                System.out.print("Enter your choice > ");
+                try{
+                    choice = input.nextInt();
+                }catch (Exception e){
+                    System.out.println("Invalid input!");
+                    choice = 0;
+                    error = true;
+                }
+
+                switch(choice){
+                    case 1 -> new Admin().salesPerformance();
+
+                    case 2 -> new Cashier().salesPerformance();
+
+                    case 0 -> {}
+
+                    default -> System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
+
+
+                }
+
+            }while(choice != 0 || error);
+
+        }   
         
         
     
