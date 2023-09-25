@@ -38,7 +38,7 @@ public class StockFlowReport extends Report {
     
     @Override
     public void printReport(){
-        String buffer = "c";
+        String buffer = null;
         ArrayList<StockFlowReport> flowArray = new ArrayList<>();
         try {
             readStockFromFile(flowArray);
@@ -52,12 +52,13 @@ public class StockFlowReport extends Report {
         System.out.println("============================================================================================");
         System.out.println("Date \t\t\t Stock ID \t\tQuantity \t\tIncharge staff");
         System.out.println("============================================================================================");
-        for (StockFlowReport report:flowArray) {
-            
-            if (report.stockFlowDate.equals(buffer) || buffer.equals("")) {
-                report.stockFlowDate = "";
+        for (StockFlowReport report : flowArray) {
+            if (buffer == null || !report.stockFlowDate.equals(buffer)) {
+                System.out.printf("%-21s    %-20s   %-20s   %-20s\n", report.stockFlowDate, report.id, report.quantity, report.staffID);
+            } else {
+                // Print empty date to indicate it's a continuation of the previous date
+                System.out.printf("%-21s    %-20s   %-20s   %-20s\n", "", report.id, report.quantity, report.staffID);
             }
-            System.out.printf("%-21s    %-20s   %-20s   %-20s\n",report.stockFlowDate,report.id , report.quantity ,report.staffID);
             buffer = report.stockFlowDate;
         }
         
