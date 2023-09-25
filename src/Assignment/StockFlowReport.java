@@ -47,8 +47,9 @@ public class StockFlowReport extends Report {
         }
         
         Assignment.clearScreen();
-        System.out.println("Stock Flow Report");
-        System.out.println("=================");
+        Assignment.logo();
+        System.out.println("                                        Stock Flow Report");
+        System.out.println("============================================================================================");
         System.out.println("Date \t\t\t Stock ID \t\tQuantity \t\tIncharge staff");
         System.out.println("============================================================================================");
         for (StockFlowReport report:flowArray) {

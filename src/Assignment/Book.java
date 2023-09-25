@@ -195,29 +195,41 @@ public class Book extends Stock {
         }
     }
 
-    public static void displayBookDetails(Book book){
+    public void displayBookDetails(Book book){
             System.out.println("====================================");
             System.out.println("|            Book Detail            |");
             System.out.println("====================================");
-            System.out.println("| Book ID : " + book.bookId);
-            System.out.println("| Book Name :  " + book.getName());
-            System.out.println("| Book Type :  " + book.bookType);
-            System.out.println("| Book Price :  " + book.getUnitPrice());
-            System.out.println("| Book Sold Price :  " + book.getSoldPrice());
-            System.out.println("| Book Total Added :  " + book.getStockQuantity());
-            System.out.println("| Book Total Added (RM) :  " + (book.getUnitPrice() * book.getStockQuantity()));
-            
+            System.out.println("  Book ID               : " + book.bookId);
+            System.out.println("  Book Name             :  " + book.getName());
+            System.out.println("  Book Type             :  " + convertBookType(book.bookType));
+            System.out.println("  Book Price            : RM " + book.getUnitPrice());
+            System.out.println("  Book Sold Price       : RM " + book.getSoldPrice());
+            System.out.println("  Book Total Added      :  " + book.getStockQuantity());
+            System.out.println("  Book Total Added (RM) : RM " + (book.getUnitPrice() * book.getStockQuantity()));
+            book.author.displayAuthorDetail(book.author);
+    }
+    
+    public void displayBookDetails(Book book,Author authorDisplay){
+            System.out.println("====================================");
+            System.out.println("|            Book Detail            |");
+            System.out.println("====================================");
+            System.out.println("  Book ID               : " + book.bookId);
+            System.out.println("  Book Name             :  " + book.getName());
+            System.out.println("  Book Type             :  " + convertBookType(book.bookType));
+            System.out.println("  Book Price            : RM " + book.getUnitPrice());
+            System.out.println("  Book Sold Price       : RM " + book.getSoldPrice());
+            System.out.println("  Book Total Added      :  " + book.getStockQuantity());
+            System.out.println("  Book Total Added (RM) : RM " + (book.getUnitPrice() * book.getStockQuantity()));
+            authorDisplay.displayAuthorDetail(authorDisplay);
     }
     
     @Override
     public void display(){
-        double totalUnitPrice=0.0 ,totalSoldPrice=0.0 ;  
-        int quantity = 0,count=0;
         Assignment.clearScreen();
         Assignment.logo();
         ArrayList<Book> bookArray = new ArrayList<>();
 
-        System.out.println("Display All Book");
+        
         System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
                 "Author Name","YearOfBirth","status");
         System.out.println("================================================================================================================================================================");
@@ -230,13 +242,10 @@ public class Book extends Stock {
 
         for (Book bookDisplay: bookArray) {
             System.out.println(bookDisplay);     
-            quantity += bookDisplay.getStockQuantity();
-            totalUnitPrice += (bookDisplay.getStockQuantity() * bookDisplay.getUnitPrice());
-            totalSoldPrice +=  (bookDisplay.getStockQuantity() * bookDisplay.getSoldPrice());
-            count++;
+           
         }
         
-        System.out.println("\nTotal Book :" + count +"\nTotal Quantity :" + quantity +"\nTotal UnitPrice :" +totalUnitPrice +"\nTotal SoldPrice:" + totalSoldPrice );
+       
         Assignment.systemPause();
     }
     
@@ -250,18 +259,21 @@ public class Book extends Stock {
         
         ArrayList<Book> bookArray = new ArrayList<>();
         ArrayList<Book> checkArray = new ArrayList<>();
-        try {
-            readFromFile(bookArray);
-            readFromFile(checkArray);
-        }
-        catch (FileNotFoundException ex) {
-            System.out.println("Failed to read book record");
-        }  
+        
 
         do{
+            bookArray.clear();
+            checkArray.clear();
+            try {
+            readFromFile(bookArray);
+            readFromFile(checkArray);
+            }
+            catch (FileNotFoundException ex) {
+                System.out.println("Failed to read book record");
+            }  
             notFound = true;
             Assignment.clearScreen();
-
+            Assignment.logo();
             
             System.out.println("===========================================");
             System.out.println("               Adjust Stock                 ");
@@ -293,7 +305,7 @@ public class Book extends Stock {
 
                     notFound = false;
                     displayBookDetails(bookArray.get(i));
-                    bookArray.get(i).author.displayAuthorDetail();
+                    
                     currentIndex = i;
                     break;
                 }
@@ -788,13 +800,15 @@ public class Book extends Stock {
                     
                     if (confirmChoice == 'Y' && Validation.checkYesNo(confirmChoice)) {
                         authorInput.setArrive(true);
-                        Author.updateDiscount(book,2);
                     }else if(confirmChoice == 'N' && Validation.checkYesNo(confirmChoice)) {
                         authorInput.setArrive(false);
                         Author.updateDiscount(book,1);
                     }
+                    
                     Assignment.clearScreen();
-                    displayBookDetails(book);
+                    Assignment.logo();
+                    displayBookDetails(book,authorInput);
+                    
                     
                     do {
                          System.out.print("Comfirm [Y/N] > "); 
@@ -879,8 +893,6 @@ public class Book extends Stock {
             System.out.println("              Remove Stock                 ");
             System.out.println("===========================================");
 
-
-            
             
             do {
                 System.out.print("Enter BookID [Q to exit]> ");
@@ -913,7 +925,7 @@ public class Book extends Stock {
 
             if (notFound && Character.toUpperCase(IdSearch.charAt(0)) != 'Q') {
 
-                System.out.println("The BookId Entered Does Not Exist.");
+                System.out.println(RED+"The BookId Entered Does Not Exist."+RESET);
                 Assignment.systemPause();
 
             }else if(!notFound  && Character.toUpperCase(IdSearch.charAt(0)) != 'Q'){
@@ -985,8 +997,10 @@ public class Book extends Stock {
             
             switch(choice){
                 case 1 ->{
-
+                        Assignment.clearScreen();
+                        Assignment.logo();
                     do {
+                        
                         System.out.print("Enter Book Id > ");
                         search = Validation.getStringInput();
 
@@ -999,11 +1013,7 @@ public class Book extends Stock {
                     
                     for (Book book : bookArray) {
                         if (book.getBookId().equals(search)) {
-                            System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
-                                            "Author Name","YearOfBirth","status");
-                            System.out.println("================================================================================================================================================================");
-        
-                            System.out.println(book);
+                            displayBookDetails(book);
                             notFound = false;
                         }
                     }
@@ -1014,16 +1024,15 @@ public class Book extends Stock {
                 }
                 
                 case 2 ->{
+                    
+                    Assignment.clearScreen();
+                    Assignment.logo();
                     System.out.print("Enter Book Name > ");
                     search = Validation.getStringInput();
                     
                     for (Book book : bookArray) {
                         if (book.getName().equals(search)) {
-                            System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
-                                    "Author Name","YearOfBirth","status");
-                            System.out.println("================================================================================================================================================================");
-
-                            System.out.println(book);
+                            displayBookDetails(book);
                             notFound = false;
                         }
                     }
@@ -1059,7 +1068,7 @@ public class Book extends Stock {
     
     public Boolean validName(ArrayList<Book> bookArray,String name){
 
-        if (name.length() < 8) {
+        if (name.length() < 5) {
             return false;
         }
         

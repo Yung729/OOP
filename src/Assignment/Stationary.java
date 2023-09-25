@@ -101,13 +101,12 @@ public class Stationary extends Stock{
             System.out.println("====================================");
             System.out.println("|            Book Detail            |");
             System.out.println("====================================");
-            System.out.println("| Stationary ID : " + sta.getStaId());
-            System.out.println("| Stationary Name :  " + sta.getName());          
-            System.out.println("| Stationary Price :  " + sta.getUnitPrice());
-            System.out.println("| Stationary Sold Price :  " + sta.getSoldPrice());
-            System.out.println("| Stationary Total Added :  " + sta.getStockQuantity());
-            System.out.println("| Stationary Total Added (RM) :  " + (sta.getUnitPrice() * sta.getStockQuantity()));
-            System.out.println("|                                  |");
+            System.out.println("  Stationary ID           : " + sta.getStaId());
+            System.out.println("  Stationary Name         :  " + sta.getName());          
+            System.out.println("  Stationary Price        : RM " + sta.getUnitPrice());
+            System.out.println("  Stationary Sold Price   : RM " + sta.getSoldPrice());
+            System.out.println("  Stationary Total Added  :  " + sta.getStockQuantity());
+            System.out.println("  Stationary Total Added  : RM " + (sta.getUnitPrice() * sta.getStockQuantity()));
             System.out.println("====================================");
             
     }
@@ -183,10 +182,11 @@ public class Stationary extends Stock{
     @Override
     public void display(){
                     Assignment.clearScreen();
+                    Assignment.logo();
             
                     ArrayList<Stationary> staArray = new ArrayList<>();
                     
-                    System.out.println("Display All Stationary");
+                    
                     System.out.printf("%-15s %-28s    %-8s    %-6s    %-9s    %-15s    \n","Stationary Id","Stationary Name","Quantity",
                 "Unit Price","Sold Price","Stock Status");
                     System.out.println("==========================================================================================================");
@@ -208,23 +208,28 @@ public class Stationary extends Stock{
         String idSearch,confirm;
         int choice , newBookQuantity,previousQuantity, currentIndex = 0;    
         boolean notFound,valid ;
-        
-                    ArrayList<Stationary> staArray = new ArrayList<>();
-                    ArrayList<Stationary> checkArray = new ArrayList<>();
-                    try {
-                        readStaFromFile(staArray);
-                        readStaFromFile(checkArray);
-                    }
-                    catch (FileNotFoundException ex) {
-                        System.out.println("Failed to read book record");
-                    }   
+        ArrayList<Stationary> staArray = new ArrayList<>();
+        ArrayList<Stationary> checkArray = new ArrayList<>();
+                     
                     
                     do{
+                        staArray.clear();
+                        checkArray.clear();
+                        try {
+                            readStaFromFile(staArray);
+                            readStaFromFile(checkArray);
+                        }
+                        catch (FileNotFoundException ex) {
+                            System.out.println("Failed to read book record");
+                        }  
+                        
                         notFound = true;
                         Assignment.clearScreen();
-                        
-                        System.out.println("Edit Stationary ");
-                        System.out.println("========================");
+                        Assignment.logo();
+
+                        System.out.println("===========================================");
+                        System.out.println("               Adjust Stock                 ");
+                        System.out.println("===========================================");
                         
                         
                         do {
@@ -263,9 +268,7 @@ public class Stationary extends Stock{
                             
                         }else if(!notFound && toUpperCase(idSearch.charAt(0))!='Q'){
                             
-                            System.out.println("1. Stationary Name");
-                            System.out.println("2. Sold Price ");
-                            System.out.println("3. Stock Balance ");
+                            System.out.println("1. Stationary Name \t\t 2. Sold Price \t\t 3. Stock Balance ");
                             
                             
                             System.out.print("Enter Field to Edit [1-3] >");
@@ -431,6 +434,15 @@ public class Stationary extends Stock{
                                         System.out.println(RED +"Invalid Input" + RESET);
                                     
                                 }
+                                
+                                case 0->{}
+
+
+                                default -> {
+                                    System.out.println(RED + "INVALID INPUT" + RESET);
+                                    Assignment.systemPause();
+                                }
+                    
                             }
                         }
                   
@@ -453,6 +465,10 @@ public class Stationary extends Stock{
                 
                 do {
                     Assignment.clearScreen();
+                    Assignment.logo();
+                    System.out.println("===========================================");
+                    System.out.println("                 Add Stock                 ");
+                    System.out.println("===========================================");
                     sta.setStaId(generateId(staArray));
                     System.out.println("Stationary Id : " + sta.getStaId());
                     
@@ -504,7 +520,7 @@ public class Stationary extends Stock{
                     
                            
                     Assignment.clearScreen();
-                    
+                    Assignment.logo();
                     displayStaDetails(sta);
                     
                     System.out.print("Comfirm [Y/N] > ");
@@ -567,10 +583,11 @@ public class Stationary extends Stock{
                     if (!staArray.isEmpty()) {
                         
                     notFound = true;
-
                     Assignment.clearScreen();
-                    System.out.println("Remove Stationary System");
-                    System.out.println("========================");
+                    Assignment.logo();
+                    System.out.println("===========================================");
+                    System.out.println("              Remove Stock                 ");
+                    System.out.println("===========================================");
                     
                     do {
                         idSearch = Validation.getStringInput("Enter Stationary ID [Q to exit]> ");
@@ -602,7 +619,7 @@ public class Stationary extends Stock{
 
                     if (notFound && toUpperCase(idSearch.charAt(0))!='Q') {
                         
-                        System.out.println("The Stationary Id Entered Does Not Exist.");
+                        System.out.println(RED+"The Stationary Id Entered Does Not Exist."+RESET);
                         Assignment.systemPause();
                         
                     }else if(!notFound && toUpperCase(idSearch.charAt(0))!='Q'){
@@ -655,6 +672,10 @@ public class Stationary extends Stock{
         
         do {
             Assignment.clearScreen();
+            Assignment.logo();
+            System.out.println("===========================================");
+            System.out.println("              Search Stock                 ");
+            System.out.println("===========================================");
             System.out.println("1. Search By Id");
             System.out.println("2. Search By Name");
             System.out.println("0. Exit");
@@ -663,7 +684,8 @@ public class Stationary extends Stock{
             
             switch(choice){
                 case 1 ->{
-                    
+                    Assignment.clearScreen();
+                        Assignment.logo();
                     
                     do {
                             System.out.print("Enter Stationary Id > ");
@@ -677,7 +699,7 @@ public class Stationary extends Stock{
                     
                     for (Stationary sta:staArray) {
                         if (sta.getStaId().equals(search)) {
-                            System.out.println(sta);
+                            displayStaDetails(sta);
                             notFound = false;
                         }
                     }
@@ -688,12 +710,14 @@ public class Stationary extends Stock{
                 }
                 
                 case 2 ->{
+                    Assignment.clearScreen();
+                    Assignment.logo();
                     System.out.print("Enter Stationary Name > ");
                     search = Validation.getStringInput();
                     
                     for (Stationary sta:staArray) {
                         if (sta.getName().equals(search)) {
-                            System.out.println(sta);
+                            displayStaDetails(sta);
                             notFound = false;
                         }
                     }

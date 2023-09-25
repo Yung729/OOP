@@ -26,8 +26,10 @@ public class StockDiscountReport extends Report{
         } catch (FileNotFoundException ex) {
         }
         Assignment.clearScreen();
-        System.out.println("Stock Discount Available Report");
-        System.out.println("===============================");
+        Assignment.logo();
+        System.out.println("                                   Stock Discount Available Report");
+        System.out.println("============================================================================================");
+        
         System.out.println("Book ID \t Original Sold Price \tSold Price Dicounted");
         System.out.println("============================================================");
         for (Book book:bookArr) {

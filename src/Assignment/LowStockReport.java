@@ -42,13 +42,16 @@ public class LowStockReport extends Report{
         }
         
         Assignment.clearScreen();
-        
-        System.out.println("Low Stock Report");
-        System.out.println("================");
+        Assignment.logo();
+        System.out.println("                                   Low Stock Report");
+        System.out.println("========================================================================================");
 
         lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
-        System.out.println("\n\nLow Book Report");
-        System.out.println("================");
+        
+        Assignment.clearScreen();
+        Assignment.logo();
+        System.out.println("                                   Low Book Report");
+        System.out.println("========================================================================================");
          System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-15s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
                 "Author Name","YearOfBirth","status");
         System.out.println("================================================================================================================================================================");
@@ -64,6 +67,9 @@ public class LowStockReport extends Report{
             System.out.println(Assignment.RED +"No Record" + Assignment.RESET);
         }
         
+        Assignment.systemPause(Assignment.RED+"Press Any Key Show Low Stationary ..." + Assignment.RESET);
+        Assignment.clearScreen();
+        Assignment.logo();
         record = false;
         ArrayList<Stationary> staArray = new ArrayList<>();
         
@@ -73,8 +79,8 @@ public class LowStockReport extends Report{
             System.out.println("Failed to read file");
         }
  
-        System.out.println("Low Stationary Report");
-        System.out.println("================");
+        System.out.println("                                   Low Stationary Report");
+        System.out.println("========================================================================================");
         System.out.printf("%-15s %-28s    %-8s    %-6s    %-9s    %-15s    \n","Stationary Id","Stationary Name","Quantity",
                 "Unit Price","Sold Price","Stock Status");
                     System.out.println("==========================================================================================================");

@@ -54,10 +54,10 @@ public class Author {
     }
         
     //method
-    public  void displayAuthorDetail(){
-            System.out.println("| Author Name :  " + name);
-            System.out.println("| Author Age :  " + yearOfBirth);
-            System.out.println("| Author status :  " + arrive);
+    public  void displayAuthorDetail(Author author){
+            System.out.println("  Author Name           :  " + author.name);
+            System.out.println("  Author Age            :  " + author.yearOfBirth);
+            System.out.println("  Author status         :  " + convertBooleanToString(author.arrive));
             System.out.println("====================================");
     }
 
@@ -80,7 +80,7 @@ public class Author {
     
     //validation
     public boolean validAuthorName(String name){
-            if (name.length() < 10 ) {
+            if (name.length() < 5 ) {
                 return false;
             }
             
