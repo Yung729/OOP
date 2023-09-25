@@ -972,7 +972,7 @@ public class Book extends Stock {
     @Override
     public void search(){
         
-        String search;
+        String search = null;
         boolean notFound = true;
         int choice;
          
@@ -991,6 +991,7 @@ public class Book extends Stock {
             System.out.println("===========================================");
             System.out.println("1. Search By Id");
             System.out.println("2. Search By Name");
+            System.out.println("3. Search By Book Type");
             System.out.println("0. Exit");
             System.out.print("Enter your Choice > ");
             choice = Validation.getIntegerInput();
@@ -1045,6 +1046,48 @@ public class Book extends Stock {
                         System.out.println(RED +"Book Name Does Not Exist" + RESET);
                     }
                 }
+                
+                case 3 ->{
+                    
+                    Assignment.clearScreen();
+                    Assignment.logo();
+                    System.out.println("1.Romantic 2.Horror 3.Historical 4.Fiction  5.Eduaction :");
+                    System.out.print("Choose Book Type > ");
+                    
+                    do {
+                        choice = Validation.getIntegerInput();
+                    
+                    if (choice < 1 && choice > 5 ) {
+                        System.out.println(RED+"Invalid Input" + RESET);
+                    }
+                    } while (choice < 1 && choice > 5);
+                    
+                    
+                    switch(choice){case 1 -> search="R";
+                                    case 2 -> search="H";
+                                    case 3 -> search="T";
+                                    case 4 -> search="F";
+                                    case 5 -> search="E";
+                                    }
+                    Assignment.clearScreen();
+                    Assignment.logo();
+                     System.out.printf("%-11s %-28s    %-8s    %-6s    %-9s    %-17s    %-13s    %-10s    %-10s    %-10s\n","Book Id","BookName","Quantity","Unit Price","Sold Price","Book Status","Type",
+                "Author Name","YearOfBirth","status");
+        System.out.println("================================================================================================================================================================");
+        
+                    for (Book book : bookArray) {
+                        if (book.getBookType()== search.charAt(0)) {
+                            
+                            System.out.println(book);
+                            notFound = false;
+                        }
+                    }
+                    
+                    if (notFound) {
+                        System.out.println(RED +"Book Name Does Not Exist" + RESET);
+                    }
+                }
+                
                 case 0 ->{}
                 default ->{ System.out.println(RED+"Invalid Input" + RESET);}
             }
