@@ -27,8 +27,8 @@ public class StockDiscountReport extends Report{
         }
         Assignment.clearScreen();
         Assignment.logo();
-        System.out.println("                                   Stock Discount Available Report");
-        System.out.println("============================================================================================");
+        System.out.println("               Stock Discount Available Report");
+        System.out.println("=============================================================");
         
         System.out.println("Book ID \t Original Sold Price \tSold Price Dicounted");
         System.out.println("============================================================");
