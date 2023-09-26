@@ -359,7 +359,7 @@ public class Book extends Stock {
                         
       
                         do {
-                        System.out.print("Enter Book Type [R,H,T,F,E] :");
+                        System.out.print("Enter Book Type [(R)omantic,(H)orror,His(T)orical,(F)iction,(E)ducation] :");
                         bookArray.get(currentIndex).setBookType(inputString.next().charAt(0));
                         
                         switch(Character.toUpperCase(bookArray.get(currentIndex).getBookType())){
