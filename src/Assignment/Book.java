@@ -446,10 +446,11 @@ public class Book extends Stock {
 
                     case 4 -> {
                         System.out.println("Edit Book Quantity");
-                        System.out.println("==================");
+                        System.out.println("========================");
                         System.out.println("1. Add Book Quantity");
                         System.out.println("2. Sub Book Quantity");
                         System.out.println("3. Set Book Quantity");
+                        System.out.println("========================");
 
                         System.out.print("Enter your Choice > ");
                         choice = Validation.getIntegerInput();

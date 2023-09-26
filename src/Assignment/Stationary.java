@@ -344,6 +344,7 @@ public class Stationary extends Stock{
                                     System.out.println("1. Add Stationary Quantity");
                                     System.out.println("2. Sub Stationary Quantity");
                                     System.out.println("3. Set Stationary Quantity");
+                                    System.out.println("========================");
                                     
                                     System.out.print("Enter your Choice > ");
                                     choice = Validation.getIntegerInput();
