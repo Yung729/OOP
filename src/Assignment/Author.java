@@ -17,7 +17,7 @@ public class Author {
     private int yearOfBirth;
     protected boolean arrive;
     protected static final double DISCOUNT_RATE = 0.5;
-    private int currentYear = Year.now().getValue();
+    private final int currentYear = Year.now().getValue();
     
     Author(){};
     
