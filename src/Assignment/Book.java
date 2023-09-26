@@ -252,10 +252,10 @@ public class Book extends Stock {
     @Override
     public void adjust(){
         
-        String idSearch  ,confirm;
+        String idSearch  ,authorSearch = null,confirm;
         int choice , newBookQuantity, currentIndex = 0;
         boolean notFound,valid ;
-        boolean error= false;
+        boolean error;
         
         ArrayList<Book> bookArray = new ArrayList<>();
         ArrayList<Book> checkArray = new ArrayList<>();
@@ -543,24 +543,32 @@ public class Book extends Stock {
 
                     case 5->{
 
-                        
+                         boolean check = false;
                         
                       do {
+                          
+                         
                         System.out.print("Enter Author Name :");
-                        bookArray.get(currentIndex).author.setName(Validation.getStringInput());
-                        
-                        if (!bookArray.get(currentIndex).author.validAuthorName(bookArray.get(currentIndex).author.getName())) {
-                            System.out.println(RED+"Author Name Invalid" + RESET);
+                          
+                        if (!check) {
+                            authorSearch = bookArray.get(currentIndex).author.getName();
                         }
                         
-                      } while (!bookArray.get(currentIndex).author.validAuthorName(bookArray.get(currentIndex).author.getName()));
+                        bookArray.get(currentIndex).author.setName(Validation.getStringInput());
+                        
+                        if (!bookArray.get(currentIndex).author.validAuthorName(bookArray.get(currentIndex).author.getName())||bookArray.get(currentIndex).author.getName().equals(authorSearch)) {
+                            System.out.println(RED+"Author Name Invalid" + RESET);
+                            check = true;
+                        }
+                        
+                      } while (!bookArray.get(currentIndex).author.validAuthorName(bookArray.get(currentIndex).author.getName())||bookArray.get(currentIndex).author.getName().equals(authorSearch));
                         
                         System.out.print("Confirm To Edit Author Name ? [Y/N] >");
                         confirm = inputString.next();
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
-                                Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getName());
+                                Author.editAuthor(bookArray, authorSearch, bookArray.get(currentIndex).author.getName());
                                 writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Author Name");
@@ -572,10 +580,11 @@ public class Book extends Stock {
                     
                     case 6->{
 
-                        
-                        
+  
                         do {
                         System.out.print("Enter Year Of Birth :");
+                        
+                        authorSearch = bookArray.get(currentIndex).author.getName();
 
                         bookArray.get(currentIndex).author.setYearOfBirth(Validation.getIntegerInput());
                         
@@ -591,7 +600,7 @@ public class Book extends Stock {
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
-                                Author.editAuthor(bookArray, idSearch, bookArray.get(currentIndex).author.getYearOfBirth());
+                                Author.editAuthor(bookArray, authorSearch, bookArray.get(currentIndex).author.getYearOfBirth());
                                 writeToFile(bookArray);
                             } catch (IOException ex) {
                                 System.out.println("Failed to Edit The Book Name");
@@ -604,17 +613,19 @@ public class Book extends Stock {
 
                         System.out.println("Current status : " + bookArray.get(currentIndex).author.checkArrive());
 
+                        authorSearch = bookArray.get(currentIndex).author.getName();
+                        
                         System.out.print("Confirm To Edit Status ? [Y/N] >");
                         confirm = Validation.getStringInput();
 
                         if (toUpperCase(confirm.charAt(0)) == 'Y' && Validation.checkYesNo(confirm.charAt(0))) {
                             try {
                                 if (bookArray.get(currentIndex).author.checkArrive()) {
-                                   Author.editAuthor(bookArray, idSearch, false); 
-                                   Author.updateDiscount(bookArray.get(currentIndex),1);
+                                   Author.editAuthor(bookArray, authorSearch, false); 
+                                   Author.updateDiscount(1,authorSearch,bookArray);
                                 }else{
-                                  Author.editAuthor(bookArray, idSearch, true);
-                                  Author.updateDiscount(bookArray.get(currentIndex),2);
+                                  Author.editAuthor(bookArray, authorSearch, true);
+                                  Author.updateDiscount(2,authorSearch,bookArray);
                                 }
                                 
                                 
@@ -776,34 +787,56 @@ public class Book extends Stock {
                     } while (!authorInput.validAuthorName(authorInput.getName()));
                     
                     
+                    ArrayList<Book> bookAuthor = new ArrayList<>() ;
+                    boolean authorOccur = false;
+                    try {
+                        readFromFile(bookAuthor);
+                    } catch (FileNotFoundException ex) {
+                        Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     
-                    do {
+                    for (Book authorCheck : bookAuthor) {
+                        if (authorInput.equals(authorCheck.author)) {
+                            authorOccur = true;
+                            authorInput.setYearOfBirth(authorCheck.author.getYearOfBirth());
+                            authorInput.setArrive(authorCheck.author.checkArrive());
+                        }
+                    }
+                    
+                    
+                    if (!authorOccur) {
+                        do {
                         System.out.print("Enter Author YOB > ");
                         authorInput.setYearOfBirth(Validation.getIntegerInput());
                         if (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth())) {
                             System.out.println(RED+ "Invalid Year Of Birth, YOB accept 1800 to current only !" + RESET);
                         }
-                    } while (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth()));
-                    
-                                        
-                    do {
-                        System.out.print("Author Alive ? [Y/N] > ");
-                        confirmChoice = toUpperCase(inputString.next().charAt(0));
+                        } while (!authorInput.validAuthorYearOfBirth(authorInput.getYearOfBirth()));
 
-                        valid = Validation.checkYesNo(confirmChoice);
-                        if (!valid) {
-                            System.out.println(RED +"Invalid Input Must 'Y'/'N'" + RESET);
+
+                        do {
+                            System.out.print("Author Alive ? [Y/N] > ");
+                            confirmChoice = toUpperCase(inputString.next().charAt(0));
+
+                            valid = Validation.checkYesNo(confirmChoice);
+                            if (!valid) {
+                                System.out.println(RED +"Invalid Input Must 'Y'/'N'" + RESET);
+                            }
+
+                        } while (!valid);
+
+
+                        if (confirmChoice == 'Y' && Validation.checkYesNo(confirmChoice)) {
+                            authorInput.setArrive(true);
+                        }else if(confirmChoice == 'N' && Validation.checkYesNo(confirmChoice)) {
+                            authorInput.setArrive(false);
+                            Author.updateDiscount(book,1);
                         }
-                        
-                    } while (!valid);
-                    
-                    
-                    if (confirmChoice == 'Y' && Validation.checkYesNo(confirmChoice)) {
-                        authorInput.setArrive(true);
-                    }else if(confirmChoice == 'N' && Validation.checkYesNo(confirmChoice)) {
-                        authorInput.setArrive(false);
-                        Author.updateDiscount(book,1);
+                    }else if (authorOccur) {
+                        System.out.println(Assignment.GREEN+"Author Already exist in system the data will be copy"+ Assignment.RESET);
+                        Assignment.systemPause();
                     }
+                    
                     
                     Assignment.clearScreen();
                     Assignment.logo();

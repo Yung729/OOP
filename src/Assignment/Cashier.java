@@ -1792,6 +1792,7 @@ public class Cashier extends Employees{
 
         do{
             clearScreen(); 
+            Assignment.logo();
             error = false;
             System.out.println("Current Login > " + CURRENTNAME);
             

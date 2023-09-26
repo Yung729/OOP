@@ -6,6 +6,7 @@ package Assignment;
 
 import java.time.Year;
 import java.util.ArrayList;
+import java.util.Objects;
 
 /**
  *
@@ -62,6 +63,29 @@ public class Author {
     }
 
     
+    public static void updateDiscount(int mode,String authorSearch,ArrayList<Book> bookArray){
+        
+        for (Book latestBook: bookArray) {
+          if (latestBook.author.getName().equals(authorSearch)) {
+                 if (mode == 1) {
+                    double newSoldPrice = latestBook.getSoldPrice() - (latestBook.getSoldPrice() * DISCOUNT_RATE);
+
+                    latestBook.setSoldPrice(newSoldPrice);
+
+                }else if (mode == 2) {
+
+                    double newSoldPrice = (latestBook.getSoldPrice() / DISCOUNT_RATE);
+
+                    latestBook.setSoldPrice(newSoldPrice);
+                }
+           }     
+            
+        }
+        
+        
+         
+    }
+    
     public static void updateDiscount(Book book,int mode){
         if (mode == 1) {
             double newSoldPrice = book.getSoldPrice() - (book.getSoldPrice() * DISCOUNT_RATE);
@@ -110,9 +134,9 @@ public class Author {
     
     
     // overloading method of editBook 
-    public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,String newAuthorName){
+    public static void editAuthor(ArrayList<Book> bookArray,String authorSearch,String newAuthorName){
          for (Book latestBook: bookArray) {
-          if (latestBook.getBookId().equals(searchBookId)) {
+          if (latestBook.author.getName().equals(authorSearch)) {
                  latestBook.author.setName(newAuthorName);
            }     
             
@@ -120,17 +144,17 @@ public class Author {
     }
     
     
-    public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,int newAge){
+    public static void editAuthor(ArrayList<Book> bookArray,String authorSearch,int newAge){
          for (Book latestBook: bookArray) {
-             if (latestBook.getBookId().equals(searchBookId)) {
+             if (latestBook.author.getName().equals(authorSearch)) {
                  latestBook.author.setYearOfBirth(newAge);
              }     
         }
     }
     
-    public static void editAuthor(ArrayList<Book> bookArray,String searchBookId,boolean arrive){
+    public static void editAuthor(ArrayList<Book> bookArray,String authorSearch,boolean arrive){
          for (Book latestBook: bookArray) {
-             if (latestBook.getBookId().equals(searchBookId)) {
+             if (latestBook.author.getName().equals(authorSearch)) {
                  latestBook.author.setArrive(arrive);
              }     
         }
@@ -143,6 +167,28 @@ public class Author {
         }else{
             return Assignment.RED+"Pass Away"+Assignment.RESET;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 97 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Author other = (Author) obj;
+        return Objects.equals(this.name, other.name);
     }
     
     
