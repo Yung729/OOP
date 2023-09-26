@@ -441,14 +441,9 @@ public abstract class Employees {
             System.out.println("=====================================");
             
             System.out.print("Enter your choice > ");
-            
-            try{
+
                 choice = Validation.getIntegerInput();
-            }catch (Exception e){
-                System.out.println("Invalid input!");
-                choice = 0;
-                error = true;
-            }
+            
             
             switch(choice){
                 case 1 -> addStaff();
@@ -478,13 +473,9 @@ public abstract class Employees {
         public static void addStaff(){  
 
             int choice;
-            boolean error;
-
-
 
             do{
                 clearScreen();
-                error = false;
                 System.out.println("Current Login > " + CURRENTNAME);
 
                 System.out.println("============================================");
@@ -496,13 +487,9 @@ public abstract class Employees {
                 System.out.println("============================================");
 
                 System.out.print("Enter your choice >  ");
-                try{
-                    choice = input.nextInt();
-                }catch (Exception e){
-                    System.out.println("Invalid input!");
-                    choice = 0;
-                    error = true;
-                }
+                
+                    choice = Validation.getIntegerInput();
+                
 
                 switch(choice){
                     case 1 -> new Admin().add();
@@ -516,20 +503,18 @@ public abstract class Employees {
 
                 }
 
-            }while(choice != 0 || error);
+            }while(choice != 0 );
 
         }
 
         public static void removeStaff(){
 
             int choice;
-            boolean error;
 
 
 
             do{
                 clearScreen();
-                error = false;
                 System.out.println("Current Login > " + CURRENTNAME);
 
                 System.out.println("============================================");
@@ -541,13 +526,7 @@ public abstract class Employees {
                 System.out.println("============================================");
 
                 System.out.print("Enter your choice > ");
-                try{
-                    choice = input.nextInt();
-                }catch (Exception e){
-                    System.out.println("Invalid input!");
-                    choice = 0;
-                    error = true;
-                }
+                choice = Validation.getIntegerInput();
 
                 switch(choice){
                     case 1 -> new Admin().delete();
@@ -562,20 +541,18 @@ public abstract class Employees {
 
                 }
 
-            }while(choice != 0 || error);
+            }while(choice != 0 );
 
         }
 
         public static void editStaff(){
 
             int choice;
-            boolean error;
 
 
 
             do{
                 clearScreen();
-                error = false;
                 System.out.println("Current Login > " + CURRENTNAME);
 
                 System.out.println("============================================");
@@ -587,13 +564,7 @@ public abstract class Employees {
                 System.out.println("============================================");
 
                 System.out.print("Enter your choice > ");
-                try{
-                    choice = input.nextInt();
-                }catch (Exception e){
-                    System.out.println("Invalid input!");
-                    choice = 0;
-                    error = true;
-                }
+                choice = Validation.getIntegerInput();
 
                 switch(choice){
                     case 1 -> new Admin().edit();
@@ -608,7 +579,7 @@ public abstract class Employees {
 
                 }
 
-            }while(choice != 0 || error);
+            }while(choice != 0 );
 
 
 
@@ -617,13 +588,11 @@ public abstract class Employees {
         public static void searchStaff(){
 
             int choice;
-            boolean error;
 
 
 
             do{
                 clearScreen();
-                error = false;
                 System.out.println("Current Login > " + CURRENTNAME);
 
                 System.out.println("============================================");
@@ -635,13 +604,7 @@ public abstract class Employees {
                 System.out.println("============================================");
 
                 System.out.print("Enter your choice > ");
-                try{
-                    choice = input.nextInt();
-                }catch (Exception e){
-                    System.out.println("Invalid input!");
-                    choice = 0;
-                    error = true;
-                }
+                choice = Validation.getIntegerInput();
 
                 switch(choice){
                     case 1 -> new Admin().search();
@@ -655,19 +618,17 @@ public abstract class Employees {
 
 
                 }
-            } while(choice !=0 || error);
+            } while(choice !=0 );
         }
 
         public static void viewStaff(){
 
             int choice;
-            boolean error;
 
 
 
             do{
                 clearScreen();
-                error = false;
                 System.out.println("Current Login > " + CURRENTNAME);
 
                 System.out.println("============================================");
@@ -679,13 +640,7 @@ public abstract class Employees {
                 System.out.println("============================================");
 
                 System.out.print("Enter your choice > ");
-                try{
-                    choice = input.nextInt();
-                }catch (Exception e){
-                    System.out.println("Invalid input!");
-                    choice = 0;
-                    error = true;
-                }
+                choice = Validation.getIntegerInput();
 
                 switch(choice){
                     case 1 -> new Admin().view();
@@ -698,7 +653,7 @@ public abstract class Employees {
                                 Assignment.systemPause();}
 
                 }
-            } while(choice !=0 || error);
+            } while(choice !=0 );
 
 
         }
