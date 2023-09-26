@@ -47,7 +47,7 @@ public class Assignment {
 
     public static void systemPause(){
         Scanner buffer = new Scanner(System.in);
-        System.out.print(GREEN+"Enter any key to continue...."+RESET);
+        System.out.print(GREEN+"Enter enter to continue...."+RESET);
         buffer.nextLine(); 
     }
     

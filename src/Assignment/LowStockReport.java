@@ -75,7 +75,7 @@ public class LowStockReport extends Report{
             System.out.println(Assignment.RED +"No Record" + Assignment.RESET);
         }
         
-        Assignment.systemPause(Assignment.RED+"Press Any Key Show Low Stationary ..." + Assignment.RESET);
+        Assignment.systemPause(Assignment.RED+"Press Enter Show Low Stationary ..." + Assignment.RESET);
         Assignment.clearScreen();
         Assignment.logo();
         record = false;
