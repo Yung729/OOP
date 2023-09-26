@@ -600,8 +600,9 @@ public abstract class Employees {
 
                     case 2 -> new Cashier().edit();
 
-                    case 3 -> {}
 
+                    case 0 ->{}
+                    
                     default -> { System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                                 Assignment.systemPause();}
 
@@ -647,8 +648,8 @@ public abstract class Employees {
 
                     case 2 -> new Cashier().search();
 
-                    case 3 -> {}
-
+                    case 0 ->{}
+                    
                     default -> { System.out.println(RED + "Invalid Input. Please enter again!" + RESET);
                                 Assignment.systemPause();}
 
