@@ -46,7 +46,15 @@ public class LowStockReport extends Report{
         System.out.println("                                   Low Stock Report");
         System.out.println("========================================================================================");
 
-        lowStockLine = Validation.getIntegerInput("Please enter a low line > ");
+        do {
+            System.out.print("Please enter a low line > ");
+            lowStockLine = Validation.getIntegerInput();
+            
+            if (lowStockLine == -1) {
+                System.out.println(Assignment.RED+"Invalid number"+Assignment.RESET);
+            }
+        } while (lowStockLine == -1);
+        
         
         Assignment.clearScreen();
         Assignment.logo();
