@@ -50,14 +50,14 @@ public class StockFlowReport extends Report {
         Assignment.logo();
         System.out.println("                                        Stock Flow Report");
         System.out.println("============================================================================================");
-        System.out.println("Date \t\t\t Stock ID \t\tQuantity \t\tIncharge staff");
+        System.out.println("Date \t\t\t Stock ID \t\tQuantity \tIncharge staff");
         System.out.println("============================================================================================");
         for (StockFlowReport report : flowArray) {
             if (buffer == null || !report.stockFlowDate.equals(buffer)) {
-                System.out.printf("%-21s    %-20s   %-20s   %-20s\n", report.stockFlowDate, report.id, report.quantity, report.staffID);
+                System.out.printf("%-21s    %-23s   %-20s   %-20s\n", report.stockFlowDate, report.id, report.quantity, report.staffID);
             } else {
                 // Print empty date to indicate it's a continuation of the previous date
-                System.out.printf("%-21s    %-20s   %-20s   %-20s\n", "", report.id, report.quantity, report.staffID);
+                System.out.printf("%-21s    %-23s   %-20s   %-20s\n", "", report.id, report.quantity, report.staffID);
             }
             buffer = report.stockFlowDate;
         }
