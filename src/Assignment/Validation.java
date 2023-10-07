@@ -15,21 +15,20 @@ import java.util.Scanner;
  * @author Yung
  */
 public class Validation {
-    
+
     static Scanner input = new Scanner(System.in);
-    
-    public static boolean checkYesNo(char input) {  
+
+    public static boolean checkYesNo(char input) {
 
         boolean check = true;
-        
-           
+
         if (toUpperCase(input) != 'Y' && toUpperCase(input) != 'N') {
             check = false;
         }
 
         return check;
     }
-    
+
     public static int getIntegerInput() {
         int value;
         try {
@@ -38,43 +37,45 @@ public class Validation {
         } catch (Exception e) {
             input.nextLine();
             System.out.println(RED + "Must In Integer" + RESET);
-            return -1; 
+            return -1;
         }
         return value;
     }
-    
-        public static int getIntegerInput(String question) {
+
+    public static int getIntegerInput(String question) {
         String res = getStringInput(question);
-        if (res == null)  return -1;
-        if (!res.matches("\\d+"))  return -1; 
+        if (res == null) {
+            return -1;
+        }
+        if (!res.matches("\\d+")) {
+            return -1;
+        }
 
         return Integer.parseInt(res);
     }
-    
-    public static double getDoubleInput() { 
+
+    public static double getDoubleInput() {
         double value;
         try {
             value = input.nextDouble();
             input.nextLine();
         } catch (Exception e) {
             input.nextLine();
-            return -1; 
+            return -1;
         }
         return value;
     }
-    
-        public static String getStringInput(){
+
+    public static String getStringInput() {
         String value;
-        try{
+        try {
             value = input.nextLine();
-        }catch(Exception e){
+        } catch (Exception e) {
             input.nextLine();
             return null;
         }
         return value;
     }
-
-
 
     public static String getStringInput(String question) {
         String value;
@@ -89,7 +90,7 @@ public class Validation {
     }
 
     public static int getIsContinue(String ans) {
-        if(toUpperCase(ans.charAt(0)) != 'Y' && toUpperCase(ans.charAt(0)) != 'N'){
+        if (toUpperCase(ans.charAt(0)) != 'Y' && toUpperCase(ans.charAt(0)) != 'N') {
             return -1;
         }
 
@@ -117,6 +118,5 @@ public class Validation {
 
         return toUpperCase(ans.charAt(0)) == 'Y';
     }
-    
-    
+
 }

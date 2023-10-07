@@ -23,23 +23,23 @@ public class SummaryReport extends Report {
         initOrderList();
     }
 
-    private void initOrderList(){
+    private void initOrderList() {
         for (Transaction summary : super.getTransactionList()) {
             orderList.add(summary.getOrder());
         }
     }
-    
+
     @Override
     public void printReport() {
-        clearScreen(); 
+        clearScreen();
         logo();
         System.out.println("====================================================");
         System.out.println("                    Summary Report                  ");
         System.out.println("====================================================");
         Transaction summary = super.getTransactionList().get(0);
-        
+
         summary.printSummaryTransaction(orderList);
-   
+
         Assignment.systemPause();
     }
 }

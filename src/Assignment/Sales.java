@@ -18,10 +18,9 @@ import static Assignment.StaticStorage.*;
  *
  * @author xinru
  */
-
 public class Sales {
 
-    public static void salesMenu(){
+    public static void salesMenu() {
         int option;
 
         while (true) {
@@ -80,67 +79,75 @@ public class Sales {
     }
 
     public static void makeOrderMenu() {
-    if (currentOrder == null) currentOrder = new Order();
+        if (currentOrder == null) {
+            currentOrder = new Order();
+        }
 
-    while (true) {
-        clearScreen();
-        System.out.println("===========================================");
-        System.out.println("             MAKE ORDER                 ");
-        System.out.println("===========================================");
-        System.out.println("(Book)");
-        bookListMenu(Tools.getAvailableBookList());
+        while (true) {
+            clearScreen();
+            System.out.println("===========================================");
+            System.out.println("             MAKE ORDER                 ");
+            System.out.println("===========================================");
+            System.out.println("(Book)");
+            bookListMenu(Tools.getAvailableBookList());
 
-        System.out.println("\n(Stationary)");
-        stationaryListMenu(Tools.getAvailableStationaryList());
+            System.out.println("\n(Stationary)");
+            stationaryListMenu(Tools.getAvailableStationaryList());
 
-        System.out.println("================================================================================");
+            System.out.println("================================================================================");
 
-        String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
+            String itemID = Validation.getStringInput("Pick an item (BookID/ StationaryID)\t > ");
 
-        if (isValidItemID(itemID)) {
-            int quantity = Validation.getIntegerInput("Quantity\t\t > ");
+            if (isValidItemID(itemID)) {
+                int quantity = Validation.getIntegerInput("Quantity\t\t > ");
 
-            if (quantity > 0 && Tools.checkItemStock(itemID, quantity)) {
-                boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
+                if (quantity > 0 && Tools.checkItemStock(itemID, quantity)) {
+                    boolean isContinue = Validation.checkIsContinue("Anymore book/stationary? (Y/N)\t > ");
 
-                if (itemID.startsWith("B"))
-                    currentOrder.addBookOrder(itemID, quantity);
-                else if (itemID.startsWith("S"))
-                    currentOrder.addStationaryOrder(itemID, quantity);
+                    if (itemID.startsWith("B")) {
+                        currentOrder.addBookOrder(itemID, quantity);
+                    } else if (itemID.startsWith("S")) {
+                        currentOrder.addStationaryOrder(itemID, quantity);
+                    }
 
-                System.out.println("\n\nAdded to cart!\n\n");
+                    System.out.println("\n\nAdded to cart!\n\n");
 
-                if (!isContinue) break;
+                    if (!isContinue) {
+                        break;
+                    }
+                } else {
+                    System.out.println(RED + "Invalid quantity or not enough stock!\n" + RESET);
+                    systemPause();
+                }
             } else {
-                System.out.println(RED + "Invalid quantity or not enough stock!\n" + RESET);
+                System.out.println(RED + "Invalid Item ID format or does not exist!\n" + RESET);
                 systemPause();
             }
-        } else {
-            System.out.println(RED + "Invalid Item ID format or does not exist!\n" + RESET);
-            systemPause();
         }
     }
-}
 
-private static boolean isValidItemID(String itemID) {
-    return itemID.matches("^[BS]\\d+$") &&
-           (FileHandler.checkIDExist(FileHandler.BOOK_DB, itemID) || 
-            FileHandler.checkIDExist(FileHandler.STATIONARY_DB, itemID));
-}
+    private static boolean isValidItemID(String itemID) {
+        return itemID.matches("^[BS]\\d+$")
+                && (FileHandler.checkIDExist(FileHandler.BOOK_DB, itemID)
+                || FileHandler.checkIDExist(FileHandler.STATIONARY_DB, itemID));
+    }
 
-public static void cartOptionMenu() {
+    public static void cartOptionMenu() {
         if (currentOrder == null) {
             System.out.println(RED + "No order has been made yet! " + RESET);
             System.out.println("\n\n");
             return;
         }
-        if (currentCart == null) currentCart = new Cart(currentOrder);
+        if (currentCart == null) {
+            currentCart = new Cart(currentOrder);
+        }
         while (currentCart != null) {
             currentCart.displayCart();
             System.out.println("\n1. Edit Cart \t\t\t2. Clear Cart \t\t\t3. Back");
             int option = Validation.getIntegerInput("Enter your choice > ");
             switch (option) {
-                case 1 -> editCartMenu();
+                case 1 ->
+                    editCartMenu();
                 case 2 -> {
                     System.out.println("\nClear Cart");
                     currentCart.clearCart();
@@ -152,14 +159,15 @@ public static void cartOptionMenu() {
                 case 3 -> {
                     return;
                 }
-                default -> System.out.println(RED + "Invalid input!" + RESET);
+                default ->
+                    System.out.println(RED + "Invalid input!" + RESET);
             }
             System.out.println("\n\n\n\n\n");
         }
     }
 
     private static void editCartMenu() {
-        if(currentCart == null) {
+        if (currentCart == null) {
             System.out.println(RED + "No order has been made yet!" + RESET);
             return;
         }
@@ -189,7 +197,9 @@ public static void cartOptionMenu() {
                 case 2:
                     System.out.println("\nEnter the item ID to remove");
                     String itemID = Validation.getStringInput("Item ID > ");
-                    if (itemID == null) break;
+                    if (itemID == null) {
+                        break;
+                    }
                     if (currentOrder.checkItemIsExist(itemID)) {
                         System.out.println(RED + "Item does not exist in cart!" + RESET);
                         break;
@@ -208,9 +218,13 @@ public static void cartOptionMenu() {
                 case 3:
                     System.out.println("\nEnter the item ID to edit");
                     itemID = Validation.getStringInput("Item ID > ");
-                    if (itemID == null) break;
+                    if (itemID == null) {
+                        break;
+                    }
                     int quantity = Validation.getIntegerInput("Quantity > ");
-                    if (quantity == -1) break;
+                    if (quantity == -1) {
+                        break;
+                    }
                     if (quantity == 0) {
                         currentCart.removeItem(itemID);
                     }
@@ -247,10 +261,12 @@ public static void cartOptionMenu() {
             System.out.println(RED + "No order has been made yet! \n" + RESET);
             return;
         }
-        if (currentCart == null) currentCart = new Cart(currentOrder);
+        if (currentCart == null) {
+            currentCart = new Cart(currentOrder);
+        }
         System.out.println("\nPayment");
         currentCart.displayCart();
-        
+
         Scanner scanner = new Scanner(System.in);
 
         System.out.print("Is a member? (Y/N) > ");
@@ -260,7 +276,9 @@ public static void cartOptionMenu() {
         if (isMember && userInput.charAt(0) == 'Y' || userInput.charAt(0) == 'y') {
             System.out.println("Enter member ID");
             String memberID = Validation.getStringInput("Member ID > ");
-            if (memberID == null) return;
+            if (memberID == null) {
+                return;
+            }
             if (!FileHandler.checkIDExist(FileHandler.MEMBER_DB, memberID)) {
                 System.out.println(RED + "Member ID does not exist!\n" + RESET);
                 return;
@@ -269,16 +287,18 @@ public static void cartOptionMenu() {
             System.out.println("\tDiscount Active !!!  10% off");
             System.out.println("\tTotal Price: " + currentOrder.getTotalPriceWithTax());
         }
-        
 
         System.out.println("\nPayment By: ");
         System.out.println("1. Bank \t\t2. Ewallet \t\t3. Cash");
         String method;
         int option = Validation.getIntegerInput("Enter choice > ");
         switch (option) {
-            case 1 -> method = "Bank";
-            case 2 -> method = "Ewallet";
-            case 3 -> method = "Cash";
+            case 1 ->
+                method = "Bank";
+            case 2 ->
+                method = "Ewallet";
+            case 3 ->
+                method = "Cash";
             default -> {
                 System.out.println(RED + "Invalid input! \n" + RESET);
                 return;
@@ -305,6 +325,4 @@ public static void cartOptionMenu() {
         systemPause();
     }
 
-    
-           
 }

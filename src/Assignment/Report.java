@@ -6,42 +6,40 @@ package Assignment;
 
 import java.util.ArrayList;
 
-
-
 /**
  *
  * @author Yung
  */
 public class Report {
-    
+
     private final ArrayList<Transaction> transactionList;
-    
-    public Report(){
+
+    public Report() {
         transactionList = new ArrayList<>();
         initTransactionList();
     }
-    
-    private void initTransactionList(){
+
+    private void initTransactionList() {
         ArrayList<String> transactionIDList = FileHandler.getColumnByType(FileHandler.TRANSACTION_DB, 0);
         for (String transactionID : transactionIDList) {
             transactionList.add(new Transaction(transactionID));
         }
     }
 
-    public void printReport(){
+    public void printReport() {
         System.out.println("Display Report");
     }
 
-    protected ArrayList<Transaction> getTransactionList(){
+    protected ArrayList<Transaction> getTransactionList() {
         return transactionList;
     }
-    
+
     public static void salesReportMenu() {
         SummaryReport sReport = new SummaryReport();
         HotSellReport hotSellReport = new HotSellReport();
-        
-        while(true) {
-            Assignment.clearScreen(); 
+
+        while (true) {
+            Assignment.clearScreen();
             Assignment.logo();
             System.out.println("========================================");
             System.out.println("             REPORT MENU                ");
@@ -51,8 +49,8 @@ public class Report {
             System.out.println("0. Exit");
             System.out.println("========================================");
             int option = Validation.getIntegerInput("Enter your choice > ");
-            
-            switch(option) {
+
+            switch (option) {
                 case 1 -> {
                     System.out.println("\n(Sales Summary Report)");
                     sReport.printReport();
@@ -64,15 +62,16 @@ public class Report {
                 case 0 -> {
                     return;
                 }
-                default -> System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
+                default ->
+                    System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
             }
             System.out.println("\n");
         }
     }
-    
-    public void stockReportMenu(){      
+
+    public void stockReportMenu() {
         int choice;
-        
+
         do {
             Assignment.clearScreen();
             Assignment.logo();
@@ -84,30 +83,27 @@ public class Report {
             System.out.println("3. Stock Flow Report");
             System.out.println("0. Exit");
             System.out.println("=========================");
-            
+
             choice = Validation.getIntegerInput("Enter your choice : ");
-            
-            switch(choice){
-                case 1->{
+
+            switch (choice) {
+                case 1 -> {
                     new LowStockReport().printReport();
                 }
-                
-                case 2 ->{
+
+                case 2 -> {
                     new StockDiscountReport().printReport();
                 }
-                
-                case 3 ->{
+
+                case 3 -> {
                     new StockFlowReport().printReport();
                 }
-                
-                default -> System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
+
+                default ->
+                    System.out.println(Assignment.RED + "Invalid input!" + Assignment.RESET);
             }
-            
-            
-            
+
         } while (choice != 0);
     }
-    
-    
-    
+
 }

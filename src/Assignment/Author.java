@@ -13,159 +13,156 @@ import java.util.Objects;
  * @author Yung
  */
 public class Author {
+
     private String name;
     private int yearOfBirth;
     protected boolean arrive;
     protected static final double DISCOUNT_RATE = 0.5;
     private final int currentYear = Year.now().getValue();
+
+    Author() {
+    }
+
+    ;
     
-    Author(){};
-    
-    Author(String name,int yearOfBirth,boolean arrive){
+    Author(String name, int yearOfBirth, boolean arrive) {
         this.name = name;
         this.yearOfBirth = yearOfBirth;
         this.arrive = arrive;
     }
 
     //setter
-    
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
     }
-    
-    public void setYearOfBirth(int yearOfBirth){
+
+    public void setYearOfBirth(int yearOfBirth) {
         this.yearOfBirth = yearOfBirth;
     }
-    
-    public void setArrive(boolean arrive){
+
+    public void setArrive(boolean arrive) {
         this.arrive = arrive;
     }
-    
+
     //getter
-    public String getName(){
+    public String getName() {
         return name;
     }
-    
-    public int getYearOfBirth(){
+
+    public int getYearOfBirth() {
         return yearOfBirth;
     }
-    
-    public boolean checkArrive(){
+
+    public boolean checkArrive() {
         return arrive;
     }
-        
+
     //method
-    public  void displayAuthorDetail(Author author){
-            System.out.println("  Author Name           : " + author.name);
-            System.out.println("  Author Age            : " + author.yearOfBirth);
-            System.out.println("  Author status         : " + convertBooleanToString(author.arrive));
-            System.out.println("====================================");
+    public void displayAuthorDetail(Author author) {
+        System.out.println("  Author Name           : " + author.name);
+        System.out.println("  Author Age            : " + author.yearOfBirth);
+        System.out.println("  Author status         : " + convertBooleanToString(author.arrive));
+        System.out.println("====================================");
     }
 
-    
-    public static void updateDiscount(int mode,String authorSearch,ArrayList<Book> bookArray){
-        
-        for (Book latestBook: bookArray) {
-          if (latestBook.author.getName().equals(authorSearch)) {
-                 if (mode == 1) {
+    public static void updateDiscount(int mode, String authorSearch, ArrayList<Book> bookArray) {
+
+        for (Book latestBook : bookArray) {
+            if (latestBook.author.getName().equals(authorSearch)) {
+                if (mode == 1) {
                     double newSoldPrice = latestBook.getSoldPrice() - (latestBook.getSoldPrice() * DISCOUNT_RATE);
 
                     latestBook.setSoldPrice(newSoldPrice);
 
-                }else if (mode == 2) {
+                } else if (mode == 2) {
 
                     double newSoldPrice = (latestBook.getSoldPrice() / DISCOUNT_RATE);
 
                     latestBook.setSoldPrice(newSoldPrice);
                 }
-           }     
-            
+            }
+
         }
-        
-        
-         
+
     }
-    
-    public static void updateDiscount(Book book,int mode){
+
+    public static void updateDiscount(Book book, int mode) {
         if (mode == 1) {
             double newSoldPrice = book.getSoldPrice() - (book.getSoldPrice() * DISCOUNT_RATE);
-            
+
             book.setSoldPrice(newSoldPrice);
-            
-        }else if (mode == 2) {
-            
+
+        } else if (mode == 2) {
+
             double newSoldPrice = (book.getSoldPrice() / DISCOUNT_RATE);
-            
+
             book.setSoldPrice(newSoldPrice);
         }
-            
- 
+
     }
-    
+
     //validation
-    public boolean validAuthorName(String name){
-            if (name.length() < 5 ) {
+    public boolean validAuthorName(String name) {
+        if (name.length() < 5) {
+            return false;
+        }
+
+        for (int i = 0; i < name.length(); i++) {
+
+            if (!(Character.isLetter(name.charAt(i)))) {
+
+                if (Character.isWhitespace(name.charAt(i))) {
+                    continue;
+                }
                 return false;
             }
-            
-            for (int i = 0; i < name.length(); i++) {
-                
-                if (!(Character.isLetter(name.charAt(i)) ) ) {
-                    
-                    if (Character.isWhitespace(name.charAt(i))) {
-                        continue;
-                    }
-                    return false;
-                }
 
-            }
+        }
 
-            return true;
+        return true;
     }
-    
-    public boolean validAuthorYearOfBirth(int yOB){
-        if (yOB <=1800) {
+
+    public boolean validAuthorYearOfBirth(int yOB) {
+        if (yOB <= 1800) {
             return false;
-        }else if (yOB > currentYear) {
+        } else if (yOB > currentYear) {
             return false;
         }
         return true;
     }
-    
-    
+
     // overloading method of editBook 
-    public static void editAuthor(ArrayList<Book> bookArray,String authorSearch,String newAuthorName){
-         for (Book latestBook: bookArray) {
-          if (latestBook.author.getName().equals(authorSearch)) {
-                 latestBook.author.setName(newAuthorName);
-           }     
-            
+    public static void editAuthor(ArrayList<Book> bookArray, String authorSearch, String newAuthorName) {
+        for (Book latestBook : bookArray) {
+            if (latestBook.author.getName().equals(authorSearch)) {
+                latestBook.author.setName(newAuthorName);
+            }
+
         }
     }
-    
-    
-    public static void editAuthor(ArrayList<Book> bookArray,String authorSearch,int newAge){
-         for (Book latestBook: bookArray) {
-             if (latestBook.author.getName().equals(authorSearch)) {
-                 latestBook.author.setYearOfBirth(newAge);
-             }     
+
+    public static void editAuthor(ArrayList<Book> bookArray, String authorSearch, int newAge) {
+        for (Book latestBook : bookArray) {
+            if (latestBook.author.getName().equals(authorSearch)) {
+                latestBook.author.setYearOfBirth(newAge);
+            }
         }
     }
-    
-    public static void editAuthor(ArrayList<Book> bookArray,String authorSearch,boolean arrive){
-         for (Book latestBook: bookArray) {
-             if (latestBook.author.getName().equals(authorSearch)) {
-                 latestBook.author.setArrive(arrive);
-             }     
+
+    public static void editAuthor(ArrayList<Book> bookArray, String authorSearch, boolean arrive) {
+        for (Book latestBook : bookArray) {
+            if (latestBook.author.getName().equals(authorSearch)) {
+                latestBook.author.setArrive(arrive);
+            }
         }
 
     }
-    
-    public String convertBooleanToString(boolean arrive){
+
+    public String convertBooleanToString(boolean arrive) {
         if (arrive) {
-            return Assignment.GREEN+"Alive"+Assignment.RESET;
-        }else{
-            return Assignment.RED+"Pass Away"+Assignment.RESET;
+            return Assignment.GREEN + "Alive" + Assignment.RESET;
+        } else {
+            return Assignment.RED + "Pass Away" + Assignment.RESET;
         }
     }
 
@@ -190,12 +187,10 @@ public class Author {
         final Author other = (Author) obj;
         return Objects.equals(this.name, other.name);
     }
-    
-    
+
     @Override
-    public String toString(){
-        return String.format("%-15s    %-10d  %s",name,yearOfBirth,convertBooleanToString(arrive));
+    public String toString() {
+        return String.format("%-15s    %-10d  %s", name, yearOfBirth, convertBooleanToString(arrive));
     }
-  
-    
+
 }

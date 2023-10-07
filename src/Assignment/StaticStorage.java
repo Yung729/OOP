@@ -18,44 +18,43 @@ public class StaticStorage {
     public static Book currentBook = null;
     public static Stationary currentStationary = null;
 
-    public static double getTax(){
+    public static double getTax() {
         return TAX;
     }
 
-    public static void setTax(double tax){
+    public static void setTax(double tax) {
         TAX = tax;
     }
 
-    public static void setCurrentOrder(Order order){
+    public static void setCurrentOrder(Order order) {
         currentOrder = order;
     }
 
-    public static Order getCurrentOrder(){
+    public static Order getCurrentOrder() {
         return currentOrder;
     }
 
-    public static void setCurrentCart(Cart cart){
+    public static void setCurrentCart(Cart cart) {
         currentCart = cart;
     }
 
-    public static Cart getCurrentCart(){
+    public static Cart getCurrentCart() {
         return currentCart;
     }
 
-    public static void setCurrentBook(Book book){
+    public static void setCurrentBook(Book book) {
         currentBook = book;
     }
 
-    public static Book getCurrentBook(){
+    public static Book getCurrentBook() {
         return currentBook;
     }
 
-    public static void setCurrentStationary(Stationary stationary){
+    public static void setCurrentStationary(Stationary stationary) {
         currentStationary = stationary;
     }
 
-    public static Stationary getCurrentStationary(){
+    public static Stationary getCurrentStationary() {
         return currentStationary;
     }
 }
-

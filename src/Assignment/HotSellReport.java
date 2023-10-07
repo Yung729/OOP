@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class HotSellReport extends Report {
+
     private final ArrayList<Order> orderList;
     private final HashMap<String, Integer> itemsMap;
 
@@ -25,7 +26,7 @@ public class HotSellReport extends Report {
         initOrderList();
     }
 
-    private void initOrderList(){
+    private void initOrderList() {
         for (Transaction transaction : super.getTransactionList()) {
             orderList.add(transaction.getOrder());
         }
@@ -33,14 +34,15 @@ public class HotSellReport extends Report {
     }
 
     private void analyseItemsData() {
-        for (Order order: orderList) {
+        for (Order order : orderList) {
             for (int i = 0; i < order.getBookOrder().size(); i++) {
                 String bookID = order.getBookOrder().get(i);
                 if (itemsMap.containsKey(bookID)) {
                     itemsMap.put(bookID, itemsMap.get(bookID) + order.getBookQuantity().get(i));
                 } else {
-                    if (order.getBookQuantity().size() > 0)
+                    if (order.getBookQuantity().size() > 0) {
                         itemsMap.put(bookID, order.getBookQuantity().get(i));
+                    }
                 }
             }
             for (int i = 0; i < order.getStationaryOrder().size(); i++) {
@@ -48,8 +50,9 @@ public class HotSellReport extends Report {
                 if (itemsMap.containsKey(stationaryID)) {
                     itemsMap.put(stationaryID, itemsMap.get(stationaryID) + order.getStationaryQuantity().get(i));
                 } else {
-                    if (order.getStationaryQuantity().size() > 0)
+                    if (order.getStationaryQuantity().size() > 0) {
                         itemsMap.put(stationaryID, order.getStationaryQuantity().get(i));
+                    }
                 }
             }
         }
@@ -64,12 +67,11 @@ public class HotSellReport extends Report {
         return sortedMap;
     }
 
-
     @Override
     public void printReport() {
         HashMap<String, Integer> filteredMap = getFilteredMap();
         int count = 0;
-        clearScreen(); 
+        clearScreen();
         logo();
         System.out.println("==================================================");
         System.out.println("=                 Hot Sell Report                =");
@@ -87,4 +89,3 @@ public class HotSellReport extends Report {
         Assignment.systemPause();
     }
 }
-

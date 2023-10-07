@@ -14,6 +14,7 @@ import static Assignment.Assignment.RESET;
 import static java.lang.Integer.parseInt;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author user
@@ -49,7 +50,7 @@ public class Tools {
         ArrayList<String> orderList = FileHandler.getRowByMainID(FileHandler.ORDER_DB, orderID);
         ArrayList<Integer> bookQuantity = new ArrayList<>();
         ArrayList<Integer> stationaryQuantity = new ArrayList<>();
-        
+
         String id = orderList.get(0);
         String[] bookOrderList = orderList.get(1).split(":");
         String[] bookQuantityList = orderList.get(2).split(":");
@@ -102,7 +103,7 @@ public class Tools {
         return bookList.get(1);
     }
 
-public static String getStationaryNameByID(String ID) {
+    public static String getStationaryNameByID(String ID) {
         ArrayList<String> stationaryList = FileHandler.getRowByMainID(FileHandler.STATIONARY_DB, ID);
         if (stationaryList.isEmpty()) {
             return "";
@@ -120,19 +121,19 @@ public static String getStationaryNameByID(String ID) {
         return Double.parseDouble(stationaryList.get(4));
     }
 
-    public static ArrayList<String[]> getAvailableBookList(){
+    public static ArrayList<String[]> getAvailableBookList() {
         ArrayList<String[]> bookList = Tools.getBookListFromDB();
         bookList.removeIf(book -> parseInt(book[2]) == 0);
         return bookList;
     }
 
-    public static ArrayList<String[]> getAvailableStationaryList(){
+    public static ArrayList<String[]> getAvailableStationaryList() {
         ArrayList<String[]> stationaryList = Tools.getStationaryListFromDB();
         stationaryList.removeIf(stationary -> parseInt(stationary[2]) == 0);
         return stationaryList;
     }
 
-    public static ArrayList<String[]> getAllBookByList(ArrayList<String> bookList){
+    public static ArrayList<String[]> getAllBookByList(ArrayList<String> bookList) {
         ArrayList<String[]> result = new ArrayList<>();
         for (String bookID : bookList) {
             result.add(getSelectedBookByID(bookID).toArray(new String[0]));
@@ -140,11 +141,11 @@ public static String getStationaryNameByID(String ID) {
         return result;
     }
 
-     public static ArrayList<String> getSelectedBookByID(String bookID){
+    public static ArrayList<String> getSelectedBookByID(String bookID) {
         return FileHandler.getRowByMainID(FileHandler.BOOK_DB, bookID);
-     }
+    }
 
-     public static ArrayList<String[]> getAllStationaryByList(ArrayList<String> stationaryList) {
+    public static ArrayList<String[]> getAllStationaryByList(ArrayList<String> stationaryList) {
         ArrayList<String[]> result = new ArrayList<>();
         for (String stationaryID : stationaryList) {
             result.add(getSelectedStationaryByID(stationaryID).toArray(new String[0]));
@@ -152,27 +153,31 @@ public static String getStationaryNameByID(String ID) {
         return result;
     }
 
-     public static ArrayList<String> getSelectedStationaryByID(String stationaryID){
+    public static ArrayList<String> getSelectedStationaryByID(String stationaryID) {
         return FileHandler.getRowByMainID(FileHandler.STATIONARY_DB, stationaryID);
-     }
+    }
 
     public static boolean checkCurrentStockAvailable(String id, int quantity) {
         ArrayList<String> row = FileHandler.getRowByMainID(checkItemTypeByID(id), id);
         return Integer.parseInt(row.get(2)) >= quantity;
-     }
+    }
 
-     private static String checkItemTypeByID(String id) {
-         if (id.charAt(0) == 'S') return FileHandler.STATIONARY_DB;
-         else if (id.charAt(0) == 'B') return FileHandler.BOOK_DB;
-         else return "";
-     }
+    private static String checkItemTypeByID(String id) {
+        if (id.charAt(0) == 'S') {
+            return FileHandler.STATIONARY_DB;
+        } else if (id.charAt(0) == 'B') {
+            return FileHandler.BOOK_DB;
+        } else {
+            return "";
+        }
+    }
 
-     private static int getItemStock(String id) {
+    private static int getItemStock(String id) {
         ArrayList<String> row = FileHandler.getRowByMainID(checkItemTypeByID(id), id);
         return Integer.parseInt(row.get(2));
-     }
+    }
 
-     public static void substractItemStock(String id, int quantity) {
+    public static void substractItemStock(String id, int quantity) {
         String filename = checkItemTypeByID(id);
         int currentStock = getItemStock(id);
         if (currentStock < quantity) {
@@ -180,21 +185,21 @@ public static String getStationaryNameByID(String ID) {
             return;
         }
         quantity = currentStock - quantity;
-         
+
         if (quantity == 0) {
-             FileHandler.updateDataByID(filename, id, 5, String.valueOf(false));
+            FileHandler.updateDataByID(filename, id, 5, String.valueOf(false));
         }
-         
+
         try {
-            StockFlowReport.writeStockToFile(id,-(currentStock - quantity),new Book().getStockAddDate());
+            StockFlowReport.writeStockToFile(id, -(currentStock - quantity), new Book().getStockAddDate());
         } catch (IOException ex) {
             Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
-     }
 
-     public static void addItemStock(String id, int quantity) {
+        FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
+    }
+
+    public static void addItemStock(String id, int quantity) {
         String filename = checkItemTypeByID(id);
         int currentStock = getItemStock(id);
         if (currentStock < quantity) {
@@ -202,21 +207,21 @@ public static String getStationaryNameByID(String ID) {
             return;
         }
         quantity = currentStock + quantity;
-        
+
         if (quantity >= 0) {
-             FileHandler.updateDataByID(filename, id, 5, String.valueOf(true));
+            FileHandler.updateDataByID(filename, id, 5, String.valueOf(true));
         }
-        
+
         try {
-            StockFlowReport.writeStockToFile(id,(quantity - currentStock),new Book().getStockAddDate());
+            StockFlowReport.writeStockToFile(id, (quantity - currentStock), new Book().getStockAddDate());
         } catch (IOException ex) {
             Logger.getLogger(Book.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         FileHandler.updateDataByID(filename, id, 2, String.valueOf(quantity));
     }
-     
-     public static boolean checkItemStock(String id, int quantity) {
+
+    public static boolean checkItemStock(String id, int quantity) {
         int currentStock = getItemStock(id);
         return currentStock >= quantity;
     }

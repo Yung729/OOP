@@ -13,7 +13,6 @@ import static Assignment.Assignment.RESET;
  *
  * @author user
  */
-
 public class Transaction {
 
     private String transactionID;
@@ -22,7 +21,7 @@ public class Transaction {
     private String datetime;
     private Order order;
 
-    public Transaction(){
+    public Transaction() {
         this.transactionID = initNewTransaction();
     }
 
@@ -31,7 +30,7 @@ public class Transaction {
         initTransaction();
     }
 
-    public Transaction(String method, Order order){
+    public Transaction(String method, Order order) {
         this.transactionID = initNewTransaction();
         this.paymentMethod = method;
         this.orderID = order.getOrderID();
@@ -39,7 +38,7 @@ public class Transaction {
         this.order = order;
     }
 
-    public Transaction(String transactionID, String method, String orderID, String datetime){
+    public Transaction(String transactionID, String method, String orderID, String datetime) {
         this.transactionID = transactionID;
         this.paymentMethod = method;
         this.orderID = orderID;
@@ -47,7 +46,7 @@ public class Transaction {
         this.order = Tools.getOrderObjByID(orderID);
     }
 
-    private String initNewTransaction(){
+    private String initNewTransaction() {
         int newID = FileHandler.getLastRowID(FileHandler.TRANSACTION_DB);
         newID++;
         return Tools.getIDStrFormat('T', newID);
@@ -65,78 +64,74 @@ public class Transaction {
         this.order = Tools.getOrderObjByID(orderID);
     }
 
-    public void setTransactionID(String transactionID){
+    public void setTransactionID(String transactionID) {
         this.transactionID = transactionID;
     }
 
-    public void setMethod(String method){
+    public void setMethod(String method) {
         this.paymentMethod = method;
     }
 
-    public void setOrderID(String orderID){
+    public void setOrderID(String orderID) {
         this.orderID = orderID;
     }
 
-    public void setDatetime(String datetime){
+    public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
 
-    public void setOrder(Order order){
+    public void setOrder(Order order) {
         this.order = order;
     }
 
-    public String getTransactionID(){
+    public String getTransactionID() {
         return transactionID;
     }
 
-    public String getMethod(){
+    public String getMethod() {
         return paymentMethod;
     }
 
-    public String getOrderID(){
+    public String getOrderID() {
         return orderID;
     }
 
-    public String getDatetime(){
+    public String getDatetime() {
         return datetime;
     }
 
-    public Order getOrder(){
+    public Order getOrder() {
         return order;
     }
 
-    public void printTransaction(){
- 
+    public void printTransaction() {
 
-        
         System.out.println("====================================================");
         System.out.println("Order ID: " + orderID);
-        System.out.println("Transaction ID: " + transactionID  + "\nPayment Method: " + paymentMethod);
+        System.out.println("Transaction ID: " + transactionID + "\nPayment Method: " + paymentMethod);
         System.out.println("Date & time: " + datetime + "\n");
         System.out.println("Order Details:");
         System.out.println("====================================================");
-        
+
         order.printOrderDetails();
     }
-    
-    public void printSummaryTransaction(ArrayList<Order> order){
-         
+
+    public void printSummaryTransaction(ArrayList<Order> order) {
+
         double summaryPrice = 0;
         double total = 0.0;
-        
-        for (Order summary:order) {
+
+        for (Order summary : order) {
             summaryPrice = summary.printSummaryOrderDetails();
             total += summaryPrice;
         }
 
-        
         System.out.println("\n====================================================");
-        System.out.printf("%-20s\t%-5d %-20s\t%-5.2f\n","Total Quantity:", Order.getQuantity(),"Total Amount:", total);
-        
-    }
-    
+        System.out.printf("%-20s\t%-5d %-20s\t%-5.2f\n", "Total Quantity:", Order.getQuantity(), "Total Amount:", total);
 
-    public void storeTransaction(){
+    }
+
+    public void storeTransaction() {
         String[] transactionData = {transactionID, paymentMethod, orderID, datetime};
         FileHandler.writeArrToFile(FileHandler.TRANSACTION_DB, transactionData);
         order.saveOrderToDB();

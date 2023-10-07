@@ -21,7 +21,7 @@ public class Assignment {
     public static final String BLUE = "\u001B[34m";
     public static final String PURPLE = "\u001B[35m";
     public static final String CYAN = "\u001B[36m";
-    
+
     public static final String REDBG = "\u001B[41m";
     public static final String GREENBG = "\u001B[42m";
     public static final String YELLOWBG = "\u001B[43m";
@@ -35,30 +35,30 @@ public class Assignment {
     public static void main(String[] args) {
         Employees.login();
     }
-    
-    public static void logo(){
-        System.out.printf(PURPLE+"%s\n", "                      _"+RESET);
-	System.out.printf(BLUE+"%s\n", "      _   _ _ __ ___ | |_"+RESET);
-	System.out.printf(PURPLE+"%s\n", "     | | | | '_ ` _ \\| __|"+RESET);
-	System.out.printf(BLUE+"%s\n", "     | |_| | | | | | | |_"+RESET);
-	System.out.printf(PURPLE+"%s\n\n", "      \\__,_|_| |_| |_|\\__|"+RESET);
+
+    public static void logo() {
+        System.out.printf(PURPLE + "%s\n", "                      _" + RESET);
+        System.out.printf(BLUE + "%s\n", "      _   _ _ __ ___ | |_" + RESET);
+        System.out.printf(PURPLE + "%s\n", "     | | | | '_ ` _ \\| __|" + RESET);
+        System.out.printf(BLUE + "%s\n", "     | |_| | | | | | | |_" + RESET);
+        System.out.printf(PURPLE + "%s\n\n", "      \\__,_|_| |_| |_|\\__|" + RESET);
 
     }
 
-    public static void systemPause(){
+    public static void systemPause() {
         Scanner buffer = new Scanner(System.in);
-        System.out.print(GREEN+"Enter enter to continue...."+RESET);
-        buffer.nextLine(); 
+        System.out.print(GREEN + "Enter enter to continue...." + RESET);
+        buffer.nextLine();
     }
-    
-    public static void systemPause(String sentence){
+
+    public static void systemPause(String sentence) {
         Scanner buffer = new Scanner(System.in);
         System.out.print(sentence);
-        buffer.nextLine(); 
+        buffer.nextLine();
     }
-    
-    public static void clearScreen() {  
-         try {
+
+    public static void clearScreen() {
+        try {
             Robot robot = new Robot();
             robot.setAutoDelay(10);
             robot.keyPress(KeyEvent.VK_CONTROL);
@@ -66,9 +66,9 @@ public class Assignment {
             robot.keyRelease(KeyEvent.VK_CONTROL);
             robot.keyRelease(KeyEvent.VK_L);
         } catch (AWTException ex) {
-            
+
         }
-        
-    }  
-    
+
+    }
+
 }

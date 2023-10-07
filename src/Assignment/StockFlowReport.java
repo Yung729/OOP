@@ -19,25 +19,25 @@ import java.util.logging.Logger;
  * @author Yung
  */
 public class StockFlowReport extends Report {
+
     private String id;
     private String quantity;
     private String stockFlowDate;
     private String staffID;
-    
-    StockFlowReport(){
-       
+
+    StockFlowReport() {
+
     }
 
-
-    public StockFlowReport(String id, String quantity, String stockFlowDate,String staffID) {
+    public StockFlowReport(String id, String quantity, String stockFlowDate, String staffID) {
         this.id = id;
         this.quantity = quantity;
         this.stockFlowDate = stockFlowDate;
         this.staffID = staffID;
     }
-    
+
     @Override
-    public void printReport(){
+    public void printReport() {
         String buffer = null;
         ArrayList<StockFlowReport> flowArray = new ArrayList<>();
         try {
@@ -45,7 +45,7 @@ public class StockFlowReport extends Report {
         } catch (FileNotFoundException ex) {
             System.out.println("Unable Read The File");
         }
-        
+
         Assignment.clearScreen();
         Assignment.logo();
         System.out.println("                                        Stock Flow Report");
@@ -61,31 +61,30 @@ public class StockFlowReport extends Report {
             }
             buffer = report.stockFlowDate;
         }
-        
+
         Assignment.systemPause();
     }
-    
-    public static void writeStockToFile(String id,int quantity,LocalDate date) throws IOException{
-        try ( FileWriter writeBookFile = new FileWriter("StockFlow.txt",true)) {
-            
-                writeBookFile.write(id + '|' +quantity+ '|' + date +'|' + Employees.CURRENTID +'\n');
-            
-            
+
+    public static void writeStockToFile(String id, int quantity, LocalDate date) throws IOException {
+        try (FileWriter writeBookFile = new FileWriter("StockFlow.txt", true)) {
+
+            writeBookFile.write(id + '|' + quantity + '|' + date + '|' + Employees.CURRENTID + '\n');
+
         }
     }
-    
-    public static void readStockFromFile(ArrayList<StockFlowReport> obj ) throws FileNotFoundException{
+
+    public static void readStockFromFile(ArrayList<StockFlowReport> obj) throws FileNotFoundException {
         File readStockFile = new File("StockFlow.txt");
-        
+
         if (readStockFile.exists()) {
-             Scanner productRead = new Scanner(readStockFile);
+            Scanner productRead = new Scanner(readStockFile);
             while (productRead.hasNextLine()) {
                 String line = productRead.nextLine();
                 String[] data = line.split("\\|");
-                obj.add(new StockFlowReport(data[0],data[1],data[2],data[3]));
-               
+                obj.add(new StockFlowReport(data[0], data[1], data[2], data[3]));
+
             }
-        }else {
+        } else {
             File createStockFile = new File("StockFlow.txt");
             try {
                 createStockFile.createNewFile();
@@ -93,8 +92,6 @@ public class StockFlowReport extends Report {
                 Logger.getLogger(Stationary.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-           
-            
-        
+
     }
 }
