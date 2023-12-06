@@ -23,7 +23,7 @@ public class Author {
     Author() {
     }
 
-    ;
+    
     
     Author(String name, int yearOfBirth, boolean arrive) {
         this.name = name;
